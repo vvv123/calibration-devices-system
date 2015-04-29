@@ -1,6 +1,6 @@
-package com.softserve.edu.entity;
+package com.softserve.edu.app.model;
 
-import com.softserve.edu.entity.utils.Gender;
+import com.softserve.edu.app.model.utils.Gender;
 
 import javax.persistence.*;
 
