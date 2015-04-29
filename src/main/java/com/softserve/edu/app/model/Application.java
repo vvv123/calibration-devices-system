@@ -2,8 +2,8 @@ package com.softserve.edu.app.model;
 
 import com.softserve.edu.app.model.utils.Device;
 import com.softserve.edu.app.model.utils.Status;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -34,7 +34,7 @@ public class Application {
      Will serve for generating unique URL for user.
          */
     public Long getId() {
-        return id == null ? Long.valueOf(client.hashCode() * UUID.randomUUID().hashCode()) : id;
+        return id == null ? (id = Long.valueOf(client.hashCode() * UUID.randomUUID().hashCode())) : id;
     }
 
     public void setId(Long id) {

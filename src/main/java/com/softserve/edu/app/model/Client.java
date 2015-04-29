@@ -1,8 +1,8 @@
 package com.softserve.edu.app.model;
 
 import com.softserve.edu.app.model.utils.Gender;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 public class Client {
     @Id
-    private Long id;
+    private Integer id;
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
@@ -41,11 +41,11 @@ public class Client {
         this.address = address;
     }
 
-    public Long getId() {
-        return id == null ? hashCode() : id;
+    public Integer getId() {
+        return id == null ? (id = hashCode()) : id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
