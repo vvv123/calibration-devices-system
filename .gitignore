@@ -1,3 +1,4 @@
-system-calibration-devices.iml
 .idea
-target
+*.iml
+target/
+bower_components
