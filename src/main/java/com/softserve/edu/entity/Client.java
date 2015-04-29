@@ -1,13 +1,15 @@
 package com.softserve.edu.entity;
 
 import com.softserve.edu.entity.utils.Gender;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
     private String firstName;
@@ -24,6 +26,8 @@ public class Client {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
+    @OneToMany(mappedBy = "client")
+    private Set<Application> applications;
 
     protected Client() {}
 
@@ -38,7 +42,7 @@ public class Client {
     }
 
     public Long getId() {
-        return id;
+        return id == null ? hashCode() : id;
     }
 
     public void setId(Long id) {
@@ -99,5 +103,33 @@ public class Client {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Set<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(Set<Application> applications) {
+        this.applications = applications;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
+
+        if (o == null || getClass() != o.getClass()) { return false; }
+
+        Client client = (Client) o;
+
+        return new EqualsBuilder()
+                .append(email, client.email)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(email)
+                .toHashCode();
     }
 }
