@@ -12,7 +12,6 @@ import java.util.UUID;
 public class Application {
     @Id
     private Long id;
-    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
