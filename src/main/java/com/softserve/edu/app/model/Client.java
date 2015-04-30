@@ -128,8 +128,21 @@ public class Client {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37)
+        return Math.abs(new HashCodeBuilder(17, 37)
                 .append(email)
-                .toHashCode();
+                .toHashCode());
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
+                ", address=" + address +
+                '}';
     }
 }

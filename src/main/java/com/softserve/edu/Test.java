@@ -12,7 +12,9 @@ public class Test {
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(Test.class);
         ClientService clientService = applicationContext.getBean(ClientService.class);
-        clientService.save(new Client("a", "b", "c", "d", "e", new Address("Lviv",
-                "Valova")));
+        clientService.save(new Client("Dmytro", "Dobrovolskyi", "-", "0987061802",
+                "gwini777@gmail.com", new Address("Lviv", "Lazarenka 40/414")));
+        System.out.println(clientService.findByName("Dmytro"));
+        System.out.println("--------------------------------------------------");
     }
 }

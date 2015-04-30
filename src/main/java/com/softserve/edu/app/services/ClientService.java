@@ -13,4 +13,12 @@ public class ClientService {
     public void save(Client client) {
         clientDAO.save(client);
     }
+
+    public void delete(Client client) {
+        clientDAO.delete(client);
+    }
+
+    public Client findByName(String name) {
+        return clientDAO.findByFirstName(name);
+    }
 }
