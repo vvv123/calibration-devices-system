@@ -14,10 +14,10 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
-@Profile("dev")
+@Profile("development")
 @Configuration
 @PropertySource("database.properties")
-public class JPADevConfigs {
+public class DevelopmentJPAConfigs {
     @Autowired
     private Environment env;
 
