@@ -1,4 +1,4 @@
-package com.softserve.edu.service;
+package com.softserve.edu.app.service;
 
 import org.springframework.stereotype.Service;
 
