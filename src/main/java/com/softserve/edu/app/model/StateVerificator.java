@@ -1,6 +1,7 @@
 package com.softserve.edu.app.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 //
@@ -13,19 +14,7 @@ public class StateVerificator {
     @ManyToMany(mappedBy = "stateVerificators")
     private Set<Calibrator> calibrators;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "stateVerificator")
+    private Set<CalibrationTest> calibrationTests;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Set<Calibrator> getCalibrators() {
-        return calibrators;
-    }
-
-    public void setCalibrators(Set<Calibrator> calibrators) {
-        this.calibrators = calibrators;
-    }
 }

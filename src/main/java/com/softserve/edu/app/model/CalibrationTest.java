@@ -12,21 +12,12 @@ public class CalibrationTest {
     @OneToMany(mappedBy = "calibrationTest")
     private Set<CalibrationTestData> calibrationTestDatas;
 
+    @ManyToOne
+    @JoinColumn(name = "calibrator_id")
+    private Calibrator calibrator;
 
+    @ManyToOne
+    @JoinColumn(name = "stateVerificator_id")
+    private StateVerificator stateVerificator;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Set<CalibrationTestData> getCalibrationTestDatas() {
-        return calibrationTestDatas;
-    }
-
-    public void setCalibrationTestDatas(Set<CalibrationTestData> calibrationTestDatas) {
-        this.calibrationTestDatas = calibrationTestDatas;
-    }
 }
