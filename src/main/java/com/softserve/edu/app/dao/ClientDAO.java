@@ -1,6 +1,7 @@
 package com.softserve.edu.app.dao;
 
-import com.softserve.edu.app.model.old.Client;
+
+import com.softserve.edu.app.model.Client;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
