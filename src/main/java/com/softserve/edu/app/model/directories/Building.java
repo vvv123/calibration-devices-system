@@ -19,6 +19,45 @@ public class Building {
     @JoinColumn(name = "building_id")
     private Set<Flat> flats;
 
+    protected Building() {}
+
+    public Building(String number, Set<Flat> flats) {
+        this.number = number;
+        this.flats = flats;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public Street getStreet() {
+        return street;
+    }
+
+    public void setStreet(Street street) {
+        this.street = street;
+    }
+
+    public Set<Flat> getFlats() {
+        return flats;
+    }
+
+    public void setFlats(Set<Flat> flats) {
+        this.flats = flats;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) { return true; }

@@ -19,8 +19,14 @@ public class Locality {
     @JoinColumn(name = "locality_id")
     private Set<Street> streets;
 
-    public Long getId() {
+    protected Locality() {}
 
+    public Locality(String name, Set<Street> streets) {
+        this.name = name;
+        this.streets = streets;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -28,12 +34,12 @@ public class Locality {
         this.id = id;
     }
 
-    public Set<Street> getStreets() {
-        return streets;
+    public String getName() {
+        return name;
     }
 
-    public void setStreets(Set<Street> streets) {
-        this.streets = streets;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public District getDistrict() {
@@ -44,12 +50,12 @@ public class Locality {
         this.district = district;
     }
 
-    public String getName() {
-        return name;
+    public Set<Street> getStreets() {
+        return streets;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStreets(Set<Street> streets) {
+        this.streets = streets;
     }
 
     @Override

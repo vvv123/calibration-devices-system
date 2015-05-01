@@ -19,6 +19,45 @@ public class Street {
     @JoinColumn(name = "street_id")
     private Set<Building> buildings;
 
+    protected Street() {}
+
+    public Street(String name, Set<Building> buildings) {
+        this.name = name;
+        this.buildings = buildings;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Locality getLocality() {
+        return locality;
+    }
+
+    public void setLocality(Locality locality) {
+        this.locality = locality;
+    }
+
+    public Set<Building> getBuildings() {
+        return buildings;
+    }
+
+    public void setBuildings(Set<Building> buildings) {
+        this.buildings = buildings;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) { return true; }

@@ -17,8 +17,8 @@ public class Test {
         ApplicationContext applicationContext = SpringApplication.run(Test.class);
         RegionDAO regionDAO = applicationContext.getBean(RegionDAO.class);
         DistrictDAO districtDAO = applicationContext.getBean(DistrictDAO.class);
-        District disOne = new District("Syhivskyi");
-        District disTwo = new District("Frankivskyi");
+        District disOne = new District("Syhivskyi", new HashSet<>());
+        District disTwo = new District("Frankivskyi", new HashSet<>());
         districtDAO.save(disOne);   //for id generaton
         districtDAO.save(disTwo);   //for id generaton
         regionDAO.save(new Region("Lviv region", new HashSet<District>(Arrays.asList(disOne, disTwo))));

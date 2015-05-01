@@ -16,13 +16,14 @@ public class District {
     @ManyToOne
     private Region region;
     @OneToMany
-    @JoinColumn(name = "distinct_id")
+    @JoinColumn(name = "district_id")
     private Set<Locality> localities;
 
     protected District() {}
 
-    public District(String name) {
+    public District(String name, Set<Locality> localities) {
         this.name = name;
+        this.localities = localities;
     }
 
     public Long getId() {
