@@ -1,11 +1,13 @@
 package com.softserve.edu.app.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class ClientApplication {
+    @Id
+    @GeneratedValue
+    Long id;
+
     @ManyToOne
     @JoinColumn(name = "provider_id")
     Provider provider;
