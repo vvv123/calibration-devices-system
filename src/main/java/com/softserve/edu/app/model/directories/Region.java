@@ -1,5 +1,8 @@
 package com.softserve.edu.app.model.directories;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -10,7 +13,8 @@ public class Region {
     private Long id;
     @Column(nullable = false)
     private String name;
-    @OneToMany(mappedBy = "region")
+    @OneToMany
+    @JoinColumn(name = "region_id")
     private Set<District> districts;
 
     protected Region() {}
@@ -45,11 +49,30 @@ public class Region {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
+
+        if (o == null || getClass() != o.getClass()) { return false; }
+
+        Region region = (Region) o;
+
+        return new EqualsBuilder()
+                .append(id, region.id)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .toHashCode();
+    }
+
+    @Override
     public String toString() {
         return "Region{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", districts=" + districts +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package com.softserve.edu.app.dao;
+package com.softserve.edu.app.dao.directories;
 
 import com.softserve.edu.app.model.directories.Region;
 import org.springframework.data.repository.CrudRepository;
