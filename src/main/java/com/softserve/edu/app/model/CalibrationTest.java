@@ -27,10 +27,10 @@ public class CalibrationTest {
     private Integer settingNumber;
 
     @Column
-    private Long latitude;
+    private Float latitude;
 
     @Column
-    private Long longitude;
+    private Float longitude;
 
     @Column
     private String consumeStatus;
@@ -102,19 +102,19 @@ public class CalibrationTest {
         this.settingNumber = settingNumber;
     }
 
-    public Long getLatitude() {
+    public Float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(Float latitude) {
         this.latitude = latitude;
     }
 
-    public Long getLongitude() {
+    public Float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
 
