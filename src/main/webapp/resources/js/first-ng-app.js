@@ -1,8 +1,0 @@
-/*
-angular.module(
-        ....
-    })
-    .controller(
-        ....
-    );
-*/
