@@ -13,6 +13,5 @@ public class Provider {
     Set<Client> clients;
 
     @OneToMany(mappedBy = "provider")
-    @JoinColumn(name="provider_id")
     Set<ClientApplication> clientApplications;
 }

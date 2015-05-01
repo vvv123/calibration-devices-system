@@ -7,7 +7,9 @@ import java.util.Set;
 @Entity
 public class Client {
     @ManyToMany
-    @JoinColumn(name="client_id")
+    @JoinTable(name = "client_app",
+            joinColumns = {@JoinColumn(nullable = false, name = "client_id")},
+            inverseJoinColumns = {@JoinColumn(nullable = false, name = "app_id")})
     Set<Provider> providers;
 
     @OneToMany

@@ -6,11 +6,11 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class ClientApplication {
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "provider_id")
     Provider provider;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "client_id")
     Client client;
 }
