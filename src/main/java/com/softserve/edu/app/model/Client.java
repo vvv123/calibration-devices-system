@@ -10,12 +10,11 @@ public class Client {
     Long id;
 
     @ManyToMany
-    @JoinTable(name = "client_app",
+    @JoinTable(name = "client_provider",
             joinColumns = {@JoinColumn(nullable = false, name = "client_id")},
-            inverseJoinColumns = {@JoinColumn(nullable = false, name = "app_id")})
+            inverseJoinColumns = {@JoinColumn(nullable = false, name = "provider_id")})
     Set<Provider> providers;
 
-    @OneToMany
-    @JoinColumn(name="client_id")
+    @OneToMany(mappedBy = "client")
     Set<ClientApplication> applications;
 }
