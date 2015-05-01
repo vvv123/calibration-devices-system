@@ -6,13 +6,37 @@ import javax.persistence.*;
 public class ClientApplication {
     @Id
     @GeneratedValue
-    Long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "provider_id")
-    Provider provider;
+    private Provider provider;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    Client client;
+    private Client client;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }
