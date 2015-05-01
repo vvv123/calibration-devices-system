@@ -1,7 +1,7 @@
 package com.softserve.edu.app.services;
 
 import com.softserve.edu.app.dao.ClientDAO;
-import com.softserve.edu.app.model.Client;
+import com.softserve.edu.app.model.old.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

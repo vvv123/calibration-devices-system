@@ -1,4 +1,4 @@
-package com.softserve.edu.app.model;
+package com.softserve.edu.app.model.old;
 
 import com.softserve.edu.app.model.utils.Device;
 import com.softserve.edu.app.model.utils.Status;

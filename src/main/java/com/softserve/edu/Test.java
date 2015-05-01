@@ -1,7 +1,7 @@
 package com.softserve.edu;
 
-import com.softserve.edu.app.model.Address;
-import com.softserve.edu.app.model.Client;
+import com.softserve.edu.app.model.old.Address;
+import com.softserve.edu.app.model.old.Client;
 import com.softserve.edu.app.services.ClientService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
