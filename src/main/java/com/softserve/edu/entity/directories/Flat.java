@@ -1,29 +1,24 @@
-package com.softserve.edu.model.directories;
+package com.softserve.edu.entity.directories;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-public class Building {
+public class Flat {
     @Id
     @GeneratedValue
     private Long id;
     @Column(nullable = false)
     private String number;
     @ManyToOne
-    private Street street;
-    @OneToMany
-    @JoinColumn(name = "building_id")
-    private Set<Flat> flats;
+    private Building building;
 
-    protected Building() {}
+    protected Flat() {}
 
-    public Building(String number, Set<Flat> flats) {
+    public Flat(String number) {
         this.number = number;
-        this.flats = flats;
     }
 
     public Long getId() {
@@ -42,20 +37,12 @@ public class Building {
         this.number = number;
     }
 
-    public Street getStreet() {
-        return street;
+    public Building getBuilding() {
+        return building;
     }
 
-    public void setStreet(Street street) {
-        this.street = street;
-    }
-
-    public Set<Flat> getFlats() {
-        return flats;
-    }
-
-    public void setFlats(Set<Flat> flats) {
-        this.flats = flats;
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
     @Override
@@ -64,10 +51,10 @@ public class Building {
 
         if (o == null || getClass() != o.getClass()) { return false; }
 
-        Building building = (Building) o;
+        Flat flat = (Flat) o;
 
         return new EqualsBuilder()
-                .append(id, building.id)
+                .append(id, flat.id)
                 .isEquals();
     }
 
@@ -80,7 +67,7 @@ public class Building {
 
     @Override
     public String toString() {
-        return "Building{" +
+        return "Flat{" +
                 "id=" + id +
                 ", number='" + number + '\'' +
                 '}';

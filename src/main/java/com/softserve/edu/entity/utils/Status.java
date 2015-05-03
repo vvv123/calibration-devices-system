@@ -1,4 +1,4 @@
-package com.softserve.edu.model.utils;
+package com.softserve.edu.entity.utils;
 
 public enum Status {
     SENT, RECEIVED, IN_PROGRESS, COMPLETED

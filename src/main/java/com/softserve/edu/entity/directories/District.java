@@ -1,4 +1,4 @@
-package com.softserve.edu.model.directories;
+package com.softserve.edu.entity.directories;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -7,23 +7,23 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Street {
+public class District {
     @Id
     @GeneratedValue
     private Long id;
     @Column(nullable = false)
     private String name;
     @ManyToOne
-    private Locality locality;
+    private Region region;
     @OneToMany
-    @JoinColumn(name = "street_id")
-    private Set<Building> buildings;
+    @JoinColumn(name = "district_id")
+    private Set<Locality> localities;
 
-    protected Street() {}
+    protected District() {}
 
-    public Street(String name, Set<Building> buildings) {
+    public District(String name, Set<Locality> localities) {
         this.name = name;
-        this.buildings = buildings;
+        this.localities = localities;
     }
 
     public Long getId() {
@@ -42,20 +42,20 @@ public class Street {
         this.name = name;
     }
 
-    public Locality getLocality() {
-        return locality;
+    public Region getRegion() {
+        return region;
     }
 
-    public void setLocality(Locality locality) {
-        this.locality = locality;
+    public void setRegion(Region region) {
+        this.region = region;
     }
 
-    public Set<Building> getBuildings() {
-        return buildings;
+    public Set<Locality> getLocalities() {
+        return localities;
     }
 
-    public void setBuildings(Set<Building> buildings) {
-        this.buildings = buildings;
+    public void setLocalities(Set<Locality> localities) {
+        this.localities = localities;
     }
 
     @Override
@@ -64,10 +64,10 @@ public class Street {
 
         if (o == null || getClass() != o.getClass()) { return false; }
 
-        Street street = (Street) o;
+        District district = (District) o;
 
         return new EqualsBuilder()
-                .append(id, street.id)
+                .append(id, district.id)
                 .isEquals();
     }
 
@@ -80,7 +80,7 @@ public class Street {
 
     @Override
     public String toString() {
-        return "Street{" +
+        return "District{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

@@ -1,4 +1,4 @@
-package com.softserve.edu.model.directories;
+package com.softserve.edu.entity.directories;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
