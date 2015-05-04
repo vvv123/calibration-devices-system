@@ -18,17 +18,8 @@ public class Building {
     @ManyToOne
     private Street street;
 
-    @OneToMany
-    @JoinColumn(name = "building_id")
-    private Set<Flat> flats;
-
     protected Building() {}
-
-    public Building(String number, Set<Flat> flats) {
-        this.number = number;
-        this.flats = flats;
-    }
-
+    
     public Long getId() {
         return id;
     }
@@ -51,14 +42,6 @@ public class Building {
 
     public void setStreet(Street street) {
         this.street = street;
-    }
-
-    public Set<Flat> getFlats() {
-        return flats;
-    }
-
-    public void setFlats(Set<Flat> flats) {
-        this.flats = flats;
     }
 
     @Override

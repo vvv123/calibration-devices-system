@@ -1,4 +1,4 @@
-package com.softserve.edu.service;
+package com.softserve.edu.service.catalogue;
 
 import com.softserve.edu.entity.catalogue.Region;
 import com.softserve.edu.repository.catalogue.RegionRepository;

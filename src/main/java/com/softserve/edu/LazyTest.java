@@ -3,7 +3,7 @@ package com.softserve.edu;
 import com.softserve.edu.entity.catalogue.District;
 import com.softserve.edu.entity.catalogue.Region;
 import com.softserve.edu.repository.catalogue.DistrictRepository;
-import com.softserve.edu.service.RegionService;
+import com.softserve.edu.service.catalogue.RegionService;
 import org.springframework.context.ApplicationContext;
 
 import java.util.Arrays;

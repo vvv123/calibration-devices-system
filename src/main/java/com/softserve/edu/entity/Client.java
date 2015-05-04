@@ -9,7 +9,15 @@ public class Client {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(nullable = false)
+    private String email;
     private String name;
+    private String surname;
+    private String middleName;
+
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    private Address address;
 
     @ManyToMany
     @JoinTable(name = "client_provider",
@@ -26,14 +34,6 @@ public class Client {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Set<Provider> getProviders() {
