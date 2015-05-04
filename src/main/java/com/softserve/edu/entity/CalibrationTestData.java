@@ -7,33 +7,15 @@ public class CalibrationTestData {
     @Id
     @GeneratedValue
     private Long id;
-
-    @Column
-    private Float givenConsumption;
-
-    @Column
+    private Double givenConsumption;
     private Integer acceptableError;
-
-    @Column
     private Integer volumeOfStdart;
-
-    @Column
-    private  Float initialValue;
-
-    @Column
-    private Float endValue;
-
-    @Column
-    private Float VolumInDevice;
-
-    @Column
-    private Float timeOfTest;
-
-    @Column
-    private Float actualConsumption;
-
-    @Column
-    private Float consumptionStatus;
+    private Double initialValue;
+    private Double endValue;
+    private Double volumInDevice;
+    private Double testTime;
+    private Double actualConsumption;
+    private Double consumptionStatus;
 
     @ManyToOne
     @JoinColumn(name = "calibrationTest_id")
@@ -47,11 +29,11 @@ public class CalibrationTestData {
         this.id = id;
     }
 
-    public Float getGivenConsumption() {
+    public Double getGivenConsumption() {
         return givenConsumption;
     }
 
-    public void setGivenConsumption(Float givenConsumption) {
+    public void setGivenConsumption(Double givenConsumption) {
         this.givenConsumption = givenConsumption;
     }
 
@@ -71,51 +53,51 @@ public class CalibrationTestData {
         this.volumeOfStdart = volumeOfStdart;
     }
 
-    public Float getInitialValue() {
+    public Double getInitialValue() {
         return initialValue;
     }
 
-    public void setInitialValue(Float initialValue) {
+    public void setInitialValue(Double initialValue) {
         this.initialValue = initialValue;
     }
 
-    public Float getEndValue() {
+    public Double getEndValue() {
         return endValue;
     }
 
-    public void setEndValue(Float endValue) {
+    public void setEndValue(Double endValue) {
         this.endValue = endValue;
     }
 
-    public Float getVolumInDevice() {
-        return VolumInDevice;
+    public Double getVolumInDevice() {
+        return volumInDevice;
     }
 
-    public void setVolumInDevice(Float volumInDevice) {
-        VolumInDevice = volumInDevice;
+    public void setVolumInDevice(Double volumInDevice) {
+        this.volumInDevice = volumInDevice;
     }
 
-    public Float getTimeOfTest() {
-        return timeOfTest;
+    public Double getTestTime() {
+        return testTime;
     }
 
-    public void setTimeOfTest(Float timeOfTest) {
-        this.timeOfTest = timeOfTest;
+    public void setTestTime(Double testTime) {
+        this.testTime = testTime;
     }
 
-    public Float getActualConsumption() {
+    public Double getActualConsumption() {
         return actualConsumption;
     }
 
-    public void setActualConsumption(Float actualConsumption) {
+    public void setActualConsumption(Double actualConsumption) {
         this.actualConsumption = actualConsumption;
     }
 
-    public Float getConsumptionStatus() {
+    public Double getConsumptionStatus() {
         return consumptionStatus;
     }
 
-    public void setConsumptionStatus(Float consumptionStatus) {
+    public void setConsumptionStatus(Double consumptionStatus) {
         this.consumptionStatus = consumptionStatus;
     }
 

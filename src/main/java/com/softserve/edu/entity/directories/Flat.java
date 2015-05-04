@@ -10,8 +10,10 @@ public class Flat {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(nullable = false)
     private String number;
+
     @ManyToOne
     private Building building;
 

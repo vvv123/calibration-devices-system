@@ -11,10 +11,13 @@ public class Locality {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(nullable = false)
     private String name;
+
     @ManyToOne
     private District district;
+
     @OneToMany
     @JoinColumn(name = "locality_id")
     private Set<Street> streets;

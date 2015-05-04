@@ -11,8 +11,10 @@ public class Region {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(nullable = false)
     private String name;
+
     @OneToMany
     @JoinColumn(name = "region_id")
     private Set<District> districts;

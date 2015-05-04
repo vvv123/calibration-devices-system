@@ -9,44 +9,22 @@ public class CalibrationTest {
     @Id
     @GeneratedValue
     private Long id;
-
-    @Column
     private String name;
-
-    @Column
-    private String device_number;
-
+    private String deviceNumber;
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date_of_test")
-    private Date dateOfTest;
-
-    @Column
+    private Date dateTest;
     private Integer temperature;
-
-    @Column
     private Integer settingNumber;
-
-    @Column
-    private Float latitude;
-
-    @Column
-    private Float longitude;
-
-    @Column
-    private String consumeStatus;
-
-    @Column
-    private  String  testResult;
-
-    @Column
+    private Double latitude;
+    private Double longitude;
+    private String consumptionStatus;
+    private String testResult;
     private String photoPath;
-
-
 
     @OneToMany(mappedBy = "calibrationTest")
     private Set<CalibrationTestData> calibrationTestDatas;
-
     @ManyToOne
+
     @JoinColumn(name = "calibrator_id")
     private Calibrator calibrator;
 
@@ -70,20 +48,20 @@ public class CalibrationTest {
         this.name = name;
     }
 
-    public String getDevice_number() {
-        return device_number;
+    public String getDeviceNumber() {
+        return deviceNumber;
     }
 
-    public void setDevice_number(String device_number) {
-        this.device_number = device_number;
+    public void setDeviceNumber(String deviceNumber) {
+        this.deviceNumber = deviceNumber;
     }
 
-    public Date getDateOfTest() {
-        return dateOfTest;
+    public Date getDateTest() {
+        return dateTest;
     }
 
-    public void setDateOfTest(Date dateOfTest) {
-        this.dateOfTest = dateOfTest;
+    public void setDateTest(Date dateTest) {
+        this.dateTest = dateTest;
     }
 
     public Integer getTemperature() {
@@ -102,28 +80,28 @@ public class CalibrationTest {
         this.settingNumber = settingNumber;
     }
 
-    public Float getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Float latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public Float getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Float longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
-    public String getConsumeStatus() {
-        return consumeStatus;
+    public String getConsumptionStatus() {
+        return consumptionStatus;
     }
 
-    public void setConsumeStatus(String consumeStatus) {
-        this.consumeStatus = consumeStatus;
+    public void setConsumptionStatus(String consumptionStatus) {
+        this.consumptionStatus = consumptionStatus;
     }
 
     public String getTestResult() {
