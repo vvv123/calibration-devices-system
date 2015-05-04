@@ -4,15 +4,15 @@ angular.module('clientModule', ['ngRoute'])
             $routeProvider.
                 when('/account', {
                     controller: "AccountController",
-                    templateUrl: "views/AccountView.html"
+                    templateUrl: "/resources/app/client/views/AccountView.html"
                 }).
                 when('/devices', {
                     controller: "DevicesController",
-                    templateUrl: "views/DevicesView.html"
+                    templateUrl: "/resources/app/client/views/DevicesView.html"
                 }).
                 when('/add-application', {
                     controller: "AddApplicationsController",
-                    templateUrl: "views/AddApplicationsView.html"
+                    templateUrl: "/resources/app/client/views/AddApplicationsView.html"
                 }).
                 otherwise({
                     redirectTo: '/'

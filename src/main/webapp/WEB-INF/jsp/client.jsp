@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="resources/assets/styles/bootstrap.min.css">
     <link rel="stylesheet" href="resources/assets/styles/main.css">
 </head>
-<body id="providerModule">
+<body id="clientModule">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
