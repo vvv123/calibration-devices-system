@@ -1,5 +1,8 @@
 package com.softserve.edu.entity;
 
+import com.softserve.edu.entity.user.Client;
+import com.softserve.edu.entity.user.ProviderEmployee;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -20,6 +23,10 @@ public class Provider {
 
     @OneToMany(mappedBy = "provider")
     private Set<ClientApplication> clientApplications;
+
+    @OneToMany
+    @JoinColumn(name = "provider_id")
+    private Set<ProviderEmployee> providerEmployees;
 
     public Long getId() {
         return id;
@@ -51,5 +58,13 @@ public class Provider {
 
     public void setClientApplications(Set<ClientApplication> clientApplications) {
         this.clientApplications = clientApplications;
+    }
+
+    public Set<ProviderEmployee> getProviderEmployees() {
+        return providerEmployees;
+    }
+
+    public void setProviderEmployees(Set<ProviderEmployee> providerEmployees) {
+        this.providerEmployees = providerEmployees;
     }
 }

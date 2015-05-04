@@ -1,5 +1,7 @@
 package com.softserve.edu.entity;
 
+import com.softserve.edu.entity.user.CalibratorEmployee;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,6 +19,10 @@ public class Calibrator {
             joinColumns = {@JoinColumn(nullable = false, name = "calibrator_id")},
             inverseJoinColumns = {@JoinColumn(nullable = false, name = "stateVerificator_id")})
     private Set<StateVerificator> stateVerificators;
+
+    @OneToMany
+    @JoinColumn(name = "calibrator_id")
+    private Set<CalibratorEmployee> calibratorEmployees;
 
     public Long getId() {
         return id;
@@ -40,5 +46,13 @@ public class Calibrator {
 
     public void setStateVerificators(Set<StateVerificator> stateVerificators) {
         this.stateVerificators = stateVerificators;
+    }
+
+    public Set<CalibratorEmployee> getCalibratorEmployees() {
+        return calibratorEmployees;
+    }
+
+    public void setCalibratorEmployees(Set<CalibratorEmployee> calibratorEmployees) {
+        this.calibratorEmployees = calibratorEmployees;
     }
 }
