@@ -2,6 +2,7 @@ package com.softserve.edu.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * This is plain MVC controller.
@@ -12,8 +13,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ApplicationController {
 
-    @RequestMapping("/")
-    public String welcome() {
-        return "index";
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String login() {
+        return "login";
     }
+
+    @RequestMapping(value = "/client", method = RequestMethod.GET)
+    public String client() {
+        return "client";
+    }
+
+    @RequestMapping(value = "/provider", method = RequestMethod.GET)
+    public String provider() {
+        return "provider";
+    }
+
+    @RequestMapping(value = "/calibrator", method = RequestMethod.GET)
+    public String calibrator() {
+        return "calibrator";
+    }
+
+    @RequestMapping(value = "/verificator", method = RequestMethod.GET)
+    public String verificator() {
+        return "verificator";
+    }
+
 }
