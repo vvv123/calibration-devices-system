@@ -15,7 +15,7 @@
     <groupId>com.softserve.edu</groupId>
     <artifactId>system-calibration-devices</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <java.version>1.8</java.version>
