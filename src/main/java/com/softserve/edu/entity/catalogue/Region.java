@@ -1,4 +1,4 @@
-package com.softserve.edu.entity.directories;
+package com.softserve.edu.entity.catalogue;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Locality {
+public class Region {
     @Id
     @GeneratedValue
     private Long id;
@@ -15,18 +15,15 @@ public class Locality {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    private District district;
-
     @OneToMany
-    @JoinColumn(name = "locality_id")
-    private Set<Street> streets;
+    @JoinColumn(name = "region_id")
+    private Set<District> districts;
 
-    protected Locality() {}
+    protected Region() {}
 
-    public Locality(String name, Set<Street> streets) {
+    public Region(String name, Set<District> districts) {
         this.name = name;
-        this.streets = streets;
+        this.districts = districts;
     }
 
     public Long getId() {
@@ -45,20 +42,12 @@ public class Locality {
         this.name = name;
     }
 
-    public District getDistrict() {
-        return district;
+    public Set<District> getDistricts() {
+        return districts;
     }
 
-    public void setDistrict(District district) {
-        this.district = district;
-    }
-
-    public Set<Street> getStreets() {
-        return streets;
-    }
-
-    public void setStreets(Set<Street> streets) {
-        this.streets = streets;
+    public void setDistricts(Set<District> districts) {
+        this.districts = districts;
     }
 
     @Override
@@ -67,10 +56,10 @@ public class Locality {
 
         if (o == null || getClass() != o.getClass()) { return false; }
 
-        Locality locality = (Locality) o;
+        Region region = (Region) o;
 
         return new EqualsBuilder()
-                .append(id, locality.id)
+                .append(id, region.id)
                 .isEquals();
     }
 
@@ -83,7 +72,7 @@ public class Locality {
 
     @Override
     public String toString() {
-        return "Locality{" +
+        return "Region{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

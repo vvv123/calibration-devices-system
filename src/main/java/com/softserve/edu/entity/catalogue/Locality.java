@@ -1,4 +1,4 @@
-package com.softserve.edu.entity.directories;
+package com.softserve.edu.entity.catalogue;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -7,26 +7,26 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Building {
+public class Locality {
     @Id
     @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
-    private String number;
+    private String name;
 
     @ManyToOne
-    private Street street;
-    
+    private District district;
+
     @OneToMany
-    @JoinColumn(name = "building_id")
-    private Set<Flat> flats;
+    @JoinColumn(name = "locality_id")
+    private Set<Street> streets;
 
-    protected Building() {}
+    protected Locality() {}
 
-    public Building(String number, Set<Flat> flats) {
-        this.number = number;
-        this.flats = flats;
+    public Locality(String name, Set<Street> streets) {
+        this.name = name;
+        this.streets = streets;
     }
 
     public Long getId() {
@@ -37,28 +37,28 @@ public class Building {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getName() {
+        return name;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Street getStreet() {
-        return street;
+    public District getDistrict() {
+        return district;
     }
 
-    public void setStreet(Street street) {
-        this.street = street;
+    public void setDistrict(District district) {
+        this.district = district;
     }
 
-    public Set<Flat> getFlats() {
-        return flats;
+    public Set<Street> getStreets() {
+        return streets;
     }
 
-    public void setFlats(Set<Flat> flats) {
-        this.flats = flats;
+    public void setStreets(Set<Street> streets) {
+        this.streets = streets;
     }
 
     @Override
@@ -67,10 +67,10 @@ public class Building {
 
         if (o == null || getClass() != o.getClass()) { return false; }
 
-        Building building = (Building) o;
+        Locality locality = (Locality) o;
 
         return new EqualsBuilder()
-                .append(id, building.id)
+                .append(id, locality.id)
                 .isEquals();
     }
 
@@ -83,9 +83,9 @@ public class Building {
 
     @Override
     public String toString() {
-        return "Building{" +
+        return "Locality{" +
                 "id=" + id +
-                ", number='" + number + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

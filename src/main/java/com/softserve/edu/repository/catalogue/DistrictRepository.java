@@ -1,11 +1,11 @@
-package com.softserve.edu.repository.directories;
+package com.softserve.edu.repository.catalogue;
 
-import com.softserve.edu.entity.directories.District;
-import com.softserve.edu.entity.directories.Region;
+import com.softserve.edu.entity.catalogue.District;
+import com.softserve.edu.entity.catalogue.Region;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DistrictRepository extends CrudRepository<District, Long> {
-    Region findByName(String name);
+    District findByName(String name);
 }

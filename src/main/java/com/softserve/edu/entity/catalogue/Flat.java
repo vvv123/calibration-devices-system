@@ -1,29 +1,26 @@
-package com.softserve.edu.entity.directories;
+package com.softserve.edu.entity.catalogue;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-public class Region {
+public class Flat {
     @Id
     @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String number;
 
-    @OneToMany
-    @JoinColumn(name = "region_id")
-    private Set<District> districts;
+    @ManyToOne
+    private Building building;
 
-    protected Region() {}
+    protected Flat() {}
 
-    public Region(String name, Set<District> districts) {
-        this.name = name;
-        this.districts = districts;
+    public Flat(String number) {
+        this.number = number;
     }
 
     public Long getId() {
@@ -34,20 +31,20 @@ public class Region {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNumber() {
+        return number;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public Set<District> getDistricts() {
-        return districts;
+    public Building getBuilding() {
+        return building;
     }
 
-    public void setDistricts(Set<District> districts) {
-        this.districts = districts;
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
     @Override
@@ -56,10 +53,10 @@ public class Region {
 
         if (o == null || getClass() != o.getClass()) { return false; }
 
-        Region region = (Region) o;
+        Flat flat = (Flat) o;
 
         return new EqualsBuilder()
-                .append(id, region.id)
+                .append(id, flat.id)
                 .isEquals();
     }
 
@@ -72,9 +69,9 @@ public class Region {
 
     @Override
     public String toString() {
-        return "Region{" +
+        return "Flat{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", number='" + number + '\'' +
                 '}';
     }
 }

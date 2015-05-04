@@ -9,6 +9,7 @@ public class Client {
     @Id
     @GeneratedValue
     private Long id;
+    private String name;
 
     @ManyToMany
     @JoinTable(name = "client_provider",
@@ -25,6 +26,14 @@ public class Client {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Provider> getProviders() {
