@@ -33,7 +33,17 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private Client client;
 
-    protected Address() {}
+    public Address() {}
+
+    public Address(String flatNumber, Building building, Street street,
+                   Locality locality, District district, Region region) {
+        this.flatNumber = flatNumber;
+        this.building = building;
+        this.street = street;
+        this.locality = locality;
+        this.district = district;
+        this.region = region;
+    }
 
     public Long getId() {
         return id;

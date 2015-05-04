@@ -16,7 +16,7 @@ public class Client {
     private String middleName;
 
     @OneToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @ManyToMany

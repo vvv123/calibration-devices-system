@@ -5,7 +5,8 @@ import com.softserve.edu.entity.catalogue.Region;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface BuildingRepository extends CrudRepository<Building, Long> {
-    Building findByNumber(String number);
 }

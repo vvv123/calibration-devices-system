@@ -19,7 +19,11 @@ public class Building {
     private Street street;
 
     protected Building() {}
-    
+
+    public Building(String number) {
+        this.number = number;
+    }
+
     public Long getId() {
         return id;
     }
