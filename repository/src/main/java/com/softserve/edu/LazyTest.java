@@ -7,15 +7,10 @@ import com.softserve.edu.repository.catalogue.DistrictRepository;
 import com.softserve.edu.repository.catalogue.RegionRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
-import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.HashSet;
 
-@Configuration
-@Import(value = JPAConfiguration.class)
 public class LazyTest {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(JPAConfiguration.class);
