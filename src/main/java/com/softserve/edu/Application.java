@@ -21,6 +21,5 @@ public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
-        LazyTest.run(applicationContext);
     }
 }
