@@ -13,7 +13,7 @@ import javax.persistence.EntityManagerFactory;
 @ComponentScan({"com.softserve.edu.service", "com.softserve.edu.repository"})
 public class TransactionConfiguration {
 
-    @Bean(name = "transactionManager")
+    @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory,
                                                          DriverManagerDataSource dataSource) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
