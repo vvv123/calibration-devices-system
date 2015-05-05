@@ -1,4 +1,4 @@
-package com.softserve.edu.dao.catalogue;
+package com.softserve.edu.repository.catalogue;
 
 import com.softserve.edu.entity.catalogue.Region;
 import org.springframework.data.repository.CrudRepository;

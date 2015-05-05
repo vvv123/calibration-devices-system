@@ -1,4 +1,4 @@
-package com.softserve.edu.dao;
+package com.softserve.edu.repository;
 
 import com.softserve.edu.entity.ClientApplication;
 import org.springframework.data.repository.CrudRepository;
