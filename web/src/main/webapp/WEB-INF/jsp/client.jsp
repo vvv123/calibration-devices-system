@@ -8,8 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Client page</title>
-    <link rel="stylesheet" href="resources/assets/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="resources/assets/styles/main.css">
+    <link rel="stylesheet" href="/resources/assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body id="clientModule">
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -36,7 +35,7 @@
 <div data-ng-view></div>
 
 <script type="text/javascript" data-main="resources/app/client/run-app"
-        src="resources/assets/javascripts/require.js"></script>
+        src="/resources/assets/bower_components/requirejs/require.js"></script>
 
 </body>
 </html>

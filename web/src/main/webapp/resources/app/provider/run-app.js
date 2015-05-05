@@ -1,7 +1,7 @@
 require.config({
     paths: {
-        angular: '../../assets/javascripts/angular',
-        angularRoute: '../../assets/javascripts/angular-route',
+        angular: '../../assets/bower_components/angular/angular.min',
+        angularRoute: '../../assets/bower_components/angular-route/angular-route.min',
         providerModule: 'module'
     },
     shim: {
