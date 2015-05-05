@@ -5,12 +5,14 @@ import com.softserve.edu.entity.catalogue.District;
 import com.softserve.edu.entity.catalogue.Region;
 import com.softserve.edu.repository.catalogue.DistrictRepository;
 import com.softserve.edu.repository.catalogue.RegionRepository;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
+@SuppressWarnings("resource")
 public class LazyTest {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(JPAConfiguration.class);

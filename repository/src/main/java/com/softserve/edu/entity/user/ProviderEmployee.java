@@ -1,10 +1,9 @@
 package com.softserve.edu.entity.user;
 
-import com.softserve.edu.entity.Provider;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+
+import com.softserve.edu.entity.Provider;
 
 @Entity
 public class ProviderEmployee extends User {
