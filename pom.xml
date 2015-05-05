@@ -19,7 +19,7 @@
 
     <groupId>com.softserve.edu</groupId>
     <artifactId>system-calibration-devices</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <properties>
