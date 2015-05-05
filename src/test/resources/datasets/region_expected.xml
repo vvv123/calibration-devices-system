@@ -1,0 +1,9 @@
+<dataset>
+    <region id="1" name="region1" />
+    <region id="2" name="region2" />
+
+    <district id="1" name="district1" region_id="1" />
+    <district id="2" name="district2" region_id="2" />
+    <district id="3" name="district3"  />
+
+</dataset>
