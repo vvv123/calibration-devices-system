@@ -1,7 +1,6 @@
 package com.softserve.edu.entity;
 
 import com.softserve.edu.entity.catalogue.*;
-import com.softserve.edu.entity.user.Client;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -30,9 +29,6 @@ public class Address {
 
     @ManyToOne(optional = false)
     private Region region;
-
-    @OneToOne(mappedBy = "address")
-    private Client client;
 
     public Address() {}
 
@@ -100,25 +96,5 @@ public class Address {
 
     public void setRegion(Region region) {
         this.region = region;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) { return true; }
-
-        if (o == null || getClass() != o.getClass()) { return false; }
-
-        Address building = (Address) o;
-
-        return new EqualsBuilder()
-                .append(id, building.id)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(id)
-                .toHashCode();
     }
 }
