@@ -14,9 +14,6 @@ public class StateVerificator {
     @ManyToMany(mappedBy = "stateVerificators")
     private Set<Calibrator> calibrators;
 
-    @OneToMany(mappedBy = "stateVerificator")
-    private Set<CalibrationTest> calibrationTests;
-
     @OneToMany
     @JoinColumn(name = "stateVerificator_id")
     private Set<StateVerificatorEmployee> stateVerificatorEmployees;

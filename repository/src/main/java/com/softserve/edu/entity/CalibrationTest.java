@@ -21,16 +21,10 @@ public class CalibrationTest {
     private String testResult;
     private String photoPath;
 
+    @ManyToOne
+    private Verification verification;
+
     @OneToMany(mappedBy = "calibrationTest")
     private Set<CalibrationTestData> calibrationTestDatas;
-    @ManyToOne
-
-    @JoinColumn(name = "calibrator_id")
-    private Calibrator calibrator;
-
-    @ManyToOne
-    @JoinColumn(name = "stateVerificator_id")
-    private StateVerificator stateVerificator;
-
 
 }

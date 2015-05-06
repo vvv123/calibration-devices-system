@@ -9,8 +9,7 @@ public class Application {
     @GeneratedValue
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "verification_id")
+    @OneToOne(mappedBy = "application")
     private Verification verification;
 
 }
