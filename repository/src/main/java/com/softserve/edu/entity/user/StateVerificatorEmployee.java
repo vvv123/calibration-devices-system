@@ -25,4 +25,5 @@ public class StateVerificatorEmployee extends User {
     public void setStateVerificator(StateVerificator stateVerificator) {
         this.stateVerificator = stateVerificator;
     }
+
 }

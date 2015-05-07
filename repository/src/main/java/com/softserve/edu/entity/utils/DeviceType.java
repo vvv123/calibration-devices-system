@@ -1,8 +1,10 @@
 package com.softserve.edu.entity.utils;
 
-/*
-Represents types of measurement devices.
+/**
+ *
+ * Represents types of measurement devices.
+ *
  */
-public enum Device {
+public enum DeviceType {
     ELECTRICAL, GASEOUS, WATER, THERMAL
 }

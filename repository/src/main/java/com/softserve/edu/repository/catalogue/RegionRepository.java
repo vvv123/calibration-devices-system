@@ -1,11 +1,10 @@
-package com.softserve.edu.dao;
+package com.softserve.edu.repository.catalogue;
 
-import com.softserve.edu.entity.user.Client;
 import com.softserve.edu.entity.catalogue.Region;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClientRepository extends CrudRepository<Client, Long> {
+public interface RegionRepository extends CrudRepository<Region, Long> {
     Region findByName(String name);
 }
