@@ -45,10 +45,10 @@ public class CalibrationTestControllerTest {
         calibrationTest.setName("test Name");
 
         when(service.findTest(1l)).thenReturn(calibrationTest);
-        mockMvc.perform(get("/calibrationTest/1"))
+        mockMvc.perform(get("/calibrationTests/1"))
                 .andDo(print())
                 .andExpect(jsonPath("$.name", is(calibrationTest.getName())))
-                .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/calibrationTest/1"))))
+                .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/calibrationTests/1"))))
                 .andExpect(status().isOk());
 
     }
@@ -57,7 +57,7 @@ public class CalibrationTestControllerTest {
     public void getNonExistingCalibrationTest() throws Exception {
         when(service.findTest(1L)).thenReturn(null);
 
-        mockMvc.perform(get("/calibrationTest/1"))
+        mockMvc.perform(get("/calibrationTests/1"))
                 .andExpect(status().isNotFound());
     }
 
@@ -69,10 +69,10 @@ public class CalibrationTestControllerTest {
 
         when(service.deleteTest(1L)).thenReturn(deletedCalibrationTest);
 
-        mockMvc.perform(delete("/calibrationTest/1"))
+        mockMvc.perform(delete("/calibrationTests/1"))
                 .andDo(print())
                 .andExpect(jsonPath("$.name", is(deletedCalibrationTest.getName())))
-                .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/calibrationTest/1"))))
+                .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/calibrationTests/1"))))
                 .andExpect(status().isOk());
     }
 
@@ -80,7 +80,7 @@ public class CalibrationTestControllerTest {
     public void deleteNonExistingCalibationTest() throws Exception {
         when(service.deleteTest(1L)).thenReturn(null);
 
-        mockMvc.perform(delete("/calibrationTest/1"))
+        mockMvc.perform(delete("/calibrationTests/1"))
                 .andExpect(status().isNotFound());
     }
 
@@ -93,11 +93,11 @@ public class CalibrationTestControllerTest {
         when(service.updateTest(eq(1L), any(CalibrationTest.class)))
                 .thenReturn(updatedCalibrationTest);
 
-        mockMvc.perform(put("/calibrationTest/1")
+        mockMvc.perform(put("/calibrationTests/1")
                 .content("{\"name\":\"Test Title666\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.name", is(updatedCalibrationTest.getName())))
-                .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/calibrationTest/1"))))
+                .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/calibrationTests/1"))))
                 .andExpect(status().isOk());
     }
 
@@ -106,7 +106,7 @@ public class CalibrationTestControllerTest {
         when(service.updateTest(eq(1L), any(CalibrationTest.class)))
                 .thenReturn(null);
 
-        mockMvc.perform(put("/calibrationTest/1")
+        mockMvc.perform(put("/calibrationTests/1")
                 .content("{\"name\":\"Test Title666\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
@@ -114,6 +114,17 @@ public class CalibrationTestControllerTest {
 
     @Test
     public void createCalibrationTest() throws Exception{
+        CalibrationTest createdCalibrationTest = new CalibrationTest();
+        createdCalibrationTest.setId(1L);
+        createdCalibrationTest.setName("Test A");
 
+        when(service.createTest(any(CalibrationTest.class))).thenReturn(createdCalibrationTest);
+
+        mockMvc.perform(post("/calibrationTests")
+                .content("{\"name\":\"Test A\"}")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(header().string("Location", endsWith("calibrationTests/1")))
+                .andExpect(jsonPath("$.name", is (createdCalibrationTest.getName())))
+                .andExpect(status().isCreated());
     }
 }
