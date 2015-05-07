@@ -3,19 +3,9 @@ angular
     .controller('AddApplicationsController', ['$scope', function($scope) {
         $scope.formInfo = {};
         $scope.saveData = function() {
-            $scope.nameRequired = '';
-            $scope.lastNameRequired = '';
-            $scope.middleNameRequired = '';
-            $scope.regionRequired = '';
-            $scope.localityRequired = '';
-            $scope.districtRequired = '';
-            $scope.streetRequired = '';
-            $scope.buildingRequired = '';
-            $scope.emailRequired = '';
-            $scope.phoneRequired = '';
 
 
-            if (!$scope.formInfo.name) {
+           /* if (!$scope.formInfo.name) {
                 $scope.nameRequired = 'name is required';
             }
 
@@ -47,6 +37,8 @@ angular
             if (!$scope.formInfo.phone) {
                 $scope.passwordRequired = 'phone is required';
             }
+*/
+            console.log(JSON.stringify($scope.formInfo));
         };
     }]);
 
