@@ -14,44 +14,14 @@ public class StateVerificator {
     @ManyToMany(mappedBy = "stateVerificators")
     private Set<Calibrator> calibrators;
 
-    @OneToMany(mappedBy = "stateVerificator")
-    private Set<CalibrationTest> calibrationTests;
+    @OneToMany
+    @JoinColumn(name = "stateVerificator_id")
+    private Set<StateVerificatorEmployee> stateVerificatorEmployees;
 
     @OneToMany
-    @JoinColumn(name = "state_verificator_id")
-    private Set<StateVerificatorEmployee> stateVerificatorEmployees;
+    @JoinColumn(name = "stateVerificator_id")
+    private Set<Verification> verifications;
 
     protected StateVerificator(){}
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Set<Calibrator> getCalibrators() {
-        return calibrators;
-    }
-
-    public void setCalibrators(Set<Calibrator> calibrators) {
-        this.calibrators = calibrators;
-    }
-
-    public Set<CalibrationTest> getCalibrationTests() {
-        return calibrationTests;
-    }
-
-    public void setCalibrationTests(Set<CalibrationTest> calibrationTests) {
-        this.calibrationTests = calibrationTests;
-    }
-
-    public Set<StateVerificatorEmployee> getStateVerificatorEmployees() {
-        return stateVerificatorEmployees;
-    }
-
-    public void setStateVerificatorEmployees(Set<StateVerificatorEmployee> stateVerificatorEmployees) {
-        this.stateVerificatorEmployees = stateVerificatorEmployees;
-    }
 }
