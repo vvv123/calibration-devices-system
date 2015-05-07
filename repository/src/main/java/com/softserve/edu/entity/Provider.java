@@ -26,5 +26,8 @@ public class Provider {
     @JoinColumn(name = "provider_id")
     private Set<Verification> verificationSet;
 
+    @OneToMany
+    @JoinColumn(name = "provider_id")
+    private Set<Device> devices;
 
 }
