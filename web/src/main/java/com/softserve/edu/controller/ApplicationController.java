@@ -1,8 +1,11 @@
 package com.softserve.edu.controller;
 
+import com.softserve.edu.dto.ApplicationDTO;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * This is plain MVC controller.
@@ -37,5 +40,11 @@ public class ApplicationController {
     public String verificator() {
         return "verificator";
     }
+    @RequestMapping(value = "/PostFormData", method = RequestMethod.POST)
+     @ResponseBody
+    public ApplicationDTO PostService(@RequestBody ApplicationDTO applicationDTO) {
+        return applicationDTO;
+    }
+
 
 }

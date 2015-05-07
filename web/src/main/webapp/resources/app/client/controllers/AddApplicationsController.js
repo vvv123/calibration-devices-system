@@ -1,10 +1,23 @@
 angular
     .module('clientModule')
-    .controller('AddApplicationsController', ['$scope', function($scope) {
+    .controller('AddApplicationsController',[ '$scope', '$http', function($scope, $http) {
         $scope.formInfo = {};
+        $scope.headerText = 'AngularJS Post Form Spring MVC example: Submit below form';
         $scope.saveData = function() {
+          /*  var response = $http.post("/add-application",  $scope.formInfo);
+            response.success(function(data) {
 
+            });*/
+            var response = $http.post('PostFormData', $scope.formInfo);
+            response.success(function(data, status, headers, config) {
+                $scope.formInfo.push(data);
+            });
+            response.error(function(data, status, headers, config) {
+                alert( "Exception details: " + JSON.stringify({data: data}));
+            });
 
+            //Empty list data after process
+            $scope.formInfo = [];
            /* if (!$scope.formInfo.name) {
                 $scope.nameRequired = 'name is required';
             }
