@@ -23,14 +23,20 @@ public class CalibrationTestService {
         return deletedCalibrationTest;
     }
 
-    public CalibrationTest findOne(Long id){
+    public CalibrationTest findTest(Long id){
         CalibrationTest calibrationTest = repository.findOne(id);
         return calibrationTest;
     }
 
-    public CalibrationTest updateCalibrationTest(Long id, CalibrationTest calibrationTest){
+    public CalibrationTest updateTest(Long id, CalibrationTest calibrationTest){
         CalibrationTest updatedCalibrationTest = repository.findOne(id);
         updatedCalibrationTest = repository.save(calibrationTest);
         return updatedCalibrationTest;
     }
+
+    public CalibrationTest createTest(CalibrationTest data){
+        CalibrationTest createdCalibrationTest = repository.save(data);
+        return createdCalibrationTest;
+    }
+
 }

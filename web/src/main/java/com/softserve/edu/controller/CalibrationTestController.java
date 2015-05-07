@@ -5,24 +5,32 @@ import com.softserve.edu.entity.CalibrationTest;
 import com.softserve.edu.resources.CalibrationTestResource;
 import com.softserve.edu.resources.asm.CalibrationTestResourceAsm;
 import com.softserve.edu.service.CalibrationTestService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @Controller
-@RequestMapping("/calibrationTest")
+@RequestMapping("/calibrationTests")
 public class CalibrationTestController {
 
+    @Autowired
     private CalibrationTestService service;
 
+    public CalibrationTestController(){}
+
+    @Autowired
     public CalibrationTestController (CalibrationTestService service){
         this.service = service;
     }
     @RequestMapping(value = "/{calibrationTestId}", method = RequestMethod.GET)
     public ResponseEntity<CalibrationTestResource> getCalibrationTest(
             @PathVariable Long calibrationTestId){
-        CalibrationTest calibrationTest = service.findOne(calibrationTestId);
+        CalibrationTest calibrationTest = service.findTest(calibrationTestId);
         if(calibrationTest != null) {
             CalibrationTestResource resource = new CalibrationTestResourceAsm()
                     .toResource(calibrationTest);
@@ -50,8 +58,9 @@ public class CalibrationTestController {
             method = RequestMethod.PUT)
     public ResponseEntity<CalibrationTestResource> updateCalibrationTest(
             @PathVariable Long calibrationTestId, @RequestBody CalibrationTestResource sentCalibrationTest) {
-        CalibrationTest updatedCalibrationTest = service.updateCalibrationTest(calibrationTestId, sentCalibrationTest.toCalibrationTest());
-;
+        CalibrationTest updatedCalibrationTest = service.updateTest(calibrationTestId,
+                sentCalibrationTest.toCalibrationTest());
+
         if(updatedCalibrationTest != null)
         {
             CalibrationTestResource resource = new CalibrationTestResourceAsm()
@@ -61,4 +70,16 @@ public class CalibrationTestController {
             return new ResponseEntity<CalibrationTestResource>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<CalibrationTestResource> createAccount(
+            @RequestBody CalibrationTestResource sentCalibrationTest) {
+            CalibrationTest createdCalibrationTest = service.createTest(sentCalibrationTest.toCalibrationTest());
+            CalibrationTestResource res = new CalibrationTestResourceAsm().toResource(createdCalibrationTest);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setLocation(URI.create(res.getLink("self").getHref()));
+            return new ResponseEntity<CalibrationTestResource>(res, headers, HttpStatus.CREATED);
+    }
+
+
 }

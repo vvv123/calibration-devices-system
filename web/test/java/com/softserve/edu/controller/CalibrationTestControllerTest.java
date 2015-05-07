@@ -41,10 +41,10 @@ public class CalibrationTestControllerTest {
     @Test
     public void getExistingCallibrationTest() throws Exception {
         CalibrationTest calibrationTest = new CalibrationTest();
-        calibrationTest.setId(1l);
+        calibrationTest.setId(1L);
         calibrationTest.setName("test Name");
 
-        when(service.findOne(1l)).thenReturn(calibrationTest);
+        when(service.findTest(1L)).thenReturn(calibrationTest);
         mockMvc.perform(get("/calibrationTest/1"))
                 .andDo(print())
                 .andExpect(jsonPath("$.name", is(calibrationTest.getName())))
@@ -55,7 +55,7 @@ public class CalibrationTestControllerTest {
 
     @Test
     public void getNonExistingCalibrationTest() throws Exception {
-        when(service.findOne(1L)).thenReturn(null);
+        when(service.findTest(1L)).thenReturn(null);
 
         mockMvc.perform(get("/calibrationTest/1"))
                 .andExpect(status().isNotFound());
@@ -70,7 +70,7 @@ public class CalibrationTestControllerTest {
         when(service.deleteTest(1L)).thenReturn(deletedCalibrationTest);
 
         mockMvc.perform(delete("/calibrationTest/1"))
-                .andDo(print())
+             //   .andDo(print())
                 .andExpect(jsonPath("$.name", is(deletedCalibrationTest.getName())))
                 .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/calibrationTest/1"))))
                 .andExpect(status().isOk());
@@ -90,7 +90,7 @@ public class CalibrationTestControllerTest {
         updatedCalibrationTest.setId(1L);
         updatedCalibrationTest.setName("Test Title155");
 
-        when(service.updateCalibrationTest(eq(1L), any(CalibrationTest.class)))
+        when(service.updateTest(eq(1L), any(CalibrationTest.class)))
                 .thenReturn(updatedCalibrationTest);
 
         mockMvc.perform(put("/calibrationTest/1")
@@ -103,7 +103,7 @@ public class CalibrationTestControllerTest {
 
     @Test
     public void updateNonExistingCalibrationTest() throws Exception {
-        when(service.updateCalibrationTest(eq(1L), any(CalibrationTest.class)))
+        when(service.updateTest(eq(1L), any(CalibrationTest.class)))
                 .thenReturn(null);
 
         mockMvc.perform(put("/calibrationTest/1")
