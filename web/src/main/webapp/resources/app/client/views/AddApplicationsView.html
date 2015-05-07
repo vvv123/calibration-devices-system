@@ -1,4 +1,54 @@
-<div ng-controller="AddApplicationsController">
-    <p>AddApp</p>
-    <p>{{ hello }}</p>
-</div>
+<form class="form-horizontal" role="form" ng-controller="AddApplicationsController">
+        <label for="inputName" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="inputName" placeholder="name">
+        </div>
+        <div></div>
+        <label for="inputLastName" class="col-sm-2 control-label">Last name</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="inputLastName" placeholder="lastName">
+        </div>
+        <label for="inputMiddleName" class="col-sm-2 control-label">Middle name</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="inputMiddleName" placeholder="middleName">
+        </div>
+        <label for="inputRegion" class="col-sm-2 control-label">Region</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="inputRegion" placeholder="region">
+        </div>
+        <label for="inputLocality" class="col-sm-2 control-label">City/Country</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="inputLocality" placeholder="locality">
+        </div>
+        <label for="inputDistrict" class="col-sm-2 control-label">District</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="inputDistrict" placeholder="district">
+        </div>
+        <label for="inputStreet" class="col-sm-2 control-label">Street</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="inputStreet" placeholder="street">
+        </div>
+        <label for="inputBuilding" class="col-sm-2 control-label">Building</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="inputBuilding" placeholder="building">
+        </div>
+        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="inputEmail" placeholder="email">
+        </div>
+        <label for="inputPhone" class="col-sm-2 control-label">Phone</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="inputPhone" placeholder="phone">
+        </div>
+    <span ng-show="nameRequired">{{nameRequired}}</span>
+    <span ng-show="lastNameRequired">{{lastNameRequired}}</span>
+    <span ng-show="middleNameRequired">{{middleNameRequired}}</span>
+    <span ng-show="regionRequired">{{regionRequired}}</span>
+    <span ng-show="localityRequired">{{localityRequired}}</span>
+    <span ng-show="districtRequired">{{districtRequired}}</span>
+    <span ng-show="streetRequired">{{streetRequired}}</span>
+    <span ng-show="buildingRequired">{{buildingRequired}}</span>
+    <span ng-show="emailRequired">{{emailRequired}}</span>
+    <span ng-show="phoneRequired">{{phoneRequired}}</span>
+    <button type="submit" ng-click="saveData()" class="btn btn-success">Save</button>
+</form>
