@@ -41,10 +41,10 @@ public class CalibrationTestControllerTest {
     @Test
     public void getExistingCallibrationTest() throws Exception {
         CalibrationTest calibrationTest = new CalibrationTest();
-        calibrationTest.setId(1L);
+        calibrationTest.setId(1l);
         calibrationTest.setName("test Name");
 
-        when(service.findTest(1L)).thenReturn(calibrationTest);
+        when(service.findTest(1l)).thenReturn(calibrationTest);
         mockMvc.perform(get("/calibrationTest/1"))
                 .andDo(print())
                 .andExpect(jsonPath("$.name", is(calibrationTest.getName())))
@@ -70,7 +70,7 @@ public class CalibrationTestControllerTest {
         when(service.deleteTest(1L)).thenReturn(deletedCalibrationTest);
 
         mockMvc.perform(delete("/calibrationTest/1"))
-             //   .andDo(print())
+                .andDo(print())
                 .andExpect(jsonPath("$.name", is(deletedCalibrationTest.getName())))
                 .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/calibrationTest/1"))))
                 .andExpect(status().isOk());

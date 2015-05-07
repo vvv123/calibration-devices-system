@@ -33,10 +33,4 @@ public class CalibrationTestService {
         updatedCalibrationTest = repository.save(calibrationTest);
         return updatedCalibrationTest;
     }
-
-    public CalibrationTest createTest(CalibrationTest data){
-        CalibrationTest createdCalibrationTest = repository.save(data);
-        return createdCalibrationTest;
-    }
-
 }
