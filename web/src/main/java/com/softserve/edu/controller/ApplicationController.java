@@ -20,51 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ApplicationController {
 
-    @Autowired
-    private ClientService clientService;
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
-        return "index";
-    }
-
-    @RequestMapping(value = "/client", method = RequestMethod.GET)
-    public String client() {
-        return "client";
-    }
-
-    @RequestMapping(value = "/provider", method = RequestMethod.GET)
-    public String provider() {
-        return "provider";
-    }
-
-    @RequestMapping(value = "/calibrator", method = RequestMethod.GET)
-    public String calibrator() {
-        return "calibrator";
-    }
-
-    @RequestMapping(value = "/verificator", method = RequestMethod.GET)
-    public String verificator() {
-        return "verificator";
-    }
-    @RequestMapping(value = "/client/add-application", method = RequestMethod.POST)
-    public @ResponseBody
-    Hello requestServ(@RequestBody ApplicationDTO applicationDTO) {
-        Hello hello = new Hello();
-        hello.setMessage(applicationDTO.getEmail() + "HA HA HA " + clientService.count(applicationDTO.getEmail()));
-        return hello;
-    }
-
-    static class Hello {
-        private String message;
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
+    @RequestMapping(name = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
     }
 
 }
