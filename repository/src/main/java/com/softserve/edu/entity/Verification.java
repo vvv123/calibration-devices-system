@@ -28,12 +28,10 @@ public class Verification {
     @ManyToOne
     private ProviderEmployee providerEmployee;
 
-    @OneToOne
-    @JoinColumn(name = "application_id")
-    private Application application;
+
+    @Embedded
+    private Address cleintAddress;
 
     //others...
-
-
 
 }
