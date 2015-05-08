@@ -1,5 +1,7 @@
 package com.softserve.edu.entity.user;
 
+import com.softserve.edu.entity.Address;
+
 import javax.persistence.*;
 
 @Entity

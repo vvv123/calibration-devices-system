@@ -28,8 +28,10 @@ public class Verification {
     @ManyToOne
     private ProviderEmployee providerEmployee;
 
+
+    @Embedded
+    private Address cleintAddress;
+
     //others...
-
-
 
 }

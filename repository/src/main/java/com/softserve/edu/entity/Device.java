@@ -1,7 +1,6 @@
 package com.softserve.edu.entity;
 
-import com.softserve.edu.entity.utils.DeviceType;
-import org.hibernate.annotations.GeneratorType;
+import com.softserve.edu.entity.util.DeviceType;
 
 import javax.persistence.*;
 import java.util.Set;
