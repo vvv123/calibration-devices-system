@@ -21,4 +21,91 @@ public class CalibrationTestData {
     @JoinColumn(name = "calibrationTest_id")
     private CalibrationTest calibrationTest;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Double getGivenConsumption() {
+        return givenConsumption;
+    }
+
+    public void setGivenConsumption(Double givenConsumption) {
+        this.givenConsumption = givenConsumption;
+    }
+
+    public Integer getAcceptableError() {
+        return acceptableError;
+    }
+
+    public void setAcceptableError(Integer acceptableError) {
+        this.acceptableError = acceptableError;
+    }
+
+    public Integer getVolumeOfStdart() {
+        return volumeOfStdart;
+    }
+
+    public void setVolumeOfStdart(Integer volumeOfStdart) {
+        this.volumeOfStdart = volumeOfStdart;
+    }
+
+    public Double getInitialValue() {
+        return initialValue;
+    }
+
+    public void setInitialValue(Double initialValue) {
+        this.initialValue = initialValue;
+    }
+
+    public Double getEndValue() {
+        return endValue;
+    }
+
+    public void setEndValue(Double endValue) {
+        this.endValue = endValue;
+    }
+
+    public Double getVolumInDevice() {
+        return volumInDevice;
+    }
+
+    public void setVolumInDevice(Double volumInDevice) {
+        this.volumInDevice = volumInDevice;
+    }
+
+    public Double getTestTime() {
+        return testTime;
+    }
+
+    public void setTestTime(Double testTime) {
+        this.testTime = testTime;
+    }
+
+    public Double getActualConsumption() {
+        return actualConsumption;
+    }
+
+    public void setActualConsumption(Double actualConsumption) {
+        this.actualConsumption = actualConsumption;
+    }
+
+    public Double getConsumptionStatus() {
+        return consumptionStatus;
+    }
+
+    public void setConsumptionStatus(Double consumptionStatus) {
+        this.consumptionStatus = consumptionStatus;
+    }
+
+    public CalibrationTest getCalibrationTest() {
+        return calibrationTest;
+    }
+
+    public void setCalibrationTest(CalibrationTest calibrationTest) {
+        this.calibrationTest = calibrationTest;
+    }
 }

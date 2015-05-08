@@ -20,6 +20,9 @@ public class Device {
 
     @OneToMany(mappedBy = "device")
     private Set<Verification> verifications;
+    
+    @ManyToOne
+    private Provider provider;
 
     @ManyToOne
     private Manufacturer manufacturer;
