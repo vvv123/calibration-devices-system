@@ -1,28 +1,27 @@
 package com.softserve.edu.entity.user;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
-import com.softserve.edu.entity.Calibrator;
+import com.softserve.edu.entity.Organization;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 @Entity
-public class CalibratorEmployee extends User {
+@DiscriminatorValue(value = "CALIBRATOR_EMPLOYEE")
+public class CalibratorEmployee extends Employee {
 
-    @ManyToOne
-    private Calibrator calibrator;
+    enum CalibratorEmployeeRole implements Role {
+        CALIBRATOR_EMPLOYEE, CALIBRATOR_ADMIN;
 
-    protected CalibratorEmployee() {}
-
-    public CalibratorEmployee(String email, String password,
-                              String name, String surname, String middleName) {
-        super(email, password, Role.CALIBRATOR_EMPLOYEE, name, surname, middleName);
+        @Override
+        public String roleName() {
+            return name();
+        }
     }
 
-    public Calibrator getCalibrator() {
-        return calibrator;
-    }
+    public CalibratorEmployee() {}
 
-    public void setCalibrator(Calibrator calibrator) {
-        this.calibrator = calibrator;
+    public CalibratorEmployee(String username, String password, Role role, Organization organization) {
+        super(username, password, role, organization);
     }
 }
