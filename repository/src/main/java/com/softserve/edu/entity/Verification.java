@@ -1,6 +1,8 @@
 package com.softserve.edu.entity;
 
 
+import com.softserve.edu.entity.user.ProviderEmployee;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,24 +14,22 @@ public class Verification {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "device_id")
+    @JoinColumn(name = "deviceId")
     private Device device;
-
-    @OneToOne
-    @JoinColumn(name = "application_id")
-    private Application application;
 
     @OneToMany
     @JoinColumn(name = "verification_id")
     private Set<CalibrationTest> calibrationTests;
 
+
     @ManyToOne
     private Provider provider;
 
     @ManyToOne
-    private Calibrator calibrator;
+    private ProviderEmployee providerEmployee;
 
-    @ManyToOne
-    private StateVerificator stateVerificator;
+    //others...
+
+
 
 }

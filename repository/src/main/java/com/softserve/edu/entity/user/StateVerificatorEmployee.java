@@ -1,29 +1,27 @@
 package com.softserve.edu.entity.user;
 
-import com.softserve.edu.entity.StateVerificator;
+import com.softserve.edu.entity.Organization;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class StateVerificatorEmployee extends User {
+@DiscriminatorValue(value = "STATE_VERIFICATOR_EMPLOYEE")
+public class StateVerificatorEmployee extends Employee {
 
-    @ManyToOne
-    private StateVerificator stateVerificator;
+    enum StateVerificatorEmployeeRole implements Role {
+        STATE_VERIFICATOR_EMPLOYEE, STATE_VERIFICATOR_ADMIN;
+
+        @Override
+        public String roleName() {
+            return name();
+        }
+    }
 
     protected StateVerificatorEmployee() {}
 
-    public StateVerificatorEmployee(String email, String password,
-                                    String name, String surname, String middleName) {
-        super(email, password, Role.STATE_VERIFICATOR_EMPLOYEE, name, surname, middleName);
+    public StateVerificatorEmployee(String username, String password, Role role, Organization organization) {
+        super(username, password, role, organization);
     }
-
-    public StateVerificator getStateVerificator() {
-        return stateVerificator;
-    }
-
-    public void setStateVerificator(StateVerificator stateVerificator) {
-        this.stateVerificator = stateVerificator;
-    }
-
 }
+

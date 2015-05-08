@@ -1,5 +1,5 @@
 package com.softserve.edu.controller;
-
+/*
 import com.softserve.edu.entity.CalibrationTest;
 
 import com.softserve.edu.resources.CalibrationTestResource;
@@ -76,4 +76,4 @@ public class CalibrationTestController {
         headers.setLocation(URI.create(res.getLink("self").getHref()));
         return new ResponseEntity<CalibrationTestResource>(res, headers, HttpStatus.CREATED);
     }
-}
+}*/

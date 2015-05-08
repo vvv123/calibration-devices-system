@@ -1,29 +1,28 @@
 package com.softserve.edu.entity.user;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+import com.softserve.edu.entity.Organization;
 import com.softserve.edu.entity.Provider;
+import com.softserve.edu.entity.Verification;
+
+import java.util.Set;
 
 @Entity
-public class ProviderEmployee extends User {
+@DiscriminatorValue(value = "PROVIDER_EMPLOYEE")
+public class ProviderEmployee extends Employee {
 
-    @ManyToOne
-    private Provider provider;
+    enum ProviderEmployeeRole implements Role {
+        PROVIDER_EMPLOYEE, PROVIDER_ADMIN;
 
-    protected ProviderEmployee() {}
-
-    public ProviderEmployee(String email, String password, String name,
-                            String surname, String middleName, Provider provider) {
-        super(email, password, Role.PROVIDER_EMPLOYEE, name, surname, middleName);
-        this.provider = provider;
+        @Override
+        public String roleName() {
+            return name();
+        }
     }
 
-    public Provider getProvider() {
-        return provider;
-    }
-
-    public void setProvider(Provider provider) {
-        this.provider = provider;
+    public ProviderEmployee(String username, String password, ProviderEmployeeRole role,
+             Organization organization) {
+        super(username, password, role, organization);
     }
 }
