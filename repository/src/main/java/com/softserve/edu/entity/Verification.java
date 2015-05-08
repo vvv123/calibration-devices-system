@@ -32,6 +32,10 @@ public class Verification {
     @Embedded
     private Address cleintAddress;
 
+    @OneToOne
+    @JoinColumn(name = "application_id")
+    private Application application;
+
     //others...
 
 }
