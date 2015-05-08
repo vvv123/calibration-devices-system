@@ -1,9 +1,13 @@
 package com.softserve.edu.controller;
 
+import com.softserve.edu.dto.ApplicationDTO;
+import com.softserve.edu.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -15,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class ApplicationController {
+
+    @Autowired
+    private ClientService clientService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
@@ -39,6 +46,25 @@ public class ApplicationController {
     @RequestMapping(value = "/verificator", method = RequestMethod.GET)
     public String verificator() {
         return "verificator";
+    }
+    @RequestMapping(value = "/client/add-application", method = RequestMethod.POST)
+    public @ResponseBody
+    Hello requestServ(@RequestBody ApplicationDTO applicationDTO) {
+        Hello hello = new Hello();
+        hello.setMessage(applicationDTO.getEmail() + "HA HA HA " + clientService.count(applicationDTO.getEmail()));
+        return hello;
+    }
+
+    static class Hello {
+        private String message;
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
     }
 
 }
