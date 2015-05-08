@@ -51,7 +51,7 @@ public class ApplicationController {
     @RequestMapping(value = "/client/add-application", method = RequestMethod.POST)
     public @ResponseBody
     Hello requestServ(@RequestBody ApplicationDTO applicationDTO) {
-        clientService.transferDTO(applicationDTO);
+        clientService.transferApplicationDTO(applicationDTO);
         Hello hello = new Hello();
         hello.setMessage(applicationDTO.getEmail() + "HA HA HA " + clientService.count(applicationDTO.getEmail()));
         return hello;
