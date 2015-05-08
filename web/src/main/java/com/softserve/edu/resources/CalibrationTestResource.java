@@ -1,5 +1,5 @@
 package com.softserve.edu.resources;
-/*
+
 import com.softserve.edu.entity.CalibrationTest;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -20,4 +20,4 @@ public class CalibrationTestResource extends ResourceSupport {
         calibrationTest.setName(name);
         return calibrationTest;
     }
-}*/
+}

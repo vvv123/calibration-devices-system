@@ -1,5 +1,5 @@
 package com.softserve.edu.controller;
-/*
+
 import com.softserve.edu.entity.CalibrationTest;
 
 import com.softserve.edu.resources.CalibrationTestResource;
@@ -18,12 +18,10 @@ import java.net.URI;
 @RequestMapping("/calibrationTests")
 public class CalibrationTestController {
 
+    @Autowired
     private CalibrationTestService service;
 
-    @Autowired
-    public CalibrationTestController (CalibrationTestService service){
-        this.service = service;
-    }
+
     @RequestMapping(value = "/{calibrationTestId}", method = RequestMethod.GET)
     public ResponseEntity<CalibrationTestResource> getCalibrationTest(
             @PathVariable Long calibrationTestId){
@@ -76,4 +74,4 @@ public class CalibrationTestController {
         headers.setLocation(URI.create(res.getLink("self").getHref()));
         return new ResponseEntity<CalibrationTestResource>(res, headers, HttpStatus.CREATED);
     }
-}*/
+}

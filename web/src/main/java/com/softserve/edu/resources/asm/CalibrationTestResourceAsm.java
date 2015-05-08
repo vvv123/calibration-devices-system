@@ -1,5 +1,5 @@
 package com.softserve.edu.resources.asm;
-/*
+
 import com.softserve.edu.controller.CalibrationTestController;
 import com.softserve.edu.entity.CalibrationTest;
 import com.softserve.edu.resources.CalibrationTestResource;
@@ -23,4 +23,4 @@ public class CalibrationTestResourceAsm extends ResourceAssemblerSupport<Calibra
         res.add(link.withSelfRel());
         return res;
     }
-}*/
+}
