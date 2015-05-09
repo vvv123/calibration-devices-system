@@ -3,13 +3,16 @@ package com.softserve.edu.entity.user;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+/**
+ * Root administrator.
+ */
 @Entity
 @DiscriminatorValue(value= "SYS_ADMIN")
 public class SystemAdmin extends User {
 
     enum AdminRole implements Role
     {
-        SYSADMIN;
+        SYS_ADMIN;
 
         @Override
         public String roleName() {
@@ -17,11 +20,15 @@ public class SystemAdmin extends User {
         }
     }
 
-    SystemAdmin(String username, String password)
+    public SystemAdmin(String username, String password)
     {
-        super(username, password, AdminRole.SYSADMIN);
+        super(username, password, AdminRole.SYS_ADMIN);
     }
 
-    public SystemAdmin() {
+    protected SystemAdmin() {
     }
+
+
+
+
 }
