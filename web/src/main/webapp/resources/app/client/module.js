@@ -14,6 +14,10 @@ angular.module('clientModule', ['ngRoute'])
                     controller: "AddApplicationsController",
                     templateUrl: "/resources/app/client/views/AddApplicationsView.html"
                 }).
+                when('/check-application', {
+                    controller: "CheckApplicationController",
+                    templateUrl: "/resources/app/client/views/CheckApplication.html"
+                }).
                 otherwise({
                     redirectTo: '/'
                 });
@@ -21,5 +25,6 @@ angular.module('clientModule', ['ngRoute'])
 define([
     'controllers/AccountController',
     'controllers/DevicesController',
-    'controllers/AddApplicationsController'
+    'controllers/AddApplicationsController',
+    'controllers/CheckApplicationController'
 ], function () {});

@@ -27,6 +27,7 @@
                 <li><a href="#/account">Акаунт</a></li>
                 <li><a href="#/devices">Мої лічильники</a></li>
                 <li><a href="#/add-application">Подати заявку на перевірку</a></li>
+                <li><a href="#/check-application">Перевірити заявку</a></li>
             </ul>
         </div>
     </div>

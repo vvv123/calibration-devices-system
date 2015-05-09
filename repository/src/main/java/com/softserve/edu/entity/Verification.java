@@ -20,7 +20,6 @@ public class Verification {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
     private Status status;
 
     @ManyToOne
@@ -48,8 +47,18 @@ public class Verification {
 
     @Embedded
     private ClientData clientData;
+    @Embedded
+    private Address clientAddress;
 
-    protected Verification() {}
+    public Address getClientAddress() {
+        return clientAddress;
+    }
+
+    public void setClientAddress(Address clientAddress) {
+        this.clientAddress = clientAddress;
+    }
+
+    public Verification() {}
 
     public Verification(ClientData clientData, Status status) {
         this.clientData = clientData;

@@ -1,6 +1,7 @@
 package com.softserve.edu.entity;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -9,13 +10,14 @@ import javax.persistence.Id;
  */
 @Embeddable
 public class ClientData {
-
-
     private String name;
     private String lastName;
     private String middleName;
     private String email;
     private String phone;
+    private String code;
+
+
 
     public String getName() {
         return name;
@@ -55,5 +57,21 @@ public class ClientData {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String code() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
+        result = 31 * result + (getMiddleName() != null ? getMiddleName().hashCode() : 0);
+        result = 31 * result + (getPhone() != null ? getPhone().hashCode() : 0);
+        return String.valueOf(result);
     }
 }

@@ -26,6 +26,15 @@ public class ClientService {
         return 555;
     }
 
+
+
+
+
+
+
+
+
+
     private ClientData parseApplicationDTOtoClientData(ClientData clientData, ApplicationDTO applicationDTO) {
         clientData.setName(applicationDTO.getFirstName());
         clientData.setLastName(applicationDTO.getLastName());
