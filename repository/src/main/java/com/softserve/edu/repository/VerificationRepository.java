@@ -1,6 +1,5 @@
 package com.softserve.edu.repository;
 
-import com.softserve.edu.entity.UserDate;
 import com.softserve.edu.entity.Verification;
 import org.springframework.data.repository.CrudRepository;
 
