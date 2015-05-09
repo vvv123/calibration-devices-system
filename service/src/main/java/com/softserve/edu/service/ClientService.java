@@ -18,13 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class ClientService {
     @Autowired
     private VerificationRepository verificationRepository;
-    public int transferApplicationDTO(ApplicationDTO applicationDTO) {
+
+    public String transferApplicationDTO(ApplicationDTO applicationDTO) {
         Verification verification = new Verification();
         ClientData clientData = new ClientData();
         clientData.setClientAddress(parseApplicationDTOtoClientAddress(new Address(),applicationDTO));
         verification.setClientData(parseApplicationDTOtoClientData(clientData, applicationDTO));
         verificationRepository.save(verification);
-        return 555;
+        return clientData.getCode();
     }
 
     private ClientData parseApplicationDTOtoClientData(ClientData clientData, ApplicationDTO applicationDTO) {
@@ -33,6 +34,7 @@ public class ClientService {
         clientData.setMiddleName(applicationDTO.getMiddleName());
         clientData.setEmail(applicationDTO.getEmail());
         clientData.setPhone(applicationDTO.getPhone());
+        clientData.setCode(clientData.code());
         return clientData;
     }
     private Address parseApplicationDTOtoClientAddress(Address address, ApplicationDTO applicationDTO) {
@@ -42,10 +44,6 @@ public class ClientService {
         address.setStreet(applicationDTO.getStreet());
         address.setBuilding(applicationDTO.getBuilding());
         return address;
-    }
-
-    public int count(String str) {
-        return str.length();
     }
 }
 

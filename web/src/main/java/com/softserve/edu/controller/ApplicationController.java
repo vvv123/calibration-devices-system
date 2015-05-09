@@ -51,7 +51,7 @@ public class ApplicationController {
     @RequestMapping(value = "/client/add-application", method = RequestMethod.POST)
     public @ResponseBody
     String requestServ(@RequestBody ApplicationDTO applicationDTO) {
-        clientService.transferApplicationDTO(applicationDTO);
-        return "555";
+      String code = clientService.transferApplicationDTO(applicationDTO);
+        return code;
     }
 }
