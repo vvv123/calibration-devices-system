@@ -3,7 +3,7 @@ package com.softserve.edu.documentGenerator.utils;
 /**
  * Constants for standard paths
  */
-public enum StandardPaths {
+public enum StandardPath {
     DOCUMENTS_TEMPLATES {
         @Override
         public String toString() {
@@ -25,7 +25,7 @@ public enum StandardPaths {
 
 //    private String path;
 //
-////    StandardPaths(String path) {
+////    StandardPath(String path) {
 ////        this.path = path;
 ////    }
 //
