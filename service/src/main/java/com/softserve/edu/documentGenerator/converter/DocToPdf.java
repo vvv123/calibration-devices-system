@@ -13,6 +13,7 @@ import com.lowagie.text.pdf.PdfWriter;
 
 
 import com.softserve.edu.documentGenerator.utils.DocumentUtils;
+import com.softserve.edu.documentGenerator.utils.StandardPaths;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
@@ -23,7 +24,6 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 public class DocToPdf {
 
     public void generate(String inputFileName, String outputFileName) {
-        //inputFileName = new DocumentUtils().getFilePath(inputFileName);
         POIFSFileSystem fs = null;
         Document document = new Document();
 
@@ -54,7 +54,8 @@ public class DocToPdf {
                 // run.setItalic(true);
                 paragraphs[i] = paragraphs[i].replaceAll("\\cM?\r?\n", " ");
                 System.out.println("Length:" + paragraphs[i].length());
-                String fontPath = new DocumentUtils().getFilePath("fonts/arialbd.ttf");
+                String fontPath = new DocumentUtils().getFilePath(StandardPaths.FONTS +
+                        "/arialbd.ttf");
                 BaseFont bf = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H, false);
                 Font f = new Font(bf);
                 System.out.println("Paragraph" + i + ": " + paragraphs[i].toString());
