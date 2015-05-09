@@ -1,17 +1,27 @@
 package com.softserve.edu.entity;
 
 
+import com.softserve.edu.entity.user.CalibratorEmployee;
 import com.softserve.edu.entity.user.ProviderEmployee;
+import com.softserve.edu.entity.user.StateVerificatorEmployee;
+import com.softserve.edu.entity.util.Status;
 
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Verification entity.
+ * Contains data about whole business process of verification.
+ */
 @Entity
 public class Verification {
 
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(nullable = false)
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "deviceId")
@@ -21,22 +31,46 @@ public class Verification {
     @JoinColumn(name = "verification_id")
     private Set<CalibrationTest> calibrationTests;
 
-
     @ManyToOne
     private Provider provider;
-
     @ManyToOne
     private ProviderEmployee providerEmployee;
 
+    @ManyToOne
+    private Calibrator calibrator;
+    @ManyToOne
+    private CalibratorEmployee calibratorEmployee;
 
-    @Embedded
-    private Address clientAddress;
+    @ManyToOne
+    private StateVerificator stateVerificator;
+    @ManyToOne
+    private StateVerificatorEmployee stateVerificatorEmployee;
 
     @Embedded
     private ClientData clientData;
 
-    //others...
+    protected Verification() {}
 
+    public Verification(ClientData clientData, Status status) {
+        this.clientData = clientData;
+        this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     public Device getDevice() {
         return device;
@@ -70,12 +104,36 @@ public class Verification {
         this.providerEmployee = providerEmployee;
     }
 
-    public Address getClientAddress() {
-        return clientAddress;
+    public Calibrator getCalibrator() {
+        return calibrator;
     }
 
-    public void setClientAddress(Address clientAddress) {
-        this.clientAddress = clientAddress;
+    public void setCalibrator(Calibrator calibrator) {
+        this.calibrator = calibrator;
+    }
+
+    public CalibratorEmployee getCalibratorEmployee() {
+        return calibratorEmployee;
+    }
+
+    public void setCalibratorEmployee(CalibratorEmployee calibratorEmployee) {
+        this.calibratorEmployee = calibratorEmployee;
+    }
+
+    public StateVerificator getStateVerificator() {
+        return stateVerificator;
+    }
+
+    public void setStateVerificator(StateVerificator stateVerificator) {
+        this.stateVerificator = stateVerificator;
+    }
+
+    public StateVerificatorEmployee getStateVerificatorEmployee() {
+        return stateVerificatorEmployee;
+    }
+
+    public void setStateVerificatorEmployee(StateVerificatorEmployee stateVerificatorEmployee) {
+        this.stateVerificatorEmployee = stateVerificatorEmployee;
     }
 
     public ClientData getClientData() {
