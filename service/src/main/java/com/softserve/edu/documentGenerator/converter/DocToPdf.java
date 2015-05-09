@@ -12,8 +12,10 @@ import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfWriter;
 
 
+import com.softserve.edu.documentGenerator.utils.DocumentFormat;
 import com.softserve.edu.documentGenerator.utils.DocumentUtils;
-import com.softserve.edu.documentGenerator.utils.StandardPaths;
+import com.softserve.edu.documentGenerator.utils.PathBuilder;
+import com.softserve.edu.documentGenerator.utils.StandardPath;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
@@ -21,22 +23,27 @@ import org.apache.poi.hwpf.usermodel.Range;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 
-public class DocToPdf {
+public class DocToPdf implements Converter {
 
-    public void generate(String inputFileName, String outputFileName) {
+    @Override
+    public File getConvertedFile(File readyTemplate) {
         POIFSFileSystem fs = null;
         Document document = new Document();
+        File file = null;
 
         try {
             System.out.println("Starting the test");
-            fs = new POIFSFileSystem(new FileInputStream(inputFileName));
+            fs = new POIFSFileSystem(new FileInputStream(readyTemplate));
 
             HWPFDocument doc = new HWPFDocument(fs);
             WordExtractor we = new WordExtractor(doc);
 
-            OutputStream file = new FileOutputStream(new File(outputFileName));
+            String path = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED, readyTemplate.getName(),
+                    DocumentFormat.PDF);
+            file = new File(path);
+            OutputStream fileStream = new FileOutputStream(file);
 
-            PdfWriter writer = PdfWriter.getInstance(document, file);
+            PdfWriter writer = PdfWriter.getInstance(document, fileStream);
 
             Range range = doc.getRange();
             document.open();
@@ -54,7 +61,7 @@ public class DocToPdf {
                 // run.setItalic(true);
                 paragraphs[i] = paragraphs[i].replaceAll("\\cM?\r?\n", " ");
                 System.out.println("Length:" + paragraphs[i].length());
-                String fontPath = new DocumentUtils().getFilePath(StandardPaths.FONTS +
+                String fontPath = new DocumentUtils().getFilePath(StandardPath.FONTS +
                         "/arialbd.ttf");
                 BaseFont bf = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H, false);
                 Font f = new Font(bf);
@@ -72,5 +79,7 @@ public class DocToPdf {
             // close the document
             document.close();
         }
+
+        return file;
     }
 }
