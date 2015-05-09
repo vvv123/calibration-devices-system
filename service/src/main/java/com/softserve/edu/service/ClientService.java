@@ -20,20 +20,12 @@ public class ClientService {
     private VerificationRepository verificationRepository;
     public int transferApplicationDTO(ApplicationDTO applicationDTO) {
         Verification verification = new Verification();
-        verification.setClientData(parseApplicationDTOtoClientData(new ClientData(), applicationDTO));
-        verification.setClientAddress(parseApplicationDTOtoClientAddress(new Address(), applicationDTO));
+        ClientData clientData = new ClientData();
+        clientData.setClientAddress(parseApplicationDTOtoClientAddress(new Address(),applicationDTO));
+        verification.setClientData(parseApplicationDTOtoClientData(clientData, applicationDTO));
         verificationRepository.save(verification);
         return 555;
     }
-
-
-
-
-
-
-
-
-
 
     private ClientData parseApplicationDTOtoClientData(ClientData clientData, ApplicationDTO applicationDTO) {
         clientData.setName(applicationDTO.getFirstName());
