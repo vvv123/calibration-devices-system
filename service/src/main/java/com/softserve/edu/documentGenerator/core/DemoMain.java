@@ -1,8 +1,10 @@
 package com.softserve.edu.documentGenerator.core;
 
-import com.softserve.edu.documentGenerator.converter.DocToPdf;
-import com.softserve.edu.documentGenerator.generator.FormFiller;
-import com.softserve.edu.documentGenerator.utils.StandardPaths;
+import com.softserve.edu.documentGenerator.DocumentGenerator;
+import com.softserve.edu.documentGenerator.utils.DocumentFormat;
+import com.softserve.edu.documentGenerator.utils.Template;
+
+import java.io.File;
 
 /**
  * class for testing purposes, not for production
@@ -10,14 +12,10 @@ import com.softserve.edu.documentGenerator.utils.StandardPaths;
 public class DemoMain {
 
     public static void main(String[] args) {
-        String inputFileName = StandardPaths.DOCUMENTS_TEMPLATES + "/form.doc";
-        String outputFileName = StandardPaths.DOCUMENTS_GENERATED + "/form.pdf";
+        int verificationID = -1;
 
-        FormFiller formFiller = new FormFiller();
-        formFiller.replaceTokenAndSave("$NAME", "\n Олег Чернигевич \n", inputFileName,
-                StandardPaths.DOCUMENTS_GENERATED + "/ttt.doc");
-        DocToPdf docToPdf = new DocToPdf();
-        docToPdf.generate(StandardPaths.DOCUMENTS_GENERATED + "/ttt.doc", outputFileName);
+        File generatedDoc =
+                DocumentGenerator.generate(Template.DEVICE_CHECK, verificationID, DocumentFormat.PDF);
     }
 
 }
