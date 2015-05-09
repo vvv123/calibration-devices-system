@@ -1,4 +1,4 @@
-package com.softserve.edu.documentGenerator;
+package com.softserve.edu.documentGenerator.utils;
 
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.CharacterRun;
@@ -6,10 +6,21 @@ import org.apache.poi.hwpf.usermodel.Paragraph;
 import org.apache.poi.hwpf.usermodel.Range;
 import org.apache.poi.hwpf.usermodel.Section;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class DocumentUtils {
+    /**
+     * Get file's path from resources folder
+     */
+    public String getFilePath(String fileName) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+
+        return file.getAbsolutePath();
+    }
+
     /**
      * Replace text in a document
      */
