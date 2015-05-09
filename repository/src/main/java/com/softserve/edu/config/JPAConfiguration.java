@@ -47,15 +47,6 @@ public class JPAConfiguration {
         return entityManagerFactoryBean;
     }
 
-    @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory,
-            DriverManagerDataSource dataSource) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory);
-        transactionManager.setDataSource(dataSource);
-        return transactionManager;
-    }
-
     private Map<String, String> jpaProperties() {
         Map<String, String> jpaProperties = new HashMap<>();
         jpaProperties.put("hibernate.dialect", env.getProperty("hb.dialect"));
