@@ -30,12 +30,59 @@ public class Verification {
 
 
     @Embedded
-    private Address cleintAddress;
+    private Address clientAddress;
 
-    @OneToOne
-    @JoinColumn(name = "application_id")
-    private Application application;
+    @Embedded
+    private ClientData clientData;
 
     //others...
 
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
+    }
+
+    public Set<CalibrationTest> getCalibrationTests() {
+        return calibrationTests;
+    }
+
+    public void setCalibrationTests(Set<CalibrationTest> calibrationTests) {
+        this.calibrationTests = calibrationTests;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
+    public ProviderEmployee getProviderEmployee() {
+        return providerEmployee;
+    }
+
+    public void setProviderEmployee(ProviderEmployee providerEmployee) {
+        this.providerEmployee = providerEmployee;
+    }
+
+    public Address getClientAddress() {
+        return clientAddress;
+    }
+
+    public void setClientAddress(Address clientAddress) {
+        this.clientAddress = clientAddress;
+    }
+
+    public ClientData getClientData() {
+        return clientData;
+    }
+
+    public void setClientData(ClientData clientData) {
+        this.clientData = clientData;
+    }
 }

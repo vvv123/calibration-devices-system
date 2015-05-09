@@ -32,7 +32,9 @@
     </div>
 </nav>
 
-<div data-ng-view></div>
+<div style="padding-top: 60px;">
+    <div data-ng-view></div>
+</div>
 
 <script type="text/javascript" data-main="resources/app/client/run-app"
         src="/resources/assets/bower_components/requirejs/require.js"></script>

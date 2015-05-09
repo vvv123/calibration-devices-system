@@ -47,24 +47,11 @@ public class ApplicationController {
     public String verificator() {
         return "verificator";
     }
+
     @RequestMapping(value = "/client/add-application", method = RequestMethod.POST)
     public @ResponseBody
-    Hello requestServ(@RequestBody ApplicationDTO applicationDTO) {
-        Hello hello = new Hello();
-        hello.setMessage(applicationDTO.getEmail() + "HA HA HA " + clientService.count(applicationDTO.getEmail()));
-        return hello;
+    int requestServ(@RequestBody ApplicationDTO applicationDTO) {
+        clientService.transferApplicationDTO(applicationDTO);
+        return 555;
     }
-
-    static class Hello {
-        private String message;
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-    }
-
 }
