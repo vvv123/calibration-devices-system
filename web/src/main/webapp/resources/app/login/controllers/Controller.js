@@ -2,10 +2,7 @@ angular
     .module('loginModule')
     .controller('Controller', ['$scope', '$http', function ($scope, $http) {
         $scope.login = function () {
-            var response = $http.post("/login/authorize", {
-                username: $scope.loginForm.username,
-                password: $scope.loginForm.password
-            });
+            var response = $http.post("/login/authorize", $scope.loginForm);
             response.success(function (data) {
                 console.dir(data);
             });

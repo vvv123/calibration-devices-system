@@ -10,7 +10,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.persistence.EntityManagerFactory;
 
 @Configuration
-@ComponentScan({"com.softserve.edu.service", "com.softserve.edu.repository"})
+@ComponentScan({"com.softserve.edu.service", "com.softserve.edu.repository", "com.softserve.edu.security"})
 public class TransactionConfiguration {
 
     @Bean

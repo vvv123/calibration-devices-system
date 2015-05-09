@@ -26,15 +26,4 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
-
-    @Bean
-    public UrlBasedViewResolver urlBasedViewResolver()
-    {
-        UrlBasedViewResolver urlBasedViewResolver = new InternalResourceViewResolver();
-        urlBasedViewResolver.setViewClass(JstlView.class);
-        urlBasedViewResolver.setPrefix("/WEB-INF/jsp/");
-        urlBasedViewResolver.setSuffix(".jsp");
-
-        return urlBasedViewResolver;
-    }
 }
