@@ -1,27 +1,17 @@
 angular
     .module('clientModule')
     .controller('AddApplicationsController',[ '$scope', '$location', '$http',  function($scope, $location, $http) {
-        $scope.formInfo = {};
-        $scope.headerText = 'AngularJS Post Form Spring MVC example: Submit below form';
         $scope.saveData = function() {
-            /*  var response = $http.post("/add-application",  $scope.formInfo);
-             response.success(function(data) {
-
-             });*/
             var response = $http.post('/client/add-application', $scope.formInfo);
             response.success(function(data, status, headers, config) {
-                //$scope.formInfo.push(data);
-                console.dir(data);
-                $scope.formInfo = JSON.stringify(data);
-
+               $scope.code =JSON.stringify(data);
             });
             response.error(function(data, status, headers, config) {
-                //alert( "Exception details: " + JSON.stringify({data: data}));
                 console.dir(data);
             });
-
+            $scope.myVar = true;
             //Empty list data after process
-            $location.path( "/check-application" );
+           /* $location.path( "/check-application" );*/
             /* if (!$scope.formInfo.name) {
              $scope.nameRequired = 'name is required';
              }
@@ -55,6 +45,6 @@ angular
              $scope.passwordRequired = 'phone is required';
              }
              */
-            console.log(JSON.stringify($scope.formInfo));
+            /*console.log(JSON.stringify($scope.formInfo));*/
         };
     }]);

@@ -19,8 +19,8 @@ public class Verification {
     @Id
     @GeneratedValue
     private Long id;
-
     private Status status;
+    private Long code;
 
     @ManyToOne
     @JoinColumn(name = "deviceId")
@@ -53,6 +53,13 @@ public class Verification {
     public Verification(ClientData clientData, Status status) {
         this.clientData = clientData;
         this.status = status;
+    }
+    public Long getCode() {
+        return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
     }
 
     public Long getId() {

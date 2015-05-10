@@ -1,6 +1,10 @@
-<form   class="form-check" role="form" ng-controller="CheckApplicationController">
-    <p>Check</p>
-    <input type="text" ng-model="hello"/>
-    <p>{{ check }}</p>
-
+<form class="form-horizontal" role="form" ng-controller="CheckApplicationController">
+    <label for="code" class="col-sm-2 control-label">Your code</label>
+    <h2 class="col-sm-4">
+        <input class="form-control" id="code" placeholder="your code" ng-model="codeInfo.code">
+        <button type="search" ng-click="search()" class="btn btn-success">Search</button>
+    </h2>
+    <div class="alert alert-success" role="alert">
+        Thank you,we received your application. Your status : {{ status }}
+    </div>
 </form>

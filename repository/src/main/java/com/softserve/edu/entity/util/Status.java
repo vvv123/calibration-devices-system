@@ -1,5 +1,5 @@
 package com.softserve.edu.entity.util;
 
 public enum Status {
-    SENT, RECEIVED, IN_PROGRESS, COMPLETED
+    SENT, RECEIVED, IN_PROGRESS, COMPLETED,NOT_FOUND
 }

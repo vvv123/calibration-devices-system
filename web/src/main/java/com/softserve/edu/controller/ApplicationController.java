@@ -1,6 +1,9 @@
 package com.softserve.edu.controller;
 
 import com.softserve.edu.dto.ApplicationDTO;
+import com.softserve.edu.dto.ClientCodeDTO;
+import com.softserve.edu.entity.Verification;
+import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,8 @@ public class ApplicationController {
 
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private ClientService clientCode;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
@@ -50,8 +55,14 @@ public class ApplicationController {
 
     @RequestMapping(value = "/client/add-application", method = RequestMethod.POST)
     public @ResponseBody
-    String requestServ(@RequestBody ApplicationDTO applicationDTO) {
-      String code = clientService.transferApplicationDTO(applicationDTO);
+    Long requestClientApplication(@RequestBody ApplicationDTO applicationDTO) {
+      Long code = clientService.transferApplication(applicationDTO);
         return code;
+    }
+    @RequestMapping(value = "/client/check-application", method = RequestMethod.POST)
+    public @ResponseBody
+    Status transferClientCodeDTO(@RequestBody ClientCodeDTO clientCodeDTO) {
+        Status l = clientCode.transferClientCode(clientCodeDTO);
+        return l;
     }
 }
