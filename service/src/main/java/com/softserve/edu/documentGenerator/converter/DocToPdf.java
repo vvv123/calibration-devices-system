@@ -26,7 +26,7 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 public class DocToPdf implements Converter {
 
     @Override
-    public File getConvertedFile(File readyTemplate) {
+    public File getConvertedFile(File readyTemplate, String outputFileName) {
         POIFSFileSystem fs = null;
         Document document = new Document();
         File file = null;
@@ -38,9 +38,7 @@ public class DocToPdf implements Converter {
             HWPFDocument doc = new HWPFDocument(fs);
             WordExtractor we = new WordExtractor(doc);
 
-            String path = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED, readyTemplate.getName(),
-                    DocumentFormat.PDF);
-            file = new File(path);
+            file = new File(outputFileName);
             OutputStream fileStream = new FileOutputStream(file);
 
             PdfWriter writer = PdfWriter.getInstance(document, fileStream);
