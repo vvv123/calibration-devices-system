@@ -8,10 +8,9 @@ import java.util.Date;
 public class Calibrator {
     private String calibratorCompanyName;
     private String calibratorAddress;
-    private Date calibratorCertificatGranted;   // no info in db
-    private Integer calibratorCertificatNumber; // no info in db
-    private String calibratorEmployeeSign;
-    private String calibratorEmployeeNameSurname;
+    private Date calibratorCertificateGranted;   // no info in db
+    private Integer calibratorCertificateNumber; // no info in db
+    private Person calibratorEmployee;
 
     public String getCalibratorCompanyName() {
         return calibratorCompanyName;
@@ -29,35 +28,27 @@ public class Calibrator {
         this.calibratorAddress = calibratorAddress;
     }
 
-    public Date getCalibratorCertificatGranted() {
-        return calibratorCertificatGranted;
+    public Date getCalibratorCertificateGranted() {
+        return calibratorCertificateGranted;
     }
 
-    public void setCalibratorCertificatGranted(Date calibratorCertificatGranted) {
-        this.calibratorCertificatGranted = calibratorCertificatGranted;
+    public void setCalibratorCertificateGranted(Date calibratorCertificateGranted) {
+        this.calibratorCertificateGranted = calibratorCertificateGranted;
     }
 
-    public Integer getCalibratorCertificatNumber() {
-        return calibratorCertificatNumber;
+    public Integer getCalibratorCertificateNumber() {
+        return calibratorCertificateNumber;
     }
 
-    public void setCalibratorCertificatNumber(Integer calibratorCertificatNumber) {
-        this.calibratorCertificatNumber = calibratorCertificatNumber;
+    public void setCalibratorCertificateNumber(Integer calibratorCertificateNumber) {
+        this.calibratorCertificateNumber = calibratorCertificateNumber;
     }
 
-    public String getCalibratorEmployeeSign() {
-        return calibratorEmployeeSign;
+    public Person getCalibratorEmployee() {
+        return calibratorEmployee;
     }
 
-    public void setCalibratorEmployeeSign(String calibratorEmployeeSign) {
-        this.calibratorEmployeeSign = calibratorEmployeeSign;
-    }
-
-    public String getCalibratorEmployeeNameSurname() {
-        return calibratorEmployeeNameSurname;
-    }
-
-    public void setCalibratorEmployeeNameSurname(String calibratorEmployeeNameSurname) {
-        this.calibratorEmployeeNameSurname = calibratorEmployeeNameSurname;
+    public void setCalibratorEmployee(Person calibratorEmployee) {
+        this.calibratorEmployee = calibratorEmployee;
     }
 }
