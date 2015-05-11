@@ -22,7 +22,8 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
                                         Authentication authentication) throws IOException, ServletException {
 
         if ("true".equals(httpServletRequest.getHeader("X-Login-Ajax-call"))) {
-            httpServletResponse.getWriter().print("ok");
+            String authority = authentication.getAuthorities().iterator().next().getAuthority();
+            httpServletResponse.getWriter().print(authority);
             httpServletResponse.getWriter().flush();
         } else {
             defaultHandler.onAuthenticationSuccess(httpServletRequest, httpServletResponse, authentication);

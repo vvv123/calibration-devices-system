@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value= "SYS_ADMIN")
+@DiscriminatorValue(value = "SYS_ADMIN")
 public class SystemAdmin extends User {
 
     enum AdminRole implements Role {
@@ -16,7 +16,7 @@ public class SystemAdmin extends User {
         }
     }
 
-    SystemAdmin(String username, String password) {
+    public SystemAdmin(String username, String password) {
         super(username, password, AdminRole.SYS_ADMIN);
     }
 

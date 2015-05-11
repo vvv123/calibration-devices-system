@@ -13,14 +13,16 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "userType")
 public abstract class User {
     @Id
+    @Column(unique = true, nullable = false)
     private String username;
+
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
     private String role;
 
     protected User() {}
-
     /**
      * Required constructor for saving employee in database.
      * Employee cannot exists without these parameters.
@@ -30,6 +32,8 @@ public abstract class User {
      * @param role (look through implementations of Role interface in each User-extended class)
      */
     public User(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
         this.role = role.roleName();
     }
 

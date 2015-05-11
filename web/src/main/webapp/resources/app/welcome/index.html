@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="/resources/assets/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/resources/assets/css/welcome.css" rel="stylesheet">
+</head>
+
+<body id="mainModule">
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" du-smooth-scroll="mainModule">Main</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li du-scrollspy="aboutModule"><a du-smooth-scroll="aboutModule">About</a></li>
+                <li du-scrollspy="loginModule"><a du-smooth-scroll="loginModule">Login</a></li>
+                <li du-scrollspy="applicationModule"><a du-smooth-scroll="applicationModule">Application</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section id="welcomeModule">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Scrolling Nav</h1>
+                <p><strong>Usage Instructions:</strong> Make sure to include the <code>scrolling-nav.js</code>, <code>jquery.easing.min.js</code>, and <code>scrolling-nav.css</code> files. To make a link smooth scroll to another section on the page, give the link the <code>.page-scroll</code> class and set the link target to a corresponding ID on the page.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="aboutModule">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>About Section</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="loginModule" ng-controller="LoginController">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Увійдіть в систему</h1>
+            </div>
+            <div class="col-lg-12">
+                <form ng-submit="login()" class="form-signin">
+                    <input ng-model="loginForm.username" type="text"  class="form-control" placeholder="Логін" required autofocus>
+                    <input ng-model="loginForm.password" type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
+                    <p>{{ loginForm }}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="applicationModule">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Application Section</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" data-main="/resources/app/welcome/run-app"
+        src="/resources/assets/bower_components/requirejs/require.js"></script>
+
+</body>
+</html>

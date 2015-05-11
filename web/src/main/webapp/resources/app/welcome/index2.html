@@ -52,9 +52,9 @@
 
 </head>
 
-<body id="loginModule">
+<body id="welcomeModule">
 
-<div class="container" ng-controller="Controller">
+<div class="container" ng-controller="LoginController">
 
     <form ng-submit="login()" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
@@ -68,9 +68,13 @@
         <p>{{ loginForm }}</p>
     </form>
 
+    <p></p>
+    <p class="btn btn-danger" ng-click="initAdmin()">Click me once</p>
+    <p class="btn btn-danger" ng-click="principal()">Show principal</p>
+    <a class="btn btn-danger" ng-click="logout()">log out</a>
 </div>
 
-<script type="text/javascript" data-main="/resources/app/login/run-app"
+<script type="text/javascript" data-main="/resources/app/welcome/run-app"
         src="/resources/assets/bower_components/requirejs/require.js"></script>
 
 </body>
