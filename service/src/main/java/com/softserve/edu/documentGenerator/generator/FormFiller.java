@@ -1,6 +1,8 @@
 package com.softserve.edu.documentGenerator.generator;
 
-import com.softserve.edu.documentGenerator.generator.writer.UnfitnessCertificateWriter;
+import com.softserve.edu.documentGenerator.generator.documents.Document;
+import com.softserve.edu.documentGenerator.generator.documents.VerificationCertificate;
+import com.softserve.edu.documentGenerator.generator.documentWriter.VerificationCertificateWriter;
 import com.softserve.edu.documentGenerator.utils.DocumentFormat;
 import com.softserve.edu.documentGenerator.utils.PathBuilder;
 import com.softserve.edu.documentGenerator.utils.StandardPath;
@@ -14,8 +16,14 @@ public class FormFiller {
     private FormFiller() {
     }
 
-    public static File getReadyTemplate(File template, int verificationID) {
-        String path = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED, String.valueOf(verificationID), DocumentFormat.DOC);
+    public static File getReadyTemplate(File template, Document document) {
+        if (!(document instanceof VerificationCertificate)) {
+            // TODO: throw custom exception
+        }
+
+        String path = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED,
+                String.valueOf(document.getVerificationID()),
+                DocumentFormat.DOC);
 
         PrintWriter writer = null;
         File file = null;
@@ -30,7 +38,8 @@ public class FormFiller {
             writer.close();
         }
 
-        UnfitnessCertificateWriter docWriter = new UnfitnessCertificateWriter(file);
+        VerificationCertificateWriter docWriter = new VerificationCertificateWriter(
+                (VerificationCertificate)document, file);
         docWriter.write();
 
         return file;
