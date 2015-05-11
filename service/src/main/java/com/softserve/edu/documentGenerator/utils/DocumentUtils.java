@@ -48,8 +48,8 @@ public class DocumentUtils {
     /**
      * Save document in the specified path
      */
-    static public void saveMSWordDocument(String documentPath, HWPFDocument documentToSave) throws IOException {
-        try (FileOutputStream outStream = new FileOutputStream(documentPath)) {
+    static public void saveMSWordDocument(File file, HWPFDocument documentToSave) throws IOException {
+        try (FileOutputStream outStream = new FileOutputStream(file)) {
             documentToSave.write(outStream);
         }
     }

@@ -1,37 +1,38 @@
 package com.softserve.edu.documentGenerator.generator;
 
-import com.softserve.edu.documentGenerator.utils.DocumentUtils;
-import org.apache.poi.hwpf.HWPFDocument;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import com.softserve.edu.documentGenerator.generator.writer.UnfitnessCertificateWriter;
+import com.softserve.edu.documentGenerator.utils.DocumentFormat;
+import com.softserve.edu.documentGenerator.utils.PathBuilder;
+import com.softserve.edu.documentGenerator.utils.StandardPath;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class FormFiller {
     private FormFiller() {
     }
 
-    /**
-     * Replace token in a file and save changes
-     */
-    public static File replaceTokenAndSave(String token, String newText, File file, String newFileName) {
-        //String filePath = new DocumentUtils().getFilePath(fileName);
-        POIFSFileSystem documentFileStream = null;
+    public static File getReadyTemplate(File template, int verificationID) {
+        String path = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED, String.valueOf(verificationID), DocumentFormat.DOC);
+
+        PrintWriter writer = null;
+        File file = null;
 
         try {
-            documentFileStream = new POIFSFileSystem(new FileInputStream(file));
-            HWPFDocument doc = new HWPFDocument(documentFileStream);
-            DocumentUtils.replaceText(doc, token, newText);
-            DocumentUtils.saveMSWordDocument(newFileName, doc);
-        } catch(IOException e){
+            writer = new PrintWriter(path);
+            file = new File(path);
+            FileUtils.copyFile(template, file);
+        } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            writer.close();
         }
 
-        return new File(newFileName);
-    }
+        UnfitnessCertificateWriter docWriter = new UnfitnessCertificateWriter(file);
+        docWriter.write();
 
-    public static File getReadyTemplate(File template, int verificationID, String outputFileName) {
-        return replaceTokenAndSave("$USER", "Олег", template, outputFileName);
+        return file;
     }
 }

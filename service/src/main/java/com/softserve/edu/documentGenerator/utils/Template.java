@@ -15,6 +15,7 @@ public enum Template {
 
     public File getFile() {
         String path = PathBuilder.build(StandardPath.DOCUMENTS_TEMPLATES, this);
-        return new File(path);
+        DocumentUtils utils = new DocumentUtils();
+        return new File(utils.getFilePath(path));
     }
 }
