@@ -1,6 +1,6 @@
 angular
     .module('clientModule')
-    .controller('AddApplicationsController',[ '$scope', '$http', function($scope, $http) {
+    .controller('AddApplicationsController',[ '$scope', '$location', '$http',  function($scope, $location, $http) {
         $scope.formInfo = {};
         $scope.headerText = 'AngularJS Post Form Spring MVC example: Submit below form';
         $scope.saveData = function() {
@@ -13,6 +13,7 @@ angular
                 //$scope.formInfo.push(data);
                 console.dir(data);
                 $scope.formInfo = JSON.stringify(data);
+
             });
             response.error(function(data, status, headers, config) {
                 //alert( "Exception details: " + JSON.stringify({data: data}));
@@ -20,7 +21,7 @@ angular
             });
 
             //Empty list data after process
-            $scope.formInfo = [];
+            $location.path( "/check-application" );
             /* if (!$scope.formInfo.name) {
              $scope.nameRequired = 'name is required';
              }

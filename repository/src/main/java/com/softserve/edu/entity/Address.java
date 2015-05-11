@@ -22,15 +22,7 @@ public class Address {
 
     private String flat;
 
-    protected Address() {}
-
-    public Address(String region, String district, String locality, String street, String building) {
-        this.region = region;
-        this.district = district;
-        this.locality = locality;
-        this.street = street;
-        this.building = building;
-    }
+    public Address() {}
 
     public String getRegion() {
         return region;

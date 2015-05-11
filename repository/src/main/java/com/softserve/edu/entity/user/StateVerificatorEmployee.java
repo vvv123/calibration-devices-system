@@ -23,5 +23,10 @@ public class StateVerificatorEmployee extends Employee {
     public StateVerificatorEmployee(String username, String password, Role role, Organization organization) {
         super(username, password, role, organization);
     }
+
+    public StateVerificatorEmployee(String username, String password, Role role, Organization organization,
+                                    String firstName, String lastName, String email, String phone) {
+        super(username, password, role, organization, firstName, lastName, email, phone);
+    }
 }
 

@@ -27,12 +27,15 @@
                 <li><a href="#/account">Акаунт</a></li>
                 <li><a href="#/devices">Мої лічильники</a></li>
                 <li><a href="#/add-application">Подати заявку на перевірку</a></li>
+                <li><a href="#/check-application">Перевірити заявку</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div data-ng-view></div>
+<div style="padding-top: 60px;">
+    <div data-ng-view></div>
+</div>
 
 <script type="text/javascript" data-main="resources/app/client/run-app"
         src="/resources/assets/bower_components/requirejs/require.js"></script>
