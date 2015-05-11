@@ -12,28 +12,28 @@ a {
     cursor: pointer;
 }
 
-#welcomeModule {
+#welcomeSection {
     height: 100%;
     padding-top: 150px;
     text-align: center;
     background: #fff;
 }
 
-#aboutModule {
+#aboutSection {
     height: 100%;
     padding-top: 150px;
     text-align: center;
     background: #eee;
 }
 
-#loginModule {
+#loginSection {
     height: 100%;
     padding-top: 150px;
     text-align: center;
     background: #fff;
 }
 
-#applicationModule {
+#applicationSection {
     height: 100%;
     padding-top: 150px;
     text-align: center;

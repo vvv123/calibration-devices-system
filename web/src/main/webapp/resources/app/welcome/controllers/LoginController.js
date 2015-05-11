@@ -1,5 +1,5 @@
 angular
-    .module('mainModule')
+    .module('welcomeModule')
     .controller('LoginController', ['$scope', '$http', function ($scope, $http) {
         $scope.login = function () {
 

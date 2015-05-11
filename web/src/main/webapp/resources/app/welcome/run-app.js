@@ -3,7 +3,7 @@ require.config({
         angular: '../../assets/bower_components/angular/angular.min',
         angularScroll: '../../assets/bower_components/angular-scroll/angular-scroll.min',
         csrfInterceptor: '../../assets/bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
-        mainModule: 'module'
+        welcomeModule: 'welcomeModule'
     },
     shim: {
         angular: {
@@ -15,12 +15,12 @@ require.config({
         csrfInterceptor: {
             deps: [ 'angular' ]
         },
-        mainModule: {
+        welcomeModule: {
             deps: [ 'angular', 'angularScroll', 'csrfInterceptor']
         }
     }
 });
 
-require(['mainModule'], function () {
-    angular.bootstrap(document.getElementById('mainModule'), ['mainModule']);
+require(['welcomeModule'], function () {
+    angular.bootstrap(document.getElementById('welcomeModule'), ['welcomeModule']);
 });

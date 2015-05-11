@@ -28,6 +28,7 @@ angular.module('adminModule', [ 'ngRoute', 'spring-security-csrf-token-intercept
                 });
         }]);
 define([
+    'controllers/GlobalController',
     'controllers/MainPanelController',
     'controllers/UsersController'
 ], function () {});

@@ -21,15 +21,6 @@ public class LoginController {
     @Autowired
     private SystemAdminService systemAdminService;
 
-    @Autowired
-    SecurityUserDetailsService securityUserDetailsService;
-
-    @RequestMapping(value = "/getuser", method = RequestMethod.GET)
-    public Object getUser(Principal principal) {
-        return principal == null ? null : securityUserDetailsService.loadUserByUsername(principal.getName());
-    }
-
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public SystemAdmin initAdmin() {
         return systemAdminService.createAdmin();

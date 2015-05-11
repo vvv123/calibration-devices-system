@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                    .antMatchers("/resources/assets/**", "/resources/app/welcome/**").permitAll()
+                    .antMatchers("/resources/assets/**", "/resources/app/welcome/**", "/getuser").permitAll()
                     .antMatchers("/resources/app/admin/**", "/admin").hasAuthority("SYS_ADMIN")
                     .antMatchers("/resources/app/provider/**", "/provider/**").hasAnyAuthority("PROVIDER_EMPLOYEE", "PROVIDER_ADMIN")
                     .antMatchers("/resources/app/calibrator/**", "/calibrator/**").hasAnyAuthority("CALIBRATOR_EMPLOYEE", "CALIBRATOR_ADMIN")
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .successHandler(new AjaxAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler()))
-                    .loginPage("/#login")
+                    .loginPage("/")
                     .permitAll()
                 .and()
                     .httpBasic()
