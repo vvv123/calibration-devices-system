@@ -1,7 +1,6 @@
 package com.softserve.edu.service.catalogue;
 
 import com.softserve.edu.dto.CatalogueDTO;
-import com.softserve.edu.dto.CatalogueIdDTO;
 import com.softserve.edu.dto.util.CatalogueDTOTransformer;
 import com.softserve.edu.entity.catalogue.District;
 import com.softserve.edu.entity.catalogue.Locality;
@@ -20,8 +19,8 @@ public class LocalityService {
     @Autowired
     private DistrictService districtService;
 
-    public List<CatalogueDTO> receiveLocalitiesCorrespondingDistrict(CatalogueIdDTO districtIdDTO) {
-        District district = districtService.findById(districtIdDTO.getId());
+    public List<CatalogueDTO> receiveLocalitiesCorrespondingDistrict(Long districtId) {
+        District district = districtService.findById(districtId);
         return CatalogueDTOTransformer.toDto(localityRepository.findByDistrict(district));
     }
 

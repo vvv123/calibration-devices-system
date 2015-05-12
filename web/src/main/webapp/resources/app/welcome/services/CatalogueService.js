@@ -1,10 +1,10 @@
 angular
     .module('welcomeModule')
     .service('CatalogueService', ['$http', function ($http) {
-        this.sendDTO = function (catalogueDTO, url) {
-            return $http.post(url, catalogueDTO)
-                .success(function (data) {
-                    return data;
+        this.sendApplication = function (url) {
+            return $http.get(url)
+                .success(function (catalogue) {
+                    return catalogue;
                 })
                 .error(function (err) {
                     return err;

@@ -14,8 +14,8 @@ import java.util.List;
     @Autowired
     private RegionService regionService;
 
-    @RequestMapping(value = "/regions", method = RequestMethod.GET)
-    public List<CatalogueDTO> sendAll() {
+    @RequestMapping(value = "application/regions", method = RequestMethod.GET)
+    public List<CatalogueDTO> getAll() {
         return regionService.receiveAll();
     }
 }

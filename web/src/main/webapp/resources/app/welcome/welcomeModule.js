@@ -21,6 +21,6 @@ define([
     'controllers/LoginController',
     'controllers/AddApplicationsController',
     'controllers/CheckApplicationController',
-    'services/RegionService',
-    'services/CatalogueService'
+    'services/CatalogueService',
+    'services/ApplicationService'
 ], function () {});
