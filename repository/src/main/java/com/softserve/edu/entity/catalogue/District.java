@@ -1,32 +1,28 @@
 package com.softserve.edu.entity.catalogue;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import javax.persistence.*;
-import java.util.Set;
+
+import static com.softserve.edu.entity.catalogue.util.Checker.checkForEmptyText;
+import static com.softserve.edu.entity.catalogue.util.Checker.checkForNull;
 
 @Entity
-public class District {
+public class District extends AbstractCatalogue {
     @Id
     @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String designation;
 
     @ManyToOne
+    @JoinColumn(name = "region_id", nullable = false)
     private Region region;
-
-    @OneToMany
-    @JoinColumn(name = "district_id")
-    private Set<Locality> localities;
 
     protected District() {}
 
-    public District(String name, Set<Locality> localities) {
-        this.name = name;
-        this.localities = localities;
+    public District(String name, Region region) {
+        this.designation = name;
+        this.region = region;
     }
 
     public Long getId() {
@@ -37,55 +33,26 @@ public class District {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDesignation() {
+        return designation;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    private void setDesignation(String designation) {
+        checkForEmptyText(designation);
+        this.designation = designation;
     }
 
     public Region getRegion() {
         return region;
     }
 
-    public void setRegion(Region region) {
+    private void setRegion(Region region) {
+        checkForNull(region);
         this.region = region;
-    }
-
-    public Set<Locality> getLocalities() {
-        return localities;
-    }
-
-    public void setLocalities(Set<Locality> localities) {
-        this.localities = localities;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) { return true; }
-
-        if (o == null || getClass() != o.getClass()) { return false; }
-
-        District district = (District) o;
-
-        return new EqualsBuilder()
-                .append(id, district.id)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(id)
-                .toHashCode();
     }
 
     @Override
     public String toString() {
-        return "District{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return designation;
     }
 }
