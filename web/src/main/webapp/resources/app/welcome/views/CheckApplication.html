@@ -1,10 +1,12 @@
-<form class="form-horizontal" role="form" ng-controller="CheckApplicationController">
-    <label for="code" class="col-sm-2 control-label">Your code</label>
-    <h2 class="col-sm-4">
-        <input class="form-control" id="code" placeholder="your code" ng-model="codeInfo.code">
-        <button type="search" ng-click="search()" class="btn btn-success">Search</button>
-    </h2>
-    <div class="alert alert-success" role="alert">
-        Thank you,we received your application. Your status : {{ status }}
+<form  role="form" ng-controller="CheckApplicationController">
+    <div class="form-group">
+        <label for="code" class="col-sm-2 control-label">???? ????? ??????? ??? ??????</label>
+        <div class="col-sm-2">
+            <input class="col-sm-1 form-control" id="code" placeholder="???" ng-model="codeInfo.code">
+        </div>
+        <button type="search" ng-click="search()" class="btn btn-success">?????</button>
+    </div>
+    <div class="alert alert-success" role="alert" ng-hide="myAlert">
+        ?????? ?????? : {{ status }}
     </div>
 </form>
