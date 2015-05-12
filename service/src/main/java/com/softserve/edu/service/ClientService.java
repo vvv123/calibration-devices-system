@@ -11,6 +11,7 @@ import com.softserve.edu.entity.ClientData;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.repository.VerificationRepository;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.NestedRuntimeException;
 import org.springframework.dao.DataAccessException;
@@ -44,8 +45,7 @@ public class ClientService {
     public Status findCode(ClientCodeDTO clientCodeDTO) {
         try {
             return verificationRepository.findByCode(clientCodeDTO.getCode()).get(0).getStatus();
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println("verification not found!!!");
             return Status.NOT_FOUND;
         }
@@ -66,17 +66,21 @@ public class ClientService {
         address.setDistrict(applicationDTO.getDistrict());
         address.setStreet(applicationDTO.getStreet());
         address.setBuilding(applicationDTO.getBuilding());
+        address.setFlat(applicationDTO.getFlat());
         return address;
     }
 
     public Long generateCode(ClientData clientData) {
-        Long result =(long)(clientData.getFirstName() != null ? clientData.getFirstName().hashCode() : 0);
-        result= 31 * result + (clientData.getLastName() != null ? clientData.getLastName().hashCode() : 0);
-        result= 31 * result + (clientData.getMiddleName() != null ? clientData.getMiddleName().hashCode() : 0);
-        result= 31 * result + (clientData.getPhone() != null ? clientData.getPhone().hashCode() : 0);
-        result= 31 * result + (clientData.getClientAddress() != null ? clientData.getClientAddress().hashCode() : 0);
-        return result;
+        return (long) Math.abs(
+                new HashCodeBuilder(17, 37)
+                        .append(clientData.getFirstName())
+                        .append(clientData.getLastName())
+                        .append(clientData.getMiddleName())
+                        .append(clientData.getEmail())
+                        .append(clientData.getPhone())
+                        .append(clientData.getClientAddress())
+                        .toHashCode()
+        );
     }
-
 }
 

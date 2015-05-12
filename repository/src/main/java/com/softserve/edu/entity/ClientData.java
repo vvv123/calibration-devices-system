@@ -1,11 +1,12 @@
 package com.softserve.edu.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
-/**
- * Created by Oles Onyshchak on 5/8/2015.
- */
+
 @Embeddable
 public class ClientData {
     private String firstName;
@@ -64,6 +65,4 @@ public class ClientData {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-
 }
