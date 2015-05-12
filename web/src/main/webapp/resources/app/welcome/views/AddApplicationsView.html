@@ -6,61 +6,89 @@
                 <input class="form-control" id="inputFirstName" placeholder="firstName" ng-model="formInfo.firstName">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-lg-10">
             <label for="inputLastName" class="col-sm-2 control-label">Second name</label>
-            <input class="form-control" id="inputLastName" placeholder="lastName" ng-model="formInfo.lastName">
+            <div class="col-lg-6">
+                <input class="form-control" id="inputLastName" placeholder="lastName" ng-model="formInfo.lastName">
+            </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-lg-10">
             <label for="inputMiddleName" class="col-sm-2 control-label">Middle name</label>
-            <input class="form-control" id="inputMiddleName" placeholder="middleName" ng-model="formInfo.middleName">
+            <div class="col-lg-6">
+                <input class="form-control" id="inputMiddleName" placeholder="middleName" ng-model="formInfo.middleName">
+            </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-lg-10">
             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-            <input class="form-control" id="inputEmail" placeholder="email" ng-model="formInfo.email">
+            <div class="col-lg-6">
+                <input class="form-control" id="inputEmail" placeholder="email" ng-model="formInfo.email">
+            </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-lg-10">
             <label for="inputPhone" class="col-sm-2 control-label">Phone</label>
-            <input class="form-control" id="inputPhone" placeholder="phone" ng-model="formInfo.phone">
+            <div class="col-lg-6">
+                <input class="form-control" id="inputPhone" placeholder="phone" ng-model="formInfo.phone">
+            </div>
         </div>
-        <div class="form-group col-sm-4">
-            <label for="inputPhone" class="col-sm-2 control-label">Region</label>
-            <input type="text" ng-model="formInfo.region" id="inputRegion"
-                   typeahead="region as region.designation for region in regions | filter: $viewValue"
-                   class="form-control" placeholder="REGION"
-                   typeahead-on-select="receiveDistricts(formInfo.region)">
+        <div class="form-group col-lg-10">
+            <label for="inputRegion" class="col-sm-2 control-label">Region</label>
+            <div class="col-lg-6">
+                <input type="text" ng-model="formInfo.region" id="inputRegion"
+                       typeahead="region as region.designation for region in regions | filter: $viewValue"
+                       class="form-control" placeholder="REGION"
+                       typeahead-on-select="receiveDistricts(formInfo.region)">
+            </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-lg-10">
             <label for="inputDistrict" class="col-sm-2 control-label">District</label>
-            <input type="text" ng-model="formInfo.district" id="inputDistrict"
-                   typeahead="district as district.designation for district in districts | filter: $viewValue"
-                   class="form-control" placeholder="DISTRICT"
-                   typeahead-on-select="receiveLocalities(formInfo.district)">
+            <div class="col-lg-6">
+                <input type="text" ng-model="formInfo.region" id="inputDistrict"
+                       typeahead="region as region.designation for region in regions | filter: $viewValue"
+                       class="form-control" placeholder="REGION"
+                       typeahead-on-select="receiveDistricts(formInfo.region)">
+            </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group col-lg-10">
             <label for="inputLocality" class="col-sm-2 control-label">Locality</label>
-            <input type="text" ng-model="formInfo.locality" id="inputLocality"
-                   typeahead="locality as locality.designation for locality in localities | filter: $viewValue"
-                   class="form-control" placeholder="LOCALITY"
-                   typeahead-on-select="receiveStreets(formInfo.locality)">
+            <div class="col-lg-6">
+                <input type="text" ng-model="formInfo.region" id="inputLocality"
+                       typeahead="region as region.designation for region in regions | filter: $viewValue"
+                       class="form-control" placeholder="REGION"
+                       typeahead-on-select="receiveDistricts(formInfo.region)">
+            </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group col-lg-10">
             <label for="inputStreet" class="col-sm-2 control-label">Street</label>
-            <input type="text" ng-model="formInfo.street" id="inputStreet"
-                   typeahead="street as street.designation for street in streets | filter: $viewValue"
-                   class="form-control" placeholder="STREET"
-                   typeahead-on-select="receiveBuildings(formInfo.street)">
+            <div class="col-lg-6">
+                <input type="text" ng-model="formInfo.region" id="inputStreet"
+                       typeahead="region as region.designation for region in regions | filter: $viewValue"
+                       class="form-control" placeholder="REGION"
+                       typeahead-on-select="receiveDistricts(formInfo.region)">
+            </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group col-lg-10">
             <label for="inputBuilding" class="col-sm-2 control-label">Building</label>
-            <input type="text" ng-model="formInfo.building" id="inputBuilding"
-                   typeahead="building as building.designation for building in buildings | filter: $viewValue"
-                   class="form-control" placeholder="BUILDING">
+            <div class="col-lg-6">
+                <input type="text" ng-model="formInfo.region" id="inputBuilding"
+                       typeahead="region as region.designation for region in regions | filter: $viewValue"
+                       class="form-control" placeholder="REGION"
+                       typeahead-on-select="receiveDistricts(formInfo.region)">
+            </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group col-lg-10">
             <label for="inputFlat" class="col-sm-2 control-label">Flat</label>
-            <input type="text" class="form-control" placeholder="FLAT" ng-model="formInfo.flat"
-                   ng-change="saveSelected(formInfo.flat)" id="inputFlat">
+            <div class="col-lg-6">
+                <input type="text" ng-model="formInfo.region" id="inputFlat"
+                       typeahead="region as region.designation for region in regions | filter: $viewValue"
+                       class="form-control" placeholder="REGION"
+                       typeahead-on-select="receiveDistricts(formInfo.region)">
+            </div>
         </div>
+
         <div class="form-group">
             <button type="submit" class="btn btn-success">Save</button>
         </div>
