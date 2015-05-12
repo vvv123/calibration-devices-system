@@ -6,6 +6,7 @@ package com.softserve.edu.service;
 
 import com.softserve.edu.dto.ApplicationDTO;
 import com.softserve.edu.dto.ClientCodeDTO;
+import com.softserve.edu.dto.ClientMessageDTO;
 import com.softserve.edu.entity.Address;
 import com.softserve.edu.entity.ClientData;
 import com.softserve.edu.entity.Verification;
@@ -38,16 +39,16 @@ public class ClientService {
         return verification.getCode();
     }
 
-    public Status transferClientCode(ClientCodeDTO clientCodeDTO) {
-        return findCode(clientCodeDTO);
+    public ClientMessageDTO transferClientCode(ClientCodeDTO clientCodeDTO) {
+        return  new ClientMessageDTO().setName(findCode(clientCodeDTO));
     }
 
-    public Status findCode(ClientCodeDTO clientCodeDTO) {
+    public String findCode(ClientCodeDTO clientCodeDTO) {
         try {
-            return verificationRepository.findByCode(clientCodeDTO.getCode()).get(0).getStatus();
+            return verificationRepository.findByCode(clientCodeDTO.getCode()).get(0).getStatus().name();
         } catch (RuntimeException e) {
             System.out.println("verification not found!!!");
-            return Status.NOT_FOUND;
+            return "?????? ?? ????????";
         }
     }
 
