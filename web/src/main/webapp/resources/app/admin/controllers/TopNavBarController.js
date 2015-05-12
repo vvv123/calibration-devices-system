@@ -1,11 +1,11 @@
 angular
     .module('adminModule')
-    .controller('GlobalController', ['$scope', '$http', function ($scope, $http) {
+    .controller('TopNavBarController', ['$scope', '$http', function ($scope, $http) {
         $scope.logout = function () {
             $http({
                 method: 'POST',
                 url: '/logout'
-            }).then(function (data) {
+            }).then(function () {
                 window.location.replace("/");
             });
 
