@@ -3,5 +3,10 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-    <display-firstName>Centralized system for calibration of measurement devices.</display-firstName>
+    <display-name>Centralized system for calibration of measurement devices.</display-name>
+
+    <welcome-file-list>
+        <welcome-file>/resources/app/welcome/index.html</welcome-file>
+    </welcome-file-list>
+
 </web-app>

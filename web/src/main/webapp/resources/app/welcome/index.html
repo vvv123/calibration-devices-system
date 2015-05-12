@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="/resources/assets/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/resources/assets/css/welcome.css" rel="stylesheet">
+</head>
+
+<body id="welcomeModule" ng-controller="GlobalController">
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" du-smooth-scroll="welcomeSection">Початок</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-click="getUser()">DEBUG. Get current principal</a></li>
+                <li du-scrollspy="aboutSection"><a du-smooth-scroll="aboutSection">Про сервіс</a></li>
+                <li du-scrollspy="loginSection"><a du-smooth-scroll="loginSection">Увійти</a></li>
+                <li du-scrollspy="applicationSection"><a du-smooth-scroll="applicationSection">Повірка</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section id="welcomeSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Централізована система повірки лічильників</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="aboutSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Про сервіс</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="loginSection" ng-controller="LoginController">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Увійдіть в систему</h1>
+            </div>
+            <div class="col-lg-12">
+                <form ng-submit="login()" class="form-signin">
+                    <input ng-model="loginForm.username" type="text"  class="form-control" placeholder="Логін" required>
+                    <input ng-model="loginForm.password" type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
+                    <p>{{ loginForm }}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="applicationSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Повірка</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" data-main="/resources/app/welcome/run-app"
+        src="/resources/assets/bower_components/requirejs/require.js"></script>
+
+</body>
+</html>
