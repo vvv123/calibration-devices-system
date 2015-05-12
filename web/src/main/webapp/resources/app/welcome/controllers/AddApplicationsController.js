@@ -1,8 +1,8 @@
 angular
-    .module('clientModule')
+    .module('welcomeModule')
     .controller('AddApplicationsController',[ '$scope', '$location', '$http',  function($scope, $location, $http) {
         $scope.saveData = function() {
-            var response = $http.post('/client/add-application', $scope.formInfo);
+            var response = $http.post('/application/add', $scope.formInfo);
             response.success(function(data, status, headers, config) {
                $scope.code =JSON.stringify(data);
             });

@@ -1,8 +1,8 @@
 angular
-    .module('clientModule')
-    .controller('CheckApplicationController',[ '$scope', '$location', '$http',  function($scope, $location, $http) {
+    .module('welcomeModule')
+    .controller('CheckApplicationController',[ '$scope', '$http',  function($scope, $http) {
         $scope.search = function() {
-            var response = $http.post('/client/check-application', $scope.codeInfo);
+            var response = $http.post('/application/check', $scope.codeInfo);
             response.success(function(data, status, headers, config) {
                 $scope.status =JSON.stringify(data);
             });
