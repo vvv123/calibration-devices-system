@@ -1,7 +1,15 @@
 angular
     .module('welcomeModule')
-    .controller('AddApplicationsController', ['$scope', 'CatalogueService', 'ApplicationService',
-        function ($scope, catalogueService, applicationService) {
+    .controller('AddApplicationsController', ['$scope', '$translate', 'CatalogueService',
+        'ApplicationService',
+        function ($scope, $translate, catalogueService, applicationService) {
+
+            //i18n
+            $scope.languages = ["eng", "ukr"];
+            $scope.selectedLang = "ukr";
+            $scope.changeLanguage = function (selectedLang) {
+                $translate.use(selectedLang);
+            };
 
             //receiving all possible regions
             $scope.regions = [];
