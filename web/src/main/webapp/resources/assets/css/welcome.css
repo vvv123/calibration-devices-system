@@ -40,6 +40,13 @@ a {
     background: #eee;
 }
 
+#applicationStatusSection {
+    height: 100%;
+    padding-top: 40px;
+    text-align: center;
+    background: #eee;
+}
+
 .centered {
     top: 50%;
     left: 50%;
