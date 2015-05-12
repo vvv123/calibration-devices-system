@@ -31,7 +31,17 @@ public class ApplicationController {
       return clientService.transferApplication(applicationDTO);
     }
     @RequestMapping(value = "/application/check", method = RequestMethod.POST)
-    public Status transferClientCodeDTO(@RequestBody ClientCodeDTO clientCodeDTO) {
-        return clientCode.transferClientCode(clientCodeDTO);
+    public Object transferClientCodeDTO(@RequestBody ClientCodeDTO clientCodeDTO) {
+        return new Object(){
+            String name = clientCode.transferClientCode(clientCodeDTO).name();
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+        };
     }
 }
