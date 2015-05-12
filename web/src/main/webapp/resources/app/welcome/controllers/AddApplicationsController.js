@@ -55,6 +55,7 @@ welcomeModule
             };
 
             //on-click handler in send button
+            //
             $scope.sendApplicationData = function () {
                 $scope.formData.region = $scope.selectedRegion.designation;
                 $scope.formData.district = $scope.selectedDistrict.designation;
