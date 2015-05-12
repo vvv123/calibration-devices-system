@@ -25,7 +25,7 @@ public class /**/ApplicationController {
     private ClientService clientService;
 
     @RequestMapping(value = "/application/add", method = RequestMethod.POST)
-    public Long requestClientApplication(@RequestBody ApplicationDTO applicationDTO) {
+    public ClientCodeDTO requestClientApplication(@RequestBody ApplicationDTO applicationDTO) {
       return clientService.transferApplication(applicationDTO);
     }
     @RequestMapping(value = "/application/check", method = RequestMethod.POST)

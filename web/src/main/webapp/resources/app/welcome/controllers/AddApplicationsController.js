@@ -55,6 +55,7 @@ welcomeModule
             };
 
             //on-click handler in send button
+            //
             $scope.sendApplicationData = function () {
                 $scope.formData.region = $scope.selectedRegion.designation;
                 $scope.formData.district = $scope.selectedDistrict.designation;
@@ -65,7 +66,7 @@ welcomeModule
                 console.log($scope.formData);
                 applicationService.sendApplication("/application/add", $scope.formData)
                     .success(function (applicationCode) {
-                        $scope.applicationCode = applicationCode;
+                        $scope.applicationCode = applicationCode.code;
                     }).error(function (err) {
                         console.log(err);
                     });
