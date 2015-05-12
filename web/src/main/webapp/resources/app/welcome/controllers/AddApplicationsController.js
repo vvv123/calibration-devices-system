@@ -53,6 +53,7 @@ angular
                 $scope.formData.district = $scope.selectedDistrict.designation;
                 $scope.formData.street = $scope.selectedStreet.designation;
                 $scope.formData.building = $scope.selectedBuilding.designation;
+                console.log($scope.formData);
                 applicationService.sendApplication("/application/add", $scope.formData)
                     .success(function (applicationCode) {
                         $scope.applicationCode = applicationCode;

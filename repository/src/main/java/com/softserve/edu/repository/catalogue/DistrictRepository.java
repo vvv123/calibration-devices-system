@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface DistrictRepository extends CrudRepository<District, Long> {
-    List<District> findByRegion(Region region);
+    List<District> findByRegionId(Long id);
 }

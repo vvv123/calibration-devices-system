@@ -20,8 +20,7 @@ public class LocalityService {
     private DistrictService districtService;
 
     public List<CatalogueDTO> receiveLocalitiesCorrespondingDistrict(Long districtId) {
-        District district = districtService.findById(districtId);
-        return CatalogueDTOTransformer.toDto(localityRepository.findByDistrict(district));
+        return CatalogueDTOTransformer.toDto(localityRepository.findByDistrictId(districtId));
     }
 
     public Locality findById(Long id) {

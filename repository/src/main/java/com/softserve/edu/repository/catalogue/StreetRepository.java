@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface StreetRepository extends CrudRepository<Street, Long> {
-    List<Street> findByLocality(Locality locality);
+    List<Street> findByLocalityId(Long id);
 }

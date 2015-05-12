@@ -20,8 +20,7 @@ public class DistrictService {
     private RegionService regionService;
 
     public List<CatalogueDTO> receiveDistrictsCorrespondingRegion(Long regionId) {
-        Region region = regionService.findById(regionId);
-        return CatalogueDTOTransformer.toDto(districtRepository.findByRegion(region));
+        return CatalogueDTOTransformer.toDto(districtRepository.findByRegionId(regionId));
     }
 
     public District findById(Long id) {
