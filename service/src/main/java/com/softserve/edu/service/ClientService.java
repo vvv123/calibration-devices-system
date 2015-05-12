@@ -1,8 +1,5 @@
 package com.softserve.edu.service;
 
-/**
- * Created by Oles Onyshchak on 5/8/2015.
- */
 
 import com.softserve.edu.dto.ApplicationDTO;
 import com.softserve.edu.dto.ClientCodeDTO;
@@ -46,7 +43,7 @@ public class ClientService {
 
     public String findCode(ClientCodeDTO clientCodeDTO) {
         try {
-            return verificationRepository.findByCode(clientCodeDTO.getCode()).get(0).getStatus().name();
+            return verificationRepository.findByCode(clientCodeDTO.getCode()).get(0).getStatus().toString();
         } catch (RuntimeException e) {
             System.out.println("verification not found!!!");
             return "application not found";
