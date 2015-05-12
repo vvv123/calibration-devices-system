@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value= "SYS_ADMIN")
 public class SystemAdmin extends User {
 
-    enum AdminRole implements Role
+    public enum AdminRole implements Role
     {
         SYS_ADMIN;
 

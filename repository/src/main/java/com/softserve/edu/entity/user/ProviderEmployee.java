@@ -12,7 +12,7 @@ import java.util.Set;
 @DiscriminatorValue(value = "PROVIDER_EMPLOYEE")
 public class ProviderEmployee extends Employee {
 
-    enum ProviderEmployeeRole implements Role {
+    public enum ProviderEmployeeRole implements Role {
         PROVIDER_EMPLOYEE, PROVIDER_ADMIN;
 
         @Override

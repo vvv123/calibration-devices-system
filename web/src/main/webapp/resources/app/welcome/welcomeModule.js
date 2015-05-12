@@ -1,4 +1,5 @@
-angular.module('welcomeModule', ['spring-security-csrf-token-interceptor', 'duScroll', 'ngRoute'])
+angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
+    'duScroll', 'ngRoute', 'ui.bootstrap'])
     .config(['$routeProvider',
         function($routeProvider) {
             //$locationProvider.html5Mode(true);
@@ -19,5 +20,7 @@ define([
     'controllers/GlobalController',
     'controllers/LoginController',
     'controllers/AddApplicationsController',
-    'controllers/CheckApplicationController'
+    'controllers/CheckApplicationController',
+    'services/RegionService',
+    'services/CatalogueService'
 ], function () {});

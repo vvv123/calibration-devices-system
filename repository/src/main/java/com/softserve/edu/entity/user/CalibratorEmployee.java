@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = "CALIBRATOR_EMPLOYEE")
 public class CalibratorEmployee extends Employee {
 
-    enum CalibratorEmployeeRole implements Role {
+    public enum CalibratorEmployeeRole implements Role {
         CALIBRATOR_EMPLOYEE, CALIBRATOR_ADMIN;
 
         @Override

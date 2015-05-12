@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = "STATE_VERIFICATOR_EMPLOYEE")
 public class StateVerificatorEmployee extends Employee {
 
-    enum StateVerificatorEmployeeRole implements Role {
+    public enum StateVerificatorEmployeeRole implements Role {
         STATE_VERIFICATOR_EMPLOYEE, STATE_VERIFICATOR_ADMIN;
 
         @Override

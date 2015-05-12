@@ -1,50 +1,79 @@
 angular
     .module('welcomeModule')
-    .controller('AddApplicationsController',[ '$scope', '$location', '$http',  function($scope, $location, $http) {
-        $scope.saveData = function() {
-            var response = $http.post('/application/add', $scope.formInfo);
-            response.success(function(data, status, headers, config) {
-               $scope.code =JSON.stringify(data);
+    .controller('AddApplicationsController',[ '$scope', '$http', 'RegionService', 'CatalogueService',
+        function($scope, $http, regionService, catalogueService) {
+            //receiving all possible regions
+            $scope.selectedRegion = undefined;
+            $scope.regions = [];
+            regionService.receiveRegions().success(function (regions) {
+                $scope.regions = regions;
             });
-            response.error(function(data, status, headers, config) {
-                console.dir(data);
-            });
-            $scope.myVar = true;
-            //Empty list data after process
-           /* $location.path( "/check-application" );*/
-            /* if (!$scope.formInfo.name) {
-             $scope.nameRequired = 'name is required';
-             }
 
-             if (!$scope.formInfo.lastName) {
-             $scope.emailRequired = 'last name is required';
-             }
+            //on-select handler in region input form element
+            $scope.receiveDistricts = function (selectedRegion) {
+                $scope.formInfo.district = undefined;
+                $scope.districts = [];
+                var regionDTO = {
+                    id: selectedRegion.id
+                };
+                catalogueService.sendDTO(regionDTO, "/application/districts").success(function (districts) {
+                    $scope.districts = districts;
+                });
+            };
 
-             if (!$scope.formInfo.middleName) {
-             $scope.passwordRequired = 'middle name is required';
-             }
-             if (!$scope.formInfo.region) {
-             $scope.passwordRequired = 'region is required';
-             }
-             if (!$scope.formInfo.locality) {
-             $scope.passwordRequired = 'locality is required';
-             }
-             if (!$scope.formInfo.district) {
-             $scope.passwordRequired = 'district is required';
-             }
-             if (!$scope.formInfo.street) {
-             $scope.passwordRequired = 'street is required';
-             }
-             if (!$scope.formInfo.building) {
-             $scope.passwordRequired = 'building is required';
-             }
-             if (!$scope.formInfo.email) {
-             $scope.passwordRequired = 'email is required';
-             }
-             if (!$scope.formInfo.phone) {
-             $scope.passwordRequired = 'phone is required';
-             }
-             */
-            /*console.log(JSON.stringify($scope.formInfo));*/
-        };
+            //on-select handler in district input form element
+            $scope.receiveLocalities = function (selectedDistrict) {
+                $scope.formInfo.locality = undefined;
+                $scope.localities = [];
+                var districtDTO = {
+                    id: selectedDistrict.id
+                };
+                catalogueService.sendDTO(districtDTO, "/application/localities").success(function (localities) {
+                    $scope.localities = localities;
+                });
+            };
+    
+            //on-select handler in locality input form element
+            $scope.receiveStreets = function (selectedLocality) {
+                $scope.formInfo.street = undefined;
+                $scope.streets = [];
+                var localityDTO = {
+                    id: selectedLocality.id
+                };
+                localityDTO.id = selectedLocality.id;
+                catalogueService.sendDTO(localityDTO, "/application/streets").success(function (streets) {
+                    $scope.streets = streets;
+                });
+            };
+
+            //on-select handler in street input form element
+            $scope.receiveBuildings = function (selectedStreet) {
+                $scope.formInfo.building = undefined;
+                $scope.buildings = [];
+                var streetDTO = {
+                    id: selectedStreet.id
+                };
+                catalogueService.sendDTO(streetDTO, "/application/buildings").success(function (buildings) {
+                    $scope.buildings = buildings;
+                });
+            };
+
+            //on-change handler in flat input form element
+            $scope.saveSelected = function (selectedFlat) {
+                $scope.formInfo.flat = selectedFlat;
+            };
+
+            $scope.saveData = function() {
+                var response = $http.post('/application/add', $scope.formInfo);
+                response.success(function(data) {
+                    $scope.code = JSON.stringify(data);
+                });
+                response.error(function(data) {
+                    console.dir(data);
+                });
+                $scope.myVar = true;
+
+            };
     }]);
+
+

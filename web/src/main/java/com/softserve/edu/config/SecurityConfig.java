@@ -1,5 +1,6 @@
 package com.softserve.edu.config;
 import com.allanditzel.springframework.security.web.csrf.CsrfTokenResponseHeaderBindingFilter;
+import com.softserve.edu.entity.user.SystemAdmin;
 import com.softserve.edu.service.SecurityUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,11 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.security.web.csrf.CsrfFilter;
 
 import javax.sql.DataSource;
+
+import static com.softserve.edu.entity.user.SystemAdmin.AdminRole.*;
+import static com.softserve.edu.entity.user.CalibratorEmployee.CalibratorEmployeeRole.*;
+import static com.softserve.edu.entity.user.ProviderEmployee.ProviderEmployeeRole.*;
+import static com.softserve.edu.entity.user.StateVerificatorEmployee.StateVerificatorEmployeeRole.*;
 
 @Configuration
 @EnableWebSecurity
@@ -38,10 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/resources/assets/**", "/resources/app/welcome/**",
                         "/getuser", "/application/**").permitAll()
-                .antMatchers("/resources/app/admin/**", "/admin").hasAuthority("SYS_ADMIN")
-                .antMatchers("/resources/app/provider/**", "/provider/**").hasAnyAuthority("PROVIDER_EMPLOYEE", "PROVIDER_ADMIN")
-                .antMatchers("/resources/app/calibrator/**", "/calibrator/**").hasAnyAuthority("CALIBRATOR_EMPLOYEE", "CALIBRATOR_ADMIN")
-                .antMatchers("/resources/app/verificator/**", "/verificator/**").hasAnyAuthority("STATE_VERIFICATOR_EMPLOYEE", "STATE_VERIFICATOR_ADMIN")
+                .antMatchers("/resources/app/admin/**", "/admin/**").hasAuthority(SYS_ADMIN.roleName())
+                .antMatchers("/resources/app/provider/**", "/provider/**").hasAnyAuthority(PROVIDER_EMPLOYEE.roleName(), PROVIDER_ADMIN.roleName())
+                .antMatchers("/resources/app/calibrator/**", "/calibrator/**").hasAnyAuthority(CALIBRATOR_EMPLOYEE.roleName(), CALIBRATOR_ADMIN.roleName())
+                .antMatchers("/resources/app/verificator/**", "/verificator/**").hasAnyAuthority(STATE_VERIFICATOR_EMPLOYEE.roleName(), STATE_VERIFICATOR_ADMIN.roleName())
                 .and()
                 .formLogin()
                 .defaultSuccessUrl("/")
