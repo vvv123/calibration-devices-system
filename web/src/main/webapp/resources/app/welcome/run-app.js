@@ -3,7 +3,7 @@ require.config({
         angular: '../../assets/bower_components/angular/angular.min',
         angularScroll: '../../assets/bower_components/angular-scroll/angular-scroll.min',
         angularRoute: '../../assets/bower_components/angular-route/angular-route.min',
-        angularBootstrap: '../../assets/bower_components/angular-bootstrap/ui-bootstrap.min',
+        angularBootstrap: '../../assets/bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
         csrfInterceptor: '../../assets/bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
         welcomeModule: 'welcomeModule'
     },
@@ -18,13 +18,13 @@ require.config({
             deps: ['angular']
         },
         angularBootstrap: {
-            deps: [ 'angular' ]
+            deps: ['angular']
         },
         csrfInterceptor: {
-            deps: [ 'angular' ]
+            deps: ['angular']
         },
         welcomeModule: {
-            deps: [ 'angular', 'angularScroll', 'csrfInterceptor', 'angularRoute', 'angularBootstrap']
+            deps: ['angular', 'angularScroll', 'csrfInterceptor', 'angularRoute', 'angularBootstrap']
         }
     }
 });
