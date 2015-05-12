@@ -20,8 +20,7 @@ public class StreetService {
     private LocalityService localityService;
 
     public List<CatalogueDTO> getStreetsCorrespondingLocality(Long localityId) {
-        Locality locality = localityService.findById(localityId);
-        return CatalogueDTOTransformer.toDto(streetRepository.findByLocality(locality));
+        return CatalogueDTOTransformer.toDto(streetRepository.findByLocalityId(localityId));
     }
 
     public Street findById(Long id) {

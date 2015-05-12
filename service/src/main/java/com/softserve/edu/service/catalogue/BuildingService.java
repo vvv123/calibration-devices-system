@@ -19,7 +19,6 @@ public class BuildingService {
     private StreetService streetService;
 
     public List<CatalogueDTO> receiveBuildingsCorrespondingStreet(Long streetId) {
-        Street street = streetService.findById(streetId);
-        return CatalogueDTOTransformer.toDto(buildingRepository.findByStreet(street));
+        return CatalogueDTOTransformer.toDto(buildingRepository.findByStreetId(streetId));
     }
 }
