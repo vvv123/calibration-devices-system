@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceException;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -28,7 +29,7 @@ public class ClientService {
     @Autowired
     private VerificationRepository verificationRepository;
 
-    public Long transferApplication(ApplicationDTO applicationDTO) {
+    public ClientCodeDTO transferApplication(ApplicationDTO applicationDTO) {
         Verification verification = new Verification();
         ClientData clientData = new ClientData();
         clientData.setClientAddress(parseApplicationDTOtoClientAddress(new Address(), applicationDTO));
@@ -36,7 +37,7 @@ public class ClientService {
         verification.setCode(generateCode(clientData));
         verification.setStatus(Status.IN_PROGRESS);
         verificationRepository.save(verification);
-        return verification.getCode();
+        return new ClientCodeDTO().setCode(verification.getCode());
     }
 
     public ClientMessageDTO transferClientCode(ClientCodeDTO clientCodeDTO) {
@@ -48,7 +49,7 @@ public class ClientService {
             return verificationRepository.findByCode(clientCodeDTO.getCode()).get(0).getStatus().name();
         } catch (RuntimeException e) {
             System.out.println("verification not found!!!");
-            return "?????? ?? ????????";
+            return "application not found";
         }
     }
 
@@ -71,17 +72,12 @@ public class ClientService {
         return address;
     }
 
-    public Long generateCode(ClientData clientData) {
-        return (long) Math.abs(
-                new HashCodeBuilder(17, 37)
-                        .append(clientData.getFirstName())
-                        .append(clientData.getLastName())
-                        .append(clientData.getMiddleName())
-                        .append(clientData.getEmail())
-                        .append(clientData.getPhone())
-                        .append(clientData.getClientAddress())
-                        .toHashCode()
-        );
+    public String generateCode(ClientData clientData) {
+        // creating UUID
+        UUID uid = UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d");
+        // checking the value of random UUID
+        System.out.println();
+        return uid.randomUUID().toString();
     }
 }
 

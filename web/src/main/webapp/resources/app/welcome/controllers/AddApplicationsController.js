@@ -65,7 +65,7 @@ welcomeModule
                 console.log($scope.formData);
                 applicationService.sendApplication("/application/add", $scope.formData)
                     .success(function (applicationCode) {
-                        $scope.applicationCode = applicationCode;
+                        $scope.applicationCode = applicationCode.code;
                     }).error(function (err) {
                         console.log(err);
                     });
