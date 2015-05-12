@@ -1,32 +1,19 @@
-package com.softserve.edu.entity;
+package com.softserve.edu.dto.admin;
 
-import javax.persistence.*;
-
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "organizationType")
-public abstract class Organization {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class OrganizationDTO {
     private String name;
     private String email;
     private String phone;
+    private String type;
 
-    //@Embedded
-    //private Address address;
-
-    public Organization() {
+    public OrganizationDTO() {
     }
 
-    public Organization(String name, String email, String phone) {
+    public OrganizationDTO(String name, String email, String phone, String type) {
         this.name = name;
         this.email = email;
         this.phone = phone;
-    }
-
-    public Long getId() {
-        return id;
+        this.type = type;
     }
 
     public String getName() {
@@ -52,5 +39,12 @@ public abstract class Organization {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-}
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+}
