@@ -7,7 +7,7 @@ welcomeModule
 
             //i18n
             $scope.languages = ["eng", "ukr"];
-            $scope.selectedLang = "ukr";
+            $scope.selectedLang = "eng";
             $scope.changeLanguage = function (selectedLang) {
                 $translate.use(selectedLang);
             };
