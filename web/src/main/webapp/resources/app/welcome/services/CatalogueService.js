@@ -1,5 +1,4 @@
-angular
-    .module('welcomeModule')
+welcomeModule
     .service('CatalogueService', ['$http', function ($http) {
         this.sendApplication = function (url) {
             return $http.get(url)

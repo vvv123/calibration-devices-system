@@ -1,4 +1,4 @@
-angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
+var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
     'duScroll', 'ui.bootstrap', 'pascalprecht.translate'])
     .config(['$translateProvider',
         function ($translateProvider) {

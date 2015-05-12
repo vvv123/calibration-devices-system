@@ -1,5 +1,4 @@
-angular
-    .module('welcomeModule')
+welcomeModule
     .controller('CheckApplicationController',[ '$scope', '$http',  function($scope, $http) {
         $scope.search = function() {
             var response = $http.post('/application/check/', $scope.codeInfo);

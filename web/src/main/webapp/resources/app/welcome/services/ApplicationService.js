@@ -1,5 +1,4 @@
-angular
-    .module('welcomeModule')
+welcomeModule
     .service('ApplicationService', ['$http', function ($http) {
         this.sendApplication = function (url, applicationData) {
             return $http.post(url, applicationData)

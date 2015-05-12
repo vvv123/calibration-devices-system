@@ -1,5 +1,4 @@
-angular
-    .module('welcomeModule')
+welcomeModule
     .controller('AddApplicationsController', ['$scope', '$translate', 'CatalogueService',
         'ApplicationService',
         function ($scope, $translate, catalogueService, applicationService) {

@@ -1,5 +1,4 @@
-angular
-    .module('welcomeModule')
+welcomeModule
     .controller('GlobalController', ['$scope', '$http', function ($scope, $http) {
 
         $scope.getUser = function () {
