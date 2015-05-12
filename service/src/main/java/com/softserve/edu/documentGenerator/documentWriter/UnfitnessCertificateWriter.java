@@ -1,7 +1,6 @@
 package com.softserve.edu.documentGenerator.documentWriter;
 
 import com.softserve.edu.documentGenerator.documents.UnfitnessCertificate;
-import com.softserve.edu.documentGenerator.documents.documentsFields.UnfitnessReasonData;
 
 import java.io.File;
 
@@ -12,6 +11,15 @@ import java.io.File;
 public class UnfitnessCertificateWriter {
     private UnfitnessCertificate doc;
     private File file;
+
+    enum Token {
+        REASON;
+
+        @Override
+        public String toString() {
+            return "$" + name();
+        }
+    }
 
     public UnfitnessCertificateWriter(UnfitnessCertificate doc, File file) {
         this.doc = doc;
@@ -27,8 +35,8 @@ public class UnfitnessCertificateWriter {
 
         TokenWriter tokenWriter = new TokenWriter();
 
-        UnfitnessReasonData dto = doc.getUnfitnessReasonData();
+        //UnfitnessReasonData dto = doc.getUnfitnessReasonData();
         //tokenWriter.replaceTokenAndSave(file, "$REASON", dto.getReasonForUnfitness());
-        tokenWriter.replaceTokenAndSave(file, "$REASON", "все супер");
+        tokenWriter.replaceTokenAndSave(file, Token.REASON.toString(), "все супер");
     }
 }

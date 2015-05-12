@@ -1,7 +1,6 @@
 package com.softserve.edu.documentGenerator.documentWriter;
 
 import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
-import com.softserve.edu.documentGenerator.documents.documentsFields.VerificationCertificateData;
 
 import java.io.File;
 
@@ -12,6 +11,17 @@ import java.io.File;
 public class VerificationCertificateWriter {
     private VerificationCertificate doc;
     private File file;
+
+    enum Token {
+        AD_PAGE,
+        SPEC_DOC_ID,
+        SPEC_DOC_NAME;
+
+        @Override
+        public String toString() {
+            return "$" + name();
+        }
+    }
 
     public VerificationCertificateWriter(VerificationCertificate doc, File file) {
         this.doc = doc;
@@ -24,14 +34,16 @@ public class VerificationCertificateWriter {
 
         TokenWriter tokenWriter = new TokenWriter();
 
-        VerificationCertificateData verificationCertificateData = doc.getVerificationCertificateData();
-        Integer additionalInfoPageNumber = verificationCertificateData.getAdditionalInfoPageNumber();
-        tokenWriter.replaceTokenAndSave(file, "$AD_PAGE", additionalInfoPageNumber.toString());
+        Integer additionalInfoPageNumber = doc.getAdditionalInfoPageNumber();
+        tokenWriter.replaceTokenAndSave(file, Token.AD_PAGE.toString(),
+                additionalInfoPageNumber.toString());
 
-        String documentId = verificationCertificateData.getDocumentId();
-        tokenWriter.replaceTokenAndSave(file, "$SPEC_DOC_ID", documentId);
+        String documentId = doc.getDocumentId();
+        tokenWriter.replaceTokenAndSave(file, Token.SPEC_DOC_ID.toString(),
+                documentId);
 
-        String specificationDocumentName = verificationCertificateData.getSpecificationDocumentName();
-        tokenWriter.replaceTokenAndSave(file, "$SPEC_DOC_NAME", specificationDocumentName);
+        String specificationDocumentName = doc.getSpecificationDocumentName();
+        tokenWriter.replaceTokenAndSave(file, Token.SPEC_DOC_NAME.toString(),
+                specificationDocumentName);
     }
 }

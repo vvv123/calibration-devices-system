@@ -9,8 +9,7 @@ public interface Converter {
     /**
      * Convert the template file and save it in the specified path
      * @param readyTemplate document to convert
-     * @param outputFileName path where to create converted file
-     * @return converted file
+     * @param outputFileName document to store converted data
      */
-    File getConvertedFile(File readyTemplate, String outputFileName);
+    void convertFile(File readyTemplate, File outputFileName);
 }

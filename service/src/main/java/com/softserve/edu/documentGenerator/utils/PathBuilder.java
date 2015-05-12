@@ -1,5 +1,7 @@
 package com.softserve.edu.documentGenerator.utils;
 
+import com.softserve.edu.documentGenerator.converter.DocumentFormat;
+
 /**
  * Path builder.
  */

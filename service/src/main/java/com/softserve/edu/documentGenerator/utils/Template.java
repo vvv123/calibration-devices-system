@@ -15,7 +15,7 @@ public enum Template {
      */
     @Override
     public String toString() {
-        return name().toLowerCase() + ".doc";
+        return name().toLowerCase() + ".docx";
     }
 
     /**

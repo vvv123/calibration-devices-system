@@ -1,7 +1,5 @@
 package com.softserve.edu.dto;
 
-import java.util.Map;
-
 public class RegionDTO {
     private Long id;
     private String name;

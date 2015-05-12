@@ -1,110 +1,80 @@
 package com.softserve.edu.documentGenerator.documents;
 
-import com.softserve.edu.documentGenerator.documents.documentsFields.*;
 import com.softserve.edu.documentGenerator.utils.Template;
+import com.softserve.edu.entity.Verification;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.springframework.util.Assert;
+
+import java.util.Date;
 
 /**
  * Represents a base document.
  * All real documents extend from this class.
  */
 public abstract class BaseDocument {
-    private Long VerificationID;
+    private Verification verification;
     private Template template;
-    private Calibrator calibrator;
-    private DocumentData documentData;
-    private Device device;
-    private Person owner;
-    private Laboratory laboratory;
 
-    public BaseDocument(Template template) {
-        this.template = template;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        BaseDocument baseDocument = (BaseDocument) o;
-
-        return new EqualsBuilder()
-                .append(VerificationID, baseDocument.VerificationID)
-                .append(template, baseDocument.template)
-                .append(calibrator, baseDocument.calibrator)
-                .append(documentData, baseDocument.documentData)
-                .append(device, baseDocument.device)
-                .append(owner, baseDocument.owner)
-                .append(laboratory, baseDocument.laboratory)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(VerificationID)
-                .append(template)
-                .append(calibrator)
-                .append(documentData)
-                .append(device)
-                .append(owner)
-                .append(laboratory)
-                .toHashCode();
+    public BaseDocument(Template template, Verification verification) {
+        template = template;
+        setVerification(verification);
     }
 
     public Template getTemplate() {
         return template;
     }
 
-    public void setTemplate(Template template) {
-        this.template = template;
+    public Verification getVerification() {
+        return verification;
     }
 
-    public Long getVerificationID() {
-        return VerificationID;
+    private void setVerification(Verification verification) {
+        Assert.notNull(verification, "Error");
+        this.verification = verification;
     }
 
-    public void setVerificationID(Long verificationID) {
-        VerificationID = verificationID;
+    public String getCalibratorCompanyName() {
+        return verification.getCalibrator().getName();
     }
 
-    public Calibrator getCalibrator() {
-        return calibrator;
+    public String getCalibratorAddress() {
+        return verification.getCalibrator().getAddress().toString();
     }
 
-    public void setCalibrator(Calibrator calibrator) {
-        this.calibrator = calibrator;
+    public Date getCalibratorCertificateGranted() {
+        return new Date();  // TODO: get from db?
     }
 
-    public DocumentData getDocumentData() {
-        return documentData;
+    public String getCalibratorCertificateNumber() {
+        return "11";
     }
 
-    public void setDocumentData(DocumentData documentData) {
-        this.documentData = documentData;
+    public String getSerialNumber() {
+        return verification.getDevice().getId().toString();
     }
 
-    public Device getDevice() {
-        return device;
+    public String getManufacturer() {
+        return verification.getDevice().getManufacturer().toString();
     }
 
-    public void setDevice(Device device) {
-        this.device = device;
+    public String getName() {
+        return verification.getCalibratorEmployee().getFirstName();
     }
 
-    public Person getOwner() {
-        return owner;
+    public String getSurname() {
+        return verification.getCalibratorEmployee().getLastName();
     }
 
-    public void setOwner(Person owner) {
-        this.owner = owner;
+    public String getVerificationLaboratory() {
+        return verification.getStateVerificator().getName();
     }
 
-    public Laboratory getLaboratory() {
-        return laboratory;
+    public String getDocumentNumber() {
+        return "123";
     }
 
-    public void setLaboratory(Laboratory laboratory) {
-        this.laboratory = laboratory;
+    public Date getDocumentDate() {
+        return new Date();
     }
 }

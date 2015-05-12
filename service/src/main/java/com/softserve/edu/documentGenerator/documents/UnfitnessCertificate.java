@@ -1,23 +1,23 @@
 package com.softserve.edu.documentGenerator.documents;
 
-import com.softserve.edu.documentGenerator.documents.documentsFields.UnfitnessReasonData;
 import com.softserve.edu.documentGenerator.utils.Template;
+import com.softserve.edu.entity.Verification;
 
 /**
  * Represent an unfitness certificate document
  */
 public class UnfitnessCertificate extends BaseDocument {
-    private UnfitnessReasonData unfitnessReasonData;
+    private String reasonForUnfitness;
 
-    public UnfitnessCertificate() {
-        super(Template.UNFITNESS_CERTIFICATE);
+    public String getReasonForUnfitness() {
+        return reasonForUnfitness;
     }
 
-    public UnfitnessReasonData getUnfitnessReasonData() {
-        return unfitnessReasonData;
+    public void setReasonForUnfitness(String reasonForUnfitness) {
+        this.reasonForUnfitness = reasonForUnfitness;
     }
 
-    public void setUnfitnessReasonData(UnfitnessReasonData unfitnessReasonData) {
-        this.unfitnessReasonData = unfitnessReasonData;
+    public UnfitnessCertificate(Verification verification) {
+        super(Template.UNFITNESS_CERTIFICATE, verification);
     }
 }

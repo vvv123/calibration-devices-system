@@ -2,13 +2,10 @@ package com.softserve.edu.service;
 
 
 import com.softserve.edu.entity.CalibrationTest;
-import com.softserve.edu.entity.CalibrationTestData;
 import com.softserve.edu.repository.CalibrationTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional

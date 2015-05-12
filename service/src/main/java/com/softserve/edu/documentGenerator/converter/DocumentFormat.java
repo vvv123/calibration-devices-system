@@ -1,10 +1,10 @@
-package com.softserve.edu.documentGenerator.utils;
+package com.softserve.edu.documentGenerator.converter;
 
 /**
  * Supported formats for documents generation
  */
 public enum DocumentFormat {
-    PDF, DOC;
+    PDF, DOCX;
 
     @Override
     public String toString() {
