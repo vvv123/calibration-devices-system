@@ -60,6 +60,7 @@ angular
                         console.log(err);
                     });
                 $scope.formData = null;
-                $scope.applicationData = true;
+                $scope.hideApplication=true;
+                $scope.showApplication=true;
             };
         }]);
