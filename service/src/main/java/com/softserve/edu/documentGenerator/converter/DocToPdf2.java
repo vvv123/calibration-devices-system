@@ -8,6 +8,7 @@ import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfWriter;
 import com.softserve.edu.documentGenerator.utils.DocumentUtils;
 import com.softserve.edu.documentGenerator.utils.StandardPath;
+import fr.opensagres.xdocreport.itext.extension.IPdfWriterConfiguration;
 import fr.opensagres.xdocreport.itext.extension.font.IFontProvider;
 import fr.opensagres.xdocreport.itext.extension.font.ITextFontRegistry;
 import org.apache.poi.hwpf.HWPFDocument;
@@ -47,20 +48,24 @@ public class DocToPdf2 implements Converter {
                 XWPFDocument document = new XWPFDocument(doc);
                 PdfOptions options = PdfOptions.create();
 
+                options.setConfiguration( new IPdfWriterConfiguration()
+                {
+                    public void configure( PdfWriter writer )
+                    {
+                        //writer.setPDFXConformance( PdfWriter.PageLayoutOneColumn );
+                    }
+                });
+
                 options.fontProvider( new IFontProvider()
                 {
-
                     public Font getFont( String familyName, String encoding, float size, int style, Color color) {
                         try
                         {
                             String fontPath = new DocumentUtils().getFilePath(StandardPath.FONTS +
-                                    "/arialbd.ttf");
+                                    "/DejaVuSans.ttf");
                             BaseFont bf = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H, false);
                             Font f = new Font(bf);
 
-//                            BaseFont bfChinese =
-//                                    BaseFont.createFont( "c:/Windows/Fonts/arialuni.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED );
-//                            Font fontChinese = new Font( bfChinese, size, style, color );
                             if ( familyName != null )
                                 f.setFamily( familyName );
                             return f;

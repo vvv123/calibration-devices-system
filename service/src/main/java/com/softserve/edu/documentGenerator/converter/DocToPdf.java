@@ -51,7 +51,7 @@ public class DocToPdf implements Converter {
             for (int i = 0; i < paragraphs.length; i++) {
 
                 org.apache.poi.hwpf.usermodel.Paragraph pr = range.getParagraph(i);
-                paragraphs[i] = paragraphs[i].replaceAll("\\cM?\r?\n", " ");
+                //paragraphs[i] = paragraphs[i].replaceAll("\\cM?\r?\n", " ");
                 String fontPath = new DocumentUtils().getFilePath(StandardPath.FONTS +
                         "/arialbd.ttf");
                 BaseFont bf = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H, false);
