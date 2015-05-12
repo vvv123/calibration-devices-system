@@ -8,29 +8,35 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.Date;
+
+import static org.mockito.Mockito.when;
 
 public class GenerateFileTest {
     @Test
     public void generatePdfTest() {
         VerificationCertificate ver = Mockito.mock(VerificationCertificate.class);
 
-        Mockito.when(ver.getCalibratorAddress()).thenReturn("02042, м. Львів, вул. Чигоріна, 18");
-        Mockito.when(ver.getCalibratorCertificateGranted()).thenReturn(new Date());
-        Mockito.when(ver.getCalibratorCertificateNumber()).thenReturn("10101");
-        Mockito.when(ver.getCalibratorCompanyName()).thenReturn("СГУО УЕГГ м. Львова");
-        Mockito.when(ver.getDocumentDate()).thenReturn(new Date());
-        Mockito.when(ver.getDocumentNumber()).thenReturn("3914922");
-        Mockito.when(ver.getManufacturer()).thenReturn("Metrix");
-        Mockito.when(ver.getName()).thenReturn("Олег");
-        Mockito.when(ver.getSerialNumber()).thenReturn("017905");
-        Mockito.when(ver.getSurname()).thenReturn("Чернигевич");
-        Mockito.when(ver.getVerificationLaboratory()).thenReturn("Львівстандартметрологія");
-        Mockito.when(ver.getTemplate()).thenReturn(Template.VERIFICATION_CERTIFICATE);
-        Mockito.when(ver.getAdditionalInfoPageNumber()).thenReturn(1);
-        Mockito.when(ver.getDocumentId()).thenReturn("ДСТУ 2681-94 Державна система забезпечення єдності вимірювань." +
-                " Метрологія. Терміни та визначення.");
-        Mockito.when(ver.getSpecificationDocumentName()).thenReturn("");
+        when(ver.getCalibratorAddress()).thenReturn("02042, м. Львів, вул. Чигоріна, 18");
+        when(ver.getCalibratorCertificateGranted()).thenReturn(new Date());
+        when(ver.getCalibratorCertificateNumber()).thenReturn("10101");
+        when(ver.getCalibratorCompanyName()).thenReturn("СГУО УЕГГ м. Львова");
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.YEAR, 2);
+        when(ver.getDocumentDate()).thenReturn(instance.getTime());
+        when(ver.getDocumentNumber()).thenReturn("3914922");
+        when(ver.getManufacturer()).thenReturn("Metrix");
+        when(ver.getName()).thenReturn("Олег");
+        when(ver.getSerialNumber()).thenReturn("017905");
+        when(ver.getSurname()).thenReturn("Чернигевич");
+        when(ver.getVerificationLaboratory()).thenReturn("Львівстандартметрологія");
+        when(ver.getTemplate()).thenReturn(Template.VERIFICATION_CERTIFICATE);
+        when(ver.getAdditionalInfoPageNumber()).thenReturn(1);
+        when(ver.getDocumentId()).thenReturn("ДСТУ 2681-94 Державна система забезпечення єдності вимірювань." +
+                " Метрологія.");
+        when(ver.getSpecificationDocumentName()).thenReturn("");
+        when(ver.getDeviceName()).thenReturn("1ПГ-41ГК");
 
         File generatedDoc =
                 DocumentGenerator.generate(ver, DocumentFormat.PDF);

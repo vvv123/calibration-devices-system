@@ -77,4 +77,8 @@ public abstract class BaseDocument {
     public Date getDocumentDate() {
         return new Date();
     }
+
+    public String getDeviceName() {
+        return getVerification().getDevice().getDeviceType().toString();
+    }
 }

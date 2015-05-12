@@ -12,7 +12,7 @@ public class ConverterFactory {
 
            switch (documentFormat) {
                case PDF:
-                   converter = new DocToPdf2();
+                   converter = new DocToPdfXWPF();
                    break;
            }
 

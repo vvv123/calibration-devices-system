@@ -20,7 +20,8 @@ public class DocumentWriter {
         OWNER_SURNAME,
         LABORATORY_NAME,
         ID,
-        DOCUMENT_DATE;
+        DOC_DATE,
+        DEV_NAME;
 
         @Override
         public String toString() {
@@ -42,6 +43,7 @@ public class DocumentWriter {
                 doc.getCalibratorAddress());
         Date calibratorDate = doc.getCalibratorCertificateGranted();
         String formatDate = new SimpleDateFormat("dd/MM/yyyy").format(calibratorDate);
+
         tokenWriter.replaceTokenAndSave(file, Token.CALIBRATOR_DATE.toString(), formatDate);
                 System.out.println(formatDate);
         tokenWriter.replaceTokenAndSave(file, Token.CALIBRATOR_CERT.toString(),
@@ -58,11 +60,14 @@ public class DocumentWriter {
         tokenWriter.replaceTokenAndSave(file, Token.LABORATORY_NAME.toString(),
                 doc.getVerificationLaboratory());
 
+        tokenWriter.replaceTokenAndSave(file, Token.DEV_NAME.toString(),
+                doc.getDeviceName());
+
         tokenWriter.replaceTokenAndSave(file, Token.ID.toString(),
                 doc.getDocumentNumber());
         Date documentDate = doc.getDocumentDate();
 
-        String documentFormatDate = new SimpleDateFormat("dd/MM/yyyy").format(calibratorDate);
-        tokenWriter.replaceTokenAndSave(file, Token.DOCUMENT_DATE.toString(), documentFormatDate);
+        String documentFormatDate = new SimpleDateFormat("dd/MM/yyyy").format(doc.getDocumentDate());
+        tokenWriter.replaceTokenAndSave(file, Token.DOC_DATE.toString(), documentFormatDate);
     }
 }
