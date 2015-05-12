@@ -1,5 +1,5 @@
 var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
-    'duScroll', 'ui.bootstrap', 'pascalprecht.translate'])
+    'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ui.bootstrap.showErrors'])
     .config(['$translateProvider',
         function ($translateProvider) {
             $translateProvider.useSanitizeValueStrategy('escaped');

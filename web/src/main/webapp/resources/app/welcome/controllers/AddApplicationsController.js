@@ -57,22 +57,26 @@ welcomeModule
             //on-click handler in send button
             //
             $scope.sendApplicationData = function () {
-                $scope.formData.region = $scope.selectedRegion.designation;
-                $scope.formData.district = $scope.selectedDistrict.designation;
-                $scope.formData.locality = $scope.selectedLocality.designation;
-                $scope.formData.district = $scope.selectedDistrict.designation;
-                $scope.formData.street = $scope.selectedStreet.designation;
-                $scope.formData.building = $scope.selectedBuilding.designation;
-                console.log($scope.formData);
-                applicationService.sendApplication("/application/add", $scope.formData)
-                    .success(function (applicationCode) {
-                        $scope.applicationCode = applicationCode.code;
-                    }).error(function (err) {
-                        console.log(err);
-                    });
-                $scope.formData = null;
-                $scope.isShownForm = false;
+                console.log($scope.formData.$valid);
+                if (!$scope.formData.$invalid) {
+                    $scope.formData.region = $scope.selectedRegion.designation;
+                    $scope.formData.district = $scope.selectedDistrict.designation;
+                    $scope.formData.locality = $scope.selectedLocality.designation;
+                    $scope.formData.district = $scope.selectedDistrict.designation;
+                    $scope.formData.street = $scope.selectedStreet.designation;
+                    $scope.formData.building = $scope.selectedBuilding.designation;
+                    console.log($scope.formData);
+                    applicationService.sendApplication("/application/add", $scope.formData)
+                        .success(function (applicationCode) {
+                            $scope.applicationCode = applicationCode.code;
+                        }).error(function (err) {
+                            console.log(err);
+                        });
+                    $scope.formData = null;
+                    $scope.isShownForm = false;
+                }
             };
+
 
             $scope.closeAlert = function () {
                 $scope.isShownForm = true;
