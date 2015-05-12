@@ -11,9 +11,15 @@ public class CalibrationTest {
     private Long id;
     private String name;
     private String deviceNumber;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateTest;
     private Integer temperature;
+    private Integer settingNumber;
+    private Double latitude;
+    private Double longitude;
+    private String consumptionStatus;
+    private String testResult;
+    private String photoPath;
 
     public Long getId() {
         return id;
@@ -118,13 +124,6 @@ public class CalibrationTest {
     public void setCalibrationTestDatas(Set<CalibrationTestData> calibrationTestDatas) {
         this.calibrationTestDatas = calibrationTestDatas;
     }
-
-    private Integer settingNumber;
-    private Double latitude;
-    private Double longitude;
-    private String consumptionStatus;
-    private String testResult;
-    private String photoPath;
 
     @ManyToOne
     private Verification verification;

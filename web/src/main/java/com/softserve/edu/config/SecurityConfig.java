@@ -43,7 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/resources/assets/**", "/resources/app/welcome/**",
-                        "/getuser", "/application/**").permitAll()
+                        "/getuser", "/application/**", "/calibrationTests/**"
+                        , "/calibrationTestData/**").permitAll()
                 .antMatchers("/resources/app/admin/**", "/admin/**").hasAuthority(SYS_ADMIN.roleName())
                 .antMatchers("/resources/app/provider/**", "/provider/**").hasAnyAuthority(PROVIDER_EMPLOYEE.roleName(), PROVIDER_ADMIN.roleName())
                 .antMatchers("/resources/app/calibrator/**", "/calibrator/**").hasAnyAuthority(CALIBRATOR_EMPLOYEE.roleName(), CALIBRATOR_ADMIN.roleName())
