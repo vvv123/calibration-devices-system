@@ -1,11 +1,15 @@
-package com.softserve.edu.documentGenerator.generator.documents;
+package com.softserve.edu.documentGenerator.documents;
 
-import com.softserve.edu.documentGenerator.generator.documents.documentsFields.*;
+import com.softserve.edu.documentGenerator.documents.documentsFields.*;
 import com.softserve.edu.documentGenerator.utils.Template;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public abstract class Document {
+/**
+ * Represents a base document.
+ * All real documents extend from this class.
+ */
+public abstract class BaseDocument {
     private Long VerificationID;
     private Template template;
     private Calibrator calibrator;
@@ -14,7 +18,7 @@ public abstract class Document {
     private Person owner;
     private Laboratory laboratory;
 
-    public Document(Template template) {
+    public BaseDocument(Template template) {
         this.template = template;
     }
 
@@ -22,16 +26,16 @@ public abstract class Document {
     public boolean equals(Object o) {
         if (this == o) return true;
 
-        Document document = (Document) o;
+        BaseDocument baseDocument = (BaseDocument) o;
 
         return new EqualsBuilder()
-                .append(VerificationID, document.VerificationID)
-                .append(template, document.template)
-                .append(calibrator, document.calibrator)
-                .append(documentData, document.documentData)
-                .append(device, document.device)
-                .append(owner, document.owner)
-                .append(laboratory, document.laboratory)
+                .append(VerificationID, baseDocument.VerificationID)
+                .append(template, baseDocument.template)
+                .append(calibrator, baseDocument.calibrator)
+                .append(documentData, baseDocument.documentData)
+                .append(device, baseDocument.device)
+                .append(owner, baseDocument.owner)
+                .append(laboratory, baseDocument.laboratory)
                 .isEquals();
     }
 

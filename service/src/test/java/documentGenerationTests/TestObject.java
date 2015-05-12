@@ -1,14 +1,11 @@
 package documentGenerationTests;
 
-import com.softserve.edu.documentGenerator.generator.documents.VerificationCertificate;
-import com.softserve.edu.documentGenerator.generator.documents.documentsFields.*;
+import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
+import com.softserve.edu.documentGenerator.documents.documentsFields.*;
 import com.softserve.edu.documentGenerator.utils.Template;
 
 import java.util.Date;
 
-/**
- * Created by oleg on 11.05.15.
- */
 public class TestObject {
     public static VerificationCertificate get() {
         Device deviceMock = TestObject.getDeviceMock();
@@ -25,7 +22,7 @@ public class TestObject {
         mock.setDocumentData(documentData);
         mock.setLaboratory(laboratory);
         mock.setOwner(employeeMock);
-        mock.setVerificationID(123L);
+        mock.setVerificationID(5893L);
         mock.setTemplate(Template.VERIFICATION_CERTIFICATE);
 
         return mock;
@@ -46,7 +43,7 @@ public class TestObject {
         VerificationCertificateData data = new VerificationCertificateData();
 
         data.setAdditionalInfoPageNumber(2);
-        data.setDocumentId("1222");
+        data.setDocumentId("док.лв.1222");
         data.setSpecificationDocumentName("документ стандартизації");
 
         return data;
@@ -67,7 +64,7 @@ public class TestObject {
 
         data.setCalibratorAddress("");
         data.setCalibratorCertificateGranted(new Date());
-        data.setCalibratorCertificateNumber(123);
+        data.setCalibratorCertificateNumber(756304);
         data.setCalibratorCompanyName("Омега");
         data.setCalibratorEmployee(getEmployeeMock());
 

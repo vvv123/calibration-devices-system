@@ -1,9 +1,9 @@
-package com.softserve.edu.documentGenerator.generator.documents.documentsFields;
+package com.softserve.edu.documentGenerator.documents.documentsFields;
 
 import java.util.Date;
 
 /**
- * Created by oleg on 5/11/15.
+ * 
  */
 public class Calibrator {
     private String calibratorCompanyName;

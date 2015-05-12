@@ -1,9 +1,12 @@
-package com.softserve.edu.documentGenerator.generator.documents;
+package com.softserve.edu.documentGenerator.documents;
 
-import com.softserve.edu.documentGenerator.generator.documents.documentsFields.VerificationCertificateData;
+import com.softserve.edu.documentGenerator.documents.documentsFields.VerificationCertificateData;
 import com.softserve.edu.documentGenerator.utils.Template;
 
-public class VerificationCertificate extends Document  {
+/**
+ * Represents a verification certificate document.
+ */
+public class VerificationCertificate extends BaseDocument {
     private VerificationCertificateData verificationCertificateData;
 
     public VerificationCertificate() {

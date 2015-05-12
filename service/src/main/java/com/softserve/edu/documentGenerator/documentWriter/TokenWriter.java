@@ -1,4 +1,4 @@
-package com.softserve.edu.documentGenerator.generator.documentWriter;
+package com.softserve.edu.documentGenerator.documentWriter;
 
 import com.softserve.edu.documentGenerator.utils.DocumentUtils;
 import org.apache.poi.hwpf.HWPFDocument;
@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class Writer {
+public class TokenWriter {
     /**
      * Replace token in a file and save changes
      */

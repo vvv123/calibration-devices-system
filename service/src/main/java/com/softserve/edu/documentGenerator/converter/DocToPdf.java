@@ -22,9 +22,14 @@ import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.hwpf.usermodel.Range;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
-
+/**
+ * Convert Doc document into Pdf document
+ */
 public class DocToPdf implements Converter {
 
+    /**
+     * {inherit}
+     */
     @Override
     public File getConvertedFile(File readyTemplate, String outputFileName) {
         POIFSFileSystem fs = null;
@@ -69,7 +74,7 @@ public class DocToPdf implements Converter {
                 document.add(new Paragraph(paragraphs[i], f));
             }
 
-            System.out.println("Document testing completed");
+            System.out.println("BaseDocument testing completed");
         } catch (Exception e) {
             System.out.println("Exception during test");
             e.printStackTrace();

@@ -1,9 +1,12 @@
-package com.softserve.edu.documentGenerator.generator.documents;
+package com.softserve.edu.documentGenerator.documents;
 
-import com.softserve.edu.documentGenerator.generator.documents.documentsFields.UnfitnessReasonData;
+import com.softserve.edu.documentGenerator.documents.documentsFields.UnfitnessReasonData;
 import com.softserve.edu.documentGenerator.utils.Template;
 
-public class UnfitnessCertificate extends Document {
+/**
+ * Represent an unfitness certificate document
+ */
+public class UnfitnessCertificate extends BaseDocument {
     private UnfitnessReasonData unfitnessReasonData;
 
     public UnfitnessCertificate() {

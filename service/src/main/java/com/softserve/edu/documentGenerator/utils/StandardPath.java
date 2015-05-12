@@ -21,19 +21,5 @@ public enum StandardPath {
         public String toString() {
             return "fonts";
         }
-    };
-
-//    private String path;
-//
-////    StandardPath(String path) {
-////        this.path = path;
-////    }
-//
-//    public String getPath() {
-//        return path;
-//    }
-//
-//    public void setPath(String path) {
-//        this.path = path;
-//    }
+    }
 }

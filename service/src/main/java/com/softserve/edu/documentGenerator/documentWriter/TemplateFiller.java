@@ -1,8 +1,7 @@
-package com.softserve.edu.documentGenerator.generator;
+package com.softserve.edu.documentGenerator.documentWriter;
 
-import com.softserve.edu.documentGenerator.generator.documents.Document;
-import com.softserve.edu.documentGenerator.generator.documents.VerificationCertificate;
-import com.softserve.edu.documentGenerator.generator.documentWriter.VerificationCertificateWriter;
+import com.softserve.edu.documentGenerator.documents.BaseDocument;
+import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
 import com.softserve.edu.documentGenerator.utils.DocumentFormat;
 import com.softserve.edu.documentGenerator.utils.PathBuilder;
 import com.softserve.edu.documentGenerator.utils.StandardPath;
@@ -12,17 +11,26 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class FormFiller {
-    private FormFiller() {
-    }
+public class TemplateFiller {
 
-    public static File getReadyTemplate(File template, Document document) {
-        if (!(document instanceof VerificationCertificate)) {
+    /**
+     * private default constructor
+     */
+    private TemplateFiller() { }
+
+    /**
+     * Get copy of the baseDocument that has the correct data and is ready to be converted.
+     * @param template file template to use to generate a baseDocument
+     * @param baseDocument baseDocument with the data to be used for the file generation
+     * @return
+     */
+    public static File getReadyTemplate(File template, BaseDocument baseDocument) {
+        if (!(baseDocument instanceof VerificationCertificate)) {
             // TODO: throw custom exception
         }
 
         String path = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED,
-                String.valueOf(document.getVerificationID()),
+                String.valueOf(baseDocument.getVerificationID()),
                 DocumentFormat.DOC);
 
         PrintWriter writer = null;
@@ -39,7 +47,7 @@ public class FormFiller {
         }
 
         VerificationCertificateWriter docWriter = new VerificationCertificateWriter(
-                (VerificationCertificate)document, file);
+                (VerificationCertificate) baseDocument, file);
         docWriter.write();
 
         return file;

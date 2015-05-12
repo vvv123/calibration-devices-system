@@ -1,4 +1,4 @@
-package com.softserve.edu.documentGenerator.generator.documents.documentsFields;
+package com.softserve.edu.documentGenerator.documents.documentsFields;
 
 /**
  * Created by oleg on 5/11/15.

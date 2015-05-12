@@ -1,7 +1,7 @@
 package com.softserve.edu.documentGenerator.utils;
 
 /**
- * Created by oleg on 5/9/15.
+ * Path builder.
  */
 public class PathBuilder {
 
