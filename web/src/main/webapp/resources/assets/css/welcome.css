@@ -12,6 +12,17 @@ a {
     cursor: pointer;
 }
 
+.btn-close-alert {
+    cursor: pointer !important;
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.from-top {
+    padding-top: 35px !important;
+}
+
+
 #welcomeSection {
     height: 100%;
     padding-top: 150px;
@@ -34,7 +45,7 @@ a {
 }
 
 #applicationSection {
-    height: 100%;
+    height: 1000px !important;
     padding-top: 40px;
     text-align: center;
     background: #eee;
@@ -44,12 +55,12 @@ a {
     height: 100%;
     padding-top: 40px;
     text-align: center;
-    background: #eee;
+    background: #fff;
 }
 
 .centered {
-    top: 50%;
-    left: 50%;
+    float: none;
+    margin: 0 auto;
 }
 
 .form-signin {

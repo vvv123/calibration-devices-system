@@ -9,7 +9,6 @@ var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token
             $translateProvider.preferredLanguage('ukr');
         }]);
 define([
-    'controllers/GlobalController',
     'controllers/LoginController',
     'controllers/AddApplicationsController',
     'controllers/CheckApplicationController',

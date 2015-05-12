@@ -3,6 +3,8 @@ welcomeModule
         'ApplicationService',
         function ($scope, $translate, catalogueService, applicationService) {
 
+            $scope.isShownForm = true;
+
             //i18n
             $scope.languages = ["eng", "ukr"];
             $scope.selectedLang = "ukr";
@@ -68,7 +70,10 @@ welcomeModule
                         console.log(err);
                     });
                 $scope.formData = null;
-                $scope.hideApplication=true;
-                $scope.showApplication=true;
+                $scope.isShownForm = false;
             };
+
+            $scope.closeAlert = function () {
+                $scope.isShownForm = true;
+            }
         }]);
