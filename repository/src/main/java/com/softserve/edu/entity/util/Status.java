@@ -1,8 +1,8 @@
 package com.softserve.edu.entity.util;
 
 public enum Status {
-    SENT("Відправлено"), RECEIVED("Отримано"), IN_PROGRESS("В процесі обробки"), COMPLETED("Завершена"),
-    NOT_FOUND("Заявки з таким кодом не існує");
+    SENT(""), RECEIVED(""), IN_PROGRESS(""), COMPLETED(""),
+    NOT_FOUND("");
 
     private String name;
 
