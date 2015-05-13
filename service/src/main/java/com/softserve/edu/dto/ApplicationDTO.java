@@ -12,6 +12,7 @@ public class ApplicationDTO {
     private String district;
     private String street;
     private String building;
+    private String flat;
     private String email;
     private String phone;
 
@@ -79,6 +80,14 @@ public class ApplicationDTO {
         this.building = building;
     }
 
+    public String getFlat() {
+        return flat;
+    }
+
+    public void setFlat(String flat) {
+        this.flat = flat;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -93,21 +102,5 @@ public class ApplicationDTO {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    @Override
-    public String toString() {
-        return "ApplicationDTO{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", region='" + region + '\'' +
-                ", locality='" + locality + '\'' +
-                ", district='" + district + '\'' +
-                ", street='" + street + '\'' +
-                ", building='" + building + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
     }
 }

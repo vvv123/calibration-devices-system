@@ -7,18 +7,26 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "organizationType")
 public abstract class Organization {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
+    private String email;
+    private String phone;
 
-    @Embedded
-    private Address address;
+    //@Embedded
+    //private Address address;
 
-    public String getId() {
-        return id;
+    public Organization() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Organization(String name, String email, String phone) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -29,12 +37,20 @@ public abstract class Organization {
         this.name = name;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
 

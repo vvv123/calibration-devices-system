@@ -4,4 +4,9 @@
 
 <web-app>
     <display-name>Centralized system for calibration of measurement devices.</display-name>
+
+    <welcome-file-list>
+        <welcome-file>/resources/app/welcome/index.html</welcome-file>
+    </welcome-file-list>
+
 </web-app>

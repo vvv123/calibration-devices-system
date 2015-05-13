@@ -1,34 +1,31 @@
 package com.softserve.edu.entity.catalogue;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import javax.persistence.*;
-import java.util.Set;
+
+import static com.softserve.edu.entity.catalogue.util.Checker.checkForEmptyText;
+import static com.softserve.edu.entity.catalogue.util.Checker.checkForNull;
 
 @Entity
-public class Street {
+public class Street extends AbstractCatalogue {
     @Id
     @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String designation;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "locality_id", nullable = false)
     private Locality locality;
-
-    @OneToMany
-    @JoinColumn(name = "street_id")
-    private Set<Building> buildings;
 
     protected Street() {}
 
-    public Street(String name, Set<Building> buildings) {
-        this.name = name;
-        this.buildings = buildings;
+    public Street(Locality locality, String designation) {
+        setLocality(locality);
+        setDesignation(designation);
     }
 
+    @Override
     public Long getId() {
         return id;
     }
@@ -37,55 +34,27 @@ public class Street {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String getDesignation() {
+        return designation;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    private void setDesignation(String designation) {
+        checkForEmptyText(designation);
+        this.designation = designation;
     }
 
     public Locality getLocality() {
         return locality;
     }
 
-    public void setLocality(Locality locality) {
+    private void setLocality(Locality locality) {
+        checkForNull(locality);
         this.locality = locality;
-    }
-
-    public Set<Building> getBuildings() {
-        return buildings;
-    }
-
-    public void setBuildings(Set<Building> buildings) {
-        this.buildings = buildings;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) { return true; }
-
-        if (o == null || getClass() != o.getClass()) { return false; }
-
-        Street street = (Street) o;
-
-        return new EqualsBuilder()
-                .append(id, street.id)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(id)
-                .toHashCode();
     }
 
     @Override
     public String toString() {
-        return "Street{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return designation;
     }
 }

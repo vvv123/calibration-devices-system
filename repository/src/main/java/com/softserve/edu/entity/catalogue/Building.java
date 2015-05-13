@@ -1,30 +1,28 @@
 package com.softserve.edu.entity.catalogue;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import static com.softserve.edu.entity.catalogue.util.Checker.checkForEmptyText;
+import static com.softserve.edu.entity.catalogue.util.Checker.checkForNull;
 
 @Entity
-public class Building {
+public class Building extends AbstractCatalogue {
     @Id
     @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
-    private String number;
+    private String designation;
 
     @ManyToOne
+    @JoinColumn(name = "street_id", nullable = false)
     private Street street;
 
     protected Building() {}
 
-    public Building(String number) {
-        this.number = number;
+    public Building(Street street, String designation) {
+        setStreet(street);
+        setDesignation(designation);
     }
 
     public Long getId() {
@@ -35,12 +33,13 @@ public class Building {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getDesignation() {
+        return designation;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    private void setDesignation(String designation) {
+        checkForEmptyText(designation);
+        this.designation = designation;
     }
 
     public Street getStreet() {
@@ -48,34 +47,12 @@ public class Building {
     }
 
     public void setStreet(Street street) {
+        checkForNull(street);
         this.street = street;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) { return true; }
-
-        if (o == null || getClass() != o.getClass()) { return false; }
-
-        Building building = (Building) o;
-
-        return new EqualsBuilder()
-                .append(id, building.id)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(id)
-                .toHashCode();
-    }
-
-    @Override
     public String toString() {
-        return "Building{" +
-                "id=" + id +
-                ", number='" + number + '\'' +
-                '}';
+        return designation;
     }
 }

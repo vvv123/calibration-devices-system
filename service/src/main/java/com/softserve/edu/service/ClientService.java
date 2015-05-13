@@ -1,17 +1,24 @@
 package com.softserve.edu.service;
 
-/**
- * Created by Oles Onyshchak on 5/8/2015.
- */
 
 import com.softserve.edu.dto.ApplicationDTO;
+import com.softserve.edu.dto.ClientCodeDTO;
+import com.softserve.edu.dto.ClientMessageDTO;
 import com.softserve.edu.entity.Address;
 import com.softserve.edu.entity.ClientData;
 import com.softserve.edu.entity.Verification;
+import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.repository.VerificationRepository;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.NestedRuntimeException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.PersistenceException;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -19,31 +26,55 @@ public class ClientService {
     @Autowired
     private VerificationRepository verificationRepository;
 
-    public String transferApplicationDTO(ApplicationDTO applicationDTO) {
+    public ClientCodeDTO transferApplication(ApplicationDTO applicationDTO) {
         Verification verification = new Verification();
         ClientData clientData = new ClientData();
-        clientData.setClientAddress(parseApplicationDTOtoClientAddress(new Address(),applicationDTO));
+        clientData.setClientAddress(parseApplicationDTOtoClientAddress(new Address(), applicationDTO));
         verification.setClientData(parseApplicationDTOtoClientData(clientData, applicationDTO));
+        verification.setCode(generateCode(clientData));
+        verification.setStatus(Status.IN_PROGRESS);
         verificationRepository.save(verification);
-        return clientData.getCode();
+        return new ClientCodeDTO().setCode(verification.getCode());
+    }
+
+    public ClientMessageDTO transferClientCode(ClientCodeDTO clientCodeDTO) {
+        return  new ClientMessageDTO().setName(findCode(clientCodeDTO));
+    }
+
+    public String findCode(ClientCodeDTO clientCodeDTO) {
+        try {
+            return verificationRepository.findByCode(clientCodeDTO.getCode()).get(0).getStatus().toString();
+        } catch (RuntimeException e) {
+            System.out.println("verification not found!!!");
+            return "application not found";
+        }
     }
 
     private ClientData parseApplicationDTOtoClientData(ClientData clientData, ApplicationDTO applicationDTO) {
-        clientData.setName(applicationDTO.getFirstName());
+        clientData.setFirstName(applicationDTO.getFirstName());
         clientData.setLastName(applicationDTO.getLastName());
         clientData.setMiddleName(applicationDTO.getMiddleName());
         clientData.setEmail(applicationDTO.getEmail());
         clientData.setPhone(applicationDTO.getPhone());
-        clientData.setCode(clientData.code());
         return clientData;
     }
+
     private Address parseApplicationDTOtoClientAddress(Address address, ApplicationDTO applicationDTO) {
         address.setRegion(applicationDTO.getRegion());
         address.setLocality(applicationDTO.getLocality());
         address.setDistrict(applicationDTO.getDistrict());
         address.setStreet(applicationDTO.getStreet());
         address.setBuilding(applicationDTO.getBuilding());
+        address.setFlat(applicationDTO.getFlat());
         return address;
+    }
+
+    public String generateCode(ClientData clientData) {
+        // creating UUID
+        UUID uid = UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d");
+        // checking the value of random UUID
+        System.out.println();
+        return uid.randomUUID().toString();
     }
 }
 
