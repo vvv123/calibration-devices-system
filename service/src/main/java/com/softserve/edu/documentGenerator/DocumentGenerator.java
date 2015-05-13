@@ -2,13 +2,14 @@ package com.softserve.edu.documentGenerator;
 
 import com.softserve.edu.documentGenerator.converter.Converter;
 import com.softserve.edu.documentGenerator.converter.ConverterFactory;
+import com.softserve.edu.documentGenerator.converter.DocumentFormat;
 import com.softserve.edu.documentGenerator.documentWriter.TemplateFiller;
 import com.softserve.edu.documentGenerator.documents.BaseDocument;
-import com.softserve.edu.documentGenerator.converter.DocumentFormat;
 import com.softserve.edu.documentGenerator.utils.PathBuilder;
 import com.softserve.edu.documentGenerator.utils.StandardPath;
 
 import java.io.File;
+import java.io.IOException;
 
 public class DocumentGenerator {
 
@@ -23,11 +24,24 @@ public class DocumentGenerator {
                 String.valueOf(baseDocument.getSerialNumber()),
                 documentFormat);
 
-        File readyTemplate = TemplateFiller.getReadyTemplate(baseDocument);
+        File readyTemplate = null;
+
+        try {
+            readyTemplate = TemplateFiller.getReadyTemplate(baseDocument);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            throw new RuntimeException(exception);
+        }
 
         File convertedFile = new File(outputFileName);
         Converter converter = ConverterFactory.get(documentFormat);
-        converter.convertFile(readyTemplate, convertedFile);
+
+        try {
+            converter.convertFile(readyTemplate, convertedFile);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            throw new RuntimeException(exception);
+        }
 
         return convertedFile;
     }

@@ -27,16 +27,9 @@ public class UnfitnessCertificateWriter {
     }
 
     /**
-     * Write document into the specified file
+     * Writes document into the specified file
      */
     public void write() {
-        DocumentWriter documentWriter = new DocumentWriter(doc);
-        documentWriter.write(file);
 
-        TokenWriter tokenWriter = new TokenWriter();
-
-        //UnfitnessReasonData dto = doc.getUnfitnessReasonData();
-        //tokenWriter.replaceTokenAndSave(file, "$REASON", dto.getReasonForUnfitness());
-        tokenWriter.replaceTokenAndSave(file, Token.REASON.toString(), "все супер");
     }
 }

@@ -1,23 +1,15 @@
 package com.softserve.edu.documentGenerator.utils;
 
-import org.apache.poi.hwpf.HWPFDocument;
-import org.apache.poi.hwpf.usermodel.CharacterRun;
-import org.apache.poi.hwpf.usermodel.Paragraph;
-import org.apache.poi.hwpf.usermodel.Range;
-import org.apache.poi.hwpf.usermodel.Section;
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class DocumentUtils {
     /**
-     * Get file's path from resources folder
+     * Gets file's path from resources folder
      */
     public String getFilePath(String fileName) {
         ClassLoader classLoader = getClass().getClassLoader();
@@ -58,43 +50,33 @@ public class DocumentUtils {
         doc.write(new FileOutputStream("output.docx"));
     }
 
-
-//    /**
-//     * Replace text in a document
-//     */
-//    static public void replaceText(HWPFDocument document, String textToReplace, String newText){
-//        Range textRange = document.getRange();
-//
-//        for (int rangeIndex = 0; rangeIndex < textRange.numSections(); rangeIndex++ ) {
-//            Section sectionOfRange = textRange.getSection(rangeIndex);
-//
-//            for (int paragraphIndex = 0; paragraphIndex < sectionOfRange.numParagraphs(); paragraphIndex++) {
-//                Paragraph textParagraph = sectionOfRange.getParagraph(paragraphIndex);
-//
-//                for (int charRunIndex = 0; charRunIndex < textParagraph.numCharacterRuns(); charRunIndex++) {
-//                    CharacterRun charRun = textParagraph.getCharacterRun(charRunIndex);
-//                    String textFromDocument = charRun.text();
-//
-//                    if(textFromDocument.contains(textToReplace)) {
-//                        charRun.replaceText(textToReplace, newText);
-//                    }
-//                }
-//            }
-//        }
-//    }
-
     /**
-     * Save document in the specified path
+     * Saves document in the specified path
      */
-//    static public void saveMSWordDocument(File file, HWPFDocument documentToSave) throws IOException {
-//        try (FileOutputStream outStream = new FileOutputStream(file)) {
-//            documentToSave.write(outStream);
-//        }
-//    }
-
     static public void saveMSWordDocument(File file, XWPFDocument documentToSave) throws IOException {
         try (FileOutputStream outStream = new FileOutputStream(file)) {
             documentToSave.write(outStream);
         }
+    }
+
+    public static File createFile(String path) throws FileNotFoundException {
+        PrintWriter writer = null;
+
+        try {
+            writer = new PrintWriter(path);
+        } finally {
+            writer.close();
+        }
+
+        return new File(path);
+    }
+
+    public static File getTemplate(File sourceFile, String destPath) throws IOException {
+        File file = null;
+
+        file = DocumentUtils.createFile(destPath);
+        FileUtils.copyFile(sourceFile, file);
+
+        return file;
     }
 }

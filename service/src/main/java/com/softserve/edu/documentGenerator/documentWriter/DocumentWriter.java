@@ -1,8 +1,10 @@
 package com.softserve.edu.documentGenerator.documentWriter;
 
 import com.softserve.edu.documentGenerator.documents.BaseDocument;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,45 +31,44 @@ public class DocumentWriter {
         }
     }
 
-
     public DocumentWriter(BaseDocument doc) {
         this.doc = doc;
     }
 
-    public void write(File file) {
+    public void write(File file) throws IOException, InvalidFormatException {
         TokenWriter tokenWriter = new TokenWriter();
 
-        tokenWriter.replaceTokenAndSave(file, Token.CALIBRATOR_NAME.toString(),
+        tokenWriter.replaceToken(file, Token.CALIBRATOR_NAME.toString(),
                 doc.getCalibratorCompanyName());
-        tokenWriter.replaceTokenAndSave(file, Token.CALIBRATOR_ADDRESS.toString(),
+        tokenWriter.replaceToken(file, Token.CALIBRATOR_ADDRESS.toString(),
                 doc.getCalibratorAddress());
         Date calibratorDate = doc.getCalibratorCertificateGranted();
         String formatDate = new SimpleDateFormat("dd/MM/yyyy").format(calibratorDate);
 
-        tokenWriter.replaceTokenAndSave(file, Token.CALIBRATOR_DATE.toString(), formatDate);
+        tokenWriter.replaceToken(file, Token.CALIBRATOR_DATE.toString(), formatDate);
                 System.out.println(formatDate);
-        tokenWriter.replaceTokenAndSave(file, Token.CALIBRATOR_CERT.toString(),
+        tokenWriter.replaceToken(file, Token.CALIBRATOR_CERT.toString(),
                 doc.getCalibratorCertificateNumber());
 
-        tokenWriter.replaceTokenAndSave(file, Token.SERIAL.toString(),
+        tokenWriter.replaceToken(file, Token.SERIAL.toString(),
                 doc.getSerialNumber());
-        tokenWriter.replaceTokenAndSave(file, Token.DEVICE_CREATOR.toString(),
+        tokenWriter.replaceToken(file, Token.DEVICE_CREATOR.toString(),
                 doc.getManufacturer());
 
-        tokenWriter.replaceTokenAndSave(file, Token.OWNER_NAME.toString(), doc.getName());
-        tokenWriter.replaceTokenAndSave(file, Token.OWNER_SURNAME.toString(), doc.getSurname());
+        tokenWriter.replaceToken(file, Token.OWNER_NAME.toString(), doc.getName());
+        tokenWriter.replaceToken(file, Token.OWNER_SURNAME.toString(), doc.getSurname());
 
-        tokenWriter.replaceTokenAndSave(file, Token.LABORATORY_NAME.toString(),
+        tokenWriter.replaceToken(file, Token.LABORATORY_NAME.toString(),
                 doc.getVerificationLaboratory());
 
-        tokenWriter.replaceTokenAndSave(file, Token.DEV_NAME.toString(),
+        tokenWriter.replaceToken(file, Token.DEV_NAME.toString(),
                 doc.getDeviceName());
 
-        tokenWriter.replaceTokenAndSave(file, Token.ID.toString(),
+        tokenWriter.replaceToken(file, Token.ID.toString(),
                 doc.getDocumentNumber());
         Date documentDate = doc.getDocumentDate();
 
         String documentFormatDate = new SimpleDateFormat("dd/MM/yyyy").format(doc.getDocumentDate());
-        tokenWriter.replaceTokenAndSave(file, Token.DOC_DATE.toString(), documentFormatDate);
+        tokenWriter.replaceToken(file, Token.DOC_DATE.toString(), documentFormatDate);
     }
 }

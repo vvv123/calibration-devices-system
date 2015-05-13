@@ -1,8 +1,10 @@
 package com.softserve.edu.documentGenerator.documentWriter;
 
 import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Class for writing verification certificate into a template file
@@ -28,22 +30,22 @@ public class VerificationCertificateWriter {
         this.file = file;
     }
 
-    public void write() {
+    public void write() throws IOException, InvalidFormatException {
         DocumentWriter documentWriter = new DocumentWriter(doc);
         documentWriter.write(file);
 
         TokenWriter tokenWriter = new TokenWriter();
 
         Integer additionalInfoPageNumber = doc.getAdditionalInfoPageNumber();
-        tokenWriter.replaceTokenAndSave(file, Token.AD_PAGE.toString(),
+        tokenWriter.replaceToken(file, Token.AD_PAGE.toString(),
                 additionalInfoPageNumber.toString());
 
         String documentId = doc.getDocumentId();
-        tokenWriter.replaceTokenAndSave(file, Token.SPEC_DOC_ID.toString(),
+        tokenWriter.replaceToken(file, Token.SPEC_DOC_ID.toString(),
                 documentId);
 
         String specificationDocumentName = doc.getSpecificationDocumentName();
-        tokenWriter.replaceTokenAndSave(file, Token.SPEC_DOC_NAME.toString(),
+        tokenWriter.replaceToken(file, Token.SPEC_DOC_NAME.toString(),
                 specificationDocumentName);
     }
 }

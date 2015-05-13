@@ -1,8 +1,8 @@
 package documentGenerationTests;
 
 import com.softserve.edu.documentGenerator.DocumentGenerator;
-import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
 import com.softserve.edu.documentGenerator.converter.DocumentFormat;
+import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
 import com.softserve.edu.documentGenerator.utils.Template;
 import org.junit.Test;
 import org.mockito.Mockito;

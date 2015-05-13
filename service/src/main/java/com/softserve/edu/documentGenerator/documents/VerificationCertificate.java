@@ -13,14 +13,14 @@ public class VerificationCertificate extends BaseDocument {
     }
 
     public Integer getAdditionalInfoPageNumber() {
-        return 123;
+        return null;
     }
 
     public String getDocumentId() {
-        return "233";
+        return getVerification().getId().toString();
     }
 
     public String getSpecificationDocumentName() {
-        return "adasasd";
+        return null;
     }
 }

@@ -2,8 +2,6 @@ package com.softserve.edu.documentGenerator.documents;
 
 import com.softserve.edu.documentGenerator.utils.Template;
 import com.softserve.edu.entity.Verification;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.util.Assert;
 
 import java.util.Date;
@@ -17,7 +15,7 @@ public abstract class BaseDocument {
     private Template template;
 
     public BaseDocument(Template template, Verification verification) {
-        template = template;
+        this.template = template;
         setVerification(verification);
     }
 
@@ -43,7 +41,7 @@ public abstract class BaseDocument {
     }
 
     public Date getCalibratorCertificateGranted() {
-        return new Date();  // TODO: get from db?
+        return new Date();
     }
 
     public String getCalibratorCertificateNumber() {
@@ -71,7 +69,7 @@ public abstract class BaseDocument {
     }
 
     public String getDocumentNumber() {
-        return "123";
+        return verification.getId().toString();
     }
 
     public Date getDocumentDate() {
