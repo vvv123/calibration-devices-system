@@ -32,7 +32,6 @@ public class CalibrationTestController {
     @Autowired
     private CalibrationTestService service;
 
-
     @RequestMapping(value = "/{calibrationTestId}", method = RequestMethod.GET)
     public ResponseEntity<CalibrationTestDTO> getCalibrationTest(
             @PathVariable Long calibrationTestId){
@@ -120,8 +119,7 @@ public class CalibrationTestController {
             CalibrationTestDataList list = service.findAllTestDataAsociatedWithTest(calibrationTestId);
             CalibrationTestDataListDTO res = new CalibrationTestDataListDTOAsm().toResource(list);
             return new ResponseEntity<>(res, HttpStatus.OK);
-        } catch(CalibrationTestNotFoundException exception)
-        {
+        } catch(CalibrationTestNotFoundException exception) {
             throw new NotFoundException(exception);
         }
     }

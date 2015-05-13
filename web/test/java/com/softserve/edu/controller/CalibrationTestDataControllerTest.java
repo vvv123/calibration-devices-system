@@ -30,11 +30,8 @@ public class CalibrationTestDataControllerTest {
     @InjectMocks
     private CalibrationTestDataController controller;
 
-
-
     @Mock
     private CalibrationTestDataService service;
-
 
     private MockMvc mockMvc;
     @Before
@@ -42,7 +39,6 @@ public class CalibrationTestDataControllerTest {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
-
 
     @Test
     public void getExistingTestData() throws Exception {

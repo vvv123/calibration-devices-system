@@ -9,16 +9,17 @@ import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import java.util.List;
 
 
-public class CalibrationTestListDTOAsm extends ResourceAssemblerSupport<CalibrationTestList, CalibrationTestListDTO> {
-
+public class CalibrationTestListDTOAsm extends ResourceAssemblerSupport<CalibrationTestList,
+        CalibrationTestListDTO> {
     public CalibrationTestListDTOAsm() {
-        super(CalibrationTestController.class, CalibrationTestListDTO.class);
+        super(CalibrationTestController.class,
+                CalibrationTestListDTO.class);
     }
-
 
     @Override
     public CalibrationTestListDTO toResource(CalibrationTestList calibrationTestList) {
-        List<CalibrationTestDTO> resList = new CalibrationTestDTOAsm().toResources(calibrationTestList.getCalibrationTests());
+        List<CalibrationTestDTO> resList = new CalibrationTestDTOAsm()
+                .toResources(calibrationTestList.getCalibrationTests());
         CalibrationTestListDTO finalRes = new CalibrationTestListDTO();
         finalRes.setCalibrationTests(resList);
         return finalRes;

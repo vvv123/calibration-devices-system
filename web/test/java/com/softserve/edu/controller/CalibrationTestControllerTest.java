@@ -37,11 +37,8 @@ public class CalibrationTestControllerTest {
     @InjectMocks
     private CalibrationTestController controller;
 
-
-
     @Mock
     private CalibrationTestService service;
-
 
     private MockMvc mockMvc;
 
@@ -63,7 +60,6 @@ public class CalibrationTestControllerTest {
                 .andExpect(jsonPath("$.name", is(calibrationTest.getName())))
                 .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/calibrationTests/1"))))
                 .andExpect(status().isOk());
-
     }
 
     @Test
@@ -214,9 +210,8 @@ public class CalibrationTestControllerTest {
         when(service.findAllTestDataAsociatedWithTest(1L)).thenReturn(list);
 
         mockMvc.perform(get("/calibrationTests/1/testData"))
-                //   .andDo(print())
+
                 .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/calibrationTests/1/testData"))))
-                        // .andExpect(jsonPath("$.entries[*].title", hasItem(is("Test Title"))))
                 .andExpect(status().isOk());
     }
 
