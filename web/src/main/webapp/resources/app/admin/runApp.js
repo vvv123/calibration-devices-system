@@ -2,7 +2,7 @@ require.config({
     paths: {
         angular: '../../assets/bower_components/angular/angular.min',
         csrfInterceptor: '../../assets/bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
-        angularBootstrap: '../../assets/bower_components/angular-bootstrap/ui-bootstrap.min',
+        angularBootstrap: '../../assets/bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
         angularRoute: '../../assets/bower_components/angular-route/angular-route.min',
         adminModule: 'adminModule'
     },

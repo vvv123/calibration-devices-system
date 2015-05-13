@@ -1,15 +1,15 @@
 package com.softserve.edu.dto.admin;
 
-public class OrganizationDTO {
+public class OrganizationToSaveDTO {
     private String name;
     private String email;
     private String phone;
     private String type;
 
-    public OrganizationDTO() {
+    public OrganizationToSaveDTO() {
     }
 
-    public OrganizationDTO(String name, String email, String phone, String type) {
+    public OrganizationToSaveDTO(String name, String email, String phone, String type) {
         this.name = name;
         this.email = email;
         this.phone = phone;
