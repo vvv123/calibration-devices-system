@@ -12,31 +12,34 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class TemplateFiller {
+/**
+ *
+ */
+public class DocxCreator {
 
     /**
      * Private default constructor.
      */
-    private TemplateFiller() { }
+    private DocxCreator() {
+    }
 
     /**
-     * Gets copy of the baseDocument that has the correct data and is ready to be converted.
+     * Gets a copy of the baseDocument that has the correct data and is ready to be converted.
+     *
      * @param baseDocument baseDocument with the data to be used for the file generation.
      * @return
      */
-    public static File getReadyTemplate(BaseDocument baseDocument) throws IOException {
+    public static File createDocxDocument(BaseDocument baseDocument) throws IOException {
+        // create copy of the document's template
+        String documentName = baseDocument.getDeviceName() + String.valueOf(baseDocument.getSerialNumber());
         String path = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED,
-                String.valueOf(baseDocument.getSerialNumber()),
+                documentName,
                 DocumentFormat.DOCX);
+        File file = DocumentUtils.createCopy(baseDocument.getTemplate().getFile(), path);
 
-        PrintWriter writer = null;
-
-        File file = null;
-        file = DocumentUtils.createCopy(baseDocument.getTemplate().getFile(), path);
-
+        // write baseDocuments's data to template
         VerificationCertificateWriter docWriter = new VerificationCertificateWriter(
                 (VerificationCertificate) baseDocument, file);
-
 
         try {
             docWriter.write();

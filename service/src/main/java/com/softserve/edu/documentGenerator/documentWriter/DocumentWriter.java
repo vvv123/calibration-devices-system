@@ -8,9 +8,16 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DocumentWriter {
-    private BaseDocument doc;
+/**
+ * Writes data into a document
+ */
+public abstract class DocumentWriter {
+    private BaseDocument document;
+    private File fileToWrite;
 
+    /**
+     * Consists of names of tokens from file;
+     */
     enum Token {
         CALIBRATOR_NAME,
         CALIBRATOR_ADDRESS,
@@ -31,44 +38,74 @@ public class DocumentWriter {
         }
     }
 
-    public DocumentWriter(BaseDocument doc) {
-        this.doc = doc;
+    /**
+     * Constructor
+     * @param document document to be written to file
+     */
+    public DocumentWriter(BaseDocument document, File file) {
+        this.document = document;
+        this.fileToWrite = file;
     }
 
-    public void write(File file) throws IOException, InvalidFormatException {
-        TokenWriter tokenWriter = new TokenWriter();
+    /**
+     * Write document into the file
+     * @throws IOException
+     * @throws InvalidFormatException
+     */
+    public void write() throws IOException, InvalidFormatException {
+        TokenWriter tokenWriter = new TokenWriter(fileToWrite);
 
-        tokenWriter.replaceToken(file, Token.CALIBRATOR_NAME.toString(),
-                doc.getCalibratorCompanyName());
-        tokenWriter.replaceToken(file, Token.CALIBRATOR_ADDRESS.toString(),
-                doc.getCalibratorAddress());
-        Date calibratorDate = doc.getCalibratorCertificateGranted();
+        writeCalibrator(tokenWriter);
+        writeDevice(tokenWriter);
+        writeLaboratory(tokenWriter);
+        writeOwner(tokenWriter);
+        writeDocument(tokenWriter);
+    }
+
+    /**
+     * Write calibrators data to the file
+     * @param tokenWriter
+     * @throws IOException
+     */
+    public void writeCalibrator(TokenWriter tokenWriter) throws IOException {
+        tokenWriter.replaceToken(Token.CALIBRATOR_NAME.toString(),
+                document.getCalibratorCompanyName());
+        tokenWriter.replaceToken(Token.CALIBRATOR_ADDRESS.toString(),
+                document.getCalibratorAddress());
+
+        Date calibratorDate = document.getCalibratorCertificateGranted();
         String formatDate = new SimpleDateFormat("dd/MM/yyyy").format(calibratorDate);
+        tokenWriter.replaceToken(Token.CALIBRATOR_DATE.toString(), formatDate);
 
-        tokenWriter.replaceToken(file, Token.CALIBRATOR_DATE.toString(), formatDate);
-                System.out.println(formatDate);
-        tokenWriter.replaceToken(file, Token.CALIBRATOR_CERT.toString(),
-                doc.getCalibratorCertificateNumber());
+        tokenWriter.replaceToken(Token.CALIBRATOR_CERT.toString(),
+                document.getCalibratorCertificateNumber());
+    }
 
-        tokenWriter.replaceToken(file, Token.SERIAL.toString(),
-                doc.getSerialNumber());
-        tokenWriter.replaceToken(file, Token.DEVICE_CREATOR.toString(),
-                doc.getManufacturer());
+    public void writeDevice(TokenWriter tokenWriter) throws IOException {
+        tokenWriter.replaceToken(Token.SERIAL.toString(),
+                document.getSerialNumber());
+        tokenWriter.replaceToken(Token.DEVICE_CREATOR.toString(),
+                document.getManufacturer());
+        tokenWriter.replaceToken(Token.DEV_NAME.toString(),
+                document.getDeviceName());
+    }
 
-        tokenWriter.replaceToken(file, Token.OWNER_NAME.toString(), doc.getName());
-        tokenWriter.replaceToken(file, Token.OWNER_SURNAME.toString(), doc.getSurname());
+    public void writeOwner(TokenWriter tokenWriter) throws IOException {
+        tokenWriter.replaceToken(Token.OWNER_NAME.toString(), document.getName());
+        tokenWriter.replaceToken(Token.OWNER_SURNAME.toString(), document.getSurname());
+    }
 
-        tokenWriter.replaceToken(file, Token.LABORATORY_NAME.toString(),
-                doc.getVerificationLaboratory());
+    public void writeDocument(TokenWriter tokenWriter) throws IOException {
+        tokenWriter.replaceToken(Token.ID.toString(),
+                document.getDocumentNumber());
 
-        tokenWriter.replaceToken(file, Token.DEV_NAME.toString(),
-                doc.getDeviceName());
+        Date documentDate = document.getDocumentDate();
+        String documentFormatDate = new SimpleDateFormat("dd/MM/yyyy").format(documentDate);
+        tokenWriter.replaceToken(Token.DOC_DATE.toString(), documentFormatDate);
+    }
 
-        tokenWriter.replaceToken(file, Token.ID.toString(),
-                doc.getDocumentNumber());
-        Date documentDate = doc.getDocumentDate();
-
-        String documentFormatDate = new SimpleDateFormat("dd/MM/yyyy").format(doc.getDocumentDate());
-        tokenWriter.replaceToken(file, Token.DOC_DATE.toString(), documentFormatDate);
+    public void writeLaboratory(TokenWriter tokenWriter) throws IOException {
+        tokenWriter.replaceToken(Token.LABORATORY_NAME.toString(),
+                document.getVerificationLaboratory());
     }
 }

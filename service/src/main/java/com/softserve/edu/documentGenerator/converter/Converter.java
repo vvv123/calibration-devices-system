@@ -9,6 +9,7 @@ import java.io.IOException;
 public interface Converter {
     /**
      * Converts the template file and save it in the specified path
+     *
      * @param sourceFile document to convert
      * @param outputFile document to store converted data
      * @throws IOException in case of inability to use files

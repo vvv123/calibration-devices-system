@@ -9,9 +9,12 @@ import java.io.File;
  * Writer for unfitness certificate.
  */
 public class UnfitnessCertificateWriter {
-    private UnfitnessCertificate doc;
-    private File file;
+    private UnfitnessCertificate documentToWrite;
+    private File fileToWrite;
 
+    /**
+     * Consists of names of tokens from file;
+     */
     enum Token {
         REASON;
 
@@ -21,9 +24,14 @@ public class UnfitnessCertificateWriter {
         }
     }
 
-    public UnfitnessCertificateWriter(UnfitnessCertificate doc, File file) {
-        this.doc = doc;
-        this.file = file;
+    /**
+     * Constructor
+     * @param documentToWrite
+     * @param fileToWrite
+     */
+    public UnfitnessCertificateWriter(UnfitnessCertificate documentToWrite, File fileToWrite) {
+        this.documentToWrite = documentToWrite;
+        this.fileToWrite = fileToWrite;
     }
 
     /**

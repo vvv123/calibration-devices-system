@@ -28,7 +28,8 @@ public class PathBuilder {
 
     /**
      * Build path.
-     * @param path standard path constant
+     *
+     * @param path     standard path constant
      * @param template template file
      * @return path
      */
@@ -38,8 +39,9 @@ public class PathBuilder {
 
     /**
      * Build path.
-     * @param path standard path constant
-     * @param fileName name of the file without .format
+     *
+     * @param path           standard path constant
+     * @param fileName       name of the file without .format
      * @param documentFormat document's format
      * @return path
      */

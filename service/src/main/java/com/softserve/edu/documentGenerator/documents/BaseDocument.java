@@ -14,6 +14,11 @@ public abstract class BaseDocument {
     private Verification verification;
     private Template template;
 
+    /**
+     * Constructor.
+     * @param template template to be used for writing this document
+     * @param verification entity to get document's data from
+     */
     public BaseDocument(Template template, Verification verification) {
         this.template = template;
         setVerification(verification);

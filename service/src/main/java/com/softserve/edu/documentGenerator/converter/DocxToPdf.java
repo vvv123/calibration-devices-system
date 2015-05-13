@@ -28,8 +28,9 @@ public class DocxToPdf implements Converter {
 
     /**
      * Creates a converter with the specified sizes
-     * @param defaultSize used for simple text
-     * @param headerSize used for headers
+     *
+     * @param defaultSize     used for simple text
+     * @param headerSize      used for headers
      * @param descriptionSize used for small description text fields
      */
     public DocxToPdf(int defaultSize, int headerSize, int descriptionSize) {
@@ -40,6 +41,7 @@ public class DocxToPdf implements Converter {
 
     /**
      * Creates a base font that can be used for creation of a font
+     *
      * @param font to create
      * @return created font
      * @throws IOException if font is invalid or the font's file couldn't be found
@@ -61,6 +63,7 @@ public class DocxToPdf implements Converter {
 
     /**
      * Creates a font
+     *
      * @param font to create
      * @param size needed font size
      * @return created font
@@ -73,8 +76,9 @@ public class DocxToPdf implements Converter {
 
     /**
      * Creates a font
-     * @param font to create
-     * @param size needed font size
+     *
+     * @param font  to create
+     * @param size  needed font size
      * @param style needed font style
      * @return created font
      * @throws IOException if font is invalid or the font's file couldn't be found
@@ -86,6 +90,7 @@ public class DocxToPdf implements Converter {
 
     /**
      * Creates a paragraph that represents a header.
+     *
      * @param docxParagraph MSDocx paragraph with text for header
      * @return created header paragraph
      * @throws IOException if font file is invalid
@@ -108,6 +113,7 @@ public class DocxToPdf implements Converter {
 
     /**
      * Creates a pdf paragraph.
+     *
      * @param docxParagraph MSDocx paragraph with text for the new pdf paragraph
      * @return created header paragraph
      * @throws IOException if font file is invalid
@@ -180,8 +186,9 @@ public class DocxToPdf implements Converter {
 
     /**
      * Writes pdf document using paragraphs from a source docx document.
+     *
      * @param sourceDocxDocument source document
-     * @param resultPdfDocument target document
+     * @param resultPdfDocument  target document
      * @throws IOException
      */
     private void writeDocument(XWPFDocument sourceDocxDocument, Document resultPdfDocument) throws IOException {

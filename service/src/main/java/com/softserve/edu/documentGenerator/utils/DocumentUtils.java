@@ -1,11 +1,9 @@
 package com.softserve.edu.documentGenerator.utils;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.xwpf.usermodel.*;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import java.io.*;
-import java.util.List;
 
 /**
  * Utility functions for documents
@@ -32,23 +30,24 @@ public class DocumentUtils {
 
     /**
      * Create file at the specified path
+     *
      * @param path where the file must be created
      * @return newly created file
      * @throws FileNotFoundException if the path is impossible to reach
      */
     public static File createFile(String path) throws FileNotFoundException {
 
-        try (PrintWriter writer = new PrintWriter(path)) {}
+        try (PrintWriter writer = new PrintWriter(path)) {
+        }
 
         return new File(path);
     }
 
     /**
-     *
      * @param sourceFile
      * @param destPath
      * @return
-     * @throws IOException
+     * @throws IOException if the path is impossible to reach
      */
     public static File createCopy(File sourceFile, String destPath) throws IOException {
         File file = null;

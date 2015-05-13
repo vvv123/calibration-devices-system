@@ -1,7 +1,6 @@
 package com.softserve.edu.documentGenerator.documentWriter;
 
 import com.softserve.edu.documentGenerator.utils.DocumentUtils;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.*;
 
 import java.io.File;
@@ -10,25 +9,33 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ * Class for writing tokens into a file
+ */
 public class TokenWriter {
+    private File fileToWrite;
+
+    public TokenWriter(File fileToWrite) {
+        this.fileToWrite = fileToWrite;
+    }
+
     /**
-     * Replaces token in a file
+     * Replaces token
      *
-     * @param sourceFile file to replace token in
      * @param token      to be replaced
      * @param newText    text to be inserted
      * @throws IOException if file couldn't be found
      */
-    public void replaceToken(File sourceFile, String token, String newText)
+    public void replaceToken(String token, String newText)
             throws IOException {
         InputStream is = null;
 
-        is = new FileInputStream(sourceFile);
+        is = new FileInputStream(fileToWrite);
         XWPFDocument doc = new XWPFDocument(is);
 
         replaceTextInDocx(doc, token, newText);
 
-        DocumentUtils.saveMSWordDocument(sourceFile, doc);
+        DocumentUtils.saveMSWordDocument(fileToWrite, doc);
     }
 
     /**
