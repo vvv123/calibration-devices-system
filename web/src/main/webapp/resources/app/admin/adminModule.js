@@ -4,7 +4,6 @@ angular.module('adminModule', [ 'ngRoute', 'spring-security-csrf-token-intercept
             console.log("ROUTING STARTED");
             $routeProvider.
                 when('/', {
-                    controller: "MainPanelController",
                     templateUrl: "/resources/app/admin/views/MainPanelView.html"
                 }).
                 when('/graphs', {
@@ -14,7 +13,6 @@ angular.module('adminModule', [ 'ngRoute', 'spring-security-csrf-token-intercept
                     templateUrl: "/resources/app/admin/views/OrganizationsView.html"
                 }).
                 when('/users', {
-                    controller: "UsersController",
                     templateUrl: "/resources/app/admin/views/UsersView.html"
                 }).
                 when('/devices', {
@@ -31,5 +29,6 @@ define([
     'controllers/TopNavBarController',
     'controllers/MainPanelController',
     'controllers/UsersController',
-    'controllers/AddOrganizationController'
+    'controllers/AddOrganizationController',
+    'services/StatisticService'
 ], function () {});
