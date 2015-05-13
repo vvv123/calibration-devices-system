@@ -1,0 +1,7 @@
+<html>
+	<body>
+		<span style="font-weight:bold">
+			Hello <span style="color:red">$name!</span>  Welcome to Velocity!
+		</span>
+	</body>
+</html>
