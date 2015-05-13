@@ -1,5 +1,5 @@
 var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
-    'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ui.bootstrap.showErrors'])
+    'duScroll', 'ui.bootstrap', 'pascalprecht.translate'])
     .config(['$translateProvider',
         function ($translateProvider) {
             $translateProvider.useSanitizeValueStrategy('escaped');
@@ -36,7 +36,10 @@ var engProperites = {
     CHECK_APP_STATUS_TITLE: "Please enter the code of your application",
     SEARCH_BTN: "search",
     APPLICATION_CODE: "Application code",
-    APPLICATION_STATUS: "Application status"
+    APPLICATION_STATUS: "Application status",
+
+    ERROR_MESSAGE: "This field is required",
+    TYPEHEAD_MESSAGE: "You should choose from drop down list"
 };
 
 var ukrProperties = {
@@ -58,5 +61,8 @@ var ukrProperties = {
     CHECK_APP_STATUS_TITLE: "\u0411\u0443\u0434\u044c \u043b\u0430\u0441\u043a\u0430, \u0432\u0432\u0435\u0434\u0456\u0442\u044c \u043a\u043e\u0434 \u0432\u0430\u0448\u043e\u0457 \u0437\u0430\u044f\u0432\u043a\u0438",
     SEARCH_BTN: "\u043f\u043e\u0448\u0443\u043a",
     APPLICATION_CODE: "\u041a\u043e\u0434 \u0437\u0430\u044f\u0432\u043a\u0438",
-    APPLICATION_STATUS: "\u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u044f\u0432\u043a\u0438"
+    APPLICATION_STATUS: "\u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u044f\u0432\u043a\u0438",
+
+    ERROR_MESSAGE: "\u0426\u0435 \u043f\u043e\u043b\u0435 \u0454 \u043e\u0431\u043e\u0432'\u044f\u0437\u043a\u043e\u0432\u0438\u043c",
+    TYPEHEAD_MESSAGE: "\u041d\u0435\u043e\u0431\u0445\u0456\u0434\u043d\u043e \u043e\u0431\u0440\u0430\u0442\u0438 \u0432\u0430\u0440\u0456\u0430\u043d\u0442 \u0437 \u0432\u0438\u043f\u0430\u0434\u0430\u044e\u0447\u043e\u0433\u043e \u0441\u043f\u0438\u0441\u043a\u0443"
 };
