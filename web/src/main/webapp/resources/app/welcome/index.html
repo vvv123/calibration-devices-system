@@ -99,7 +99,7 @@
 
                         <div class="col-md-10">
                             <input id="firstName" name="firstName" class="form-control"
-                                   ng-model="formData.firstName" required>
+                                   type="text" ng-model="formData.firstName" required>
 
                             <p ng-show="clientApplication.firstName.$invalid && !clientApplication.firstName.$pristine"
                                class="help-block">
@@ -115,7 +115,7 @@
                         </label>
 
                         <div class="col-md-10">
-                            <input id="lastName" name="lastName" class="form-control"
+                            <input id="lastName" name="lastName" class="form-control" type="text"
                                    ng-model="formData.lastName" required>
 
                             <p ng-show="clientApplication.lastName.$invalid && !clientApplication.lastName.$pristine"
@@ -132,7 +132,7 @@
                         </label>
 
                         <div class="col-md-10">
-                            <input id="middleName" name="middleName" class="form-control"
+                            <input id="middleName" name="middleName" type="text" class="form-control"
                                    ng-model="formData.middleName" required>
 
                             <p ng-show="clientApplication.middleName.$invalid && !clientApplication.middleName.$pristine"
@@ -149,7 +149,7 @@
                         </label>
 
                         <div class="col-md-10">
-                            <input id="email" name="email" class="form-control"
+                            <input id="email" name="email" type="email" class="form-control"
                                    ng-model="formData.email" required>
 
                             <p ng-show="clientApplication.email.$invalid && !clientApplication.email.$pristine"
@@ -261,9 +261,10 @@
                         </label>
 
                         <div class="col-md-10">
-                            <input id="building" name="building" class="form-control" type="text"
+                            <input id="building" name="building" class="form-control" type="number"
                                    ng-model="selectedBuilding"
-                                   typeahead="building as building.designation for building in buildings | filter: $viewValue">
+                                   typeahead="building as building.designation for building in buildings | filter: $viewValue"
+                                   required>
 
                             <p ng-show="clientApplication.building.$invalid && !clientApplication.building.$pristine"
                                class="help-block">
@@ -277,7 +278,7 @@
                         <label for="flat" class="col-md-2 control-label">{{'FLAT' | translate}}</label>
 
                         <div class="col-md-10">
-                            <input id="flat" name="flat" class="form-control"
+                            <input id="flat" name="flat" type="number" class="form-control"
                                    ng-model="formData.flat" required>
 
                             <p ng-show="clientApplication.flat.$invalid && !clientApplication.flat.$pristine"

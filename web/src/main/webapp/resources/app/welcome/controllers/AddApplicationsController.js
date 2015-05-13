@@ -55,9 +55,7 @@ welcomeModule
             };
 
             //on-click handler in send button
-            //
             $scope.sendApplicationData = function () {
-                console.log($scope.formData.$valid);
                 if (!$scope.formData.$invalid) {
                     $scope.formData.region = $scope.selectedRegion.designation;
                     $scope.formData.district = $scope.selectedDistrict.designation;
@@ -74,6 +72,8 @@ welcomeModule
                         });
                     $scope.formData = null;
                     $scope.isShownForm = false;
+                } else {
+                    console.log("Invalid data: " + $scope.formData);
                 }
             };
 
