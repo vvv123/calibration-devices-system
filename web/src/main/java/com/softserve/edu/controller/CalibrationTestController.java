@@ -63,8 +63,10 @@ public class CalibrationTestController {
     @RequestMapping(value="/{calibrationTestId}",
             method = RequestMethod.PUT)
     public ResponseEntity<CalibrationTestDTO> updateCalibrationTest(
-            @PathVariable Long calibrationTestId, @RequestBody CalibrationTestDTO sentCalibrationTest) {
-        CalibrationTest updatedCalibrationTest = service.updateTest(calibrationTestId, sentCalibrationTest.toCalibrationTest());
+            @PathVariable Long calibrationTestId,
+            @RequestBody CalibrationTestDTO sentCalibrationTest) {
+        CalibrationTest updatedCalibrationTest = service.updateTest(calibrationTestId,
+                sentCalibrationTest.toCalibrationTest());
         if(updatedCalibrationTest != null)
         {
             CalibrationTestDTO resource = new CalibrationTestDTOAsm()

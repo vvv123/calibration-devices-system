@@ -11,7 +11,6 @@ import com.softserve.edu.service.utils.CalibrationTestList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class CalibrationTestService {
     private CalibrationTestRepository testRepository;
 
     @Autowired
-    private CalibrationTestDataRepository dataReposytory;
+    private CalibrationTestDataRepository dataRepository;
 
     public CalibrationTest deleteTest(Long id){
         CalibrationTest deletedCalibrationTest = testRepository.findOne(id);
@@ -37,8 +36,14 @@ public class CalibrationTestService {
     }
 
     public CalibrationTest updateTest(Long id, CalibrationTest data){
-        CalibrationTest updatedCalibrationTest = data;
-        updatedCalibrationTest.setId(id);
+        CalibrationTest updatedCalibrationTest = testRepository.findOne(id);
+        updatedCalibrationTest.setName(data.getName());
+        updatedCalibrationTest.setDeviceNumber(data.getDeviceNumber());
+        updatedCalibrationTest.setTemperature(data.getTemperature());
+        updatedCalibrationTest.setSettingNumber(data.getSettingNumber());
+        updatedCalibrationTest.setLatitude(data.getLatitude());
+        updatedCalibrationTest.setLongitude(data.getLongitude());
+        updatedCalibrationTest.setTestResult(data.getTestResult());
         updatedCalibrationTest = testRepository.save(updatedCalibrationTest);
         return updatedCalibrationTest;
     }
@@ -58,7 +63,7 @@ public class CalibrationTestService {
         if(calibrationTest == null) {
             throw new CalibrationTestNotFoundException();
         }
-        CalibrationTestData testData = dataReposytory.save(data);
+        CalibrationTestData testData = dataRepository.save(data);
         testData.setCalibrationTest(calibrationTest);
         return testData;
     }
@@ -70,7 +75,7 @@ public class CalibrationTestService {
             throw new CalibrationTestNotFoundException();
         }else{
             return new CalibrationTestDataList(calibrationTestId
-                    ,dataReposytory.findByCalibrationTestId(calibrationTestId));
+                    , dataRepository.findByCalibrationTestId(calibrationTestId));
         }
 
 

@@ -9,10 +9,10 @@ public class CalibrationTestData {
     private Long id;
     private Double givenConsumption;
     private Integer acceptableError;
-    private Integer volumeOfStdart;
+    private Integer volumeOfStandart;
     private Double initialValue;
     private Double endValue;
-    private Double volumInDevice;
+    private Double volumeInDevice;
     private Double testTime;
     private Double actualConsumption;
     private Double consumptionStatus;
@@ -45,12 +45,12 @@ public class CalibrationTestData {
         this.acceptableError = acceptableError;
     }
 
-    public Integer getVolumeOfStdart() {
-        return volumeOfStdart;
+    public Integer getVolumeOfStandart() {
+        return volumeOfStandart;
     }
 
-    public void setVolumeOfStdart(Integer volumeOfStdart) {
-        this.volumeOfStdart = volumeOfStdart;
+    public void setVolumeOfStandart(Integer volumeOfStandart) {
+        this.volumeOfStandart = volumeOfStandart;
     }
 
     public Double getInitialValue() {
@@ -69,12 +69,12 @@ public class CalibrationTestData {
         this.endValue = endValue;
     }
 
-    public Double getVolumInDevice() {
-        return volumInDevice;
+    public Double getVolumeInDevice() {
+        return volumeInDevice;
     }
 
-    public void setVolumInDevice(Double volumInDevice) {
-        this.volumInDevice = volumInDevice;
+    public void setVolumeInDevice(Double volumeInDevice) {
+        this.volumeInDevice = volumeInDevice;
     }
 
     public Double getTestTime() {

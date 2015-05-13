@@ -26,6 +26,13 @@ public class CalibrationTestDataService {
     public CalibrationTestData updateTestData(Long id, CalibrationTestData testData){
         CalibrationTestData updatedCalibrationTestData = dataRepository.findOne(id);
         updatedCalibrationTestData.setActualConsumption(testData.getActualConsumption());
+        updatedCalibrationTestData.setGivenConsumption(testData.getGivenConsumption());
+        updatedCalibrationTestData.setVolumeOfStandart(testData.getVolumeOfStandart());
+        updatedCalibrationTestData.setInitialValue(testData.getInitialValue());
+        updatedCalibrationTestData.setEndValue(testData.getEndValue());
+        updatedCalibrationTestData.setVolumeInDevice(testData.getVolumeInDevice());
+        updatedCalibrationTestData.setTestTime(testData.getTestTime());
+        updatedCalibrationTestData.setConsumptionStatus(testData.getConsumptionStatus());
         updatedCalibrationTestData = dataRepository.save(updatedCalibrationTestData);
         return updatedCalibrationTestData;
     }

@@ -22,6 +22,13 @@ public class CalibrationTestDataDTOAsm
     public CalibrationTestDataDTO toResource(CalibrationTestData calibrationTestData) {
         CalibrationTestDataDTO res = new CalibrationTestDataDTO();
         res.setActualConsumption(calibrationTestData.getActualConsumption());
+        res.setGivenConsumption(calibrationTestData.getGivenConsumption());
+        res.setVolumeOfStandart(calibrationTestData.getVolumeOfStandart());
+        res.setInitialValue(calibrationTestData.getInitialValue());
+        res.setEndValue(calibrationTestData.getEndValue());
+        res.setVolumeInDevice(calibrationTestData.getVolumeInDevice());
+        res.setTestTime(calibrationTestData.getTestTime());
+        res.setConsumptionStatus(calibrationTestData.getConsumptionStatus());
         Link self = linkTo(CalibrationTestDataController.class)
                 .slash(calibrationTestData.getId()).withSelfRel();
         res.add(self);
