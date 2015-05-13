@@ -1,6 +1,4 @@
-angular.module('adminModule', [ 'ngRoute', 'spring-security-csrf-token-interceptor', 'ui.bootstrap'], function($httpProvider){
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
-})
+angular.module('adminModule', [ 'ngRoute', 'spring-security-csrf-token-interceptor', 'ui.bootstrap'])
     .config(['$routeProvider',
         function($routeProvider) {
             console.log("ROUTING STARTED");
@@ -27,12 +25,14 @@ angular.module('adminModule', [ 'ngRoute', 'spring-security-csrf-token-intercept
                     redirectTo: '/'
                 });
         }]);
+
 angular.module('adminModule').run(function(paginationConfig){
     paginationConfig.firstText = 'Перша';
     paginationConfig.previousText = 'Попередня';
     paginationConfig.nextText = 'Наступна';
     paginationConfig.lastText = 'Остання';
 });
+
 define([
     'controllers/TopNavBarController',
     'controllers/MainPanelController',
