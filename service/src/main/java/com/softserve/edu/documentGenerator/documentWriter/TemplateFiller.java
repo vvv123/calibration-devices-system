@@ -6,8 +6,6 @@ import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
 import com.softserve.edu.documentGenerator.utils.DocumentUtils;
 import com.softserve.edu.documentGenerator.utils.PathBuilder;
 import com.softserve.edu.documentGenerator.utils.StandardPath;
-import com.softserve.edu.documentGenerator.utils.Template;
-import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.File;
@@ -34,7 +32,7 @@ public class TemplateFiller {
         PrintWriter writer = null;
 
         File file = null;
-        file = DocumentUtils.getTemplate(baseDocument.getTemplate().getFile(), path);
+        file = DocumentUtils.createCopy(baseDocument.getTemplate().getFile(), path);
 
         VerificationCertificateWriter docWriter = new VerificationCertificateWriter(
                 (VerificationCertificate) baseDocument, file);

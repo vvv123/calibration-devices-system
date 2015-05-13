@@ -7,6 +7,9 @@ import com.softserve.edu.documentGenerator.converter.DocumentFormat;
  */
 public class PathBuilder {
 
+    /**
+     * Contains path delimiters
+     */
     enum Delims {
         DOT("."),
         FOLDER_DELIMITER("/");
@@ -23,10 +26,23 @@ public class PathBuilder {
         }
     }
 
+    /**
+     * Build path.
+     * @param path standard path constant
+     * @param template template file
+     * @return path
+     */
     public static String build(StandardPath path, Template template) {
         return path.toString() + Delims.FOLDER_DELIMITER + template;
     }
 
+    /**
+     * Build path.
+     * @param path standard path constant
+     * @param fileName name of the file without .format
+     * @param documentFormat document's format
+     * @return path
+     */
     public static String build(StandardPath path, String fileName, DocumentFormat documentFormat) {
         return path.toString() + Delims.FOLDER_DELIMITER + fileName + Delims.DOT + documentFormat;
     }

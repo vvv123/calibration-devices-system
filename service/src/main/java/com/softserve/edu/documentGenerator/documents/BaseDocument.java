@@ -37,7 +37,8 @@ public abstract class BaseDocument {
     }
 
     public String getCalibratorAddress() {
-        return verification.getCalibrator().getAddress().toString();
+        //return verification.getCalibrator(). getAddress().toString();
+        return "";
     }
 
     public Date getCalibratorCertificateGranted() {

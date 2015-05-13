@@ -11,7 +11,7 @@ import java.io.IOException;
  * Writer for unfitness certificate.
  */
 public class VerificationCertificateWriter {
-    private VerificationCertificate doc;
+    private VerificationCertificate document;
     private File file;
 
     enum Token {
@@ -25,26 +25,26 @@ public class VerificationCertificateWriter {
         }
     }
 
-    public VerificationCertificateWriter(VerificationCertificate doc, File file) {
-        this.doc = doc;
+    public VerificationCertificateWriter(VerificationCertificate document, File file) {
+        this.document = document;
         this.file = file;
     }
 
     public void write() throws IOException, InvalidFormatException {
-        DocumentWriter documentWriter = new DocumentWriter(doc);
+        DocumentWriter documentWriter = new DocumentWriter(document);
         documentWriter.write(file);
 
         TokenWriter tokenWriter = new TokenWriter();
 
-        Integer additionalInfoPageNumber = doc.getAdditionalInfoPageNumber();
+        Integer additionalInfoPageNumber = document.getAdditionalInfoPageNumber();
         tokenWriter.replaceToken(file, Token.AD_PAGE.toString(),
                 additionalInfoPageNumber.toString());
 
-        String documentId = doc.getDocumentId();
+        String documentId = document.getDocumentId();
         tokenWriter.replaceToken(file, Token.SPEC_DOC_ID.toString(),
                 documentId);
 
-        String specificationDocumentName = doc.getSpecificationDocumentName();
+        String specificationDocumentName = document.getSpecificationDocumentName();
         tokenWriter.replaceToken(file, Token.SPEC_DOC_NAME.toString(),
                 specificationDocumentName);
     }
