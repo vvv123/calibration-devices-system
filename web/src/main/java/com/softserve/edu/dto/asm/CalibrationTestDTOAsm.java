@@ -14,8 +14,6 @@ public class CalibrationTestDTOAsm extends ResourceAssemblerSupport<CalibrationT
         super(CalibrationTestController.class, CalibrationTestDTO.class);
     }
 
-
-
     @Override
     public CalibrationTestDTO toResource(CalibrationTest calibrationTest) {
         CalibrationTestDTO resource = new CalibrationTestDTO();
@@ -30,5 +28,4 @@ public class CalibrationTestDTOAsm extends ResourceAssemblerSupport<CalibrationT
         resource.add(linkTo(CalibrationTestController.class).slash(calibrationTest.getId()).slash("testData").withRel("testData"));
         return resource;
     }
-
 }

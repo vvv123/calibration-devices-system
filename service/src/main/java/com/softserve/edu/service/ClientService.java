@@ -31,7 +31,7 @@ public class ClientService {
         ClientData clientData = new ClientData();
         clientData.setClientAddress(parseApplicationDTOtoClientAddress(new Address(), applicationDTO));
         verification.setClientData(parseApplicationDTOtoClientData(clientData, applicationDTO));
-        verification.setCode(generateCode(clientData));
+        verification.setCode(generateCode());
         verification.setStatus(Status.IN_PROGRESS);
         verificationRepository.save(verification);
         return new ClientCodeDTO().setCode(verification.getCode());
@@ -41,12 +41,13 @@ public class ClientService {
         return  new ClientMessageDTO().setName(findCode(clientCodeDTO));
     }
 
+
     public String findCode(ClientCodeDTO clientCodeDTO) {
         try {
             return verificationRepository.findByCode(clientCodeDTO.getCode()).get(0).getStatus().toString();
         } catch (RuntimeException e) {
             System.out.println("verification not found!!!");
-            return "application not found";
+            return Status.NOT_FOUND.toString();
         }
     }
 
@@ -69,11 +70,10 @@ public class ClientService {
         return address;
     }
 
-    public String generateCode(ClientData clientData) {
+    public String generateCode() {
         // creating UUID
         UUID uid = UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d");
         // checking the value of random UUID
-        System.out.println();
         return uid.randomUUID().toString();
     }
 }

@@ -2,9 +2,7 @@ package com.softserve.edu.dto.asm;
 
 import com.softserve.edu.controller.CalibrationTestController;
 import com.softserve.edu.controller.CalibrationTestDataController;
-import com.softserve.edu.dto.CalibrationTestDTO;
 import com.softserve.edu.dto.CalibrationTestDataDTO;
-import com.softserve.edu.entity.CalibrationTest;
 import com.softserve.edu.entity.CalibrationTestData;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
@@ -39,6 +37,4 @@ public class CalibrationTestDataDTOAsm
         }
         return res;
     }
-
-
 }
