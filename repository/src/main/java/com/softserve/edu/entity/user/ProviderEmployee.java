@@ -21,6 +21,9 @@ public class ProviderEmployee extends Employee {
         }
     }
 
+    public ProviderEmployee() {
+    }
+
     public ProviderEmployee(String username, String password, ProviderEmployeeRole role,
              Organization organization) {
         super(username, password, role, organization);

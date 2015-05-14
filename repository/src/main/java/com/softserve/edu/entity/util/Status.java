@@ -1,8 +1,8 @@
 package com.softserve.edu.entity.util;
 
 public enum Status {
-    SENT("application sent"), RECEIVED("application received"), IN_PROGRESS("application in progress"), COMPLETED("completed"),
-    NOT_FOUND("application not found");
+    SENT(""), RECEIVED(""), IN_PROGRESS(""), COMPLETED(""),
+    NOT_FOUND("");
 
     private String name;
 

@@ -59,6 +59,8 @@ public class JPAConfiguration {
     private Map<String, String> jpaProperties() {
         Map<String, String> jpaProperties = new HashMap<>();
         jpaProperties.put("hibernate.dialect", env.getProperty("hb.dialect"));
+        jpaProperties.put("hibernate.connection.useUnicode", env.getProperty("hb.conn.useUnicode"));
+        jpaProperties.put("hibernate.connection.characterEncoding", env.getProperty("hb.conn.characterEncoding"));
         jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hb.hbm2ddl.auto"));
         jpaProperties.put("hibernate.show_sql", env.getProperty("hb.showSql"));
         jpaProperties.put("hibernate.format_sql", env.getProperty("hb.formatSql"));

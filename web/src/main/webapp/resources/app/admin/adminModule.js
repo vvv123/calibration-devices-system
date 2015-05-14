@@ -25,10 +25,19 @@ angular.module('adminModule', [ 'ngRoute', 'spring-security-csrf-token-intercept
                     redirectTo: '/'
                 });
         }]);
+
+angular.module('adminModule').run(function(paginationConfig){
+    paginationConfig.firstText = 'Перша';
+    paginationConfig.previousText = 'Попередня';
+    paginationConfig.nextText = 'Наступна';
+    paginationConfig.lastText = 'Остання';
+});
+
 define([
     'controllers/TopNavBarController',
     'controllers/MainPanelController',
     'controllers/UsersController',
-    'controllers/AddOrganizationController',
+    'controllers/OrganizationController',
+    'services/OrganizationService',
     'services/StatisticService'
 ], function () {});

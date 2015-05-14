@@ -4,7 +4,6 @@ angular
         var getData = function (type) {
             return $http.get('/admin/statistics/' + type)
                 .then(function(result) {
-
                     return result.data;
                 });
         };
