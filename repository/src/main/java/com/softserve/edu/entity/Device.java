@@ -13,6 +13,7 @@ public class Device {
     private Long id;
 
     private DeviceType deviceType;
+    private String deviceSign;
 
     @Column(nullable = false)
     private String number;
@@ -29,10 +30,11 @@ public class Device {
     public Device() {
     }
 
-    public Device(String number, Set<Verification> verifications, Manufacturer manufacturer) {
+    public Device(String number, Set<Verification> verifications, Manufacturer manufacturer, String deviceSign) {
         this.number = number;
         this.verifications = verifications;
         this.manufacturer = manufacturer;
+        this.deviceSign = deviceSign;
     }
 
     public Long getId() {
@@ -49,6 +51,14 @@ public class Device {
 
     public void setDeviceType(DeviceType deviceType) {
         this.deviceType = deviceType;
+    }
+
+    public String getDeviceSign() {
+        return deviceSign;
+    }
+
+    public void setDeviceSign(String deviceSign) {
+        this.deviceSign = deviceSign;
     }
 
     public String getNumber() {

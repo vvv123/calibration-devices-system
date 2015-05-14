@@ -21,6 +21,8 @@ public class Verification {
     private Long id;
     private Status status;
     private String code;
+    @Temporal(TemporalType.DATE)
+    private String verificationFinished;
 
     @ManyToOne
     @JoinColumn(name = "deviceId")
@@ -148,5 +150,13 @@ public class Verification {
 
     public void setClientData(ClientData clientData) {
         this.clientData = clientData;
+    }
+
+    public String getVerificationFinished() {
+        return verificationFinished;
+    }
+
+    public void setVerificationFinished(String verificationFinished) {
+        this.verificationFinished = verificationFinished;
     }
 }

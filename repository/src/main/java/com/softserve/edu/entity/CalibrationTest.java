@@ -1,5 +1,7 @@
 package com.softserve.edu.entity;
 
+import com.softserve.edu.entity.util.MetrologicalDocument;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -10,7 +12,6 @@ public class CalibrationTest {
     @GeneratedValue
     private Long id;
     private String name;
-    private String deviceNumber;
     @Temporal(TemporalType.DATE)
     private Date dateTest;
     private Integer temperature;
@@ -20,6 +21,13 @@ public class CalibrationTest {
     private String consumptionStatus;
     private String testResult;
     private String photoPath;
+    private MetrologicalDocument metrologicalDocument;
+
+    @ManyToOne
+    private Verification verification;
+
+    @OneToMany(mappedBy = "calibrationTest")
+    private Set<CalibrationTestData> calibrationTestDatas;
 
     public Long getId() {
         return id;
@@ -35,14 +43,6 @@ public class CalibrationTest {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDeviceNumber() {
-        return deviceNumber;
-    }
-
-    public void setDeviceNumber(String deviceNumber) {
-        this.deviceNumber = deviceNumber;
     }
 
     public Date getDateTest() {
@@ -125,10 +125,11 @@ public class CalibrationTest {
         this.calibrationTestDatas = calibrationTestDatas;
     }
 
-    @ManyToOne
-    private Verification verification;
+    public MetrologicalDocument getMetrologicalDocument() {
+        return metrologicalDocument;
+    }
 
-    @OneToMany(mappedBy = "calibrationTest")
-    private Set<CalibrationTestData> calibrationTestDatas;
-
+    public void setMetrologicalDocument(MetrologicalDocument metrologicalDocument) {
+        this.metrologicalDocument = metrologicalDocument;
+    }
 }

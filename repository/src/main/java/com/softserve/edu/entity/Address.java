@@ -21,6 +21,7 @@ public class Address {
     private String building;
 
     private String flat;
+    private String index;
 
     public Address() {}
 
@@ -70,5 +71,13 @@ public class Address {
 
     public void setFlat(String flat) {
         this.flat = flat;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }

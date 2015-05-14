@@ -21,8 +21,8 @@ public class DocumentGenerator {
      * @return resulting file
      */
     static public File generate(BaseDocument baseDocument, DocumentFormat documentFormat) {
-        String documentName =
-                baseDocument.getDeviceName() + String.valueOf(baseDocument.getSerialNumber());
+        String documentName = "";
+               // baseDocument.getDeviceName() + String.valueOf(baseDocument.getSerialNumber());
 
         String outputFileName = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED,
                 documentName,
