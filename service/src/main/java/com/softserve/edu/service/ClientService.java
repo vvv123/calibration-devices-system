@@ -1,6 +1,16 @@
 package com.softserve.edu.service;
 
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.softserve.edu.dto.ApplicationDTO;
 import com.softserve.edu.dto.ClientCodeDTO;
 import com.softserve.edu.dto.ClientMessageDTO;
@@ -9,31 +19,36 @@ import com.softserve.edu.entity.ClientData;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.repository.VerificationRepository;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.NestedRuntimeException;
-import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.NonUniqueResultException;
-import javax.persistence.PersistenceException;
-import java.util.UUID;
 
 @Service
 @Transactional
+@PropertySource("classpath:/properties/mail.properties")
 public class ClientService {
     @Autowired
     private VerificationRepository verificationRepository;
+    
+    @Autowired
+    private MailService mailService;
+    
+    @Autowired
+    private Environment env;
 
     public ClientCodeDTO transferApplication(ApplicationDTO applicationDTO) {
         Verification verification = new Verification();
         ClientData clientData = new ClientData();
         clientData.setClientAddress(parseApplicationDTOtoClientAddress(new Address(), applicationDTO));
         verification.setClientData(parseApplicationDTOtoClientData(clientData, applicationDTO));
-        verification.setCode(generateCode());
+        String applicationId = generateCode();
+        verification.setCode(applicationId);
         verification.setStatus(Status.IN_PROGRESS);
         verificationRepository.save(verification);
+        
+        Map<String, Object> tempVars = new HashMap<String, Object>();
+        tempVars.put("name", applicationDTO.getFirstName() + " " + applicationDTO.getLastName());
+        tempVars.put("protocol", env.getProperty("site.protocol"));
+        tempVars.put("domain", env.getProperty("site.domain"));
+        tempVars.put("applicationId", applicationId);
+        
         return new ClientCodeDTO().setCode(verification.getCode());
     }
 
