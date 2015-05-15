@@ -1,24 +1,20 @@
 welcomeModule
-    .controller('AddApplicationsController', ['$scope', '$translate', 'CatalogueService',
+    .controller('AddApplicationsController', ['$scope', 'CatalogueService',
         'ApplicationService',
-        function ($scope, $translate, catalogueService, applicationService) {
+        function ($scope, catalogueService, applicationService) {
 
             $scope.isShownForm = true;
-
-            //i18n
-            $scope.languages = ["eng", "ukr"];
-            $scope.selectedLang = "ukr";
-            $scope.changeLanguage = function (selectedLang) {
-                $translate.use(selectedLang);
-            };
-
-            //receiving all possible regions
+            /**
+             * Receives all possible regions.
+             */
             $scope.regions = [];
             catalogueService.sendApplication("/application/regions").success(function (regions) {
                 $scope.regions = regions;
             });
-
-            //on-select handler in region input form element
+            /**
+             * Receives all possible districts.
+             * On-select handler in region input form element.
+             */
             $scope.receiveDistricts = function (selectedRegion) {
                 $scope.districts = [];
                 catalogueService.sendApplication("/application/districts/" + selectedRegion.id)
@@ -26,8 +22,10 @@ welcomeModule
                         $scope.districts = districts;
                     });
             };
-
-            //on-select handler in district input form element
+            /**
+             * Receives all possible localities.
+             * On-select handler in district input form element.
+             */
             $scope.receiveLocalities = function (selectedDistrict) {
                 $scope.localities = [];
                 catalogueService.sendApplication("/application/localities/" + selectedDistrict.id)
@@ -35,8 +33,10 @@ welcomeModule
                         $scope.localities = localities;
                     });
             };
-
-            //on-select handler in locality input form element
+            /**
+             * Receives all possible streets.
+             * On-select handler in locality input form element
+             */
             $scope.receiveStreets = function (selectedLocality) {
                 $scope.streets = [];
                 catalogueService.sendApplication("/application/streets/" + selectedLocality.id)
@@ -45,7 +45,10 @@ welcomeModule
                     });
             };
 
-            //on-select handler in street input form element
+            /**
+             * Receives all possible buildings.
+             * On-select handler in street input form element.
+             */
             $scope.receiveBuildings = function (selectedStreet) {
                 $scope.buildings = [];
                 catalogueService.sendApplication("/application/buildings/" + selectedStreet.id)
@@ -54,27 +57,26 @@ welcomeModule
                     });
             };
 
-            //on-click handler in send button
+            /**
+             * Sends data to the server where Verefication entity will be created.
+             * On-click handler in send button.
+             */
             $scope.sendApplicationData = function () {
-                if (!$scope.formData.$invalid) {
-                    $scope.formData.region = $scope.selectedRegion.designation;
-                    $scope.formData.district = $scope.selectedDistrict.designation;
-                    $scope.formData.locality = $scope.selectedLocality.designation;
-                    $scope.formData.district = $scope.selectedDistrict.designation;
-                    $scope.formData.street = $scope.selectedStreet.designation;
-                    $scope.formData.building = $scope.selectedBuilding.designation;
-                    console.log($scope.formData);
-                    applicationService.sendApplication("/application/add", $scope.formData)
-                        .success(function (applicationCode) {
-                            $scope.applicationCode = applicationCode.code;
-                        }).error(function (err) {
-                            console.log(err);
-                        });
-                    $scope.formData = null;
-                    $scope.isShownForm = false;
-                } else {
-                    console.log("Invalid data: " + $scope.formData);
-                }
+                $scope.formData.region = $scope.selectedRegion.designation;
+                $scope.formData.district = $scope.selectedDistrict.designation;
+                $scope.formData.locality = $scope.selectedLocality.designation;
+                $scope.formData.district = $scope.selectedDistrict.designation;
+                $scope.formData.street = $scope.selectedStreet.designation;
+                $scope.formData.building = $scope.selectedBuilding.designation;
+
+                applicationService.sendApplication("/application/add", $scope.formData)
+                    .success(function (applicationCode) {
+                        $scope.applicationCode = applicationCode.code;
+                    }).error(function (err) {
+                        console.log(err);
+                    });
+                $scope.formData = null;
+                $scope.isShownForm = false;
             };
 
 
