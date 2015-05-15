@@ -77,10 +77,14 @@
                         <path>/</path>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <skipTests>true</skipTests>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
-
-
 
 </project>

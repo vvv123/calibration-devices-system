@@ -1,13 +1,33 @@
 var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
-    'duScroll', 'ui.bootstrap', 'pascalprecht.translate'])
-    .config(['$translateProvider',
-        function ($translateProvider) {
+    'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ui.router'])
+    .config(['$translateProvider', '$stateProvider', '$urlRouterProvider',
+
+        function ($translateProvider, $stateProvider, $urlRouterProvider) {
+            /**
+             *
+             *  i18n configuration.
+             */
             $translateProvider.useSanitizeValueStrategy('escaped');
             $translateProvider
                 .translations('eng', engProperites)
                 .translations('ukr', ukrProperties);
             $translateProvider.preferredLanguage('ukr');
+
+            /**
+             * Routing configuration.
+             */
+            $stateProvider
+                .state('appSending', {
+                    url: '/send-application',
+                    templateUrl: '/resources/app/welcome/views/application-sending.html',
+                    controller: 'AddApplicationsController'
+                })
+                .state('home', {
+                    url: '/hui',
+                    templateUrl: '/resources/app/welcome/index.html'
+                });
         }]);
+
 define([
     'controllers/LoginController',
     'controllers/AddApplicationsController',

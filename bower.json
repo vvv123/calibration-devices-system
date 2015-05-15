@@ -11,6 +11,7 @@
     "font-awesome": "4.3.0",
     "requirejs": "2.1.17",
     "angular-translate": "2.7.0",
-    "spring-security-csrf-token-interceptor": "0.1.5"
+    "spring-security-csrf-token-interceptor": "0.1.5",
+    "angular-ui-router": "0.2.14"
   }
 }

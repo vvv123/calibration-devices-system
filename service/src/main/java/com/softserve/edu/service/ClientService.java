@@ -1,16 +1,6 @@
 package com.softserve.edu.service;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.softserve.edu.dto.ApplicationDTO;
 import com.softserve.edu.dto.ClientCodeDTO;
 import com.softserve.edu.dto.ClientMessageDTO;
@@ -19,12 +9,14 @@ import com.softserve.edu.entity.ClientData;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.repository.VerificationRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -93,7 +85,7 @@ public class ClientService {
     }
 
     public String generateCode() {
-        return UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d").randomUUID().toString();
+        return UUID.randomUUID().toString();
     }
 }
 

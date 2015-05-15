@@ -3,6 +3,8 @@ welcomeModule
         'ApplicationService',
         function ($scope, catalogueService, applicationService) {
 
+            console.log("In AddApplicationsController.");
+
             $scope.isShownForm = true;
             /**
              * Receives all possible regions.

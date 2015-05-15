@@ -62,12 +62,7 @@ a {
     background: #fff;
 }
 
-#applicationSection {
-    height: 1000px !important;
-    padding-top: 40px;
-    text-align: center;
-    background: #eee;
-}
+
 
 #applicationStatusSection {
     height: 100%;
