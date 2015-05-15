@@ -9,6 +9,7 @@ public class Manufacturer {
     @GeneratedValue
     private Long id;
 
+    //@Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
@@ -17,15 +18,6 @@ public class Manufacturer {
     @OneToMany
     @JoinColumn(name = "manufacturer_id")
     private Set<Device> devices;
-
-    protected Manufacturer() {
-    }
-
-    public Manufacturer(String name, String number, Set<Device> devices) {
-        this.name = name;
-        this.number = number;
-        this.devices = devices;
-    }
 
     public Long getId() {
         return id;

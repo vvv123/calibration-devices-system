@@ -10,22 +10,26 @@ import java.util.Date;
 @Entity
 @DiscriminatorValue(value = "CALIBRATOR")
 public class Calibrator extends Organization {
-    @Column(nullable = false)
+    /**
+     * Identification number of the certificate that allows this calibrator to
+     * perform verifications.
+     */
+    //@Column(nullable = false)
     private String certificateNumber;
 
-    @Column(nullable = false)
+    /**
+     * Identification number of the certificate that allows this calibrator to
+     * perform verifications.
+     */
+    //@Column(nullable = false)
     private Date certificateGrantedDate;
 
     protected Calibrator() {
         super();
     }
 
-    public Calibrator(String name, String email, String phone, String certificateNumber,
-                      Date certificateGrantedDate) {
+    public Calibrator(String name, String email, String phone) {
         super(name, email, phone);
-
-        this.certificateNumber = certificateNumber;
-        this.certificateGrantedDate = certificateGrantedDate;
     }
 
     public String getCertificateNumber() {

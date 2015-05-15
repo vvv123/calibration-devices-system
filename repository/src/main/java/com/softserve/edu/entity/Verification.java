@@ -7,6 +7,7 @@ import com.softserve.edu.entity.user.StateVerificatorEmployee;
 import com.softserve.edu.entity.util.Status;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -21,8 +22,12 @@ public class Verification {
     private Long id;
     private Status status;
     private String code;
+
+    /**
+     * Date when the verification was finished
+     */
     @Temporal(TemporalType.DATE)
-    private String verificationFinished;
+    private Date verificationFinishedDate;
 
     @ManyToOne
     @JoinColumn(name = "deviceId")
@@ -152,11 +157,11 @@ public class Verification {
         this.clientData = clientData;
     }
 
-    public String getVerificationFinished() {
-        return verificationFinished;
+    public Date getVerificationFinishedDate() {
+        return verificationFinishedDate;
     }
 
-    public void setVerificationFinished(String verificationFinished) {
-        this.verificationFinished = verificationFinished;
+    public void setVerificationFinishedDate(Date verificationFinishedDate) {
+        this.verificationFinishedDate = verificationFinishedDate;
     }
 }

@@ -13,6 +13,8 @@ public class Device {
     private Long id;
 
     private DeviceType deviceType;
+
+    //@Column(nullable = false)
     private String deviceSign;
 
     @Column(nullable = false)
@@ -27,14 +29,10 @@ public class Device {
     @ManyToOne
     private Manufacturer manufacturer;
 
-    public Device() {
-    }
-
-    public Device(String number, Set<Verification> verifications, Manufacturer manufacturer, String deviceSign) {
+    public Device(String number, Set<Verification> verifications, Manufacturer manufacturer) {
         this.number = number;
         this.verifications = verifications;
         this.manufacturer = manufacturer;
-        this.deviceSign = deviceSign;
     }
 
     public Long getId() {

@@ -1,7 +1,5 @@
 package com.softserve.edu.entity;
 
-import com.softserve.edu.entity.util.MetrologicalDocument;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -21,6 +19,8 @@ public class CalibrationTest {
     private String consumptionStatus;
     private String testResult;
     private String photoPath;
+
+    @Embedded
     private MetrologicalDocument metrologicalDocument;
 
     @ManyToOne
