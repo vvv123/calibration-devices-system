@@ -9,15 +9,10 @@ import com.softserve.edu.entity.ClientData;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.repository.VerificationRepository;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.NestedRuntimeException;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.NonUniqueResultException;
-import javax.persistence.PersistenceException;
 import java.util.UUID;
 
 @Service
@@ -38,11 +33,11 @@ public class ClientService {
     }
 
     public ClientMessageDTO transferClientCode(ClientCodeDTO clientCodeDTO) {
-        return  new ClientMessageDTO().setName(findCode(clientCodeDTO));
+        return  new ClientMessageDTO().setName(getStatusMessage(clientCodeDTO));
     }
 
 
-    public String findCode(ClientCodeDTO clientCodeDTO) {
+    public String getStatusMessage(ClientCodeDTO clientCodeDTO) {
         try {
             return verificationRepository.findByCode(clientCodeDTO.getCode()).get(0).getStatus().toString();
         } catch (RuntimeException e) {
@@ -71,10 +66,7 @@ public class ClientService {
     }
 
     public String generateCode() {
-        // creating UUID
-        UUID uid = UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d");
-        // checking the value of random UUID
-        return uid.randomUUID().toString();
+        return UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d").randomUUID().toString();
     }
 }
 

@@ -5,14 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
     <link href="/resources/assets/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="/resources/assets/css/welcome.css" rel="stylesheet">
+    <link href="/resources/assets/css/application-form.css" rel="stylesheet">
 </head>
 
 <body id="welcomeModule">
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+    <div class="col-md-1" ng-controller="i18nCtrl">
+        <select class="form-control" ng-options="language for language in languages"
+                ng-model="selectedLang" ng-change="changeLanguage(selectedLang)"></select>
+    </div>
+
     <div class="container">
+
         <div class="navbar-header">
             <a class="navbar-brand" du-smooth-scroll="welcomeSection">Початок</a>
         </div>
@@ -70,11 +81,6 @@
 
 <section id="applicationSection" ng-controller="AddApplicationsController">
     <div class="container">
-
-        <div class="col-md-2" style="padding-top: 60px;">
-            <select class="form-control" ng-options="language for language in languages"
-                    ng-model="selectedLang" ng-change="changeLanguage(selectedLang)"></select>
-        </div>
 
         <div class="col-md-12 text-center">
             <h1>{{ 'SEND_APP_TITLE' | translate }}</h1>
@@ -261,7 +267,7 @@
                         </label>
 
                         <div class="col-md-10">
-                            <input id="building" name="building" class="form-control">
+                            <input id="building" name="building" class="form-control"
                                    ng-model="selectedBuilding"
                                    typeahead="building as building.designation for building in buildings | filter: $viewValue"
                                    required>

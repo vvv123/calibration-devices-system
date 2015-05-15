@@ -25,11 +25,11 @@ public class ApplicationController {
     private ClientService clientService;
 
     @RequestMapping(value = "/application/add", method = RequestMethod.POST)
-    public ClientCodeDTO requestClientApplication(@RequestBody ApplicationDTO applicationDTO) {
+    public ClientCodeDTO getClientApplication(@RequestBody ApplicationDTO applicationDTO) {
       return clientService.transferApplication(applicationDTO);
     }
     @RequestMapping(value = "/application/check", method = RequestMethod.POST)
-    public ClientMessageDTO transferClientCodeDTO(@RequestBody ClientCodeDTO clientCodeDTO) {
+    public ClientMessageDTO getClientCode(@RequestBody ClientCodeDTO clientCodeDTO) {
         return  clientService.transferClientCode(clientCodeDTO);
     }
 }
