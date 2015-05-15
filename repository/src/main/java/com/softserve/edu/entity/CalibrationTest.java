@@ -21,6 +21,9 @@ public class CalibrationTest {
     private String photoPath;
 
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="name",column=@Column(name="document_name"))
+    })
     private MetrologicalDocument metrologicalDocument;
 
     @ManyToOne
