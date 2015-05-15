@@ -1,6 +1,7 @@
 package com.softserve.edu.documentGenerator.documents;
 
 import com.softserve.edu.documentGenerator.utils.Template;
+import com.softserve.edu.entity.CalibrationTest;
 import com.softserve.edu.entity.Calibrator;
 import com.softserve.edu.entity.ClientData;
 import com.softserve.edu.entity.Verification;
@@ -24,6 +25,10 @@ public abstract class BaseDocument {
      */
     private Verification verification;
     /**
+     *
+     */
+    private CalibrationTest calibrationTest;
+    /**
      * Template file to be used for writing this document.
      */
     private Template template;
@@ -34,9 +39,10 @@ public abstract class BaseDocument {
      * @param template     template file to be used for writing this document.
      * @param verification entity to get document's data from.
      */
-    public BaseDocument(Template template, Verification verification) {
+    public BaseDocument(Template template, Verification verification, CalibrationTest calibrationTest) {
         setTemplate(template);
         setVerification(verification);
+        setCalibrationTest(calibrationTest);
     }
 
     /**
@@ -67,6 +73,14 @@ public abstract class BaseDocument {
         return verification;
     }
 
+    public CalibrationTest getCalibrationTest() {
+        return calibrationTest;
+    }
+
+    protected void setCalibrationTest(CalibrationTest calibrationTest) {
+        this.calibrationTest = calibrationTest;
+    }
+
     // Following getters and setters are for verification data that is received from verification entity.
 
     /**
@@ -87,7 +101,7 @@ public abstract class BaseDocument {
      * @return the calibrator's address.
      */
     public String getCalibratorCompanyAddress() {
-        throw new NotImplementedException();
+        return getVerification().getCalibrator().getAddress().toString();
     }
 
     /**
@@ -113,13 +127,6 @@ public abstract class BaseDocument {
      */
     public String getVerificationCertificateNumber() {
         return String.valueOf(getVerification().getId());
-    }
-
-    /**
-     * @return the date until this verification certificate is effective.
-     */
-    public String getVerificationCertificateEffectiveUntilDate() {
-        return getVerification().getVerificationFinished();
     }
 
     /**
@@ -188,24 +195,14 @@ public abstract class BaseDocument {
      * @return get the sign of the document, which contains the metrological characteristics
      */
     public String getMetrologicalDocumentSign() {
-        // TODO: clarify the source of this document and it's sign
-        throw new NotImplementedException();
+        return getCalibrationTest().getMetrologicalDocument().getSign();
     }
 
     /**
      * @return get the name of the document, which contains the metrological characteristics
      */
     public String getMetrologicalDocumentName() {
-        // TODO: clarify the source of this document and it's name
-        throw new NotImplementedException();
-    }
-
-    /**
-     * @return the number of the page, which contains an additional info for this document
-     */
-    public String getAdditionalInfoPage() {
-        // TODO: clarify the source of this page
-        throw new NotImplementedException();
+        return getCalibrationTest().getMetrologicalDocument().getName();
     }
 
     /**
