@@ -20,8 +20,10 @@ public class Address {
     @Column(nullable = false)
     private String building;
 
-    private String flat;
+    @Column(name="postal_index")
     private String index;
+
+    private String flat;
 
     public Address() {}
 
