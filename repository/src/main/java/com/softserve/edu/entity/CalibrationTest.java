@@ -10,7 +10,6 @@ public class CalibrationTest {
     @GeneratedValue
     private Long id;
     private String name;
-    private String deviceNumber;
     @Temporal(TemporalType.DATE)
     private Date dateTest;
     private Integer temperature;
@@ -20,6 +19,19 @@ public class CalibrationTest {
     private String consumptionStatus;
     private String testResult;
     private String photoPath;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "name", column = @Column(name = "document_name")),
+            @AttributeOverride(name = "sign", column = @Column(name = "document_sign"))
+    })
+    private MetrologicalDocument metrologicalDocument;
+
+    @ManyToOne
+    private Verification verification;
+
+    @OneToMany(mappedBy = "calibrationTest")
+    private Set<CalibrationTestData> calibrationTestDatas;
 
     public Long getId() {
         return id;
@@ -35,14 +47,6 @@ public class CalibrationTest {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDeviceNumber() {
-        return deviceNumber;
-    }
-
-    public void setDeviceNumber(String deviceNumber) {
-        this.deviceNumber = deviceNumber;
     }
 
     public Date getDateTest() {
@@ -125,10 +129,11 @@ public class CalibrationTest {
         this.calibrationTestDatas = calibrationTestDatas;
     }
 
-    @ManyToOne
-    private Verification verification;
+    public MetrologicalDocument getMetrologicalDocument() {
+        return metrologicalDocument;
+    }
 
-    @OneToMany(mappedBy = "calibrationTest")
-    private Set<CalibrationTestData> calibrationTestDatas;
-
+    public void setMetrologicalDocument(MetrologicalDocument metrologicalDocument) {
+        this.metrologicalDocument = metrologicalDocument;
+    }
 }
