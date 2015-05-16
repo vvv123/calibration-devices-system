@@ -1,22 +1,6 @@
 package documentGenerationTests;
 
-import com.softserve.edu.documentGenerator.DocumentGenerator;
-import com.softserve.edu.documentGenerator.converter.DocumentFormat;
-import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
-import com.softserve.edu.documentGenerator.utils.Template;
-import com.softserve.edu.entity.CalibrationTestData;
-import com.softserve.edu.entity.Verification;
-import com.softserve.edu.service.CalibrationTestDataService;
-import com.softserve.edu.service.ClientService;
-import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
-
-import java.io.File;
-import java.util.Calendar;
-import java.util.Date;
-
-import static org.mockito.Mockito.when;
 
 public class GenerateFileTest {
     @Test

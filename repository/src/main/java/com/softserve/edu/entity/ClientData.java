@@ -1,11 +1,7 @@
 package com.softserve.edu.entity;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
-
 
 @Embeddable
 public class ClientData {
@@ -17,6 +13,18 @@ public class ClientData {
 
     @Embedded
     private Address clientAddress;
+
+    protected ClientData() {}
+
+    public ClientData(String firstName, String lastName, String middleName, String email, String phone, Address
+            clientAddress) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.email = email;
+        this.phone = phone;
+        this.clientAddress = clientAddress;
+    }
 
     public Address getClientAddress() {
         return clientAddress;

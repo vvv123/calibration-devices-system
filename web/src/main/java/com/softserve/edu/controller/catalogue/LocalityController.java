@@ -1,6 +1,7 @@
 package com.softserve.edu.controller.catalogue;
 
-import com.softserve.edu.dto.CatalogueDTO;
+import com.softserve.edu.dto.catalogue.CatalogueDTO;
+import com.softserve.edu.dto.catalogue.util.CatalogueDTOTransformer;
 import com.softserve.edu.service.catalogue.LocalityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +19,6 @@ public class LocalityController {
 
     @RequestMapping(value = "application/localities/{districtId}", method = RequestMethod.GET)
     public List<CatalogueDTO> getLocalitiesCorrespondingDistrict(@PathVariable Long districtId) {
-        System.out.println("-------------------------------");
-        System.out.println(districtId);
-        System.out.println("-------------------------------");
-        return localityService.receiveLocalitiesCorrespondingDistrict(districtId);
+        return CatalogueDTOTransformer.toDto(localityService.getLocalitiesCorrespondingDistrict(districtId));
     }
 }

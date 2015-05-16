@@ -1,5 +1,6 @@
 var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
     'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ngCookies','ui.router'])
+
     .config(['$translateProvider', '$stateProvider', '$urlRouterProvider',
 
         function ($translateProvider, $stateProvider, $urlRouterProvider) {
@@ -54,7 +55,7 @@ define([
     'controllers/ApplicationSendingController',
     'controllers/ApplicationStatusController',
     'controllers/InternationalizationController',
-    'services/CatalogueService',
-    'services/ApplicationService'
+    'services/DataReceivingService',
+    'services/DataSendingService'
 ], function () {
 });
