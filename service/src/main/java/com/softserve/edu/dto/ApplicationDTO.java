@@ -1,8 +1,6 @@
 package com.softserve.edu.dto;
 
-/**
- * Created by Oles Onyshchak on 5/7/2015.
- */
+
 public class ApplicationDTO {
     private String firstName;
     private String lastName;

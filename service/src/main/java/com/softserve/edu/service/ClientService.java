@@ -60,7 +60,7 @@ public class ClientService {
         try {
             return verificationRepository.findByCode(clientCodeDTO.getCode()).get(0).getStatus().toString();
         } catch (RuntimeException e) {
-            System.out.println("verification not found!!!");
+            System.out.println("Verification not found.");
             return Status.NOT_FOUND.toString();
         }
     }

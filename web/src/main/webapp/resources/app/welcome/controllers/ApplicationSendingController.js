@@ -4,14 +4,12 @@ welcomeModule
 
         function ($scope, catalogueService, applicationService) {
 
-            console.log("In AddApplicationsController.");
-
             $scope.isShownForm = true;
             /**
              * Receives all possible regions.
              */
             $scope.regions = [];
-            catalogueService.sendApplication("/application/regions").success(function (regions) {
+            catalogueService.getCatalogue("/application/regions").success(function (regions) {
                 $scope.regions = regions;
             });
             /**
@@ -20,7 +18,7 @@ welcomeModule
              */
             $scope.receiveDistricts = function (selectedRegion) {
                 $scope.districts = [];
-                catalogueService.sendApplication("/application/districts/" + selectedRegion.id)
+                catalogueService.getCatalogue("/application/districts/" + selectedRegion.id)
                     .success(function (districts) {
                         $scope.districts = districts;
                     });
@@ -31,7 +29,7 @@ welcomeModule
              */
             $scope.receiveLocalities = function (selectedDistrict) {
                 $scope.localities = [];
-                catalogueService.sendApplication("/application/localities/" + selectedDistrict.id)
+                catalogueService.getCatalogue("/application/localities/" + selectedDistrict.id)
                     .success(function (localities) {
                         $scope.localities = localities;
                     });
@@ -42,7 +40,7 @@ welcomeModule
              */
             $scope.receiveStreets = function (selectedLocality) {
                 $scope.streets = [];
-                catalogueService.sendApplication("/application/streets/" + selectedLocality.id)
+                catalogueService.getCatalogue("/application/streets/" + selectedLocality.id)
                     .success(function (streets) {
                         $scope.streets = streets;
                     });
@@ -54,7 +52,7 @@ welcomeModule
              */
             $scope.receiveBuildings = function (selectedStreet) {
                 $scope.buildings = [];
-                catalogueService.sendApplication("/application/buildings/" + selectedStreet.id)
+                catalogueService.getCatalogue("/application/buildings/" + selectedStreet.id)
                     .success(function (buildings) {
                         $scope.buildings = buildings;
                     });
@@ -70,7 +68,9 @@ welcomeModule
                 $scope.formData.locality = $scope.selectedLocality.designation;
                 $scope.formData.district = $scope.selectedDistrict.designation;
                 $scope.formData.street = $scope.selectedStreet.designation;
-                $scope.formData.building = $scope.selectedBuilding.designation;
+                $scope.formData.building = $scope.selectedBuilding.designation || $scope.selectedBuilding;
+
+                console.log($scope.formData);
 
                 applicationService.sendApplication("/application/add", $scope.formData)
                     .success(function (applicationCode) {

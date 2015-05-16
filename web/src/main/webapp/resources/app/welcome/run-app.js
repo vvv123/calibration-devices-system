@@ -5,7 +5,8 @@ require.config({
         angularBootstrap: '../../assets/bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
         csrfInterceptor: '../../assets/bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
         angularTranslate: '../../assets/bower_components/angular-translate/angular-translate.min',
-        angularUIRouter: "../../assets/bower_components/angular-ui-router/release/angular-ui-router",
+        angularTranslateLoaderStaticFiles: '../../assets/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min',
+        angularUIRouter: '../../assets/bower_components/angular-ui-router/release/angular-ui-router.min',
         welcomeModule: 'welcomeModule'
     },
     shim: {
@@ -24,12 +25,15 @@ require.config({
         angularTranslate: {
             deps: ['angular']
         },
+        angularTranslateLoaderStaticFiles: {
+            deps: ['angular', 'angularTranslate']
+        },
         angularUIRouter: {
             deps: ['angular']
         },
         welcomeModule: {
             deps: ['angular', 'angularScroll', 'csrfInterceptor', 'angularBootstrap',
-                'angularTranslate', 'angularUIRouter']
+                'angularTranslate', 'angularTranslateLoaderStaticFiles', 'angularUIRouter']
         }
     }
 });

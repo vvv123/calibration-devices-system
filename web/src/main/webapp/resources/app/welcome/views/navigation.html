@@ -8,16 +8,27 @@
     <div class="container">
 
         <div class="navbar-header">
-            <a class="navbar-brand" du-smooth-scroll="welcomeSection">Початок</a>
+            <a class="navbar-brand" du-smooth-scroll="welcomeSection">{{ 'START' | translate }}</a>
         </div>
         <div>
             <ul class="nav navbar-nav navbar-right">
-                <li du-scrollspy="aboutSection"><a ui-sref="home" du-smooth-scroll="aboutSection">Про сервіс</a></li>
-                <li du-scrollspy="loginSection"><a du-smooth-scroll="loginSection">Увійти</a></li>
-                <li du-scrollspy="applicationSection"><a du-smooth-scroll="applicationSection">Подати заявку на
-                    повірку</a></li>
-                <li du-scrollspy="applicationStatusSection"><a du-smooth-scroll="applicationStatusSection">Перевірити
-                    статус заявки</a></li>
+                <li du-scrollspy="aboutSection">
+                    <a ui-sref="home" du-smooth-scroll="aboutSection">
+                        {{ 'ABOUT' | translate }}
+                    </a>
+                </li>
+                <li du-scrollspy="loginSection">
+                    <a du-smooth-scroll="loginSection">
+                        {{ 'LOG_ON' | translate }}
+                    </a></li>
+                <li du-scrollspy="applicationSection"
+                        ><a du-smooth-scroll="applicationSection">
+                    {{ 'APPLY_FOR_VERIFCIATION' | translate }}
+                </a></li>
+                <li du-scrollspy="applicationStatusSection">
+                    <a du-smooth-scroll="applicationStatusSection">
+                        {{ 'APP_STATUS' | translate }}
+                    </a></li>
             </ul>
         </div>
     </div>
