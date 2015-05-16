@@ -18,6 +18,7 @@
         <mysql.driver.version>5.1.35</mysql.driver.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <log4f.version>1.2.17</log4f.version>
     </properties>
 
     <groupId>com.softserve.edu</groupId>
@@ -55,6 +56,13 @@
             <version>7.0.61</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4f.version}</version>
+        </dependency>
+
     </dependencies>
 
 
