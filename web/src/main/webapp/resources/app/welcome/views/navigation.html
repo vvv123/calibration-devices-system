@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+    <div class="col-md-1" ng-controller="i18nCtrl">
+        <select class="form-control" ng-options="language for language in languages"
+                ng-model="selectedLang" ng-change="changeLanguage(selectedLang)"></select>
+    </div>
+
+    <div class="container">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" du-smooth-scroll="welcomeSection">Початок</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li du-scrollspy="aboutSection"><a ui-sref="home" du-smooth-scroll="aboutSection">Про сервіс</a></li>
+                <li du-scrollspy="loginSection"><a du-smooth-scroll="loginSection">Увійти</a></li>
+                <li du-scrollspy="applicationSection"><a du-smooth-scroll="applicationSection">Подати заявку на
+                    повірку</a></li>
+                <li du-scrollspy="applicationStatusSection"><a du-smooth-scroll="applicationStatusSection">Перевірити
+                    статус заявки</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

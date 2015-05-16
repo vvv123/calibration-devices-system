@@ -16,15 +16,34 @@ var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token
             /**
              * Routing configuration.
              */
+            $urlRouterProvider.otherwise('/');
+
             $stateProvider
-                .state('appSending', {
-                    url: '/send-application',
-                    templateUrl: '/resources/app/welcome/views/application-sending.html',
-                    controller: 'AddApplicationsController'
-                })
-                .state('home', {
-                    url: '/hui',
-                    templateUrl: '/resources/app/welcome/index.html'
+                .state('welcome', {
+                    url: "/",
+                    views: {
+                        navigation: {
+                            templateUrl: '/resources/app/welcome/views/navigation.html',
+                        },
+                        welcome: {
+                            templateUrl: '/resources/app/welcome/views/welcome.html'
+                        },
+                        about: {
+                            templateUrl: '/resources/app/welcome/views/about.html'
+                        },
+                        login: {
+                            templateUrl: '/resources/app/welcome/views/login.html',
+                            controller: 'LoginController'
+                        },
+                        applicationSending: {
+                            templateUrl: '/resources/app/welcome/views/application-sending.html',
+                            controller: 'AddApplicationsController'
+                        },
+                        applicationChecking: {
+                            templateUrl: '/resources/app/welcome/views/application-checking.html',
+                            controller: 'CheckApplicationController'
+                        }
+                    }
                 });
         }]);
 

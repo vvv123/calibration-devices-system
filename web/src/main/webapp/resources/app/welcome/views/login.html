@@ -1,0 +1,18 @@
+<section id="loginSection" ng-controller="LoginController">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Увійдіть в систему</h1>
+            </div>
+            <div class="col-lg-12">
+                <form ng-submit="login()" class="form-signin centered">
+                    <input ng-model="loginForm.username" type="text" class="form-control" placeholder="Логін" required>
+                    <input ng-model="loginForm.password" type="password" id="inputPassword" class="form-control"
+                           placeholder="Пароль" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
+                    <p>{{ loginForm }}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
