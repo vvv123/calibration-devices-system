@@ -1,10 +1,7 @@
 package com.softserve.edu.documentGenerator.documents;
 
 import com.softserve.edu.documentGenerator.utils.Template;
-import com.softserve.edu.entity.CalibrationTest;
-import com.softserve.edu.entity.Calibrator;
-import com.softserve.edu.entity.ClientData;
-import com.softserve.edu.entity.Verification;
+import com.softserve.edu.entity.*;
 import com.softserve.edu.entity.user.StateVerificatorEmployee;
 import com.softserve.edu.entity.util.DeviceType;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -101,7 +98,14 @@ public abstract class BaseDocument {
      * @return the calibrator's address.
      */
     public String getCalibratorCompanyAddress() {
-        return getVerification().getCalibrator().getAddress().toString();
+        Address address = getVerification().getCalibrator().getAddress();
+
+        String addresToReturn = address.getIndex() + ", " +
+                address.getLocality() + ", " +
+                address.getStreet() + ", " +
+                address.getBuilding();
+
+        return addresToReturn;
     }
 
     /**
@@ -181,7 +185,7 @@ public abstract class BaseDocument {
     /**
      * @return the owner's full name - surName + name + middleName
      */
-    public String getOwnerNameFull() {
+    public String getOwnerFullName() {
         ClientData ownerData = getVerification().getClientData();
 
         String fullName = ownerData.getLastName() + " " +
@@ -192,23 +196,10 @@ public abstract class BaseDocument {
     }
 
     /**
-     * @return get the sign of the document, which contains the metrological characteristics
+     * @return the state verificator's name in Surname N.M., where N - first letter of name,
+     * M - first letter of middle name.
      */
-    public String getMetrologicalDocumentSign() {
-        return getCalibrationTest().getMetrologicalDocument().getSign();
-    }
-
-    /**
-     * @return get the name of the document, which contains the metrological characteristics
-     */
-    public String getMetrologicalDocumentName() {
-        return getCalibrationTest().getMetrologicalDocument().getName();
-    }
-
-    /**
-     * @return the state verificator's name
-     */
-    public String getStateVerificatorName() {
+    public String getStateVerificatorShortName() {
         StateVerificatorEmployee stateVerificatorEmployee = getVerification().getStateVerificatorEmployee();
 
         String fullName = stateVerificatorEmployee.getLastName() + " "

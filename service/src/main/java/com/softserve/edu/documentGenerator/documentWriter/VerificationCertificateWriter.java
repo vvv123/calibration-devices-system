@@ -16,13 +16,13 @@ public class VerificationCertificateWriter extends DocumentWriter {
     /**
      * Consists of names of tokens from file;
      */
-    enum Token {
-        AD_PAGE,
-        SPEC_DOC_ID,
-        SPEC_DOC_NAME;
+    enum VerificationCertificateToken implements Token {
+        EFF_DATE,
+        METR_DOC_SIGN,
+        METR_DOC_NAME;
 
         @Override
-        public String toString() {
+        public String getTokenName() {
             return "$" + name();
         }
     }
@@ -50,16 +50,13 @@ public class VerificationCertificateWriter extends DocumentWriter {
 
         TokenWriter tokenWriter = new TokenWriter(file);
 
-//        Integer additionalInfoPageNumber = document.getAdditionalInfoPageNumber();
-//        tokenWriter.replaceToken(Token.AD_PAGE.toString(),
-//                additionalInfoPageNumber.toString());
-//
-//        String documentId = document.getDocumentId();
-//        tokenWriter.replaceToken(Token.SPEC_DOC_ID.toString(),
-//                documentId);
-//
-//        String specificationDocumentName = document.getSpecificationDocumentName();
-//        tokenWriter.replaceToken(Token.SPEC_DOC_NAME.toString(),
-//                specificationDocumentName);
+        tokenWriter.replaceToken(VerificationCertificateToken.METR_DOC_NAME.getTokenName(),
+                document.getMetrologicalDocumentName());
+
+        tokenWriter.replaceToken(VerificationCertificateToken.METR_DOC_SIGN.getTokenName(),
+                document.getMetrologicalDocumentSign());
+
+        tokenWriter.replaceToken(VerificationCertificateToken.EFF_DATE.getTokenName(),
+                document.getVerificationCertificateEffectiveUntilDate());
     }
 }

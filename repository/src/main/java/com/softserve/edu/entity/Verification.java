@@ -5,6 +5,8 @@ import com.softserve.edu.entity.user.CalibratorEmployee;
 import com.softserve.edu.entity.user.ProviderEmployee;
 import com.softserve.edu.entity.user.StateVerificatorEmployee;
 import com.softserve.edu.entity.util.Status;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -165,5 +167,25 @@ public class Verification {
 
     public void setVerificationFinishedDate(Date verificationFinishedDate) {
         this.verificationFinishedDate = verificationFinishedDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof Verification)) return false;
+
+        Verification that = (Verification) o;
+
+        return new EqualsBuilder()
+                .append(getId(), that.getId())
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(getId())
+                .toHashCode();
     }
 }

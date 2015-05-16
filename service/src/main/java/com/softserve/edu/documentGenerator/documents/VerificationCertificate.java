@@ -21,22 +21,21 @@ public class VerificationCertificate extends BaseDocument {
         return getVerification().getVerificationFinishedDate().toString();
     }
 
-    /**
-     * @return the number of the page, which contains an additional info for this document
-     */
-//    public String getAdditionalInfoPage() {
-//        return
-//    }
-
-    public Integer getAdditionalInfoPageNumber() {
-        return null;
-    }
-
     public String getDocumentId() {
         return getVerification().getId().toString();
     }
 
-    public String getSpecificationDocumentName() {
-        return null;
+    /**
+     * @return get the sign of the document, which contains the metrological characteristics
+     */
+    public String getMetrologicalDocumentSign() {
+        return getCalibrationTest().getMetrologicalDocument().getSign();
+    }
+
+    /**
+     * @return get the name of the document, which contains the metrological characteristics
+     */
+    public String getMetrologicalDocumentName() {
+        return getCalibrationTest().getMetrologicalDocument().getName();
     }
 }

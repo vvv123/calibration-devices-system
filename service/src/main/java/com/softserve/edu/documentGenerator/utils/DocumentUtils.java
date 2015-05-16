@@ -1,6 +1,7 @@
 package com.softserve.edu.documentGenerator.utils;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import java.io.*;
@@ -9,16 +10,6 @@ import java.io.*;
  * Utility functions for documents
  */
 public class DocumentUtils {
-    /**
-     * Gets file's path from resources folder
-     */
-    public String getFilePath(String fileName) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(fileName).getFile());
-
-        return file.getAbsolutePath();
-    }
-
     /**
      * Saves document in the specified path
      */
@@ -56,5 +47,15 @@ public class DocumentUtils {
         FileUtils.copyFile(sourceFile, file);
 
         return file;
+    }
+
+    public byte[] fileToBytes(File reportFile) throws IOException {
+        byte[] reportBytes;
+
+        try (InputStream reportInputStream = new FileInputStream(reportFile)) {
+            reportBytes = IOUtils.toByteArray(reportInputStream);
+        }
+
+        return reportBytes;
     }
 }
