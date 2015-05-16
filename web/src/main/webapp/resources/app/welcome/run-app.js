@@ -7,6 +7,9 @@ require.config({
         angularTranslate: '../../assets/bower_components/angular-translate/angular-translate.min',
         angularTranslateLoaderStaticFiles: '../../assets/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min',
         angularUIRouter: '../../assets/bower_components/angular-ui-router/release/angular-ui-router.min',
+        angularCookie: '../../assets/bower_components/angular-cookies/angular-cookies.min',
+        angularTranslateStorageLocal: '../../assets/bower_components/angular-translate-storage-local/angular-translate-storage-local.min',
+        angularTranslateStorageCookie: '../../assets/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min',
         welcomeModule: 'welcomeModule'
     },
     shim: {
@@ -25,6 +28,15 @@ require.config({
         angularTranslate: {
             deps: ['angular']
         },
+        angularCookie: {
+            deps: ['angular']
+        },
+        angularTranslateStorageCookie: {
+            deps: ['angular', 'angularTranslate', 'angularCookie']
+        },
+        angularTranslateStorageLocal: {
+            deps: ['angular', 'angularTranslate', 'angularTranslateStorageCookie']
+        },
         angularTranslateLoaderStaticFiles: {
             deps: ['angular', 'angularTranslate']
         },
@@ -33,7 +45,8 @@ require.config({
         },
         welcomeModule: {
             deps: ['angular', 'angularScroll', 'csrfInterceptor', 'angularBootstrap',
-                'angularTranslate', 'angularTranslateLoaderStaticFiles', 'angularUIRouter']
+                'angularTranslate', 'angularCookie', 'angularTranslateStorageCookie',
+                'angularTranslateStorageLocal', 'angularTranslateLoaderStaticFiles', 'angularUIRouter']
         }
     }
 });

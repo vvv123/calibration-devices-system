@@ -70,8 +70,6 @@ welcomeModule
                 $scope.formData.street = $scope.selectedStreet.designation;
                 $scope.formData.building = $scope.selectedBuilding.designation || $scope.selectedBuilding;
 
-                console.log($scope.formData);
-
                 applicationService.sendApplication("/application/add", $scope.formData)
                     .success(function (applicationCode) {
                         $scope.applicationCode = applicationCode.code;

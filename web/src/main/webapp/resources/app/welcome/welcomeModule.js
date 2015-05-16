@@ -1,5 +1,5 @@
 var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
-    'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ui.router'])
+    'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ngCookies','ui.router'])
     .config(['$translateProvider', '$stateProvider', '$urlRouterProvider',
 
         function ($translateProvider, $stateProvider, $urlRouterProvider) {
@@ -8,13 +8,13 @@ var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token
              *  i18n configuration.
              *
              */
-            $translateProvider.preferredLanguage('ukr');
-            $translateProvider.useSanitizeValueStrategy('escaped');
             $translateProvider.useStaticFilesLoader({
                 prefix: '/resources/assets/i18n/welcome-',
                 suffix: '.json'
             });
-
+            $translateProvider.useLocalStorage();
+            $translateProvider.useSanitizeValueStrategy('escaped');
+            $translateProvider.preferredLanguage('ukr');
             /**
              * Routing configuration.
              */
