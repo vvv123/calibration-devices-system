@@ -22,7 +22,8 @@ public class CalibrationTest {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name="name",column=@Column(name="document_name"))
+            @AttributeOverride(name = "name", column = @Column(name = "document_name")),
+            @AttributeOverride(name = "sign", column = @Column(name = "document_sign"))
     })
     private MetrologicalDocument metrologicalDocument;
 

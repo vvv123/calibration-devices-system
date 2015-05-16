@@ -12,6 +12,7 @@ public class Device {
     @GeneratedValue
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private DeviceType deviceType;
 
     //@Column(nullable = false)

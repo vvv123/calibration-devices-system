@@ -20,8 +20,10 @@ public class Verification {
     @Id
     @GeneratedValue
     private Long id;
-    private Status status;
     private String code;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     /**
      * Date when the verification was finished

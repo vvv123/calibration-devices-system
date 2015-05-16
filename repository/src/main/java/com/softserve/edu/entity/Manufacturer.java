@@ -9,11 +9,8 @@ public class Manufacturer {
     @GeneratedValue
     private Long id;
 
-    //@Column(nullable = false)
-    private String name;
-
     @Column(nullable = false)
-    private String number;
+    private String name;
 
     @OneToMany
     @JoinColumn(name = "manufacturer_id")
@@ -33,14 +30,6 @@ public class Manufacturer {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public Set<Device> getDevices() {
