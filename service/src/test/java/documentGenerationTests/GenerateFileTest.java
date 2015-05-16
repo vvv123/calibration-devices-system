@@ -19,6 +19,17 @@ import java.util.Date;
 import static org.mockito.Mockito.when;
 
 public class GenerateFileTest {
+
+    public void generateFilesFromBDTest() {
+//        Verification verification = new Verification();
+//
+//        File generatedDoc =
+//                DocumentGenerator.generate(verificationMock, DocumentFormat.PDF);
+//
+//        Assert.assertNotNull(generatedDoc);
+    }
+
+
     @Test
     public void generatePdfTest() {
 //        VerificationCertificate verificationMock = Mockito.mock(VerificationCertificate.class);

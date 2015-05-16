@@ -31,7 +31,7 @@ public class DocxCreator {
      */
     public static File createDocxDocument(BaseDocument baseDocument) throws IOException {
         // create copy of the document's template
-        String documentName = ""; // baseDocument.getDeviceName() + String.valueOf(baseDocument.getSerialNumber());
+        String documentName = baseDocument.getDeviceName() + String.valueOf(baseDocument.getDeviceManufacturerSerial());
         String path = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED,
                 documentName,
                 DocumentFormat.DOCX);

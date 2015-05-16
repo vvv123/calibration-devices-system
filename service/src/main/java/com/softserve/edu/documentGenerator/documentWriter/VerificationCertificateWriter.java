@@ -50,16 +50,16 @@ public class VerificationCertificateWriter extends DocumentWriter {
 
         TokenWriter tokenWriter = new TokenWriter(file);
 
-        Integer additionalInfoPageNumber = document.getAdditionalInfoPageNumber();
-        tokenWriter.replaceToken(Token.AD_PAGE.toString(),
-                additionalInfoPageNumber.toString());
-
-        String documentId = document.getDocumentId();
-        tokenWriter.replaceToken(Token.SPEC_DOC_ID.toString(),
-                documentId);
-
-        String specificationDocumentName = document.getSpecificationDocumentName();
-        tokenWriter.replaceToken(Token.SPEC_DOC_NAME.toString(),
-                specificationDocumentName);
+//        Integer additionalInfoPageNumber = document.getAdditionalInfoPageNumber();
+//        tokenWriter.replaceToken(Token.AD_PAGE.toString(),
+//                additionalInfoPageNumber.toString());
+//
+//        String documentId = document.getDocumentId();
+//        tokenWriter.replaceToken(Token.SPEC_DOC_ID.toString(),
+//                documentId);
+//
+//        String specificationDocumentName = document.getSpecificationDocumentName();
+//        tokenWriter.replaceToken(Token.SPEC_DOC_NAME.toString(),
+//                specificationDocumentName);
     }
 }

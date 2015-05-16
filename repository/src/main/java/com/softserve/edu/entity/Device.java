@@ -30,6 +30,9 @@ public class Device {
     @ManyToOne
     private Manufacturer manufacturer;
 
+    protected Device() {
+    }
+
     public Device(String number, Set<Verification> verifications, Manufacturer manufacturer) {
         this.number = number;
         this.verifications = verifications;

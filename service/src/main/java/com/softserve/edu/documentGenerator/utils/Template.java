@@ -23,7 +23,8 @@ public enum Template {
      */
     public File getFile() {
         String path = PathBuilder.build(StandardPath.DOCUMENTS_TEMPLATES, this);
-        DocumentUtils utils = new DocumentUtils();
-        return new File(utils.getFilePath(path));
+        //DocumentUtils utils = new DocumentUtils();
+        //return new File(utils.getFilePath(path));
+        return new File(path);
     }
 }

@@ -68,11 +68,11 @@ public abstract class DocumentWriter {
      * @throws IOException
      */
     public void writeCalibrator(TokenWriter tokenWriter) throws IOException {
-//        tokenWriter.replaceToken(Token.CALIBRATOR_NAME.toString(),
-//                document.getCalibratorCompanyName());
+        tokenWriter.replaceToken(Token.CALIBRATOR_NAME.toString(),
+                document.getCalibratorCompanyName());
 //        tokenWriter.replaceToken(Token.CALIBRATOR_ADDRESS.toString(),
 //                document.getCalibratorAddress());
-//
+
 //        Date calibratorDate = document.getCalibratorCertificateGranted();
 //        String formatDate = new SimpleDateFormat("dd/MM/yyyy").format(calibratorDate);
 //        tokenWriter.replaceToken(Token.CALIBRATOR_DATE.toString(), formatDate);
@@ -86,8 +86,8 @@ public abstract class DocumentWriter {
 //                document.getSerialNumber());
 //        tokenWriter.replaceToken(Token.DEVICE_CREATOR.toString(),
 //                document.getManufacturer());
-//        tokenWriter.replaceToken(Token.DEV_NAME.toString(),
-//                document.getDeviceName());
+        tokenWriter.replaceToken(Token.DEV_NAME.toString(),
+                document.getDeviceName());
     }
 
     public void writeOwner(TokenWriter tokenWriter) throws IOException {

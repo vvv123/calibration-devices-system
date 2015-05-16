@@ -7,19 +7,19 @@ public enum StandardPath {
     DOCUMENTS_TEMPLATES {
         @Override
         public String toString() {
-            return "documentsTemplates";
+            return "/home/oleg/mydocuments/documentsTemplates";
         }
     },
     DOCUMENTS_GENERATED {
         @Override
         public String toString() {
-            return "documents";
+            return "/home/oleg/mydocuments/documents";
         }
     },
     FONTS {
         @Override
         public String toString() {
-            return "fonts";
+            return "/home/oleg/mydocuments/fonts";
         }
     }
 }
