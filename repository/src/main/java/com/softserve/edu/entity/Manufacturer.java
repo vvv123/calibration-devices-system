@@ -10,7 +10,7 @@ public class Manufacturer {
     private Long id;
 
     @Column(nullable = false)
-    private String number;
+    private String name;
 
     @OneToMany
     @JoinColumn(name = "manufacturer_id")
@@ -24,12 +24,12 @@ public class Manufacturer {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getName() {
+        return name;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Device> getDevices() {

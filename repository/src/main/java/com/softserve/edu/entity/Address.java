@@ -20,6 +20,9 @@ public class Address {
     @Column(nullable = false)
     private String building;
 
+    @Column(name="postal_index")
+    private String index;
+
     private String flat;
 
     public Address() {}
@@ -70,5 +73,13 @@ public class Address {
 
     public void setFlat(String flat) {
         this.flat = flat;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }

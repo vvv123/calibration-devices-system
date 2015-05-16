@@ -3,8 +3,9 @@ package com.softserve.edu.entity.user;
 
 import com.softserve.edu.entity.Organization;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 
+@MappedSuperclass
 public abstract class Employee extends User {
 
     private String firstName;
@@ -12,7 +13,7 @@ public abstract class Employee extends User {
     private String email;
     private String phone;
 
-    @Column(nullable = false)
+    @ManyToOne
     private Organization organization;
 
     protected Employee() {}

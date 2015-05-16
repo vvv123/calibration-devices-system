@@ -13,8 +13,8 @@ public abstract class Organization {
     private String email;
     private String phone;
 
-    //@Embedded
-    //private Address address;
+    @Embedded
+    private Address address;
 
     public Organization() {
     }
@@ -51,6 +51,14 @@ public abstract class Organization {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
 

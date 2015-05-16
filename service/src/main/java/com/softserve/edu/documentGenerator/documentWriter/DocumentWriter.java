@@ -68,44 +68,44 @@ public abstract class DocumentWriter {
      * @throws IOException
      */
     public void writeCalibrator(TokenWriter tokenWriter) throws IOException {
-        tokenWriter.replaceToken(Token.CALIBRATOR_NAME.toString(),
-                document.getCalibratorCompanyName());
-        tokenWriter.replaceToken(Token.CALIBRATOR_ADDRESS.toString(),
-                document.getCalibratorAddress());
-
-        Date calibratorDate = document.getCalibratorCertificateGranted();
-        String formatDate = new SimpleDateFormat("dd/MM/yyyy").format(calibratorDate);
-        tokenWriter.replaceToken(Token.CALIBRATOR_DATE.toString(), formatDate);
-
-        tokenWriter.replaceToken(Token.CALIBRATOR_CERT.toString(),
-                document.getCalibratorCertificateNumber());
+//        tokenWriter.replaceToken(Token.CALIBRATOR_NAME.toString(),
+//                document.getCalibratorCompanyName());
+//        tokenWriter.replaceToken(Token.CALIBRATOR_ADDRESS.toString(),
+//                document.getCalibratorAddress());
+//
+//        Date calibratorDate = document.getCalibratorCertificateGranted();
+//        String formatDate = new SimpleDateFormat("dd/MM/yyyy").format(calibratorDate);
+//        tokenWriter.replaceToken(Token.CALIBRATOR_DATE.toString(), formatDate);
+//
+//        tokenWriter.replaceToken(Token.CALIBRATOR_CERT.toString(),
+//                document.getCalibratorCertificateNumber());
     }
 
     public void writeDevice(TokenWriter tokenWriter) throws IOException {
-        tokenWriter.replaceToken(Token.SERIAL.toString(),
-                document.getSerialNumber());
-        tokenWriter.replaceToken(Token.DEVICE_CREATOR.toString(),
-                document.getManufacturer());
-        tokenWriter.replaceToken(Token.DEV_NAME.toString(),
-                document.getDeviceName());
+//        tokenWriter.replaceToken(Token.SERIAL.toString(),
+//                document.getSerialNumber());
+//        tokenWriter.replaceToken(Token.DEVICE_CREATOR.toString(),
+//                document.getManufacturer());
+//        tokenWriter.replaceToken(Token.DEV_NAME.toString(),
+//                document.getDeviceName());
     }
 
     public void writeOwner(TokenWriter tokenWriter) throws IOException {
-        tokenWriter.replaceToken(Token.OWNER_NAME.toString(), document.getName());
-        tokenWriter.replaceToken(Token.OWNER_SURNAME.toString(), document.getSurname());
+//        tokenWriter.replaceToken(Token.OWNER_NAME.toString(), document.getName());
+//        tokenWriter.replaceToken(Token.OWNER_SURNAME.toString(), document.getSurname());
     }
 
     public void writeDocument(TokenWriter tokenWriter) throws IOException {
-        tokenWriter.replaceToken(Token.ID.toString(),
-                document.getDocumentNumber());
-
-        Date documentDate = document.getDocumentDate();
-        String documentFormatDate = new SimpleDateFormat("dd/MM/yyyy").format(documentDate);
-        tokenWriter.replaceToken(Token.DOC_DATE.toString(), documentFormatDate);
+//        tokenWriter.replaceToken(Token.ID.toString(),
+//                document.getDocumentNumber());
+//
+//        Date documentDate = document.getDocumentDate();
+//        String documentFormatDate = new SimpleDateFormat("dd/MM/yyyy").format(documentDate);
+//        tokenWriter.replaceToken(Token.DOC_DATE.toString(), documentFormatDate);
     }
 
     public void writeLaboratory(TokenWriter tokenWriter) throws IOException {
-        tokenWriter.replaceToken(Token.LABORATORY_NAME.toString(),
-                document.getVerificationLaboratory());
+//        tokenWriter.replaceToken(Token.LABORATORY_NAME.toString(),
+//                document.getVerificationLaboratory());
     }
 }

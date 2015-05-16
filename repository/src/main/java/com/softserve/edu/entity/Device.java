@@ -12,7 +12,11 @@ public class Device {
     @GeneratedValue
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private DeviceType deviceType;
+
+    //@Column(nullable = false)
+    private String deviceSign;
 
     @Column(nullable = false)
     private String number;
@@ -25,9 +29,6 @@ public class Device {
 
     @ManyToOne
     private Manufacturer manufacturer;
-
-    public Device() {
-    }
 
     public Device(String number, Set<Verification> verifications, Manufacturer manufacturer) {
         this.number = number;
@@ -49,6 +50,14 @@ public class Device {
 
     public void setDeviceType(DeviceType deviceType) {
         this.deviceType = deviceType;
+    }
+
+    public String getDeviceSign() {
+        return deviceSign;
+    }
+
+    public void setDeviceSign(String deviceSign) {
+        this.deviceSign = deviceSign;
     }
 
     public String getNumber() {

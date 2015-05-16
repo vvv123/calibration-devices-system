@@ -74,7 +74,7 @@ public class CalibrationTestDTO extends ResourceSupport {
     public CalibrationTest toCalibrationTest() {
         CalibrationTest calibrationTest = new CalibrationTest();
         calibrationTest.setName(name);
-        calibrationTest.setDeviceNumber(deviceNumber);
+      //  calibrationTest.setDeviceNumber(deviceNumber);
         calibrationTest.setTemperature(temperature);
         calibrationTest.setSettingNumber(settingNumber);
         calibrationTest.setLatitude(latitude);

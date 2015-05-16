@@ -38,7 +38,7 @@ public class CalibrationTestService {
     public CalibrationTest updateTest(Long id, CalibrationTest data){
         CalibrationTest updatedCalibrationTest = testRepository.findOne(id);
         updatedCalibrationTest.setName(data.getName());
-        updatedCalibrationTest.setDeviceNumber(data.getDeviceNumber());
+       // updatedCalibrationTest.setDeviceNumber(data.getDeviceNumber());
         updatedCalibrationTest.setTemperature(data.getTemperature());
         updatedCalibrationTest.setSettingNumber(data.getSettingNumber());
         updatedCalibrationTest.setLatitude(data.getLatitude());
