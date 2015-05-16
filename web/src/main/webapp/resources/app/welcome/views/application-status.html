@@ -1,12 +1,13 @@
-<section id="applicationStatusSection" ng-controller="CheckApplicationController">
+<section id="applicationStatusSection">
+
     <div class="container">
 
-        <div class="row col-lg-12 centered">
+        <div class="row col-md-12 centered">
             <h1>{{'CHECK_APP_STATUS_TITLE' | translate}}</h1>
         </div>
 
         <div class="from-top">
-            <div ng-show="isShownForm" class="row col-lg-10 centered">
+            <div ng-show="isShownForm" class="row col-md-10 centered">
 
                 <form class="form-horizontal" ng-submit="findCode()">
 
@@ -29,7 +30,7 @@
                     </div>
                 </form>
             </div>
-            <div ng-hide="isShownForm" class="row col-lg-10 alert alert-success alert-dismissible centered"
+            <div ng-hide="isShownForm" class="row col-md-10 alert alert-success alert-dismissible centered"
                  role="alert">
                 <button ng-click="closeAlert()" type="button" class="close btn-close-alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

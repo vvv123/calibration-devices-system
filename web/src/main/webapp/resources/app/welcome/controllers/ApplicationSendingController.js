@@ -1,6 +1,7 @@
 welcomeModule
-    .controller('AddApplicationsController', ['$scope', 'CatalogueService',
+    .controller('ApplicationSendingController', ['$scope', 'CatalogueService',
         'ApplicationService',
+
         function ($scope, catalogueService, applicationService) {
 
             console.log("In AddApplicationsController.");
@@ -60,7 +61,7 @@ welcomeModule
             };
 
             /**
-             * Sends data to the server where Verefication entity will be created.
+             * Sends data to the server where Verification entity will be created.
              * On-click handler in send button.
              */
             $scope.sendApplicationData = function () {
@@ -80,7 +81,6 @@ welcomeModule
                 $scope.formData = null;
                 $scope.isShownForm = false;
             };
-
 
             $scope.closeAlert = function () {
                 $scope.isShownForm = true;

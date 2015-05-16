@@ -37,11 +37,11 @@ var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token
                         },
                         applicationSending: {
                             templateUrl: '/resources/app/welcome/views/application-sending.html',
-                            controller: 'AddApplicationsController'
+                            controller: 'ApplicationSendingController'
                         },
-                        applicationChecking: {
-                            templateUrl: '/resources/app/welcome/views/application-checking.html',
-                            controller: 'CheckApplicationController'
+                        applicationStatus: {
+                            templateUrl: '/resources/app/welcome/views/application-status.html',
+                            controller: 'ApplicationStatusController'
                         }
                     }
                 });
@@ -49,8 +49,8 @@ var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token
 
 define([
     'controllers/LoginController',
-    'controllers/AddApplicationsController',
-    'controllers/CheckApplicationController',
+    'controllers/ApplicationSendingController',
+    'controllers/ApplicationStatusController',
     'controllers/InternationalizationController',
     'services/CatalogueService',
     'services/ApplicationService'

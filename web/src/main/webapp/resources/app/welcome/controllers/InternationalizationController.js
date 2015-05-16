@@ -1,5 +1,5 @@
 welcomeModule
-    .controller('i18nCtrl', ['$scope','$translate',
+    .controller('InternationalizationController', ['$scope','$translate',
     function ($scope, $translate) {
         //i18n
         $scope.languages = ["eng", "ukr"];
