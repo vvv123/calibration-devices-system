@@ -282,7 +282,7 @@ VALUES
 'Петро', 'Палій', 'Ігорович', 'oleg.paliy@gmail.com', '0687538954',
 '877c48fh129fu1j10rf1hf10if21irh0fi',
 'COMPLETED', '2015-4-04',
-1,1,1,1,
+5,1,1,7,
 'lv_calib_omega', 'lviv_vodoKanal_employee', 'lv_verif_sdgo_lv'
 );
 
