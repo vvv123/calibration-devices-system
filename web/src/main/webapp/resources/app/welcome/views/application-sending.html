@@ -10,9 +10,9 @@
 
 
     <div class="from-top form-group ">
-        <div ng-show="isShownForm" class="row col-md-8 centered">
+        <div id="clientFormBox" ng-show="isShownForm" class="row col-md-8 centered">
 
-            <form name="clientForm" class="form-horizontal form-group"
+            <form id="clientForm" name="clientForm" class="form-horizontal form-group"
                   ng-submit="sendApplicationData()" novalidate>
 
                 <div class="form-group" show-errors>
