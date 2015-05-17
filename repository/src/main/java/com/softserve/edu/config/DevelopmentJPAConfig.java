@@ -19,11 +19,7 @@ import javax.persistence.EntityManagerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * mvn clean install tomcat7:run-war -Dspring.profiles.active=development
- */
 @Configuration
-@Profile("development")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.softserve.edu.repository")
 @PropertySource(value = "/WEB-INF/database.properties")
@@ -67,6 +63,7 @@ public class DevelopmentJPAConfig {
         jpaProperties.put("hibernate.connection.useUnicode", env.getProperty("hb.conn.useUnicode"));
         jpaProperties.put("hibernate.connection.characterEncoding", env.getProperty("hb.conn.characterEncoding"));
         jpaProperties.put("hibernate.show_sql", env.getProperty("hb.showSql"));
+        jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hb.hbm2ddl.auto"));
         jpaProperties.put("hibernate.format_sql", env.getProperty("hb.formatSql"));
         jpaProperties.put("hibernate.use_sql_comments", env.getProperty("hb.sqlComment"));
         jpaProperties.put("hibernate.enable_lazy_load_no_trans", env.getProperty("hb.enableLazyLoadNoTrans"));

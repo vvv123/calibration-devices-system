@@ -17,6 +17,10 @@
                 updatePage();
             };
 
+            $scope.onOrganizationAddFormSubmit = function () {
+                saveOrganization();
+            };
+
             updatePage();
 
             function updateTotalItems() {
@@ -39,7 +43,7 @@
                     .getPage($scope.currentPage, $scope.itemsPerPage, $scope.searchData)
                     .then(function (data) {
                         $scope.pageData = data;
-                        updateTotalItems();
                     });
+                updateTotalItems();
             }
     }]);
