@@ -27,6 +27,7 @@
   "SEARCH_BTN": "search",
   "APPLICATION_CODE": "Application code",
   "APPLICATION_STATUS": "Application status",
-  "ERROR_MESSAGE": "This field must be non-empty and filled according to specified format",
-  "TYPEAHEAD_MESSAGE": "You should choose from drop down list"
+  "REQUIRED": "This field is required",
+  "EMAIL_ERROR" :"Email should contatin '@' character. For instance: ",
+  "TYPEAHEAD_ERROR": "You should select one from drop-down list"
 }

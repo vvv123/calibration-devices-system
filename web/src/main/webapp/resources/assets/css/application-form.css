@@ -5,3 +5,25 @@
     padding-bottom: 60px;
     text-align: center;
 }
+
+.form-group .help-block {
+    display: none;
+}
+
+.form-group .has-error .help-block {
+    display: block;
+}
+
+.form-group .glyphicon-ok-sign {
+    display: none;
+}
+
+.form-group .has-success .glyphicon-ok-sign {
+    display: block;
+    color: green;
+}
+
+.form-control-feedback {
+    top: 0;
+    right: 15px;
+}
