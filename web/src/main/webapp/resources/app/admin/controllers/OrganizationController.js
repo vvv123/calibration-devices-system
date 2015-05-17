@@ -21,6 +21,7 @@
                 saveOrganization();
             };
 
+
             updatePage();
 
             function updateTotalItems() {
@@ -29,9 +30,9 @@
                 });
             }
 
-            function saveOrganization (formData) {
+            function saveOrganization() {
                 organizationService
-                    .saveOrganization(formData)
+                    .saveOrganization($scope.addFormData)
                     .then(function (data) {
                         $scope.addFormData = null;
                         updatePage();

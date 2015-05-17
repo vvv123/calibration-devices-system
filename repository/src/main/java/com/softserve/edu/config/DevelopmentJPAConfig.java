@@ -26,7 +26,6 @@ import java.util.Map;
 public class DevelopmentJPAConfig {
     @Autowired
     private Environment env;
-
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
