@@ -5,7 +5,7 @@ import com.softserve.edu.entity.Address;
 import com.softserve.edu.entity.ClientData;
 
 public class ApplicationDTOTransformer {
-    public static ClientData parseApplicationDTOtoClientData(ApplicationDTO applicationDTO) {
+    public static ClientData parseApplicationDTOToClientData(ApplicationDTO applicationDTO) {
         return new ClientData(applicationDTO.getFirstName(), applicationDTO.getLastName(), applicationDTO.getMiddleName(),
                 applicationDTO.getEmail(), applicationDTO.getPhone(), parseApplicationDTOToClientAddress(applicationDTO));
     }

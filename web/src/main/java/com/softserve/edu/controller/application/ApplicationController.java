@@ -3,20 +3,17 @@ package com.softserve.edu.controller.application;
 import com.softserve.edu.controller.application.util.EmailSendingUtil;
 import com.softserve.edu.dto.application.ApplicationDTO;
 import com.softserve.edu.dto.application.ClientCodeDTO;
-import com.softserve.edu.dto.application.ClientMessageDTO;
 import com.softserve.edu.entity.ClientData;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.service.MailService;
 import com.softserve.edu.service.VerificationService;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
-import static com.softserve.edu.controller.application.util.ApplicationDTOTransformer.parseApplicationDTOtoClientData;
+import static com.softserve.edu.controller.application.util.ApplicationDTOTransformer.parseApplicationDTOToClientData;
 
 /**
  * This is plain MVC controller.
@@ -27,7 +24,6 @@ import static com.softserve.edu.controller.application.util.ApplicationDTOTransf
 @RestController
 @PropertySource("classpath:/properties/mail.properties")
 public class ApplicationController {
-    Logger logger = LogManager.getLogger(ApplicationController.class);
 
     @Autowired
     private VerificationService verificationService;
@@ -40,7 +36,7 @@ public class ApplicationController {
 
     @RequestMapping(value = "/application/add", method = RequestMethod.POST)
     public ClientCodeDTO saveApplication(@RequestBody ApplicationDTO applicationDTO) {
-        ClientData clientData = parseApplicationDTOtoClientData((applicationDTO));
+        ClientData clientData = parseApplicationDTOToClientData((applicationDTO));
         Verification verification = new Verification(clientData, Status.SENT);
         verificationService.saveVerification(verification);
         EmailSendingUtil.setEmailSendingConfig(clientData.getFirstName(), clientData.getLastName(), verification.getId(), env);
@@ -48,8 +44,8 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/application/check/{clientCode}", method = RequestMethod.GET)
-    public ClientMessageDTO getClientCode(@PathVariable String code) {
-        logger.debug(code);
-        return new ClientMessageDTO(verificationService.findByCode(code).getStatus().name());
+    public String getClientCode(@PathVariable String clientCode) {
+        Verification verification = verificationService.findByCode(clientCode);
+        return verification == null ? "NOT_FOUND" : verification.getStatus().name();
     }
 }
