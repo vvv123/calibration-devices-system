@@ -52,7 +52,8 @@ require.config({
                 'angularTranslate', 'angularCookie', 'angularTranslateStorageCookie',
                 'angularTranslateStorageLocal', 'angularTranslateLoaderStaticFiles', 'angularUIRouter',
                 'showErrors']
-        }
+        },
+        enforceDefine: true
     }
 });
 
