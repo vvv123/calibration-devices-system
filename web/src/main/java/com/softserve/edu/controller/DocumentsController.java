@@ -1,10 +1,11 @@
 package com.softserve.edu.controller;
 
-import com.softserve.edu.documentGenerator.DocumentGenerator;
-import com.softserve.edu.documentGenerator.converter.DocumentFormat;
+import com.softserve.edu.documentGenerator.DocumentFileFactory;
 import com.softserve.edu.documentGenerator.documents.BaseDocument;
+import com.softserve.edu.documentGenerator.documents.UnfitnessCertificate;
 import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
-import com.softserve.edu.documentGenerator.utils.Template;
+import com.softserve.edu.documentGenerator.utils.DocumentFormat;
+import com.softserve.edu.documentGenerator.utils.DocumentType;
 import com.softserve.edu.entity.CalibrationTest;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.service.CalibrationTestService;
@@ -54,7 +55,7 @@ public class DocumentsController {
      * @throws IllegalStateException if one of parameters is incorrect
      */
     @RequestMapping(value = "{documentType}/{verificationID}/{testID}/{format}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getDocument(@PathVariable Template documentType,
+    public ResponseEntity<byte[]> getDocument(@PathVariable DocumentType documentType,
                                               @PathVariable Long verificationID,
                                               @PathVariable Long testID,
                                               @PathVariable DocumentFormat format) throws IOException {
@@ -72,11 +73,11 @@ public class DocumentsController {
         // get document
         BaseDocument document = createDocumentByTemplate(documentType, verification, calibrationTest);
 
-        File documentFile = DocumentGenerator.generate(document, format);
+        File documentFile = DocumentFileFactory.build(document, format);
 
         byte[] fileBytes = getFileBytes(documentFile);
 
-        return makeResponse(fileBytes, HttpStatus.OK);
+        return makeResponse(fileBytes, HttpStatus.OK, format);
     }
 
     /**
@@ -92,7 +93,7 @@ public class DocumentsController {
      * @throws IllegalStateException if one of parameters is incorrect
      */
     @RequestMapping(value = "{documentType}/{verificationID}/{format}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getDocument(@PathVariable Template documentType,
+    public ResponseEntity<byte[]> getDocument(@PathVariable DocumentType documentType,
                                               @PathVariable Long verificationID,
                                               @PathVariable DocumentFormat format) throws IOException {
         // check input parameters
@@ -110,11 +111,11 @@ public class DocumentsController {
 
         BaseDocument document = createDocumentByTemplate(documentType, verification, calibrationTest);
 
-        File documentFile = DocumentGenerator.generate(document, format);
+        File documentFile = DocumentFileFactory.build(document, format);
 
         byte[] fileBytes = getFileBytes(documentFile);
 
-        return makeResponse(fileBytes, HttpStatus.OK);
+        return makeResponse(fileBytes, HttpStatus.OK, format);
     }
 
     /**
@@ -156,13 +157,13 @@ public class DocumentsController {
             }
         });
 
-        // register custom editor for the Template enum
-        dataBinder.registerCustomEditor(Template.class, new PropertyEditorSupport() {
+        // register custom editor for the DocumentType enum
+        dataBinder.registerCustomEditor(DocumentType.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) throws IllegalArgumentException {
                 String capitalize = text.toUpperCase();
-                Template template = Template.valueOf(capitalize);
-                setValue(template);
+                DocumentType documentType = DocumentType.valueOf(capitalize);
+                setValue(documentType);
             }
         });
     }
@@ -175,43 +176,57 @@ public class DocumentsController {
      * @param <T> type of the response parameter
      * @return response that is ready to be sent
      */
-    private <T> ResponseEntity<T> makeResponse(T responseParameter, HttpStatus httpStatus) {
+    private <T> ResponseEntity<T> makeResponse(T responseParameter, HttpStatus httpStatus,
+                                               DocumentFormat documentFormat) {
         Assert.notNull(responseParameter, "Response parameter = " + responseParameter + ". " +
                 "Response parameter can't be null");
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/pdf"));
-        //String filename = "output.pdf";
-        //headers.setContentDispositionFormData(filename, filename);
+
+        String filename;
+
+        switch (documentFormat) {
+            case PDF:
+                headers.setContentType(MediaType.parseMediaType("application/pdf"));
+                filename = "output.pdf";
+                break;
+            case DOCX:
+                headers.setContentType(MediaType.parseMediaType("application/docx"));
+                filename = "output.docx";
+                break;
+            default:
+                throw new IllegalArgumentException(documentFormat.name() + "is not supported");
+        }
+        headers.setContentDispositionFormData(filename, filename);
         //headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 
         return new ResponseEntity<>(responseParameter, headers, httpStatus);
     }
 
     /**
-     * Creates and returns a document. Document type is determined by template's type.
+     * Creates and returns a document. Document type is determined by documentType's type.
      *
-     * @param template by which te type of the document is determined
+     * @param documentType by which te type of the document is determined
      * @param verification verification for this document
      * @param calibrationTest calibration test for this document
      * @return created document
      */
-    private BaseDocument createDocumentByTemplate(Template template, Verification verification,
+    private BaseDocument createDocumentByTemplate(DocumentType documentType, Verification verification,
                                                   CalibrationTest calibrationTest) {
         Assert.notNull(verification, verification.getClass() + " can't be null");
         Assert.notNull(calibrationTest, calibrationTest.getClass() + " can't be null");
 
         BaseDocument document;
 
-        // TODO: template is redundant
-        switch (template) {
+        // TODO: documentType is redundant
+        switch (documentType) {
             case VERIFICATION_CERTIFICATE:
-                document = new VerificationCertificate(template, verification, calibrationTest);
+                document = new VerificationCertificate(verification, calibrationTest);
                 break;
             case UNFITNESS_CERTIFICATE:
-                document = new VerificationCertificate(template, verification, calibrationTest);
+                document = new UnfitnessCertificate(verification, calibrationTest);
                 break;
             default:
-                throw new IllegalArgumentException(template.name() + "is not supported");
+                throw new IllegalArgumentException(documentType.name() + "is not supported");
         }
 
         return document;
