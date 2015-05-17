@@ -95,9 +95,9 @@ public abstract class BaseDocument {
     /**
      * @return the calibrator's address.
      */
-    public String getCalibratorCompanyAddress() {
+    /*public String getCalibratorCompanyAddress() {
         return getVerification().getCalibrator().getAddress().toString();
-    }
+    }*/
 
     /**
      * @return the calibrator company's certificate identification number.

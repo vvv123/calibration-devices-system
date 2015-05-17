@@ -3,6 +3,7 @@ package com.softserve.edu.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -22,7 +23,7 @@ import java.util.Map;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.softserve.edu.repository")
 @PropertySource(value = "/WEB-INF/database.properties")
-public class JPAConfiguration {
+public class DevelopmentJPAConfig {
     @Autowired
     private Environment env;
 
@@ -61,7 +62,6 @@ public class JPAConfiguration {
         jpaProperties.put("hibernate.dialect", env.getProperty("hb.dialect"));
         jpaProperties.put("hibernate.connection.useUnicode", env.getProperty("hb.conn.useUnicode"));
         jpaProperties.put("hibernate.connection.characterEncoding", env.getProperty("hb.conn.characterEncoding"));
-        jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hb.hbm2ddl.auto"));
         jpaProperties.put("hibernate.show_sql", env.getProperty("hb.showSql"));
         jpaProperties.put("hibernate.format_sql", env.getProperty("hb.formatSql"));
         jpaProperties.put("hibernate.use_sql_comments", env.getProperty("hb.sqlComment"));

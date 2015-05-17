@@ -1,16 +1,16 @@
 package com.softserve.edu.dto.admin;
 
-public class OrganizationToPage {
+public class OrganizationPageItem {
     private Long id;
     private String name;
     private String email;
     private String phone;
     private String type;
 
-    public OrganizationToPage() {
+    public OrganizationPageItem() {
     }
 
-    public OrganizationToPage(Long id, String name, String email, String phone, String type) {
+    public OrganizationPageItem(Long id, String name, String email, String phone, String type) {
         this.id = id;
         this.name = name;
         this.email = email;
