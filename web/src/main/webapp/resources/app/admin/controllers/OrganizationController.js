@@ -13,11 +13,11 @@
                 {type: 'STATE_VERIFICATION', name: 'Державний повірник'}
             ];
 
-            updatePage();
-
-            $scope.onTableHandling = function () {
-                updatePage($scope.currentPage, $scope.itemsPerPage, $scope.searchData)
+            $scope.onTableHandling = function() {
+                updatePage();
             };
+
+            updatePage();
 
             function updateTotalItems() {
                 statisticService.organizations().then(function (data) {
@@ -30,16 +30,16 @@
                     .saveOrganization(formData)
                     .then(function (data) {
                         $scope.addFormData = null;
-                        updateTotalItems();
+                        updatePage();
                     });
             }
 
-            function updatePage(currentPage, itemsPerPage, search) {
+            function updatePage() {
                 organizationService
-                    .getPage(currentPage, itemsPerPage, search)
+                    .getPage($scope.currentPage, $scope.itemsPerPage, $scope.searchData)
                     .then(function (data) {
                         $scope.pageData = data;
+                        updateTotalItems();
                     });
-                updateTotalItems();
             }
     }]);

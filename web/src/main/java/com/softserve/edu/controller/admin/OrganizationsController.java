@@ -29,8 +29,9 @@ public class OrganizationsController {
         return pageOrganizationsWithSearch(pageNumber, itemsPerPage, null);
     }
 
-    @RequestMapping(value = "page/{pageNumber}/{itemsPerPage}/{searchName}", method = RequestMethod.GET)
-    public List<OrganizationPageItem> pageOrganizationsWithSearch(@PathVariable Integer pageNumber, @PathVariable Integer itemsPerPage, @PathVariable String search) {
+    @RequestMapping(value = "page/{pageNumber}/{itemsPerPage}/{search}", method = RequestMethod.GET)
+    public List<OrganizationPageItem> pageOrganizationsWithSearch(
+            @PathVariable Integer pageNumber, @PathVariable Integer itemsPerPage, @PathVariable String search) {
         return organizationsService.getOrganizationsBySearchAndPagination(pageNumber, itemsPerPage, search)
                 .map(organization ->
                                 new OrganizationPageItem(
