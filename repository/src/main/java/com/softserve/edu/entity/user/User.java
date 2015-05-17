@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "userType")
+@Table(name="`USER`")
 public abstract class User {
     @Id
     private String username;
@@ -30,6 +31,8 @@ public abstract class User {
      * @param role (look through implementations of Role interface in each User-extended class)
      */
     public User(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
         this.role = role.roleName();
     }
 

@@ -15,6 +15,9 @@ angular.module('adminModule', [ 'ngRoute', 'spring-security-csrf-token-intercept
                 when('/users', {
                     templateUrl: "/resources/app/admin/views/UsersView.html"
                 }).
+                when('/address', {
+                    templateUrl: "/resources/app/admin/views/AddressView.html"
+                }).
                 when('/devices', {
                     templateUrl: "/resources/app/admin/views/DevicesView.html"
                 }).

@@ -6,6 +6,7 @@ import static com.softserve.edu.entity.catalogue.util.Checker.checkForEmptyText;
 import static com.softserve.edu.entity.catalogue.util.Checker.checkForNull;
 
 @Entity
+@Table(name="`DISTRICT`")
 public class District extends AbstractCatalogue {
     @Id
     @GeneratedValue

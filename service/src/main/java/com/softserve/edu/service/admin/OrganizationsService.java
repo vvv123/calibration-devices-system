@@ -39,10 +39,12 @@ public class OrganizationsService {
         organizationRepository.save(organization);
     }
 
-    public List<Organization> getOrganizationsByPagination(int pageNumber, int itemsPerPage) {
-        if (pageNumber > 0) // pagination start from 1 (Client side) but Spring Data JPA from 0
-            pageNumber--;
-        return organizationRepository.findAll(new PageRequest(pageNumber, itemsPerPage)).getContent();
+    public Page<Organization> getOrganizationsBySearchAndPagination(int pageNumber, int itemsPerPage, String search) {
+        /* pagination starts from 1 at client side, but Spring Data JPA from 0 */
+        PageRequest pageRequest = new PageRequest(pageNumber - 1, itemsPerPage);
+        return (search == null) ?
+                organizationRepository.findAll(pageRequest) :
+                organizationRepository.findByNameLike("%" + search + "%", pageRequest);
     }
 
     public String getType(Organization organization) {

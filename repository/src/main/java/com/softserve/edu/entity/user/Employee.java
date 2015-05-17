@@ -13,7 +13,7 @@ public abstract class Employee extends User {
     private String email;
     private String phone;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Organization organization;
 
     protected Employee() {}

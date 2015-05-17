@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Table(name="`CALIBRATION_TEST`")
 public class CalibrationTest {
     @Id
     @GeneratedValue

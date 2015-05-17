@@ -15,6 +15,7 @@ import java.util.UUID;
  * Contains data about whole business process of verification.
  */
 @Entity
+@Table(name="`VERIFICATION`")
 public class Verification {
 
     @Id
