@@ -1,6 +1,6 @@
 welcomeModule
-    .controller('ApplicationStatusController', ['$scope', '$http', '$translate', '$log', 'DataReceivingService',
-        function ($scope, $http, $translate, $log, dataSendingService) {
+    .controller('ApplicationStatusController', ['$scope', '$http', '$translate', '$state', '$log', 'DataReceivingService',
+        function ($scope, $http, $translate, $state, $log, dataSendingService) {
 
             $scope.isShownForm = true;
 
@@ -14,7 +14,7 @@ welcomeModule
             };
 
             $scope.closeAlert = function () {
-                $scope.isShownForm = true;
+                $state.go($state.current, {}, {reload: true});
             }
         }]);
 

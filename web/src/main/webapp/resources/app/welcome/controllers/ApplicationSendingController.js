@@ -1,8 +1,8 @@
 welcomeModule
-    .controller('ApplicationSendingController', ['$scope', 'DataReceivingService',
+    .controller('ApplicationSendingController', ['$scope', '$state', 'DataReceivingService',
         'DataSendingService',
 
-        function ($scope, dataReceivingService, dataSendingService) {
+        function ($scope, $state, dataReceivingService, dataSendingService) {
 
             $scope.isShownForm = true;
             /**
@@ -78,6 +78,6 @@ welcomeModule
             };
 
             $scope.closeAlert = function () {
-                $scope.isShownForm = true;
+                $state.go($state.current, {}, {reload: true});
             }
         }]);
