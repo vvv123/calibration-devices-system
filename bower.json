@@ -17,7 +17,6 @@
     "angular-translate-storage-cookie": "2.7.0",
     "angular-translate-loader-static-files": "2.7.0",
     "angular-translate-storage-local": "2.7.0",
-    "xtform": "1.0.1",
     "angular-bootstrap-show-errors": "2.3.0"
   }
 }
