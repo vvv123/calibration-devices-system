@@ -15,15 +15,18 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form role="form" ng-submit="addOrganization()">
+                            <form role="form" ng-submit="onOrganizationAddFormSubmit()">
                                 <div class="form-group">
                                     <label>Назва організації *</label>
-                                    <input type="text" class="form-control" ng-model="addFormData.name" required>
+                                    <input type="text" popover-trigger="focus" ng-model="addFormData.name" class="form-control" required
+                                           popover="Ви впевнені що даної організації немає в базі?
+                                           Ми рекомендуємо перевірити на наявність у таблиці нижче">
                                     <p class="help-block">Example block-level help text here.</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Електронна адреса</label>
-                                    <input type="text" class="form-control" ng-model="addFormData.email">
+                                    <input type="text" popover-trigger="focus" ng-model="addFormData.email" class="form-control"
+                                           popover="Дане поле є не обов'язковим, проте для зручності у використанні слідуйте шаблону - example@site.com">
                                 </div>
                                 <div class="form-group">
                                     <label>Номер телефону *</label>
@@ -36,8 +39,8 @@
                                         <option value="" style='display:none;' disabled>Виберіть тип...</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-default">Submit Button</button>
-                                <button type="reset" class="btn btn-default">Reset Button</button>
+                                <button type="submit" class="btn btn-success">Добавити</button>
+                                <button type="reset" class="btn btn-warning">Скинути форму</button>
                             </form>
                         </div>
                         <!-- /.col-lg-6 (nested) -->
@@ -74,9 +77,14 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-5" style="padding-bottom: 20px">
-                            <lable>Показати по
-                                <select ng-model="itemsPerPage" ng-change="loadPage()" class="form-control input-sm">
+                        <div class="col-sm-6">
+                            <label>Пошук по назві:
+                                <input type="text" ng-model="searchData" ng-change="onTableHandling()" ng-model-options="{debounce: 1000}" class="form-control input-sm">
+                            </label>
+                        </div>
+                        <div class="col-sm-offset-6">
+                            <label>Показати по
+                                <select ng-model="itemsPerPage" ng-change="onTableHandling()" class="form-control input-sm">
                                     <option value="1">1</option>
                                     <option value="3">3</option>
                                     <option value="5" selected>5</option>
@@ -85,7 +93,7 @@
                                     <option value="50">50</option>
                                     <option value="100">100</option>
                                 </select>
-                            </lable>
+                            </label>
                         </div>
                     </div>
                     <div class="row">
@@ -104,7 +112,7 @@
                                     <tr ng-repeat="organization in pageData">
                                         <td>{{ organization.id }}</td>
                                         <td>{{ organization.name }}</td>
-                                        <td>{{ niceType(organization.type) }}</td>
+                                        <td>{{ organization.type }}</td>
                                         <td>{{ organization.email }}</td>
                                         <td>{{ organization.phone }}</td>
                                     </tr>
@@ -115,7 +123,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true"
-                                        rotate="false" ng-change="loadPage()" items-per-page="itemsPerPage"></pagination>
+                                        rotate="false" ng-change="onTableHandling()" items-per-page="itemsPerPage"></pagination>
                         </div>
                     </div>
                 </div>

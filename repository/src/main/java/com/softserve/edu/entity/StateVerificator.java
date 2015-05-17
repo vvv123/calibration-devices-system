@@ -10,6 +10,10 @@ public class StateVerificator extends Organization {
         super(name, email, phone);
     }
 
+    public StateVerificator(String name, String email, String phone, Address address) {
+        super(name, email, phone, address);
+    }
+
     public StateVerificator() {
         super();
     }

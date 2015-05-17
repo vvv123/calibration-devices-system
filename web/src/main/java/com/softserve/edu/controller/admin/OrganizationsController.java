@@ -1,18 +1,14 @@
 package com.softserve.edu.controller.admin;
 
-import com.softserve.edu.dto.admin.OrganizationToPage;
+import com.softserve.edu.dto.admin.OrganizationPageItem;
 import com.softserve.edu.dto.admin.OrganizationToSaveDTO;
-import com.softserve.edu.entity.Organization;
-import com.softserve.edu.repository.OrganizationRepository;
 import com.softserve.edu.service.admin.OrganizationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(value = "/admin/organization/")
@@ -30,15 +26,21 @@ public class OrganizationsController {
 
     @RequestMapping(value = "page/{pageNumber}/{itemsPerPage}", method = RequestMethod.GET)
     public List<?> getOrganizationsPage(@PathVariable Integer pageNumber, @PathVariable Integer itemsPerPage) {
-        return organizationsService.getOrganizationsByPagination(pageNumber, itemsPerPage)
-            .stream().map(organization ->
-                new OrganizationToPage(
-                        organization.getId(),
-                        organization.getName(),
-                        organization.getEmail(),
-                        organization.getPhone(),
-                        organizationsService.getType(organization)
-                )
-            ).collect(Collectors.toList());
+        return pageOrganizationsWithSearch(pageNumber, itemsPerPage, null);
+    }
+
+    @RequestMapping(value = "page/{pageNumber}/{itemsPerPage}/{search}", method = RequestMethod.GET)
+    public List<OrganizationPageItem> pageOrganizationsWithSearch(
+            @PathVariable Integer pageNumber, @PathVariable Integer itemsPerPage, @PathVariable String search) {
+        return organizationsService.getOrganizationsBySearchAndPagination(pageNumber, itemsPerPage, search)
+                .map(organization ->
+                                new OrganizationPageItem(
+                                        organization.getId(),
+                                        organization.getName(),
+                                        organization.getEmail(),
+                                        organization.getPhone(),
+                                        organizationsService.getType(organization)
+                                )
+                ).getContent();
     }
 }
