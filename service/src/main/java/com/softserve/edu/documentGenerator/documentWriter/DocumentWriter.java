@@ -36,7 +36,6 @@ public abstract class DocumentWriter {
 
         @Override
         public String getTokenName() {
-            System.out.println("$" + name());
             return "$" + name();
         }
     }

@@ -7,7 +7,6 @@ import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
 import com.softserve.edu.documentGenerator.utils.Template;
 import com.softserve.edu.entity.CalibrationTest;
 import com.softserve.edu.entity.Verification;
-import com.softserve.edu.entity.user.Employee;
 import com.softserve.edu.service.CalibrationTestService;
 import com.softserve.edu.service.VerificationService;
 import org.apache.commons.io.IOUtils;
@@ -20,14 +19,20 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.lang.model.type.NullType;
 import java.beans.PropertyEditorSupport;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
-import static com.softserve.edu.documentGenerator.utils.Template.VERIFICATION_CERTIFICATE;
-
+/**
+ * Controller for file generation requests.
+ * Generates a requested file and sends it to the caller, in case of an error
+ * returns one of the http statuses that signals an error.
+ * All exceptions are handled by the @ExceptionHandler methods.
+ */
 @RestController
-@RequestMapping(value = "/document") // TODO: insert correct value, also security
+@RequestMapping(value = "/document") // TODO: add security support?
 public class DocumentsController {
 
     @Autowired
@@ -37,17 +42,19 @@ public class DocumentsController {
     CalibrationTestService calibrationTestService;
 
     /**
+     * Returns a document with a specific format using verification and one of it's tests.
+     * For example: .../verification_certificate/1/1/pdf.
      *
-     * @param document_type
-     * @param verificationID
-     * @param testID
-     * @param format
-     * @return
-     * @throws IOException
+     * @param documentType document to generate
+     * @param verificationID id of the verification, for which the document is to be generated
+     * @param testID one of the verification's tests, for which the document is to be generated
+     * @param format format of the resulting document
+     * @return the generated document
+     * @throws IOException if file can't be generated because of a file system error
+     * @throws IllegalStateException if one of parameters is incorrect
      */
-    // TODO fix document_type
-    @RequestMapping(value = "{document_type}/{verificationID}/{testID}/{format}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getDocument(@PathVariable Template document_type,
+    @RequestMapping(value = "{documentType}/{verificationID}/{testID}/{format}", method = RequestMethod.GET)
+    public ResponseEntity<byte[]> getDocument(@PathVariable Template documentType,
                                               @PathVariable Long verificationID,
                                               @PathVariable Long testID,
                                               @PathVariable DocumentFormat format) throws IOException {
@@ -61,20 +68,31 @@ public class DocumentsController {
         Assert.state(calibrationTest.getVerification().equals(verification),
                 calibrationTest.getClass() + " with id:" + calibrationTest.getId() + " is not assigned to " +
                         verification.getClass() + " with id: " + verification.getId());
-        // TODO: fix exception output, delete word class
 
         // get document
-        BaseDocument document = createDocumentByTemplate(document_type, verification, calibrationTest);
+        BaseDocument document = createDocumentByTemplate(documentType, verification, calibrationTest);
 
         File documentFile = DocumentGenerator.generate(document, format);
 
         byte[] fileBytes = getFileBytes(documentFile);
 
-        return makeResponse(fileBytes);
+        return makeResponse(fileBytes, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{document_type}/{verificationID}/{format}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getDocument(@PathVariable Template document_type,
+    /**
+     * Returns a document with a specific format using verification that has only one test.
+     * For example: .../verification_certificate/1/pdf.
+     *
+     * @param documentType document to generate
+     * @param verificationID id of the verification, for which the document is to be generated. This verification
+     *                       must have only one test
+     * @param format format of the resulting document
+     * @return the generated document
+     * @throws IOException if file can't be generated because of a file system error
+     * @throws IllegalStateException if one of parameters is incorrect
+     */
+    @RequestMapping(value = "{documentType}/{verificationID}/{format}", method = RequestMethod.GET)
+    public ResponseEntity<byte[]> getDocument(@PathVariable Template documentType,
                                               @PathVariable Long verificationID,
                                               @PathVariable DocumentFormat format) throws IOException {
         // check input parameters
@@ -90,36 +108,13 @@ public class DocumentsController {
         // get document
         CalibrationTest calibrationTest = verification.getCalibrationTests().iterator().next();
 
-        BaseDocument document = createDocumentByTemplate(document_type, verification, calibrationTest);
+        BaseDocument document = createDocumentByTemplate(documentType, verification, calibrationTest);
 
         File documentFile = DocumentGenerator.generate(document, format);
 
         byte[] fileBytes = getFileBytes(documentFile);
 
-        return makeResponse(fileBytes);
-    }
-
-    @InitBinder
-    public void initBinder(WebDataBinder dataBinder) {
-        // register custom editor for the DocumentFormat enum
-        dataBinder.registerCustomEditor(DocumentFormat.class, new PropertyEditorSupport() {
-            @Override
-            public void setAsText(String text) throws IllegalArgumentException {
-                String capitalize = text.toUpperCase();
-                DocumentFormat documentFormat = DocumentFormat.valueOf(capitalize);
-                setValue(documentFormat);
-            }
-        });
-
-        // register custom editor for the Template enum
-        dataBinder.registerCustomEditor(Template.class, new PropertyEditorSupport() {
-            @Override
-            public void setAsText(String text) throws IllegalArgumentException {
-                String capitalize = text.toUpperCase();
-                Template template = Template.valueOf(capitalize);
-                setValue(template);
-            }
-        });
+        return makeResponse(fileBytes, HttpStatus.OK);
     }
 
     /**
@@ -147,7 +142,53 @@ public class DocumentsController {
     }
 
     /**
-     * Creates and returns a document. Document type is determined by template type.
+     * {inherit}
+     */
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        // register custom editor for the DocumentFormat enum
+        dataBinder.registerCustomEditor(DocumentFormat.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException {
+                String capitalize = text.toUpperCase();
+                DocumentFormat documentFormat = DocumentFormat.valueOf(capitalize);
+                setValue(documentFormat);
+            }
+        });
+
+        // register custom editor for the Template enum
+        dataBinder.registerCustomEditor(Template.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException {
+                String capitalize = text.toUpperCase();
+                Template template = Template.valueOf(capitalize);
+                setValue(template);
+            }
+        });
+    }
+
+    /**
+     * Creates a response.
+     *
+     * @param responseParameter parameter of the response
+     * @param httpStatus http status of the respond
+     * @param <T> type of the response parameter
+     * @return response that is ready to be sent
+     */
+    private <T> ResponseEntity<T> makeResponse(T responseParameter, HttpStatus httpStatus) {
+        Assert.notNull(responseParameter, "Response parameter = " + responseParameter + ". " +
+                "Response parameter can't be null");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        //String filename = "output.pdf";
+        //headers.setContentDispositionFormData(filename, filename);
+        //headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+        return new ResponseEntity<>(responseParameter, headers, httpStatus);
+    }
+
+    /**
+     * Creates and returns a document. Document type is determined by template's type.
      *
      * @param template by which te type of the document is determined
      * @param verification verification for this document
@@ -156,8 +197,10 @@ public class DocumentsController {
      */
     private BaseDocument createDocumentByTemplate(Template template, Verification verification,
                                                   CalibrationTest calibrationTest) {
-        // TODO add asserts
-        BaseDocument document = null;
+        Assert.notNull(verification, verification.getClass() + " can't be null");
+        Assert.notNull(calibrationTest, calibrationTest.getClass() + " can't be null");
+
+        BaseDocument document;
 
         // TODO: template is redundant
         switch (template) {
@@ -175,32 +218,21 @@ public class DocumentsController {
     }
 
     /**
-     * Returns the file's byte array
+     * Returns the file's byte array.
      *
-     * @param document
-     * @return
-     * @throws IOException
+     * @param document the file
+     * @return bytes of the supplied file
+     * @throws IOException in case of file system error
      */
     private byte[] getFileBytes(File document) throws IOException {
-        // TODO add asserts
-        byte[] fileByteArray = null;
+        Assert.notNull(document, document.getClass() + " can't be null");
+
+        byte[] fileByteArray;
 
         try (InputStream reportInputStream = new FileInputStream(document)) {
             fileByteArray = IOUtils.toByteArray(reportInputStream);
         }
 
         return fileByteArray;
-    }
-
-    private <T> ResponseEntity<T> makeResponse(T responseParameter) {
-        // TODO add asserts
-        // make response
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/pdf"));
-        //String filename = "output.pdf";
-        //headers.setContentDispositionFormData(filename, filename);
-        //headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-
-        return new ResponseEntity<T>(responseParameter, headers, HttpStatus.OK);
     }
 }
