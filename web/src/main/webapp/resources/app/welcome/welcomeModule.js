@@ -1,9 +1,12 @@
 var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
-    'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ngCookies', 'ui.router'])
+    'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ngCookies', 'ui.router', 'ui.bootstrap.showErrors' ])
 
-    .config(['$translateProvider', '$stateProvider', '$urlRouterProvider',
+    .config(['$translateProvider', '$stateProvider', '$urlRouterProvider', 'showErrorsConfigProvider',
 
-        function ($translateProvider, $stateProvider, $urlRouterProvider) {
+        function ($translateProvider, $stateProvider, $urlRouterProvider, showErrorsConfigProvider) {
+
+            showErrorsConfigProvider.showSuccess(true);
+
             /**
              *
              *  i18n configuration.

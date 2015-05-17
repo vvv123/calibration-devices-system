@@ -15,95 +15,64 @@
             <form name="clientForm" class="form-horizontal form-group"
                   ng-submit="sendApplicationData()" novalidate>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.firstName.$invalid && !clientForm.firstName.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="firstName" class="col-md-2 control-label">
-                        {{'FIRST_NAME' | translate}}*
+                        {{'FIRST_NAME' | translate}}
                     </label>
 
                     <div class="col-md-8">
                         <input id="firstName" name="firstName" class="form-control"
                                type="text" ng-model="formData.firstName" required>
-
-                        <p ng-show="clientForm.firstName.$invalid && !clientForm.firstName.$pristine"
-                           class="help-block">
-                            {{'ERROR_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.lastName.$invalid && !clientForm.lastName.$pristine }">
+                <div class="form-group" show-errors="{ERROR}">
                     <label for="lastName" class="col-md-2 control-label">
-                        {{'LAST_NAME' | translate}}*
+                        {{'LAST_NAME' | translate}}
                     </label>
 
                     <div class="col-md-8">
                         <input id="lastName" name="lastName" class="form-control" type="text"
                                ng-model="formData.lastName" required>
-
-                        <p ng-show="clientForm.lastName.$invalid && !clientForm.lastName.$pristine"
-                           class="help-block">
-                            {{'ERROR_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.middleName.$invalid && !clientForm.middleName.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="middleName" class="col-md-2 control-label">
-                        {{'MIDDLE_NAME' | translate}}*
+                        {{'MIDDLE_NAME' | translate}}
                     </label>
 
                     <div class="col-md-8">
                         <input id="middleName" name="middleName" type="text" class="form-control"
                                ng-model="formData.middleName" required>
-
-                        <p ng-show="clientForm.middleName.$invalid && !clientForm.middleName.$pristine"
-                           class="help-block">
-                            {{'ERROR_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.email.$invalid && !clientForm.email.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="email" class="col-md-2 control-label">
-                        {{'EMAIL' | translate}}*
+                        {{'EMAIL' | translate}}
                     </label>
 
                     <div class="col-md-8">
                         <input id="email" name="email" type="email" class="form-control"
                                ng-model="formData.email" required>
-
-                        <p ng-show="clientForm.email.$invalid && !clientForm.email.$pristine"
-                           class="help-block text-center">
-                            {{'ERROR_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.phoneNumber.$invalid && !clientForm.phoneNumber.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="phoneNumber" class="col-md-2 control-label">
-                        {{'PHONE_NUMBER' | translate}}*
+                        {{'PHONE_NUMBER' | translate}}
                     </label>
 
                     <div class="col-md-8">
                         <input id="phoneNumber" name="phoneNumber" class="form-control"
                                ng-model="formData.phone" required>
-
-                        <p ng-show="clientForm.phoneNumber.$invalid && !clientForm.phoneNumber.$pristine"
-                           class="help-block">
-                            {{'ERROR_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.region.$invalid && !clientForm.region.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="region" class="col-md-2 control-label">
-                        {{'REGION' | translate}}*
+                        {{'REGION' | translate}}
                     </label>
 
                     <div class="col-md-8">
@@ -111,18 +80,12 @@
                                typeahead="region as region.designation for region in regions | filter: $viewValue"
                                typeahead-on-select="receiveDistricts(selectedRegion)"
                                typeahead-editable="false" required>
-
-                        <p ng-show="clientForm.region.$invalid && !clientForm.region.$pristine"
-                           class="help-block">
-                            {{'TYPEAHEAD_MESSAGE' | translate}}*
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.district.$invalid && !clientForm.district.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="district" class="col-md-2 control-label">
-                        {{'DISTRICT' | translate}}*
+                        {{'DISTRICT' | translate}}
                     </label>
 
                     <div class="col-md-8">
@@ -131,38 +94,26 @@
                                typeahead="district as district.designation for district in districts | filter: $viewValue"
                                typeahead-on-select="receiveLocalities(selectedDistrict)"
                                typeahead-editable="false" required>
-
-                        <p ng-show="clientForm.district.$invalid && !clientForm.district.$pristine"
-                           class="help-block">
-                            {{'TYPEAHEAD_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.locality.$invalid && !clientForm.locality.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="locality" class="col-md-2 control-label">
-                        {{'LOCALITY' | translate}}*
+                        {{'LOCALITY' | translate}}
                     </label>
 
                     <div class="col-md-8">
-                        <input id="locality" name="locality" type="text" class="form-control"
+                        <input id="locality" name="locality" class="form-control"
                                ng-model="selectedLocality"
                                typeahead="locality as locality.designation for locality in localities | filter: $viewValue"
                                typeahead-on-select="receiveStreets(selectedLocality)"
                                typeahead-editable="false" required>
-
-                        <p ng-show="clientForm.locality.$invalid && !clientForm.locality.$pristine"
-                           class="help-block">
-                            {{'TYPEAHEAD_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.street.$invalid && !clientForm.street.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="street" class="col-md-2 control-label">
-                        {{'STREET' | translate}}*
+                        {{'STREET' | translate}}
                     </label>
 
                     <div class="col-md-8">
@@ -170,18 +121,12 @@
                                typeahead="street as street.designation for street in streets | filter: $viewValue"
                                typeahead-on-select="receiveBuildings(selectedStreet)"
                                typeahead-editable="false" required>
-
-                        <p ng-show="clientForm.street.$invalid && !clientForm.street.$pristine"
-                           class="help-block">
-                            {{'TYPEAHEAD_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.building.$invalid && !clientForm.building.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="building" class="col-md-2 control-label">
-                        {{'BUILDING' | translate}}*
+                        {{'BUILDING' | translate}}
                     </label>
 
                     <div class="col-md-8">
@@ -189,48 +134,30 @@
                                ng-model="selectedBuilding"
                                typeahead="building as building.designation for building in buildings | filter: $viewValue"
                                required>
-
-                        <p ng-show="clientForm.building.$invalid && !clientForm.building.$pristine"
-                           class="help-block">
-                            {{'ERROR_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.flat.$invalid && !clientForm.flat.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="flat" class="col-md-2 control-label">{{'FLAT' | translate}}</label>
 
                     <div class="col-md-8">
                         <input id="flat" name="flat" class="form-control"
                                ng-model="formData.flat">
-
-                        <p ng-show="clientForm.flat.$invalid && !clientForm.flat.$pristine"
-                           class="help-block">
-                            {{'ERROR_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' :
-                    clientForm.postcode.$invalid && !clientForm.postcode.$pristine }">
+                <div class="form-group" show-errors>
                     <label for="postcode" class="col-md-2 control-label">{{'POSTCODE' | translate}}</label>
 
                     <div class="col-md-8">
                         <input id="postcode" name="postcode" class="form-control"
                                ng-model="formData.postcode">
-
-                        <p ng-show="clientForm.postcode.$invalid && !clientForm.postcode.$pristine"
-                           class="help-block">
-                            {{'ERROR_MESSAGE' | translate}}
-                        </p>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" >
                     <div class="col-md-offset-2 col-md-8">
-                        <button ng-disabled="clientForm.$invalid" type="submit"
-                                class="btn btn-success text-uppercase">
+                        <button type="submit" class="btn btn-success text-uppercase">
                             {{'SEND_BTN' | translate}}
                         </button>
                     </div>

@@ -10,6 +10,7 @@ require.config({
         angularCookie: '../../assets/bower_components/angular-cookies/angular-cookies.min',
         angularTranslateStorageLocal: '../../assets/bower_components/angular-translate-storage-local/angular-translate-storage-local.min',
         angularTranslateStorageCookie: '../../assets/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min',
+        showErrors: '../../assets/bower_components/angular-bootstrap-show-errors/src/showErrors.min',
         welcomeModule: 'welcomeModule'
     },
     shim: {
@@ -43,10 +44,14 @@ require.config({
         angularUIRouter: {
             deps: ['angular']
         },
+        showErrors: {
+            deps: ['angular']
+        },
         welcomeModule: {
             deps: ['angular', 'angularScroll', 'csrfInterceptor', 'angularBootstrap',
                 'angularTranslate', 'angularCookie', 'angularTranslateStorageCookie',
-                'angularTranslateStorageLocal', 'angularTranslateLoaderStaticFiles', 'angularUIRouter']
+                'angularTranslateStorageLocal', 'angularTranslateLoaderStaticFiles', 'angularUIRouter',
+                'showErrors']
         }
     }
 });

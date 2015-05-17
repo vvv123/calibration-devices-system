@@ -69,17 +69,22 @@ welcomeModule
              * On-click handler in send button.
              */
             $scope.sendApplicationData = function () {
-                $scope.formData.region = $scope.selectedRegion.designation;
-                $scope.formData.district = $scope.selectedDistrict.designation;
-                $scope.formData.locality = $scope.selectedLocality.designation;
-                $scope.formData.street = $scope.selectedStreet.designation;
-                $scope.formData.building = $scope.selectedBuilding.designation || $scope.selectedBuilding;
+                $scope.$broadcast('show-errors-check-validity');
 
-                dataSendingService.sendData("/application/add", $scope.formData)
-                    .success(function (applicationCode) {
-                        $scope.applicationCode = applicationCode
-                    });
-                $scope.isShownForm = false;
+                if ($scope.clientForm.$valid) {
+
+                    $scope.formData.region = $scope.selectedRegion.designation;
+                    $scope.formData.district = $scope.selectedDistrict.designation;
+                    $scope.formData.locality = $scope.selectedLocality.designation;
+                    $scope.formData.street = $scope.selectedStreet.designation;
+                    $scope.formData.building = $scope.selectedBuilding.designation || $scope.selectedBuilding;
+
+                    dataSendingService.sendData("/application/add", $scope.formData)
+                        .success(function (applicationCode) {
+                            $scope.applicationCode = applicationCode
+                        });
+                    $scope.isShownForm = false;
+                }
             };
 
             $scope.closeAlert = function () {
