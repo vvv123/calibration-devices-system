@@ -1,32 +1,29 @@
 package com.softserve.edu.documentGenerator.documents;
 
-import com.softserve.edu.documentGenerator.utils.Template;
+import com.softserve.edu.documentGenerator.Writer.UnfitnessCertificateWriter;
+import com.softserve.edu.documentGenerator.utils.DocumentType;
 import com.softserve.edu.entity.CalibrationTest;
 import com.softserve.edu.entity.Verification;
-import com.softserve.edu.entity.user.CalibratorEmployee;
 
 /**
- * Represent an unfitness certificate document
+ * Represents an unfitness certificate document.
  */
 public class UnfitnessCertificate extends BaseDocument {
-    private String reasonForUnfitness;
-
+    /**
+     * Constructor.
+     *
+     * @param verification    entity to get document's data from
+     * @param calibrationTest one of calibration test that is assigned to the verification
+     */
     public UnfitnessCertificate(Verification verification, CalibrationTest calibrationTest) {
-        super(Template.UNFITNESS_CERTIFICATE, verification, calibrationTest);
+        super(DocumentType.UNFITNESS_CERTIFICATE, verification, calibrationTest);
+        setWriter(new UnfitnessCertificateWriter(this));
     }
 
     /**
      * @return the date until this verification certificate is effective.
      */
-    public String getVerificationCertificateEffectiveUntilDate() {
+    public String getVerificationCertificateDate() {
         return getVerification().getVerificationFinishedDate().toString();
-    }
-
-    public String getReasonForUnfitness() {
-        return reasonForUnfitness;
-    }
-
-    public void setReasonForUnfitness(String reasonForUnfitness) {
-        this.reasonForUnfitness = reasonForUnfitness;
     }
 }

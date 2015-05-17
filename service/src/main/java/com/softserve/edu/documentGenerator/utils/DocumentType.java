@@ -3,12 +3,11 @@ package com.softserve.edu.documentGenerator.utils;
 import java.io.File;
 
 /**
- * Templates of documents supported by the application.
+ * Types of documents supported by the application.
  */
-public enum Template {
+public enum DocumentType {
     VERIFICATION_CERTIFICATE,
-    UNFITNESS_CERTIFICATE,
-    VERIFICATION_PROTOCOL;
+    UNFITNESS_CERTIFICATE;
 
     /**
      * @return the template's name with format
@@ -21,10 +20,9 @@ public enum Template {
     /**
      * @return the template's file.
      */
-    public File getFile() {
+    public File getTemplate() {
         String path = PathBuilder.build(StandardPath.DOCUMENTS_TEMPLATES, this);
-        //DocumentUtils utils = new DocumentUtils();
-        //return new File(utils.getFilePath(path));
         return new File(path);
     }
+
 }

@@ -1,17 +1,12 @@
-package com.softserve.edu.documentGenerator.documentWriter;
+package com.softserve.edu.documentGenerator.Writer;
 
 import com.softserve.edu.documentGenerator.documents.UnfitnessCertificate;
-
-import java.io.File;
 
 /**
  * Class for writing an unfitness certificate into a template file
  * Writer for unfitness certificate.
  */
-public class UnfitnessCertificateWriter {
-    private UnfitnessCertificate documentToWrite;
-    private File fileToWrite;
-
+public class UnfitnessCertificateWriter extends DocumentWriter<UnfitnessCertificate> {
     /**
      * Consists of names of tokens from file;
      */
@@ -26,12 +21,11 @@ public class UnfitnessCertificateWriter {
 
     /**
      * Constructor
+     *
      * @param documentToWrite
-     * @param fileToWrite
      */
-    public UnfitnessCertificateWriter(UnfitnessCertificate documentToWrite, File fileToWrite) {
-        this.documentToWrite = documentToWrite;
-        this.fileToWrite = fileToWrite;
+    public UnfitnessCertificateWriter(UnfitnessCertificate documentToWrite) {
+        super(documentToWrite);
     }
 
     /**

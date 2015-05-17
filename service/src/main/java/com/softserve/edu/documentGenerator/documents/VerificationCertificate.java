@@ -1,6 +1,8 @@
 package com.softserve.edu.documentGenerator.documents;
 
-import com.softserve.edu.documentGenerator.utils.Template;
+import com.softserve.edu.documentGenerator.Writer.VerificationCertificateWriter;
+import com.softserve.edu.documentGenerator.Writer.Writer;
+import com.softserve.edu.documentGenerator.utils.DocumentType;
 import com.softserve.edu.entity.CalibrationTest;
 import com.softserve.edu.entity.Verification;
 
@@ -9,20 +11,21 @@ import com.softserve.edu.entity.Verification;
  */
 public class VerificationCertificate extends BaseDocument {
 
-    public VerificationCertificate(Template template, Verification verification, CalibrationTest calibrationTest) {
-        super(Template.VERIFICATION_CERTIFICATE, verification, calibrationTest);
+    @Override
+    public Writer getWriter() {
+        return new VerificationCertificateWriter(this);
+    }
+
+    public VerificationCertificate(Verification verification, CalibrationTest calibrationTest) {
+        super(DocumentType.VERIFICATION_CERTIFICATE, verification, calibrationTest);
+        setWriter(new VerificationCertificateWriter(this));
     }
 
     /**
      * @return the date until this verification certificate is effective.
      */
     public String getVerificationCertificateEffectiveUntilDate() {
-        // TODO: how long is certificate effective?
         return getVerification().getVerificationFinishedDate().toString();
-    }
-
-    public String getDocumentId() {
-        return getVerification().getId().toString();
     }
 
     /**

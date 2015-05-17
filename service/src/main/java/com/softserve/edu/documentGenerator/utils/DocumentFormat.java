@@ -1,4 +1,4 @@
-package com.softserve.edu.documentGenerator.converter;
+package com.softserve.edu.documentGenerator.utils;
 
 /**
  * Supported formats for documents generation

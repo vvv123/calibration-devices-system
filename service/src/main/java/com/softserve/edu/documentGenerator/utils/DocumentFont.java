@@ -1,6 +1,4 @@
-package com.softserve.edu.documentGenerator.converter;
-
-import com.softserve.edu.documentGenerator.utils.StandardPath;
+package com.softserve.edu.documentGenerator.utils;
 
 import java.io.File;
 

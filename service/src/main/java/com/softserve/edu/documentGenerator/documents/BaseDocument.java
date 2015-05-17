@@ -1,16 +1,16 @@
 package com.softserve.edu.documentGenerator.documents;
 
-import com.softserve.edu.documentGenerator.utils.Template;
-import com.softserve.edu.entity.*;
+import com.softserve.edu.documentGenerator.Writer.Writer;
+import com.softserve.edu.documentGenerator.utils.DocumentType;
+import com.softserve.edu.entity.Address;
+import com.softserve.edu.entity.CalibrationTest;
+import com.softserve.edu.entity.ClientData;
+import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.user.StateVerificatorEmployee;
 import com.softserve.edu.entity.util.DeviceType;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import javax.transaction.NotSupportedException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static com.softserve.edu.entity.util.DeviceType.*;
 
 /**
  * Represents a base document.
@@ -22,63 +22,30 @@ public abstract class BaseDocument {
      */
     private Verification verification;
     /**
-     *
+     * One of calibration test that is assigned to the verification.
      */
     private CalibrationTest calibrationTest;
     /**
-     * Template file to be used for writing this document.
+     * DocumentType file to be used for writing this document.
      */
-    private Template template;
+    private DocumentType documentType;
+    /**
+     * Writer for this document.
+     */
+    private Writer writer;
 
     /**
      * Constructor.
      *
-     * @param template     template file to be used for writing this document.
-     * @param verification entity to get document's data from.
+     * @param documentType    documentType file to be used for writing this document.
+     * @param verification    entity to get document's data from.
+     * @param calibrationTest one of calibration test that is assigned to the verification
      */
-    public BaseDocument(Template template, Verification verification, CalibrationTest calibrationTest) {
-        setTemplate(template);
+    public BaseDocument(DocumentType documentType, Verification verification, CalibrationTest calibrationTest) {
+        setDocumentType(documentType);
         setVerification(verification);
         setCalibrationTest(calibrationTest);
     }
-
-    /**
-     * @param verification that is used for getting info for this document.
-     */
-    private void setVerification(Verification verification) {
-        this.verification = verification;
-    }
-
-    /**
-     * @return the template file that is used for this document.
-     */
-    public Template getTemplate() {
-        return template;
-    }
-
-    /**
-     * @param template file that is used for this document.
-     */
-    private void setTemplate(Template template) {
-        this.template = template;
-    }
-
-    /**
-     * @return the verification that is used as source of info for this document.
-     */
-    protected Verification getVerification() {
-        return verification;
-    }
-
-    public CalibrationTest getCalibrationTest() {
-        return calibrationTest;
-    }
-
-    protected void setCalibrationTest(CalibrationTest calibrationTest) {
-        this.calibrationTest = calibrationTest;
-    }
-
-    // Following getters and setters are for verification data that is received from verification entity.
 
     /**
      * @return the calibrator company's name.
@@ -158,7 +125,7 @@ public abstract class BaseDocument {
                 throw new IllegalStateException("unsupported device type");
         }
 
-        return  deviceName;
+        return deviceName;
     }
 
     /**
@@ -206,5 +173,37 @@ public abstract class BaseDocument {
                 + stateVerificatorEmployee.getFirstName();
 
         return fullName;
+    }
+
+    private void setVerification(Verification verification) {
+        this.verification = verification;
+    }
+
+    public DocumentType getDocumentType() {
+        return documentType;
+    }
+
+    private void setDocumentType(DocumentType documentType) {
+        this.documentType = documentType;
+    }
+
+    protected Verification getVerification() {
+        return verification;
+    }
+
+    public CalibrationTest getCalibrationTest() {
+        return calibrationTest;
+    }
+
+    protected void setCalibrationTest(CalibrationTest calibrationTest) {
+        this.calibrationTest = calibrationTest;
+    }
+
+    public Writer getWriter() {
+        return writer;
+    }
+
+    public void setWriter(Writer writer) {
+        this.writer = writer;
     }
 }

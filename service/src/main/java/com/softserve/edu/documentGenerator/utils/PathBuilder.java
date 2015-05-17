@@ -1,7 +1,5 @@
 package com.softserve.edu.documentGenerator.utils;
 
-import com.softserve.edu.documentGenerator.converter.DocumentFormat;
-
 /**
  * Path builder.
  */
@@ -29,12 +27,12 @@ public class PathBuilder {
     /**
      * Build path.
      *
-     * @param path     standard path constant
-     * @param template template file
+     * @param path         standard path constant
+     * @param documentType documentType file
      * @return path
      */
-    public static String build(StandardPath path, Template template) {
-        return path.toString() + Delims.FOLDER_DELIMITER + template;
+    public static String build(StandardPath path, DocumentType documentType) {
+        return path.toString() + Delims.FOLDER_DELIMITER + documentType;
     }
 
     /**
