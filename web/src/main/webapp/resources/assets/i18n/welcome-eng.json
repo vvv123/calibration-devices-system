@@ -20,6 +20,7 @@
   "STREET": "Street",
   "BUILDING": "Building",
   "FLAT": "Flat",
+  "POSTCODE": "Postcode",
   "SEND_BTN": "send",
   "APP_SENT": "Thank you! We have received your application. Your code is: ",
   "APP_STATUS_TITLE": "Please enter the code of your application",

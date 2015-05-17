@@ -21,6 +21,9 @@ welcomeModule
                 dataReceivingService.getData("/application/districts/" + selectedRegion.id)
                     .success(function (districts) {
                         $scope.districts = districts;
+                        $scope.selectedDistrict = "";
+                        $scope.selectedLocality = "";
+                        $scope.selectedStreet = "";
                     });
             };
             /**
@@ -32,6 +35,8 @@ welcomeModule
                 dataReceivingService.getData("/application/localities/" + selectedDistrict.id)
                     .success(function (localities) {
                         $scope.localities = localities;
+                        $scope.selectedLocality = "";
+                        $scope.selectedStreet = "";
                     });
             };
             /**
@@ -43,6 +48,7 @@ welcomeModule
                 dataReceivingService.getData("/application/streets/" + selectedLocality.id)
                     .success(function (streets) {
                         $scope.streets = streets;
+                        $scope.selectedStreet = "";
                     });
             };
 
@@ -66,13 +72,12 @@ welcomeModule
                 $scope.formData.region = $scope.selectedRegion.designation;
                 $scope.formData.district = $scope.selectedDistrict.designation;
                 $scope.formData.locality = $scope.selectedLocality.designation;
-                $scope.formData.district = $scope.selectedDistrict.designation;
                 $scope.formData.street = $scope.selectedStreet.designation;
                 $scope.formData.building = $scope.selectedBuilding.designation || $scope.selectedBuilding;
 
                 dataSendingService.sendData("/application/add", $scope.formData)
                     .success(function (applicationCode) {
-                        $scope.applicationCode = applicationCode.code;
+                        $scope.applicationCode = applicationCode
                     });
                 $scope.isShownForm = false;
             };

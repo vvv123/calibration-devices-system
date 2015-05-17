@@ -1,5 +1,5 @@
 var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
-    'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ngCookies','ui.router'])
+    'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ngCookies', 'ui.router'])
 
     .config(['$translateProvider', '$stateProvider', '$urlRouterProvider',
 
@@ -57,5 +57,4 @@ define([
     'controllers/InternationalizationController',
     'services/DataReceivingService',
     'services/DataSendingService'
-], function () {
-});
+], function () {});

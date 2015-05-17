@@ -18,7 +18,7 @@
                 <div class="form-group" ng-class="{ 'has-error' :
                     clientForm.firstName.$invalid && !clientForm.firstName.$pristine }">
                     <label for="firstName" class="col-md-2 control-label">
-                        {{'FIRST_NAME' | translate}}
+                        {{'FIRST_NAME' | translate}}*
                     </label>
 
                     <div class="col-md-8">
@@ -35,7 +35,7 @@
                 <div class="form-group" ng-class="{ 'has-error' :
                     clientForm.lastName.$invalid && !clientForm.lastName.$pristine }">
                     <label for="lastName" class="col-md-2 control-label">
-                        {{'LAST_NAME' | translate}}
+                        {{'LAST_NAME' | translate}}*
                     </label>
 
                     <div class="col-md-8">
@@ -52,7 +52,7 @@
                 <div class="form-group" ng-class="{ 'has-error' :
                     clientForm.middleName.$invalid && !clientForm.middleName.$pristine }">
                     <label for="middleName" class="col-md-2 control-label">
-                        {{'MIDDLE_NAME' | translate}}
+                        {{'MIDDLE_NAME' | translate}}*
                     </label>
 
                     <div class="col-md-8">
@@ -69,7 +69,7 @@
                 <div class="form-group" ng-class="{ 'has-error' :
                     clientForm.email.$invalid && !clientForm.email.$pristine }">
                     <label for="email" class="col-md-2 control-label">
-                        {{'EMAIL' | translate}}
+                        {{'EMAIL' | translate}}*
                     </label>
 
                     <div class="col-md-8">
@@ -86,7 +86,7 @@
                 <div class="form-group" ng-class="{ 'has-error' :
                     clientForm.phoneNumber.$invalid && !clientForm.phoneNumber.$pristine }">
                     <label for="phoneNumber" class="col-md-2 control-label">
-                        {{'PHONE_NUMBER' | translate}}
+                        {{'PHONE_NUMBER' | translate}}*
                     </label>
 
                     <div class="col-md-8">
@@ -103,7 +103,7 @@
                 <div class="form-group" ng-class="{ 'has-error' :
                     clientForm.region.$invalid && !clientForm.region.$pristine }">
                     <label for="region" class="col-md-2 control-label">
-                        {{'REGION' | translate}}
+                        {{'REGION' | translate}}*
                     </label>
 
                     <div class="col-md-8">
@@ -114,7 +114,7 @@
 
                         <p ng-show="clientForm.region.$invalid && !clientForm.region.$pristine"
                            class="help-block">
-                            {{'TYPEAHEAD_MESSAGE' | translate}}
+                            {{'TYPEAHEAD_MESSAGE' | translate}}*
                         </p>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                 <div class="form-group" ng-class="{ 'has-error' :
                     clientForm.district.$invalid && !clientForm.district.$pristine }">
                     <label for="district" class="col-md-2 control-label">
-                        {{'DISTRICT' | translate}}
+                        {{'DISTRICT' | translate}}*
                     </label>
 
                     <div class="col-md-8">
@@ -142,7 +142,7 @@
                 <div class="form-group" ng-class="{ 'has-error' :
                     clientForm.locality.$invalid && !clientForm.locality.$pristine }">
                     <label for="locality" class="col-md-2 control-label">
-                        {{'LOCALITY' | translate}}
+                        {{'LOCALITY' | translate}}*
                     </label>
 
                     <div class="col-md-8">
@@ -162,7 +162,7 @@
                 <div class="form-group" ng-class="{ 'has-error' :
                     clientForm.street.$invalid && !clientForm.street.$pristine }">
                     <label for="street" class="col-md-2 control-label">
-                        {{'STREET' | translate}}
+                        {{'STREET' | translate}}*
                     </label>
 
                     <div class="col-md-8">
@@ -181,7 +181,7 @@
                 <div class="form-group" ng-class="{ 'has-error' :
                     clientForm.building.$invalid && !clientForm.building.$pristine }">
                     <label for="building" class="col-md-2 control-label">
-                        {{'BUILDING' | translate}}
+                        {{'BUILDING' | translate}}*
                     </label>
 
                     <div class="col-md-8">
@@ -203,9 +203,24 @@
 
                     <div class="col-md-8">
                         <input id="flat" name="flat" class="form-control"
-                               ng-model="formData.flat" required>
+                               ng-model="formData.flat">
 
                         <p ng-show="clientForm.flat.$invalid && !clientForm.flat.$pristine"
+                           class="help-block">
+                            {{'ERROR_MESSAGE' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' :
+                    clientForm.postcode.$invalid && !clientForm.postcode.$pristine }">
+                    <label for="postcode" class="col-md-2 control-label">{{'POSTCODE' | translate}}</label>
+
+                    <div class="col-md-8">
+                        <input id="postcode" name="postcode" class="form-control"
+                               ng-model="formData.postcode">
+
+                        <p ng-show="clientForm.postcode.$invalid && !clientForm.postcode.$pristine"
                            class="help-block">
                             {{'ERROR_MESSAGE' | translate}}
                         </p>
