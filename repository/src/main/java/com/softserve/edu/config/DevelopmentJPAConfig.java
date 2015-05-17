@@ -19,7 +19,11 @@ import javax.persistence.EntityManagerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * mvn clean install tomcat7:run-war -Dspring.profiles.active=development
+ */
 @Configuration
+@Profile("development")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.softserve.edu.repository")
 @PropertySource(value = "/WEB-INF/database.properties")
