@@ -47,7 +47,7 @@ var getTranslations = function (lang) {
     } else if (lang === 'eng') {
         translations = {
             notFound: 'Application not found.',
-            sent: 'Application sent.',
+            sent: 'Application is sent.',
             received: "We have received your application and will contact you soon.",
             inProgress: 'Application in progress.',
             completed: 'Application completed.'

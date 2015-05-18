@@ -1,14 +1,21 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-
-    <div class="col-md-1" ng-controller="InternationalizationController">
-        <select class="form-control" ng-options="language for language in languages"
-                ng-model="selectedLang" ng-change="changeLanguage(selectedLang)"></select>
-    </div>
-
     <div class="container">
-
         <div class="navbar-header">
             <a class="navbar-brand" du-smooth-scroll="welcomeSection">{{ 'START' | translate }}</a>
+        </div>
+        <div ng-controller="InternationalizationController">
+            <ul class="nav navbar-nav">
+                <li class="dropdown" dropdown on-toggle="toggled(open)">
+                    <a class="dropdown-toggle" dropdown-toggle>
+                        {{ 'LANG' | translate }}  <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="lang in languages">
+                            <a href ng-click="changeLanguage(lang.key)">{{ lang.name }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
         <div>
             <ul class="nav navbar-nav navbar-right">
