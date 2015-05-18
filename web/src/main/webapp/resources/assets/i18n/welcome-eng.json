@@ -28,6 +28,11 @@
   "APPLICATION_CODE": "Application code",
   "APPLICATION_STATUS": "Application status",
   "REQUIRED": "This field is required",
-  "EMAIL_ERROR" :"Email should contatin '@' character. For instance: ",
-  "TYPEAHEAD_ERROR": "You should select one from drop-down list"
+  "EMAIL_ERROR": "Email should contatin '@' character. For instance: ",
+  "TYPEAHEAD_ERROR": "You should select one from drop-down list",
+  "BUILDING_FLAT_ERROR": "This field can only start with any numbers and end with only one alphabetic character",
+  "POSTCODE_ERROR": "Postcode must contain exactly 5 digits",
+  "ALPHABETIC_ERROR": "This field can contain only alphabetic characters",
+  "PHONE_NUMBER_ERROR": "Phone number must be filled in format: 0{city/operator code}{phone number}",
+  "LENGTH_ERROR": "Length of this field should be "
 }

@@ -21,12 +21,23 @@
                     </label>
 
                     <div class="col-md-8">
-                        <input id="firstName" name="firstName" class="form-control" ng-model="formData.firstName" required>
+                        <input id="firstName" name="firstName" class="form-control" ng-model="formData.firstName"
+                               ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/" ng-minlength="3" required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block" ng-if="clientForm.firstName.$error.required">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.firstName.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'ALPHABETIC_ERROR' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.firstName.$error.minlength">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'LENGTH_ERROR' | translate}}> 2
                         </p>
                     </div>
                 </div>
@@ -38,12 +49,23 @@
 
                     <div class="col-md-8">
                         <input id="lastName" name="lastName" class="form-control" type="text"
-                               ng-model="formData.lastName" required>
+                               ng-model="formData.lastName" ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/"
+                               ng-minlength="3" required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block" ng-if="clientForm.lastName.$error.required">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.lastName.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'ALPHABETIC_ERROR' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.lastName.$error.minlength">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'LENGTH_ERROR' | translate}}> 2
                         </p>
                     </div>
                 </div>
@@ -55,12 +77,23 @@
 
                     <div class="col-md-8">
                         <input id="middleName" name="middleName" type="text" class="form-control"
-                               ng-model="formData.middleName" required>
+                               ng-model="formData.middleName" ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/"
+                               ng-minlength="3" required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block" ng-if="clientForm.middleName.$error.required">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.middleName.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'ALPHABETIC_ERROR' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.middleName.$error.minlength">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'LENGTH_ERROR' | translate}}> 2
                         </p>
                     </div>
                 </div>
@@ -94,12 +127,17 @@
 
                     <div class="col-md-8">
                         <input id="phoneNumber" name="phoneNumber" class="form-control"
-                               ng-model="formData.phone" required>
+                               ng-model="formData.phone" ng-pattern="/^0[1-9]\d{8}$/" required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block" ng-if="clientForm.phoneNumber.$error.required">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.phoneNumber.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'PHONE_NUMBER_ERROR' | translate}}
                         </p>
                     </div>
                 </div>
@@ -191,12 +229,18 @@
                         <input id="building" name="building" class="form-control"
                                ng-model="selectedBuilding"
                                typeahead="building as building.designation for building in buildings | filter: $viewValue"
+                               ng-pattern="/^\d+[а-яА-Яa-zA-ZіІ]{0,1}$/"
                                required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block" ng-if="clientForm.building.$error.required">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.building.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'BUILDING_FLAT_ERROR' | translate}}
                         </p>
                     </div>
                 </div>
@@ -206,12 +250,12 @@
 
                     <div class="col-md-8">
                         <input id="flat" name="flat" class="form-control"
-                               ng-model="formData.flat">
+                               ng-model="formData.flat" ng-pattern="/^\d+[а-яА-Яa-zA-ZіІ]{0,1}$/">
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'REQUIRED' | translate}}
+                            {{'BUILDING_FLAT_ERROR' | translate}}
                         </p>
                     </div>
                 </div>
@@ -221,12 +265,12 @@
 
                     <div class="col-md-8">
                         <input id="postcode" name="postcode" class="form-control"
-                               ng-model="formData.postcode">
+                               ng-model="formData.postcode" ng-pattern="/^\d{5}$/">
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'REQUIRED' | translate}}
+                            {{'POSTCODE_ERROR' | translate}}
                         </p>
                     </div>
                 </div>
