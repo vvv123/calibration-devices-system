@@ -12,6 +12,14 @@
     <artifactId>service</artifactId>
     <packaging>jar</packaging>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>com.softserve.edu</groupId>

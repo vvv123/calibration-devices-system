@@ -1,6 +1,6 @@
 package com.softserve.edu.documentGenerator.documents;
 
-import com.softserve.edu.documentGenerator.Writer.Writer;
+import com.softserve.edu.documentGenerator.documentWriter.Writer;
 import com.softserve.edu.documentGenerator.utils.DocumentType;
 import com.softserve.edu.entity.Address;
 import com.softserve.edu.entity.CalibrationTest;

@@ -1,5 +1,7 @@
 package com.softserve.edu.documentGenerator.utils;
 
+import java.io.File;
+
 /**
  * Path builder.
  */
@@ -32,7 +34,9 @@ public class PathBuilder {
      * @return path
      */
     public static String build(StandardPath path, DocumentType documentType) {
-        return path.toString() + Delims.FOLDER_DELIMITER + documentType;
+        String pathToReource = path.toString() + Delims.FOLDER_DELIMITER + documentType;
+        PathBuilder pathBuilder = new PathBuilder();
+        return pathBuilder.getResource(pathToReource);
     }
 
     /**
@@ -44,7 +48,16 @@ public class PathBuilder {
      * @return path
      */
     public static String build(StandardPath path, String fileName, DocumentFormat documentFormat) {
-        return path.toString() + Delims.FOLDER_DELIMITER + fileName + Delims.DOT + documentFormat;
+        String pathToReource =  path.toString() + Delims.FOLDER_DELIMITER + fileName + Delims.DOT + documentFormat;
+        PathBuilder pathBuilder = new PathBuilder();
+        return pathBuilder.getResource(pathToReource);
+    }
+
+    private String getResource(String fileName) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+
+        return file.getAbsolutePath();
     }
 
 }

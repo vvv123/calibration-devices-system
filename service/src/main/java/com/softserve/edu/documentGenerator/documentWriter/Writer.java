@@ -1,4 +1,4 @@
-package com.softserve.edu.documentGenerator.Writer;
+package com.softserve.edu.documentGenerator.documentWriter;
 
 /**
  * Created by oleg on 17.05.15.

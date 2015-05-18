@@ -1,10 +1,11 @@
 package com.softserve.edu.documentGenerator;
 
-import com.softserve.edu.documentGenerator.DocumentCreator.DocxFileCreator;
-import com.softserve.edu.documentGenerator.DocumentCreator.PdfFileCreator;
+import com.softserve.edu.documentGenerator.documentCreator.DocxFileCreator;
+import com.softserve.edu.documentGenerator.documentCreator.PdfFileCreator;
 import com.softserve.edu.documentGenerator.documents.BaseDocument;
 import com.softserve.edu.documentGenerator.utils.DocumentFormat;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -20,8 +21,8 @@ public class DocumentFileFactory {
      * @param documentFormat format of the resulting document
      * @return built document
      */
-    public static File build(BaseDocument document, DocumentFormat documentFormat) {
-        File builtFile;
+    public static ByteArrayOutputStream build(BaseDocument document, DocumentFormat documentFormat) {
+        ByteArrayOutputStream builtFile;
 
         switch (documentFormat) {
             case DOCX:
@@ -43,8 +44,8 @@ public class DocumentFileFactory {
      * @param document with the information to build this file
      * @return built pdf file
      */
-    public static File buildPdf(BaseDocument document) {
-        File pdfDocument;
+    public static ByteArrayOutputStream buildPdf(BaseDocument document) {
+        ByteArrayOutputStream pdfDocument;
         PdfFileCreator pdfCreator = new PdfFileCreator(document);
 
         try {
@@ -63,8 +64,8 @@ public class DocumentFileFactory {
      * @param document with the information to build this file
      * @return built docx file
      */
-    public static File buildDocx(BaseDocument document) {
-        File docxDocument;
+    public static ByteArrayOutputStream buildDocx(BaseDocument document) {
+        ByteArrayOutputStream docxDocument;
         DocxFileCreator docxCreator = new DocxFileCreator(document);
 
         try {

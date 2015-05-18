@@ -1,4 +1,4 @@
-package com.softserve.edu.documentGenerator.Writer;
+package com.softserve.edu.documentGenerator.documentWriter;
 
 import com.softserve.edu.documentGenerator.documents.BaseDocument;
 

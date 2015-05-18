@@ -1,5 +1,6 @@
-package com.softserve.edu.documentGenerator.DocumentCreator;
+package com.softserve.edu.documentGenerator.documentCreator;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -13,5 +14,5 @@ public interface FileCreator {
      * @return created file
      * @throws IOException in case of file system error
      */
-    File createFile() throws IOException;
+    ByteArrayOutputStream createFile() throws IOException;
 }

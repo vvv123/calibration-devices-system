@@ -1,4 +1,4 @@
-package com.softserve.edu.documentGenerator.DocumentCreator;
+package com.softserve.edu.documentGenerator.documentCreator;
 
 import com.softserve.edu.documentGenerator.documents.BaseDocument;
 import com.softserve.edu.documentGenerator.utils.DocumentFormat;
@@ -33,10 +33,7 @@ public class DocxFileCreator implements FileCreator {
      * {inherit}
      */
     @Override
-    public File createFile() throws IOException {
-        String documentName = document.getDeviceName() + String.valueOf(document.getDeviceManufacturerSerial());
-        String outputFileName = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED, documentName, DocumentFormat.DOCX);
-
+    public ByteArrayOutputStream createFile() throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         InputStream inputStream = new FileInputStream(document.getDocumentType().getTemplate());
@@ -53,11 +50,7 @@ public class DocxFileCreator implements FileCreator {
 
         newDocument.write(outputStream);
 
-        FileOutputStream out = new FileOutputStream(outputFileName);
-        out.write(outputStream.toByteArray());
-        out.close();
-
-        return new File(outputFileName);
+        return outputStream;
     }
 
     /**
@@ -66,7 +59,7 @@ public class DocxFileCreator implements FileCreator {
      * @param sourceParagraph paragraph to copy runs from
      */
     private void setCorrectText(XWPFParagraph sourceParagraph) {
-        com.softserve.edu.documentGenerator.Writer.Writer writer = document.getWriter();
+        com.softserve.edu.documentGenerator.documentWriter.Writer writer = document.getWriter();
         int position = 0;
 
         List<XWPFRun> runs = sourceParagraph.getRuns();

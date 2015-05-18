@@ -1,4 +1,4 @@
-package com.softserve.edu.documentGenerator.DocumentCreator;
+package com.softserve.edu.documentGenerator.documentCreator;
 
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.BaseFont;
@@ -50,39 +50,36 @@ public class PdfFileCreator implements FileCreator {
      * {inherit}
      */
     @Override
-    public File createFile() throws IOException {
-        String documentName = document.getDeviceName() + String.valueOf(document.getDeviceManufacturerSerial());
-        String outputFileName = PathBuilder.build(StandardPath.DOCUMENTS_GENERATED, documentName, DocumentFormat.PDF);
-
-        File convertedFile = new File(outputFileName);
+    public ByteArrayOutputStream createFile() throws IOException {
         File docxDocument = document.getDocumentType().getTemplate();
 
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
         try {
-            convertFile(docxDocument, convertedFile);
+            createPdfFile(docxDocument, outputStream);
         } catch (IOException exception) {
             exception.printStackTrace();
             throw new RuntimeException(exception);
         }
 
-        return convertedFile;
+        return outputStream;
     }
 
     /**
      * {inherit}
      */
-    public void convertFile(File sourceFile, File outputFile) throws IOException {
+    public void createPdfFile(File sourceFile, ByteArrayOutputStream outputFile) throws IOException {
         XWPFDocument doc;
         Document resultPdfDocument;
         PdfWriter writer;
 
         try (InputStream is = new FileInputStream(sourceFile)) {
-            try (OutputStream fileStream = new FileOutputStream(outputFile)) {
                 doc = new XWPFDocument(is);
 
                 resultPdfDocument = new Document();
 
                 try {
-                    writer = PdfWriter.getInstance(resultPdfDocument, fileStream);
+                    writer = PdfWriter.getInstance(resultPdfDocument, outputFile);
                 } catch (DocumentException e) {
                     resultPdfDocument.close();
                     throw new IOException("The output file couldn't be reached.");
@@ -96,7 +93,6 @@ public class PdfFileCreator implements FileCreator {
                 writeDocument(doc, resultPdfDocument);
 
                 resultPdfDocument.close();
-            }
         }
             }
 
@@ -111,7 +107,7 @@ public class PdfFileCreator implements FileCreator {
         Font boldFont = createFont(DocumentFont.ARIAL_BD, headerSize);
 
         String text = docxParagraph.getText();
-        com.softserve.edu.documentGenerator.Writer.Writer writer = document.getWriter();
+        com.softserve.edu.documentGenerator.documentWriter.Writer writer = document.getWriter();
         text = writer.replaceTokens(text);
 
         for (XWPFRun xwpfRun : docxParagraph.getRuns()) {
@@ -142,7 +138,7 @@ public class PdfFileCreator implements FileCreator {
         }
 
         String text = docxParagraph.getText();
-        com.softserve.edu.documentGenerator.Writer.Writer writer = document.getWriter();
+        com.softserve.edu.documentGenerator.documentWriter.Writer writer = document.getWriter();
         text = writer.replaceTokens(text);
 
         Paragraph pdfParagraph = new Paragraph(text, standardFont);

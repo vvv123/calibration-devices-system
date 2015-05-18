@@ -21,10 +21,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * Controller for file generation requests.
@@ -73,11 +70,11 @@ public class DocumentsController {
         // get document
         BaseDocument document = createDocumentByTemplate(documentType, verification, calibrationTest);
 
-        File documentFile = DocumentFileFactory.build(document, format);
+        ByteArrayOutputStream documentFile = DocumentFileFactory.build(document, format);
 
-        byte[] fileBytes = getFileBytes(documentFile);
+        //byte[] fileBytes = getFileBytes(documentFile);
 
-        return makeResponse(fileBytes, HttpStatus.OK, format);
+        return makeResponse(documentFile.toByteArray(), HttpStatus.OK, format);
     }
 
     /**
@@ -111,11 +108,11 @@ public class DocumentsController {
 
         BaseDocument document = createDocumentByTemplate(documentType, verification, calibrationTest);
 
-        File documentFile = DocumentFileFactory.build(document, format);
+        ByteArrayOutputStream documentFile = DocumentFileFactory.build(document, format);
 
-        byte[] fileBytes = getFileBytes(documentFile);
+        //byte[] fileBytes = getFileBytes(documentFile);
 
-        return makeResponse(fileBytes, HttpStatus.OK, format);
+        return makeResponse(documentFile.toByteArray(), HttpStatus.OK, format);
     }
 
     /**
