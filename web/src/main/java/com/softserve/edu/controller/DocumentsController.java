@@ -30,7 +30,7 @@ import java.io.*;
  * All exceptions are handled by the @ExceptionHandler methods.
  */
 @RestController
-@RequestMapping(value = "/document") // TODO: add security support?
+@RequestMapping(value = "/document") // TODO: add security support
 public class DocumentsController {
 
     @Autowired
@@ -55,7 +55,8 @@ public class DocumentsController {
     public ResponseEntity<byte[]> getDocument(@PathVariable DocumentType documentType,
                                               @PathVariable Long verificationID,
                                               @PathVariable Long testID,
-                                              @PathVariable DocumentFormat format) throws IOException {
+                                              @PathVariable DocumentFormat format)
+            throws IOException, IllegalStateException {
         // check input parameters
         Verification verification = verificationService.findVerification(verificationID);
         Assert.notNull(verification, "can't find a " + verification.getClass() + " with id " + verificationID);
@@ -71,8 +72,6 @@ public class DocumentsController {
         BaseDocument document = createDocumentByTemplate(documentType, verification, calibrationTest);
 
         ByteArrayOutputStream documentFile = DocumentFileFactory.build(document, format);
-
-        //byte[] fileBytes = getFileBytes(documentFile);
 
         return makeResponse(documentFile.toByteArray(), HttpStatus.OK, format);
     }
@@ -92,7 +91,8 @@ public class DocumentsController {
     @RequestMapping(value = "{documentType}/{verificationID}/{format}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getDocument(@PathVariable DocumentType documentType,
                                               @PathVariable Long verificationID,
-                                              @PathVariable DocumentFormat format) throws IOException {
+                                              @PathVariable DocumentFormat format)
+            throws IOException, IllegalStateException {
         // check input parameters
         Verification verification = verificationService.findVerification(verificationID);
         Assert.notNull(verification, "can't find verification with id " + verificationID);
@@ -110,26 +110,36 @@ public class DocumentsController {
 
         ByteArrayOutputStream documentFile = DocumentFileFactory.build(document, format);
 
-        //byte[] fileBytes = getFileBytes(documentFile);
-
         return makeResponse(documentFile.toByteArray(), HttpStatus.OK, format);
     }
 
     /**
      * In case of a illegal state of a path parameter logs exception and
-     * sends http status NOT_FOUND to the client
+     * sends http status NOT_FOUND to the client.
      *
      * @param exception thrown exception
      */
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalStateException.class)
     public void illegalStateExceptionHandler(IllegalStateException exception) {
         exception.printStackTrace(); // TODO add logger
     }
 
     /**
+     * In case of an file system logs exception and
+     * sends http status NOT_FOUND to the client.
+     *
+     * @param exception thrown exception
+     */
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(IllegalStateException.class)
+    public void ioExceptionHandler(IOException exception) {
+        exception.printStackTrace();
+    }
+
+    /**
      * In case of an uncaught exception logs exception and
-     * sends http status INTERNAL_SERVER_ERROR to the client
+     * sends http status INTERNAL_SERVER_ERROR to the client.
      *
      * @param exception thrown exception
      */
@@ -227,24 +237,5 @@ public class DocumentsController {
         }
 
         return document;
-    }
-
-    /**
-     * Returns the file's byte array.
-     *
-     * @param document the file
-     * @return bytes of the supplied file
-     * @throws IOException in case of file system error
-     */
-    private byte[] getFileBytes(File document) throws IOException {
-        Assert.notNull(document, document.getClass() + " can't be null");
-
-        byte[] fileByteArray;
-
-        try (InputStream reportInputStream = new FileInputStream(document)) {
-            fileByteArray = IOUtils.toByteArray(reportInputStream);
-        }
-
-        return fileByteArray;
     }
 }
