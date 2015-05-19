@@ -7,7 +7,7 @@ import org.springframework.hateoas.ResourceSupport;
 
 public class CalibrationTestDTO extends ResourceSupport {
     private String name;
-    private String deviceNumber;
+  //  private String deviceNumber;
     private Integer temperature;
     private Integer settingNumber;
     private Double latitude;
@@ -23,13 +23,6 @@ public class CalibrationTestDTO extends ResourceSupport {
         this.name = name;
     }
 
-    public String getDeviceNumber() {
-        return deviceNumber;
-    }
-
-    public void setDeviceNumber(String deviceNumber) {
-        this.deviceNumber = deviceNumber;
-    }
 
     public Integer getTemperature() {
         return temperature;

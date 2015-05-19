@@ -1,0 +1,85 @@
+<div id="page-wrapper" ng-controller="CalibrationTestController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Тести лічильників </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    Додати тест
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form role="form" ng-submit="onCalibrationTestAddFormSubmit()">
+                                <div class="form-group">
+                                    <label>Назва тесту *</label>
+                                    <input type="text" popover-trigger="focus" ng-model="addFormData.name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Температура</label>
+                                    <input type="text" popover-trigger="focus" ng-model="addFormData.temperature" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Номер установки *</label>
+                                    <input type="text" class="form-control" required ng-model="addFormData.settingNumber">
+                                </div>
+                                <div class="form-group">
+                                    <label>Широта *</label>
+                                    <input type="text" class="form-control" required ng-model="addFormData.latitude">
+                                </div>
+                                <div class="form-group">
+                                    <label>Довгота *</label>
+                                    <input type="text" class="form-control" required ng-model="addFormData.longitude">
+                                </div>
+                                <div class="form-group">
+                                    <label>Результат тесту *</label>
+                                    <input type="text" class="form-control" required ng-model="addFormData.testResult">
+                                </div>
+
+                                <button type="submit" class="btn btn-success">Додати</button>
+                                <button type="reset" class="btn btn-warning">Скинути форму</button>
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Test Name
+                    </th>
+                    <th>Setting number
+                    </th>
+                    <th>Test status
+                    </th>
+                </tr>
+                <tr ng-repeat="calibrationTest in calibrationTests">
+                    <td>
+                        {{ calibrationTest.name }}
+                    </td>
+                    <td>
+                        {{calibrationTest.settingNumber}}
+                    </td>
+                    <td>
+                        {{calibrationTest.testResult}}
+                    </td>
+                </tr>
+            </table>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</div>
+<!-- /#page-wrapper -->

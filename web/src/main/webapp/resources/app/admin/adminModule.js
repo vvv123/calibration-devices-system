@@ -26,7 +26,12 @@ angular.module('adminModule', ['spring-security-csrf-token-interceptor',
                 .state('settings-panel', {
                     url: '/settings',
                     templateUrl: '/resources/app/admin/views/settings-panel.html'
+                })
+                .state('calibration-test-panel', {
+                    url: '/calibration-tests',
+                    templateUrl: '/resources/app/admin/views/calibration-test-panel.html'
                 });
+
             }]);
 
 angular.module('adminModule').run(function(paginationConfig){
@@ -41,6 +46,8 @@ define([
     'controllers/MainPanelController',
     'controllers/UsersController',
     'controllers/OrganizationController',
+    'controllers/CalibrationTestController',
+    'services/CalibrationTestService',
     'services/OrganizationService',
     'services/StatisticService'
 ], function () {});
