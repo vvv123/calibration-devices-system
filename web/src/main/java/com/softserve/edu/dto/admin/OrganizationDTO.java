@@ -1,19 +1,23 @@
 package com.softserve.edu.dto.admin;
 
-public class OrganizationToSaveDTO {
+public class OrganizationDTO {
     private String name;
     private String email;
     private String phone;
     private String type;
+    private String username;
+    private String password;
 
-    public OrganizationToSaveDTO() {
+    public OrganizationDTO() {
     }
 
-    public OrganizationToSaveDTO(String name, String email, String phone, String type) {
+    public OrganizationDTO(String name, String email, String phone, String type, String username, String password) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.type = type;
+        this.username = username;
+        this.password = password;
     }
 
     public String getName() {
@@ -46,5 +50,21 @@ public class OrganizationToSaveDTO {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

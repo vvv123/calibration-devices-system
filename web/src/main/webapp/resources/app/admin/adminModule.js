@@ -11,10 +11,6 @@ angular.module('adminModule', ['spring-security-csrf-token-interceptor',
                     url: '/organizations',
                     templateUrl: '/resources/app/admin/views/organizations-panel.html'
                 })
-                .state('users-panel', {
-                    url: '/users',
-                    templateUrl: '/resources/app/admin/views/users-panel.html'
-                })
                 .state('address-panel', {
                     url: '/address',
                     templateUrl: '/resources/app/admin/views/address-panel.html'
@@ -39,7 +35,6 @@ angular.module('adminModule').run(function(paginationConfig){
 define([
     'controllers/TopNavBarController',
     'controllers/MainPanelController',
-    'controllers/UsersController',
     'controllers/OrganizationController',
     'services/OrganizationService',
     'services/StatisticService'

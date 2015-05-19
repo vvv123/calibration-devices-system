@@ -6,7 +6,7 @@
             $scope.totalItems = 0;
             $scope.currentPage = 1;
             $scope.itemsPerPage = 5;
-            $scope.pageData = [];
+            $scope.pageContent = [];
             $scope.typeData = [
                 {type: 'PROVIDER', name: 'Постачальник послуг'},
                 {type: 'CALIBRATOR', name: 'Повірочна організація'},
@@ -21,20 +21,13 @@
                 saveOrganization();
             };
 
-
             updatePage();
-
-            function updateTotalItems() {
-                statisticService.organizations().then(function (data) {
-                    $scope.totalItems = data.count;
-                });
-            }
 
             function saveOrganization() {
                 organizationService
-                    .saveOrganization($scope.addFormData)
+                    .saveOrganization($scope.organizationsFormData)
                     .then(function (data) {
-                        $scope.addFormData = null;
+                        $scope.organizationsFormData = null;
                         updatePage();
                     });
             }
@@ -43,8 +36,8 @@
                 organizationService
                     .getPage($scope.currentPage, $scope.itemsPerPage, $scope.searchData)
                     .then(function (data) {
-                        $scope.pageData = data;
+                        $scope.pageContent = data.content;
+                        $scope.totalItems = data.totalItems;
                     });
-                updateTotalItems();
             }
     }]);
