@@ -15,7 +15,7 @@ import java.util.UUID;
  * Contains data about whole business process of verification.
  */
 @Entity
-@Table(name="`VERIFICATION`")
+@Table(name = "`VERIFICATION`")
 public class Verification {
 
     @Id
@@ -59,7 +59,7 @@ public class Verification {
     protected Verification() {}
 
     public Verification(ClientData clientData, Status status) {
-        this.id = id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.clientData = clientData;
         this.status = status;
     }

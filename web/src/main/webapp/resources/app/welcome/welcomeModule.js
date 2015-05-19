@@ -1,5 +1,5 @@
 var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token-interceptor',
-    'duScroll', 'ui.bootstrap', 'pascalprecht.translate', 'ngCookies', 'ui.router',
+    'ui.bootstrap', 'pascalprecht.translate', 'ngCookies', 'ui.router',
     'ui.bootstrap.showErrors'])
 
     .config(['$translateProvider', '$stateProvider', '$urlRouterProvider', 'showErrorsConfigProvider',
@@ -9,9 +9,7 @@ var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token
             showErrorsConfigProvider.showSuccess(true);
 
             /**
-             *
              *  i18n configuration.
-             *
              */
             $translateProvider.useStaticFilesLoader({
                 prefix: '/resources/assets/i18n/welcome-',
@@ -23,34 +21,31 @@ var welcomeModule = angular.module('welcomeModule', ['spring-security-csrf-token
             /**
              * Routing configuration.
              */
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/start');
 
             $stateProvider
-                .state('welcome', {
-                    url: "/",
-                    views: {
-                        navigation: {
-                            templateUrl: '/resources/app/welcome/views/navigation.html'
-                        },
-                        welcome: {
-                            templateUrl: '/resources/app/welcome/views/welcome.html'
-                        },
-                        about: {
-                            templateUrl: '/resources/app/welcome/views/about.html'
-                        },
-                        login: {
-                            templateUrl: '/resources/app/welcome/views/login.html',
-                            controller: 'LoginController'
-                        },
-                        applicationSending: {
-                            templateUrl: '/resources/app/welcome/views/application-sending.html',
-                            controller: 'ApplicationSendingController'
-                        },
-                        applicationStatus: {
-                            templateUrl: '/resources/app/welcome/views/application-status.html',
-                            controller: 'ApplicationStatusController'
-                        }
-                    }
+                .state('start', {
+                    url: '/start',
+                    templateUrl: '/resources/app/welcome/views/start.html'
+                })
+                .state('about', {
+                    url: '/about',
+                    templateUrl: '/resources/app/welcome/views/about.html'
+                })
+                .state('login', {
+                    url: '/login',
+                    templateUrl: '/resources/app/welcome/views/login.html',
+                    controller: 'LoginController'
+                })
+                .state('application-sending', {
+                    url: '/application-sending',
+                    templateUrl: '/resources/app/welcome/views/application-sending.html',
+                    controller: 'ApplicationSendingController'
+                })
+                .state('application-status', {
+                    url: '/application-status',
+                    templateUrl: '/resources/app/welcome/views/application-status.html',
+                    controller: 'ApplicationStatusController'
                 });
         }]);
 
@@ -59,6 +54,7 @@ define([
     'controllers/ApplicationSendingController',
     'controllers/ApplicationStatusController',
     'controllers/InternationalizationController',
+    'controllers/NavigationController',
     'services/DataReceivingService',
     'services/DataSendingService'
 ], function () {});

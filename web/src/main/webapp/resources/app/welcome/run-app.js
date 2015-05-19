@@ -1,7 +1,6 @@
 require.config({
     paths: {
         angular: '../../assets/bower_components/angular/angular.min',
-        angularScroll: '../../assets/bower_components/angular-scroll/angular-scroll.min',
         angularBootstrap: '../../assets/bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
         csrfInterceptor: '../../assets/bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
         angularTranslate: '../../assets/bower_components/angular-translate/angular-translate.min',
@@ -16,9 +15,6 @@ require.config({
     shim: {
         angular: {
             exports: "angular"
-        },
-        angularScroll: {
-            deps: ['angular']
         },
         angularBootstrap: {
             deps: ['angular']
@@ -48,12 +44,11 @@ require.config({
             deps: ['angular']
         },
         welcomeModule: {
-            deps: ['angular', 'angularScroll', 'csrfInterceptor', 'angularBootstrap',
+            deps: ['angular', 'csrfInterceptor', 'angularBootstrap',
                 'angularTranslate', 'angularCookie', 'angularTranslateStorageCookie',
                 'angularTranslateStorageLocal', 'angularTranslateLoaderStaticFiles', 'angularUIRouter',
                 'showErrors']
-        },
-        enforceDefine: true
+        }
     }
 });
 

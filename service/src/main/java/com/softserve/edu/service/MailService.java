@@ -1,11 +1,5 @@
 package com.softserve.edu.service;
 
-import static org.springframework.ui.velocity.VelocityEngineUtils.mergeTemplateIntoString;
-
-import java.util.Map;
-
-import javax.mail.internet.MimeMessage;
-
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +7,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
+
+import javax.mail.internet.MimeMessage;
+import java.util.Map;
+
+import static org.springframework.ui.velocity.VelocityEngineUtils.mergeTemplateIntoString;
 
 @Service
 public class MailService {
@@ -37,6 +36,7 @@ public class MailService {
 						"/velocityTemplates/mailTemplate.vm", "UTF-8",
 						templateVariables);
 				message.setText(body, true);
+
 			}
 		};
 		this.mailSender.send(preparator);
