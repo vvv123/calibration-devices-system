@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 public class ApplicationController {
-
     @Autowired
     private ClientService clientService;
 
