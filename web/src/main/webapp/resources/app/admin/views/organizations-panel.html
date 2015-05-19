@@ -15,29 +15,42 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form role="form" ng-submit="onOrganizationAddFormSubmit()">
+                            <form role="form" ng-submit="onOrganizationAddFormSubmit()" novalidate>
                                 <div class="form-group">
                                     <label>Назва організації *</label>
-                                    <input type="text" popover-trigger="focus" ng-model="addFormData.name" class="form-control" required
+                                    <input type="text" popover-trigger="focus" ng-model="organizationsFormData.name" class="form-control" required
                                            popover="Ви впевнені що даної організації немає в базі?
                                            Ми рекомендуємо перевірити на наявність у таблиці нижче">
-                                    <p class="help-block">Example block-level help text here.</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Електронна адреса</label>
-                                    <input type="text" popover-trigger="focus" ng-model="addFormData.email" class="form-control"
+                                    <input type="text" popover-trigger="focus" ng-model="organizationsFormData.email" class="form-control"
                                            popover="Дане поле є не обов'язковим, проте для зручності у використанні слідуйте шаблону - example@site.com">
                                 </div>
                                 <div class="form-group">
                                     <label>Номер телефону *</label>
-                                    <input type="text" class="form-control" required ng-model="addFormData.phone">
+                                    <input type="text" class="form-control" required ng-model="organizationsFormData.phone">
                                 </div>
                                 <div class="form-group">
                                     <label>Тип організації *</label>
-                                    <select ng-model="addFormData.type" ng-options="typeInfo.type as typeInfo.name for typeInfo in typeData"
+                                    <select ng-model="organizationsFormData.type" ng-options="typeInfo.type as typeInfo.name for typeInfo in typeData"
                                             class="form-control" required>
                                         <option value="" style='display:none;' disabled>Виберіть тип...</option>
                                     </select>
+                                </div>
+                                <hr />
+                                <p class="help-block">Заповніть дані для системного адміністратора організації</p>
+                                <div class="form-group">
+                                    <label>Логін *</label>
+                                    <input type="text" class="form-control" required ng-model="organizationsFormData.username">
+                                </div>
+                                <div class="form-group">
+                                    <label>Пароль *</label>
+                                    <input type="password" class="form-control" required ng-model="organizationsFormData.password">
+                                </div>
+                                <div class="form-group">
+                                    <label>Повторіть пароль *</label>
+                                    <input type="password" class="form-control" required ng-model="organizationsFormData.rePassword">
                                 </div>
                                 <button type="submit" class="btn btn-success">Добавити</button>
                                 <button type="reset" class="btn btn-warning">Скинути форму</button>
@@ -79,7 +92,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label>Пошук по назві:
-                                <input type="text" ng-model="searchData" ng-change="onTableHandling()" ng-model-options="{debounce: 1000}" class="form-control input-sm">
+                                <input type="text" ng-model="searchData" ng-change="onTableHandling()" ng-model-options="{debounce: 600}" class="form-control input-sm">
                             </label>
                         </div>
                         <div class="col-sm-offset-6">
@@ -109,7 +122,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="organization in pageData">
+                                    <tr ng-repeat="organization in pageContent">
                                         <td>{{ organization.id }}</td>
                                         <td>{{ organization.name }}</td>
                                         <td>{{ organization.type }}</td>

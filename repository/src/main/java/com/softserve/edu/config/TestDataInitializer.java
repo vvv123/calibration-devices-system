@@ -50,18 +50,18 @@ public class TestDataInitializer {
         Locality localityKamanka = new Locality(district2, "м. Кам'янка-бузька");
         Locality localityTernopil = new Locality(district2, "м. Тернопіль");
         Locality localityLviv = new Locality(district2, "м. Львів");
-        localityRepository.save(Arrays.asList(localityStriy, localityKamanka, localityTernopil));
+        localityRepository.save(Arrays.asList(localityStriy, localityKamanka, localityTernopil, localityLviv));
 
         Street streetStiy1 = new Street(localityStriy, "вул. Шевченка");
         Street streetStiy2 = new Street(localityStriy, "вул. Сагайдачного");
         Street streetStiy3 = new Street(localityStriy, "вул. Київська");
-        Street streetKamanka1 = new Street(localityStriy, "вул. Незалежності");
-        Street streetKamanka2 = new Street(localityStriy, "вул. Шевченка");
-        Street streetTernopil1 = new Street(localityStriy, "вул. Степана Бандери");
-        Street streetTernopil2 = new Street(localityStriy, "вул. Володимира Великого");
-        Street streetTernopil3 = new Street(localityStriy, "вул. Симоненка");
-        Street streetLviv1 = new Street(localityStriy, "вул. Зелена");
-        Street streetLviv2 = new Street(localityStriy, "вул. Личаківська");
+        Street streetKamanka1 = new Street(localityKamanka, "вул. Незалежності");
+        Street streetKamanka2 = new Street(localityKamanka, "вул. Шевченка");
+        Street streetTernopil1 = new Street(localityTernopil, "вул. Степана Бандери");
+        Street streetTernopil2 = new Street(localityTernopil, "вул. Володимира Великого");
+        Street streetTernopil3 = new Street(localityTernopil, "вул. Симоненка");
+        Street streetLviv1 = new Street(localityLviv, "вул. Зелена");
+        Street streetLviv2 = new Street(localityLviv, "вул. Личаківська");
         streetRepository.save(Arrays.asList(streetStiy1, streetStiy2, streetStiy3, streetLviv1, streetLviv2,
                 streetKamanka1, streetKamanka2, streetTernopil1, streetTernopil2, streetTernopil3));
 
