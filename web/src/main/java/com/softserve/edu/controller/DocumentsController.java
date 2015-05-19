@@ -132,7 +132,7 @@ public class DocumentsController {
      * @param exception thrown exception
      */
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    @ExceptionHandler(IllegalStateException.class)
+    @ExceptionHandler(IOException.class)
     public void ioExceptionHandler(IOException exception) {
         exception.printStackTrace();
     }
