@@ -1,8 +1,8 @@
 welcomeModule
-    .controller('ApplicationSendingController', ['$scope', '$state', 'DataReceivingService',
+    .controller('ApplicationSendingController', ['$scope', '$state', '$log', 'DataReceivingService',
         'DataSendingService',
 
-        function ($scope, $state, dataReceivingService, dataSendingService) {
+        function ($scope, $state, $log, dataReceivingService, dataSendingService) {
 
             $scope.isShownForm = true;
             /**
@@ -37,6 +37,14 @@ welcomeModule
                         $scope.localities = localities;
                         $scope.selectedLocality = "";
                         $scope.selectedStreet = "";
+                    });
+                //Receives providers corresponding this district
+                $scope.providers = ["ЛКП \"Львівводоканал\"", "Львівгаз", "Львівобленерго"];
+                $log.log(selectedDistrict.designation);
+                dataReceivingService.getData("/application/providers/" +
+                encodeURIComponent(JSON.stringify("Dmytro")))
+                    .success(function (providers) {
+                        $log.log(providers)
                     });
             };
             /**
@@ -90,4 +98,5 @@ welcomeModule
             $scope.closeAlert = function () {
                 $state.go($state.current, {}, {reload: true});
             }
-        }]);
+        }])
+;

@@ -3,14 +3,22 @@ package com.softserve.edu.controller.application;
 import com.softserve.edu.controller.application.util.EmailSendingUtil;
 import com.softserve.edu.dto.application.ApplicationDTO;
 import com.softserve.edu.entity.ClientData;
+import com.softserve.edu.entity.Organization;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.service.MailService;
+import com.softserve.edu.service.ProviderService;
 import com.softserve.edu.service.VerificationService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.softserve.edu.controller.application.util.ApplicationDTOTransformer.parseApplicationDTOToClientData;
 
@@ -24,8 +32,13 @@ import static com.softserve.edu.controller.application.util.ApplicationDTOTransf
 @PropertySource("classpath:/properties/mail.properties")
 public class ApplicationController {
 
+    private Logger logger = Logger.getLogger(ApplicationController.class);
+
     @Autowired
     private VerificationService verificationService;
+
+    @Autowired
+    private ProviderService providerService;
 
     @Autowired
     private MailService mailService;
@@ -46,5 +59,22 @@ public class ApplicationController {
     public String getClientCode(@PathVariable String clientCode) {
         Verification verification = verificationService.findByCode(clientCode);
         return verification == null ? "NOT_FOUND" : verification.getStatus().name();
+    }
+
+    @RequestMapping(value = "/application/providers/{district}", method = RequestMethod.GET)
+    public List<String> getProvidersCorrespondingDistrict(@PathVariable String district)
+            throws UnsupportedEncodingException {
+        String decodedDistrict = URLDecoder.decode(district, "UTF-8")
+                .replaceAll("\\%28", "(")
+                .replaceAll("\\%29", ")")
+                .replaceAll("\\+", "%20")
+                .replaceAll("\\%27", "'")
+                .replaceAll("\\%21", "!")
+                .replaceAll("\\%7E", "~");
+        logger.debug(decodedDistrict);
+        return providerService.findByDistrictDesignation(decodedDistrict)
+                .stream()
+                .map(Organization::getName)
+                .collect(Collectors.toList());
     }
 }

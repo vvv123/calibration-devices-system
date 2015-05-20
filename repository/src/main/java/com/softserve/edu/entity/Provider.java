@@ -1,9 +1,7 @@
 package com.softserve.edu.entity;
 
-import com.softserve.edu.entity.user.ProviderEmployee;
-
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue(value = "PROVIDER")
@@ -16,7 +14,5 @@ public class Provider extends Organization {
         super(name, email, phone, address);
     }
 
-    public Provider() {
-        super();
-    }
+    public Provider() {}
 }

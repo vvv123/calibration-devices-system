@@ -3,12 +3,11 @@ package com.softserve.edu.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="`ORGANIZATION`")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "organizationType")
 public abstract class Organization {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String name;
     private String email;
@@ -17,8 +16,7 @@ public abstract class Organization {
     @Embedded
     private Address address;
 
-    public Organization() {
-    }
+    public Organization() {}
 
     public Organization(String name, String email, String phone) {
         this.name = name;
@@ -68,6 +66,5 @@ public abstract class Organization {
     public void setAddress(Address address) {
         this.address = address;
     }
-
 }
 

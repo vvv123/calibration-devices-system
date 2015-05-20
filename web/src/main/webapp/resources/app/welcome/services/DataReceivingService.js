@@ -1,7 +1,7 @@
 welcomeModule
     .service('DataReceivingService', ['$http','$log', function ($http, $log) {
         this.getData = function (url) {
-            $log.debug(url);
+            $log.log(url);
             return $http.get(url)
                 .success(function (data) {
                     return data;

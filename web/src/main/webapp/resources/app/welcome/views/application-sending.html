@@ -34,11 +34,6 @@
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             {{'ALPHABETIC_ERROR' | translate}}
                         </p>
-
-                        <p class="help-block" ng-if="clientForm.firstName.$error.minlength">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'LENGTH_ERROR' | translate}}> 2
-                        </p>
                     </div>
                 </div>
 
@@ -62,11 +57,6 @@
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             {{'ALPHABETIC_ERROR' | translate}}
                         </p>
-
-                        <p class="help-block" ng-if="clientForm.lastName.$error.minlength">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'LENGTH_ERROR' | translate}}> 2
-                        </p>
                     </div>
                 </div>
 
@@ -89,11 +79,6 @@
                         <p class="help-block" ng-if="clientForm.middleName.$error.pattern">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             {{'ALPHABETIC_ERROR' | translate}}
-                        </p>
-
-                        <p class="help-block" ng-if="clientForm.middleName.$error.minlength">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'LENGTH_ERROR' | translate}}> 2
                         </p>
                     </div>
                 </div>
@@ -229,18 +214,12 @@
                         <input id="building" name="building" class="form-control"
                                ng-model="selectedBuilding"
                                typeahead="building as building.designation for building in buildings | filter: $viewValue"
-                               ng-pattern="/^\d+[а-яА-Яa-zA-ZіІ]{0,1}$/"
                                required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
-                        <p class="help-block" ng-if="clientForm.building.$error.required">
+                        <p class="help-block">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             {{'REQUIRED' | translate}}
-                        </p>
-
-                        <p class="help-block" ng-if="clientForm.building.$error.pattern">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'BUILDING_FLAT_ERROR' | translate}}
                         </p>
                     </div>
                 </div>
@@ -249,28 +228,28 @@
                     <label for="flat" class="col-md-2 control-label">{{'FLAT' | translate}}</label>
 
                     <div class="col-md-8">
-                        <input id="flat" name="flat" class="form-control"
-                               ng-model="formData.flat" ng-pattern="/^\d+[а-яА-Яa-zA-ZіІ]{0,1}$/">
-                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
-
-                        <p class="help-block">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'BUILDING_FLAT_ERROR' | translate}}
-                        </p>
+                        <input id="flat" name="flat" class="form-control" ng-model="formData.flat">
+                        <span class="form-control-feedback glyphicon form-horizontal glyphicon glyphicon-ok-sign"></span>
                     </div>
                 </div>
 
                 <div class="form-group" show-errors>
-                    <label for="postcode" class="col-md-2 control-label">{{'POSTCODE' | translate}}</label>
+                    <label for="provider" class="col-md-2 control-label">
+                        {{'PROVIDER' | translate}}
+                    </label>
 
                     <div class="col-md-8">
-                        <input id="postcode" name="postcode" class="form-control"
-                               ng-model="formData.postcode" ng-pattern="/^\d{5}$/">
+                        <input id="provider" name="provider" class="form-control"
+                               ng-model="selectedBuilding"
+                               typeahead="provider for provider in providers | filter: $viewValue"
+                               typeahead-editable="false"
+                               popover="{{'PROVIDER_INFO' | translate}}"
+                               popover-trigger="focus" required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'POSTCODE_ERROR' | translate}}
+                            {{'REQUIRED' | translate}}
                         </p>
                     </div>
                 </div>
@@ -286,7 +265,7 @@
             </form>
         </div>
 
-        <div ng-hide="isShownForm" class="row col-lg-10 alert alert-success alert-dismissible centered"
+        <div ng-hide="isShownForm" class="row col-md-10 alert alert-success alert-dismissible centered"
              role="alert">
             <button ng-click="closeAlert()" type="button" class="close btn-close-alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -294,4 +273,5 @@
             {{'APP_SENT' | translate}}{{ applicationCode }}
         </div>
     </div>
+
 </section>
