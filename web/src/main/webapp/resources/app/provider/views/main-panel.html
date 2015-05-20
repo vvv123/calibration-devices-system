@@ -1,0 +1,98 @@
+<div id="page-wrapper" ng-controller="MainPanelController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Головна панель</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-bank fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{ statistics.organization }}</div>
+                            <div>Організації</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#/organizations">
+                    <div class="panel-footer">
+                        <span class="pull-left">Детальніше</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-users fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{ statistics.users }}</div>
+                            <div>Користувачі</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#/users">
+                    <div class="panel-footer">
+                        <span class="pull-left">Детальніше</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-hdd-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{ statistics.devices }}</div>
+                            <div>Лічильники</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#/devices">
+                    <div class="panel-footer">
+                        <span class="pull-left">Детальніше</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-check-square-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{ statistics.verifications }}</div>
+                            <div>Повірки</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#/">
+                    <div class="panel-footer">
+                        <span class="pull-left">Детальніше</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

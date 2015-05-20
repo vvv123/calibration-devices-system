@@ -69,4 +69,9 @@ public class ApplicationController {
                 .map(provider -> new ClientApplicationFieldDTO(provider.getId(), provider.getName()))
                 .collect(Collectors.toList());
     }
+    @RequestMapping(value = "/provider/application/update", method = RequestMethod.GET)
+    public String getAllApplication() {
+        System.out.println("HELLOOOOOOOO");
+        return "applications";
+    }
 }
