@@ -10,10 +10,22 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 
-<body id="welcomeModule">
+<body id="welcomeModule" ng-controller="NavigationController">
 
-<div ng-controller="NavigationController">
+<div class="loader" ng-if="!loaded">
+    <style type="text/css">
+        div.loader {
+            position: static;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <h1>App is loading</h1>
+    <h1>App is loading</h1>
+    <h1>App is loading</h1>
+</div>
 
+<div id="content" ng-show="loaded" class="ng-hide">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">

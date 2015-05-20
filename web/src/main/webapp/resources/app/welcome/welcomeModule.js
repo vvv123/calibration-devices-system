@@ -56,5 +56,6 @@ define([
     'controllers/InternationalizationController',
     'controllers/NavigationController',
     'services/DataReceivingService',
-    'services/DataSendingService'
+    'services/DataSendingService',
+    'directives/OnStartupMessage'
 ], function () {});
