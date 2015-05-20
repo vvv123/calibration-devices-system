@@ -17,14 +17,17 @@ welcomeModule
 
             var response = $http(request);
             response.success(function (data) {
-                    window.location.replace(redirectByRole(data));
+                var path = redirectByRole(data);
+                $scope.loginForm.password = null;
+                if (path)
+                    window.location.replace(path);
             });
             response.error(function (data) {
                 console.dir(data);
             });
 
             function redirectByRole (role) {
-                var path = '/';
+                var path = undefined;
                 if (role == "SYS_ADMIN")
                     path = '/admin';
                 else if (role == 'CALIBRATOR_EMPLOYEE' || role == 'CALIBRATOR_ADMIN')
