@@ -58,6 +58,9 @@ public class TestJPAConfig {
         jpaProperties.put("hibernate.show_sql", "true");
         jpaProperties.put("hibernate.format_sql", "true");
         jpaProperties.put("hibernate.use_sql_comments", "true");
+        jpaProperties.put("hibernate.connection.useUnicode", "true");
+        jpaProperties.put("hibernate.connection.characterEncoding", "UTF-8");
+
         entityManagerFactoryBean.setJpaPropertyMap(jpaProperties);
 
         return entityManagerFactoryBean;

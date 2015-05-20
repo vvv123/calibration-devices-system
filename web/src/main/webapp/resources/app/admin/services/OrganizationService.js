@@ -3,11 +3,11 @@ angular
     .factory('OrganizationService', function ($http) {
         return {
             getPage: function (pageNumber, itemsPerPage, search) {
-                var path = '/admin/organization/page/' + pageNumber + '/' + itemsPerPage;
+                var url = '/admin/organization/page/' + pageNumber + '/' + itemsPerPage;
                 if (search != null && search != undefined && search != "")
-                    path += '/' + search;
+                    url += '/' + search;
 
-                return $http.get(path)
+                return $http.get(url)
                     .then(function(result) {
                         return result.data;
                     });

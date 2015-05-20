@@ -88,7 +88,10 @@ public class TestDataInitializer {
         StateVerificator stateVerificator1 = new StateVerificator("Наш повірник", "trustable@lviv.org.ua", "124-33-33-434",
                 new Address("Львівськa", "Львівський", "м. Львів", "вул. Зелена", "1", "24", null));
 
-        organizationRepository.save(Arrays.asList(provider1, provider2, calibrator1, stateVerificator1));
+        StateVerificator stateVerificator2 = new StateVerificator("WelcomeVerificator", "trustable@lviv.org.ua", "124-33-33-434",
+                new Address("Львівськa", "Львівський", "м. Львів", "вул. Зелена", "1", "24", null));
+
+        organizationRepository.save(Arrays.asList(provider1, provider2, calibrator1, stateVerificator1, stateVerificator2));
 
         /* 'admin'/'password' */
         userRepository.save(new SystemAdmin("admin", "$2a$10$xTq90ybFNT/W0TfNHdQ4e.0DL1WO/7vebrpDZybGRwdEk/7F8ULEi"));
