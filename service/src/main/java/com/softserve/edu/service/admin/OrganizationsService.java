@@ -5,12 +5,17 @@ import com.softserve.edu.entity.Organization;
 import com.softserve.edu.entity.Provider;
 import com.softserve.edu.entity.StateVerificator;
 import com.softserve.edu.repository.OrganizationRepository;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -42,9 +47,9 @@ public class OrganizationsService {
     public Page<Organization> getOrganizationsBySearchAndPagination(int pageNumber, int itemsPerPage, String search) {
         /* pagination starts from 1 at client side, but Spring Data JPA from 0 */
         PageRequest pageRequest = new PageRequest(pageNumber - 1, itemsPerPage);
-        return (search == null) ?
+        return search == null ?
                 organizationRepository.findAll(pageRequest) :
-                organizationRepository.findByNameLike("%" + search + "%", pageRequest);
+                organizationRepository.findByNameLikeIgnoreCase("%" + search + "%", pageRequest);
     }
 
     public String getType(Organization organization) {
