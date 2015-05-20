@@ -40,18 +40,9 @@ welcomeModule
                     });
                 //Receives providers corresponding this district
                 $scope.providers = ["ЛКП \"Львівводоканал\"", "Львівгаз", "Львівобленерго"];
-
                 $log.log(selectedDistrict.designation);
-
-                var req = {
-                    method: 'GET',
-                    url: '/application/providers/' + selectedDistrict.designation,
-                    headers: {
-                        "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.7",
-                        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-                    }
-                };
-                $http(req)
+                dataReceivingService.getData("/application/providers/"
+                + selectedDistrict.designation)
                     .success(function (providers) {
                         $log.log(providers);
                     });

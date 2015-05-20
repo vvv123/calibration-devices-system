@@ -23,9 +23,11 @@ import java.util.Map;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.softserve.edu.repository")
 @PropertySource(value = "/WEB-INF/database.properties")
+@Profile("dev")
 public class DevelopmentJPAConfig {
     @Autowired
     private Environment env;
+
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -49,7 +51,7 @@ public class DevelopmentJPAConfig {
 
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory,
-            DriverManagerDataSource dataSource) {
+                                                         DriverManagerDataSource dataSource) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         transactionManager.setDataSource(dataSource);

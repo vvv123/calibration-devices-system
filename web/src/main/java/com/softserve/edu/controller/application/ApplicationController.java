@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -64,9 +63,8 @@ public class ApplicationController {
     @RequestMapping(value = "/application/providers/{district}", method = RequestMethod.GET)
     public List<String> getProvidersCorrespondingDistrict(@PathVariable String district)
             throws UnsupportedEncodingException {
-        String decodedDistrict = UriUtils.decode(district, "UTF-8");
-        logger.debug(decodedDistrict);
-        return providerService.findByDistrictDesignation(decodedDistrict)
+        logger.debug(district);
+        return providerService.findByDistrictDesignation(district)
                 .stream()
                 .map(Organization::getName)
                 .collect(Collectors.toList());
