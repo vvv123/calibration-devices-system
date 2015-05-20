@@ -17,13 +17,24 @@ welcomeModule
 
             var response = $http(request);
             response.success(function (data) {
-                if (data == "SYS_ADMIN")
-                    window.location.replace('/resources/app/admin/index.html');
+                    window.location.replace(redirectByRole(data));
             });
             response.error(function (data) {
-                console.dir("OCCURRED ERROR");
                 console.dir(data);
-            })
+            });
+
+            function redirectByRole (role) {
+                var path = '/';
+                if (role == "SYS_ADMIN")
+                    path = '/admin';
+                else if (role == 'CALIBRATOR_EMPLOYEE' || role == 'CALIBRATOR_ADMIN')
+                    path = '/calibrator';
+                else if (role == 'PROVIDER_EMPLOYEE' || role == 'PROVIDER_ADMIN')
+                    path = '/provider';
+                else if (role == 'STATE_VERIFICATOR_EMPLOYEE' || role == 'STATE_VERIFICATOR_ADMIN')
+                    path = '/verification';
+                return path;
+            }
         };
 
     }]);
