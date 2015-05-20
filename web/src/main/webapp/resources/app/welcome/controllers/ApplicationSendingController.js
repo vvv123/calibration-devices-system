@@ -1,8 +1,8 @@
 welcomeModule
-    .controller('ApplicationSendingController', ['$scope', '$state', '$log', 'DataReceivingService',
+    .controller('ApplicationSendingController', ['$scope', '$state', '$http', '$log', 'DataReceivingService',
         'DataSendingService',
 
-        function ($scope, $state, $log, dataReceivingService, dataSendingService) {
+        function ($scope, $state, $http, $log, dataReceivingService, dataSendingService) {
 
             $scope.isShownForm = true;
             /**
@@ -40,11 +40,20 @@ welcomeModule
                     });
                 //Receives providers corresponding this district
                 $scope.providers = ["ЛКП \"Львівводоканал\"", "Львівгаз", "Львівобленерго"];
+
                 $log.log(selectedDistrict.designation);
-                dataReceivingService.getData("/application/providers/" +
-                encodeURIComponent(JSON.stringify("Dmytro")))
+
+                var req = {
+                    method: 'GET',
+                    url: '/application/providers/' + selectedDistrict.designation,
+                    headers: {
+                        "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.7",
+                        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+                    }
+                };
+                $http(req)
                     .success(function (providers) {
-                        $log.log(providers)
+                        $log.log(providers);
                     });
             };
             /**
