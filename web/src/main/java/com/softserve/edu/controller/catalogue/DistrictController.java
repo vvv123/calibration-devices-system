@@ -1,7 +1,7 @@
 package com.softserve.edu.controller.catalogue;
 
-import com.softserve.edu.dto.catalogue.CatalogueDTO;
-import com.softserve.edu.dto.catalogue.util.CatalogueDTOTransformer;
+import com.softserve.edu.dto.application.ClientApplicationFieldDTO;
+import com.softserve.edu.dto.application.util.CatalogueDTOTransformer;
 import com.softserve.edu.service.catalogue.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +18,7 @@ public class DistrictController {
     private DistrictService districtService;
 
     @RequestMapping(value = "application/districts/{regionId}", method = RequestMethod.GET)
-    public List<CatalogueDTO> getDistrictsCorrespondingRegion(@PathVariable Long regionId) {
+    public List<ClientApplicationFieldDTO> getDistrictsCorrespondingRegion(@PathVariable Long regionId) {
         return CatalogueDTOTransformer.toDto(districtService.getDistrictsCorrespondingRegion(regionId));
     }
 }

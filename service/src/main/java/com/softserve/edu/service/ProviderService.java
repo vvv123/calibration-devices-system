@@ -16,4 +16,8 @@ public class ProviderService {
     public List<Provider> findByDistrictDesignation(String designation) {
         return providerRepository.findByAddressDistrict(designation);
     }
+
+    public Provider findById(Long id) {
+        return providerRepository.findOne(id);
+    }
 }

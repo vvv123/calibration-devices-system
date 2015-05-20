@@ -1,6 +1,5 @@
 package com.softserve.edu.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -11,21 +10,18 @@ public class Address {
     private String locality;
     private String street;
     private String building;
-    @Column(name = "postal_index")
-    private String index;
     private String flat;
 
     public Address() {}
 
     public Address(String region, String district, String locality, String street, String building,
-                   String flat, String index) {
+                   String flat) {
         this.region = region;
         this.district = district;
         this.locality = locality;
         this.street = street;
         this.building = building;
         this.flat = flat;
-        this.index = index;
     }
 
     public String getRegion() {
@@ -74,13 +70,5 @@ public class Address {
 
     public void setFlat(String flat) {
         this.flat = flat;
-    }
-
-    public String getIndex() {
-        return index;
-    }
-
-    public void setIndex(String index) {
-        this.index = index;
     }
 }

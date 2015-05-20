@@ -40,6 +40,7 @@ public class Verification {
 
     @ManyToOne
     private Provider provider;
+
     @ManyToOne
     private ProviderEmployee providerEmployee;
 
@@ -58,9 +59,10 @@ public class Verification {
 
     protected Verification() {}
 
-    public Verification(ClientData clientData, Status status) {
+    public Verification(ClientData clientData, Provider provider, Status status) {
         this.id = UUID.randomUUID().toString();
         this.clientData = clientData;
+        this.provider = provider;
         this.status = status;
     }
 

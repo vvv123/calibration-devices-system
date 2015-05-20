@@ -1,6 +1,5 @@
 package com.softserve.edu.dto;
 
-import com.softserve.edu.dto.CalibrationTestDataDTO;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.util.List;

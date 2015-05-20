@@ -17,5 +17,3 @@ public class CalibrationTestListDTO extends ResourceSupport{
         this.calibrationTests = calibrationTests;
     }
 }
-
-

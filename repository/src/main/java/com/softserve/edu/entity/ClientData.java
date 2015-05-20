@@ -16,8 +16,8 @@ public class ClientData {
 
     protected ClientData() {}
 
-    public ClientData(String firstName, String lastName, String middleName, String email, String phone, Address
-            clientAddress) {
+    public ClientData(String firstName, String lastName, String middleName, String email,
+                      String phone, Address clientAddress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;

@@ -1,9 +1,9 @@
 package com.softserve.edu.controller.application;
 
 import com.softserve.edu.controller.application.util.EmailSendingUtil;
-import com.softserve.edu.dto.application.ApplicationDTO;
+import com.softserve.edu.dto.application.ClientApplicationDTO;
+import com.softserve.edu.dto.application.ClientApplicationFieldDTO;
 import com.softserve.edu.entity.ClientData;
-import com.softserve.edu.entity.Organization;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.service.MailService;
@@ -46,9 +46,10 @@ public class ApplicationController {
     private Environment env;
 
     @RequestMapping(value = "/application/add", method = RequestMethod.POST)
-    public String saveApplication(@RequestBody ApplicationDTO applicationDTO) {
-        ClientData clientData = parseApplicationDTOToClientData((applicationDTO));
-        Verification verification = new Verification(clientData, Status.SENT);
+    public String saveApplication(@RequestBody ClientApplicationDTO clientApplicationDTO) {
+        ClientData clientData = parseApplicationDTOToClientData((clientApplicationDTO));
+        Verification verification = new Verification(clientData,
+                providerService.findById(clientApplicationDTO.getProviderId()), Status.SENT);
         verificationService.saveVerification(verification);
         EmailSendingUtil.setEmailSendingConfig(clientData.getFirstName(), clientData.getLastName(), verification.getId(), env);
         return verification.getId();
@@ -61,12 +62,11 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/application/providers/{district}", method = RequestMethod.GET)
-    public List<String> getProvidersCorrespondingDistrict(@PathVariable String district)
+    public List<ClientApplicationFieldDTO> getProvidersCorrespondingDistrict(@PathVariable String district)
             throws UnsupportedEncodingException {
-        logger.debug(district);
         return providerService.findByDistrictDesignation(district)
                 .stream()
-                .map(Organization::getName)
+                .map(provider -> new ClientApplicationFieldDTO(provider.getId(), provider.getName()))
                 .collect(Collectors.toList());
     }
 }

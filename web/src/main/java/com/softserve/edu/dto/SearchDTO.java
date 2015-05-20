@@ -7,8 +7,7 @@ public class SearchDTO {
         this.data = data;
     }
 
-    public SearchDTO() {
-    }
+    public SearchDTO() {}
 
     public String getData() {
         return data;

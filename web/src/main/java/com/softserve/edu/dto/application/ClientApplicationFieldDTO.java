@@ -1,12 +1,12 @@
-package com.softserve.edu.dto.catalogue;
+package com.softserve.edu.dto.application;
 
-public class CatalogueDTO {
+public class ClientApplicationFieldDTO {
     private Long id;
     private String designation;
 
-    protected CatalogueDTO() {}
+    protected ClientApplicationFieldDTO() {}
 
-    public CatalogueDTO(Long id, String name) {
+    public ClientApplicationFieldDTO(Long id, String name) {
         this.id = id;
         this.designation = name;
     }

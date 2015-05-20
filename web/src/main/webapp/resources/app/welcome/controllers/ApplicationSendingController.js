@@ -39,12 +39,11 @@ welcomeModule
                         $scope.selectedStreet = "";
                     });
                 //Receives providers corresponding this district
-                $scope.providers = ["ЛКП \"Львівводоканал\"", "Львівгаз", "Львівобленерго"];
                 $log.log(selectedDistrict.designation);
                 dataReceivingService.getData("/application/providers/"
                 + selectedDistrict.designation)
                     .success(function (providers) {
-                        $log.log(providers);
+                        $scope.providers = providers;
                     });
             };
             /**
@@ -59,7 +58,6 @@ welcomeModule
                         $scope.selectedStreet = "";
                     });
             };
-
             /**
              * Receives all possible buildings.
              * On-select handler in street input form element.
@@ -80,16 +78,15 @@ welcomeModule
                 $scope.$broadcast('show-errors-check-validity');
 
                 if ($scope.clientForm.$valid) {
-
                     $scope.formData.region = $scope.selectedRegion.designation;
                     $scope.formData.district = $scope.selectedDistrict.designation;
                     $scope.formData.locality = $scope.selectedLocality.designation;
                     $scope.formData.street = $scope.selectedStreet.designation;
                     $scope.formData.building = $scope.selectedBuilding.designation || $scope.selectedBuilding;
-
+                    $scope.formData.providerId = $scope.selectedProvider.id;
                     dataSendingService.sendData("/application/add", $scope.formData)
                         .success(function (applicationCode) {
-                            $scope.applicationCode = applicationCode
+                            $scope.applicationCode = applicationCode;
                         });
                     $scope.isShownForm = false;
                 }
@@ -98,5 +95,4 @@ welcomeModule
             $scope.closeAlert = function () {
                 $state.go($state.current, {}, {reload: true});
             }
-        }])
-;
+        }]);

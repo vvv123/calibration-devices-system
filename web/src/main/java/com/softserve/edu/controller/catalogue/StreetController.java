@@ -1,7 +1,7 @@
 package com.softserve.edu.controller.catalogue;
 
-import com.softserve.edu.dto.catalogue.CatalogueDTO;
-import com.softserve.edu.dto.catalogue.util.CatalogueDTOTransformer;
+import com.softserve.edu.dto.application.ClientApplicationFieldDTO;
+import com.softserve.edu.dto.application.util.CatalogueDTOTransformer;
 import com.softserve.edu.service.catalogue.StreetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +18,7 @@ public class StreetController {
     private StreetService streetService;
 
     @RequestMapping(value = "application/streets/{localityId}", method = RequestMethod.GET)
-    public List<CatalogueDTO> getStreetsCorrespondingLocality(@PathVariable Long localityId) {
+    public List<ClientApplicationFieldDTO> getStreetsCorrespondingLocality(@PathVariable Long localityId) {
         return CatalogueDTOTransformer.toDto(streetService.getStreetsCorrespondingLocality(localityId));
     }
 }

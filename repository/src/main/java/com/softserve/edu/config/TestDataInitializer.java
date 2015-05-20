@@ -1,15 +1,18 @@
 package com.softserve.edu.config;
 
-import com.softserve.edu.entity.*;
+import com.softserve.edu.entity.Address;
+import com.softserve.edu.entity.Calibrator;
+import com.softserve.edu.entity.Provider;
+import com.softserve.edu.entity.StateVerificator;
 import com.softserve.edu.entity.catalogue.*;
-import com.softserve.edu.entity.user.*;
-import com.softserve.edu.repository.*;
+import com.softserve.edu.entity.user.SystemAdmin;
+import com.softserve.edu.repository.OrganizationRepository;
+import com.softserve.edu.repository.UserRepository;
 import com.softserve.edu.repository.catalogue.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 @Component
 public class TestDataInitializer {
@@ -78,18 +81,18 @@ public class TestDataInitializer {
                 new Building(streetLviv2, "1"), new Building(streetLviv2, "2"), new Building(streetLviv2, "3")));
 
         Provider provider1 = new Provider("ТернопільВода", "water-ternopil@ukr.net", "33-235-32-1453",
-                new Address("Тернопільська", "Тернопільський", "м. Тернопіль", "вул. Степана Бандери", "1", "45", null));
+                new Address("Тернопільська", "Тернопільський", "м. Тернопіль", "вул. Степана Бандери", "1", "45"));
         Provider provider2 = new Provider("Львівгаз", "gaz-lviv@gmail.com", "124-22-4-15453",
-                new Address("Львівськa", "Львівський", "м. Львів", "вул. Личаківська", "2", "144", null));
+                new Address("Львівськa", "Львівський", "м. Львів", "вул. Личаківська", "2", "144"));
 
         Calibrator calibrator1 = new Calibrator("Повірка Львів", "cvalibra@lviv.ua", "24-22-24-12",
-                new Address("Львівськa", "Львівський", "м. Львів", "вул. Зелена", "3", "43", null));
+                new Address("Львівськa", "Львівський", "м. Львів", "вул. Зелена", "3", "43"));
 
         StateVerificator stateVerificator1 = new StateVerificator("Наш повірник", "trustable@lviv.org.ua", "124-33-33-434",
-                new Address("Львівськa", "Львівський", "м. Львів", "вул. Зелена", "1", "24", null));
+                new Address("Львівськa", "Львівський", "м. Львів", "вул. Зелена", "1", "24"));
 
         StateVerificator stateVerificator2 = new StateVerificator("WelcomeVerificator", "trustable@lviv.org.ua", "124-33-33-434",
-                new Address("Львівськa", "Львівський", "м. Львів", "вул. Зелена", "1", "24", null));
+                new Address("Львівськa", "Львівський", "м. Львів", "вул. Зелена", "1", "24"));
 
         organizationRepository.save(Arrays.asList(provider1, provider2, calibrator1, stateVerificator1, stateVerificator2));
 

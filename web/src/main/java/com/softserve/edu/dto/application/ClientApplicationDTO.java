@@ -1,18 +1,18 @@
 package com.softserve.edu.dto.application;
 
-public class ApplicationDTO {
+public class ClientApplicationDTO {
     private String firstName;
     private String lastName;
     private String middleName;
+    private String email;
+    private String phone;
     private String region;
     private String locality;
     private String district;
     private String street;
     private String building;
     private String flat;
-    private String email;
-    private String phone;
-    private String index;
+    private Long providerId;
 
     public String getFirstName() {
         return firstName;
@@ -102,11 +102,11 @@ public class ApplicationDTO {
         this.phone = phone;
     }
 
-    public String getIndex() {
-        return index;
+    public Long getProviderId() {
+        return providerId;
     }
 
-    public void setIndex(String index) {
-        this.index = index;
+    public void setProviderId(Long providerId) {
+        this.providerId = providerId;
     }
 }

@@ -1,7 +1,7 @@
 package com.softserve.edu.controller.catalogue;
 
-import com.softserve.edu.dto.catalogue.CatalogueDTO;
-import com.softserve.edu.dto.catalogue.util.CatalogueDTOTransformer;
+import com.softserve.edu.dto.application.ClientApplicationFieldDTO;
+import com.softserve.edu.dto.application.util.CatalogueDTOTransformer;
 import com.softserve.edu.service.catalogue.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ public class RegionController {
     private RegionService regionService;
 
     @RequestMapping(value = "application/regions", method = RequestMethod.GET)
-    public List<CatalogueDTO> getAll() {
+    public List<ClientApplicationFieldDTO> getAll() {
         return CatalogueDTOTransformer.toDto(regionService.getAll());
     }
 }
