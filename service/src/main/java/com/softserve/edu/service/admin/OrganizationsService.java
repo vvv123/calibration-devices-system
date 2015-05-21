@@ -4,14 +4,24 @@ import com.softserve.edu.entity.Calibrator;
 import com.softserve.edu.entity.Organization;
 import com.softserve.edu.entity.Provider;
 import com.softserve.edu.entity.StateVerificator;
+import com.softserve.edu.entity.user.CalibratorEmployee;
+import com.softserve.edu.entity.user.Employee;
+import com.softserve.edu.entity.user.ProviderEmployee;
+import com.softserve.edu.entity.user.StateVerificatorEmployee;
 import com.softserve.edu.repository.OrganizationRepository;
+import com.softserve.edu.repository.UserRepository;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static com.softserve.edu.entity.user.ProviderEmployee.ProviderEmployeeRole.*;
+import static com.softserve.edu.entity.user.CalibratorEmployee.CalibratorEmployeeRole.*;
+import static com.softserve.edu.entity.user.StateVerificatorEmployee.StateVerificatorEmployeeRole.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -26,22 +36,32 @@ public class OrganizationsService {
     @Autowired
     private OrganizationRepository organizationRepository;
 
-    public void addOrganization(String name, String email, String phone, String type) {
+    @Autowired
+    private UserRepository userRepository;
+
+    public void addOrganizationWithAdmin(String name, String email, String phone, String type,
+                                         String username, String password) {
+        String passwordEncoded = new BCryptPasswordEncoder().encode(password);
         Organization organization;
+        Employee employeeAdmin;
         switch (type) {
             case "PROVIDER":
                 organization = new Provider(name, email, phone);
+                employeeAdmin = new ProviderEmployee(username, passwordEncoded, PROVIDER_ADMIN, organization);
                 break;
             case "CALIBRATOR":
                 organization = new Calibrator(name, email, phone);
+                employeeAdmin = new CalibratorEmployee(username, passwordEncoded, CALIBRATOR_ADMIN, organization);
                 break;
             case "STATE_VERIFICATION":
                 organization = new StateVerificator(name, email, phone);
+                employeeAdmin = new StateVerificatorEmployee(username, passwordEncoded, STATE_VERIFICATOR_ADMIN, organization);
                 break;
             default:
                 throw new NoSuchElementException();
         }
         organizationRepository.save(organization);
+        userRepository.save(employeeAdmin);
     }
 
     public Page<Organization> getOrganizationsBySearchAndPagination(int pageNumber, int itemsPerPage, String search) {

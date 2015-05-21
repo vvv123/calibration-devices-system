@@ -7,17 +7,19 @@ public class OrganizationDTO {
     private String type;
     private String username;
     private String password;
+    private String rePassword;
 
     public OrganizationDTO() {
     }
 
-    public OrganizationDTO(String name, String email, String phone, String type, String username, String password) {
+    public OrganizationDTO(String name, String email, String phone, String type, String username, String password, String rePassword) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.type = type;
         this.username = username;
         this.password = password;
+        this.rePassword = rePassword;
     }
 
     public String getName() {
@@ -66,5 +68,13 @@ public class OrganizationDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRePassword() {
+        return rePassword;
+    }
+
+    public void setRePassword(String rePassword) {
+        this.rePassword = rePassword;
     }
 }

@@ -4,6 +4,9 @@ import com.softserve.edu.dto.PageDTO;
 import com.softserve.edu.dto.SearchDTO;
 import com.softserve.edu.dto.admin.OrganizationPageItem;
 import com.softserve.edu.dto.admin.OrganizationDTO;
+import com.softserve.edu.entity.user.ProviderEmployee;
+import com.softserve.edu.entity.user.User;
+import com.softserve.edu.repository.UserRepository;
 import com.softserve.edu.service.admin.OrganizationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,14 +18,15 @@ import org.springframework.web.bind.annotation.*;
 public class OrganizationsController {
 
     @Autowired
-    OrganizationsService organizationsService;
+    private OrganizationsService organizationsService;
 
     @ResponseStatus(value = HttpStatus.CREATED)
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public void addOrganization(@RequestBody OrganizationDTO organizationDTO) {
-        organizationsService.addOrganization(
+        organizationsService.addOrganizationWithAdmin(
                 organizationDTO.getName(), organizationDTO.getEmail(),
-                organizationDTO.getPhone(), organizationDTO.getType()
+                organizationDTO.getPhone(), organizationDTO.getType(),
+                organizationDTO.getUsername(), organizationDTO.getPassword()
         );
     }
 
