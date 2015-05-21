@@ -14,11 +14,10 @@ public class ProviderApplicationService {
     @Autowired
     private VerificationRepository verificationRepository;
 
-   public Page<Verification> getVerificationsBySearchAndPagination(int pageNumber, int itemsPerPage, String search) {
+   public Page<Verification> getVerificationsBySearchAndPagination(int pageNumber, int itemsPerPage) {
         // pagination starts from 1 at client side, but Spring Data JPA from 0
         PageRequest pageRequest = new PageRequest(pageNumber - 1, itemsPerPage);
-        return search == null ?
-                verificationRepository.findAll(pageRequest) : null
-                /*verificationRepository.findByNameLikeIgnoreCase("%" + search + "%", pageRequest)*/;
+        return verificationRepository.findAll(pageRequest);
+                /*verificationRepository.findByNameLikeIgnoreCase("%" + search + "%", pageRequest)*/
     }
 }

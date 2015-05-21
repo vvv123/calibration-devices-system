@@ -26,6 +26,5 @@ define([
     'controllers/MainPanelController',
     'controllers/UsersController',
     'controllers/AllVerificationController',
-    'services/VerificationService',
-    'services/StatisticService'
+    'services/VerificationService'
 ], function () {});

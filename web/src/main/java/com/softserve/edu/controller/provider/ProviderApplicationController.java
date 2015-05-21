@@ -24,19 +24,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class ProviderApplicationController {
     @Autowired
     ProviderApplicationService providerApplicationService;
 
-    @RequestMapping(value = "/provider/applications/{pageNumber}/{itemsPerPage}/{search}", method = RequestMethod.GET)
+    @RequestMapping(value = "/provider/applications/{pageNumber}/{itemsPerPage}", method = RequestMethod.GET)
     public PageDTO<VerificationPageItem> pageVerificationsWithSearch(
             @PathVariable Integer pageNumber,
-            @PathVariable Integer itemsPerPage,
-            @PathVariable String search) {
-
+            @PathVariable Integer itemsPerPage
+            ) {
         Page<VerificationPageItem> page = providerApplicationService
-                .getVerificationsBySearchAndPagination(pageNumber, itemsPerPage, search)
+                .getVerificationsBySearchAndPagination(pageNumber, itemsPerPage)
                 .map(verification -> new VerificationPageItem(
                                         verification.getId(),verification.getVerificationFinishedDate(),
                                         verification.getClientData().getLastName(),
