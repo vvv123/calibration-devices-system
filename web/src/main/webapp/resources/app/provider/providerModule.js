@@ -21,10 +21,8 @@ angular.module('providerModule').run(function(paginationConfig){
 });
 
 define([
-    'controllers/FindAllApplications',
     'controllers/TopNavBarController',
     'controllers/MainPanelController',
-    'controllers/UsersController',
     'controllers/AllVerificationController',
     'services/VerificationService'
 ], function () {});
