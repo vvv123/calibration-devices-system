@@ -18,23 +18,26 @@ public class CalibrationTestDataDTOAsm
 
     @Override
     public CalibrationTestDataDTO toResource(CalibrationTestData calibrationTestData) {
-        CalibrationTestDataDTO res = new CalibrationTestDataDTO();
-        res.setActualConsumption(calibrationTestData.getActualConsumption());
-        res.setGivenConsumption(calibrationTestData.getGivenConsumption());
-        res.setVolumeOfStandart(calibrationTestData.getVolumeOfStandart());
-        res.setInitialValue(calibrationTestData.getInitialValue());
-        res.setEndValue(calibrationTestData.getEndValue());
-        res.setVolumeInDevice(calibrationTestData.getVolumeInDevice());
-        res.setTestTime(calibrationTestData.getTestTime());
-        res.setConsumptionStatus(calibrationTestData.getConsumptionStatus());
+        CalibrationTestDataDTO resource = new CalibrationTestDataDTO();
+        resource.setGivenConsumption(calibrationTestData.getGivenConsumption());
+        resource.setAcceptableError(calibrationTestData.getAcceptableError());
+        resource.setVolumeOfStandart(calibrationTestData.getVolumeOfStandart());
+        resource.setInitialValue(calibrationTestData.getInitialValue());
+        resource.setEndValue(calibrationTestData.getEndValue());
+        resource.setVolumeInDevice(calibrationTestData.getVolumeInDevice());
+        resource.setTestTime(calibrationTestData.getTestTime());
+        resource.setActualConsumption(calibrationTestData.getActualConsumption());
+        resource.setConsumptionStatus(calibrationTestData.getConsumptionStatus());
+        resource.setCalculationError(calibrationTestData.getCalculationError());
+        resource.setTestResult(calibrationTestData.getTestResult());
         Link self = linkTo(CalibrationTestDataController.class)
                 .slash(calibrationTestData.getId()).withSelfRel();
-        res.add(self);
+        resource.add(self);
         if(calibrationTestData.getCalibrationTest() != null){
-            res.add((linkTo(CalibrationTestController.class)
+            resource.add((linkTo(CalibrationTestController.class)
                     .slash(calibrationTestData.getCalibrationTest().getId())
                     .withRel("owner")));
         }
-        return res;
+        return resource;
     }
 }

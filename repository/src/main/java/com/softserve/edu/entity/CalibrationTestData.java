@@ -16,7 +16,9 @@ public class CalibrationTestData {
     private Double volumeInDevice;
     private Double testTime;
     private Double actualConsumption;
-    private Double consumptionStatus;
+    private String consumptionStatus;
+    private Double calculationError;
+    private String testResult;
 
     @ManyToOne
     @JoinColumn(name = "calibrationTest_id")
@@ -94,12 +96,28 @@ public class CalibrationTestData {
         this.actualConsumption = actualConsumption;
     }
 
-    public Double getConsumptionStatus() {
+    public String getConsumptionStatus() {
         return consumptionStatus;
     }
 
-    public void setConsumptionStatus(Double consumptionStatus) {
+    public void setConsumptionStatus(String consumptionStatus) {
         this.consumptionStatus = consumptionStatus;
+    }
+
+    public Double getCalculationError() {
+        return calculationError;
+    }
+
+    public void setCalculationError(Double calculationError) {
+        this.calculationError = calculationError;
+    }
+
+    public String getTestResult() {
+        return testResult;
+    }
+
+    public void setTestResult(String testResult) {
+        this.testResult = testResult;
     }
 
     public CalibrationTest getCalibrationTest() {

@@ -6,22 +6,17 @@ import org.springframework.hateoas.ResourceSupport;
 
 public class CalibrationTestDataDTO extends ResourceSupport {
 
-    private double actualConsumption;
     private Double givenConsumption;
+    private Integer acceptableError;
     private Integer volumeOfStandart;
     private Double initialValue;
     private Double endValue;
     private Double volumeInDevice;
     private Double testTime;
-    private Double consumptionStatus;
-
-    public double getActualConsumption() {
-        return actualConsumption;
-    }
-
-    public void setActualConsumption(double actualConsumption) {
-        this.actualConsumption = actualConsumption;
-    }
+    private Double actualConsumption;
+    private String consumptionStatus;
+    private Double calculationError;
+    private String testResult;
 
     public Double getGivenConsumption() {
         return givenConsumption;
@@ -29,6 +24,14 @@ public class CalibrationTestDataDTO extends ResourceSupport {
 
     public void setGivenConsumption(Double givenConsumption) {
         this.givenConsumption = givenConsumption;
+    }
+
+    public Integer getAcceptableError() {
+        return acceptableError;
+    }
+
+    public void setAcceptableError(Integer acceptableError) {
+        this.acceptableError = acceptableError;
     }
 
     public Integer getVolumeOfStandart() {
@@ -71,26 +74,54 @@ public class CalibrationTestDataDTO extends ResourceSupport {
         this.testTime = testTime;
     }
 
-    public Double getConsumptionStatus() {
+    public Double getActualConsumption() {
+        return actualConsumption;
+    }
+
+    public void setActualConsumption(Double actualConsumption) {
+        this.actualConsumption = actualConsumption;
+    }
+
+    public String getConsumptionStatus() {
         return consumptionStatus;
     }
 
-    public void setConsumptionStatus(Double consumptionStatus) {
+    public void setConsumptionStatus(String consumptionStatus) {
         this.consumptionStatus = consumptionStatus;
+    }
+
+    public Double getCalculationError() {
+        return calculationError;
+    }
+
+    public void setCalculationError(Double calculationError) {
+        this.calculationError = calculationError;
+    }
+
+    public String getTestResult() {
+        return testResult;
+    }
+
+    public void setTestResult(String testResult) {
+        this.testResult = testResult;
     }
 
     public CalibrationTestData toTestData() {
         CalibrationTestData calibrationTestData = new CalibrationTestData();
-        calibrationTestData.setActualConsumption(actualConsumption);
         calibrationTestData.setGivenConsumption(givenConsumption);
+        calibrationTestData.setAcceptableError(acceptableError);
         calibrationTestData.setVolumeOfStandart(volumeOfStandart);
         calibrationTestData.setInitialValue(initialValue);
         calibrationTestData.setEndValue(endValue);
         calibrationTestData.setVolumeInDevice(volumeInDevice);
         calibrationTestData.setTestTime(testTime);
+        calibrationTestData.setActualConsumption(actualConsumption);
         calibrationTestData.setConsumptionStatus(consumptionStatus);
+        calibrationTestData.setCalculationError(calculationError);
+        calibrationTestData.setTestResult(testResult);
 
         return calibrationTestData;
     }
+
 
 }

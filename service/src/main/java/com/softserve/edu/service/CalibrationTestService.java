@@ -38,11 +38,12 @@ public class CalibrationTestService {
     public CalibrationTest updateTest(Long id, CalibrationTest data){
         CalibrationTest updatedCalibrationTest = testRepository.findOne(id);
         updatedCalibrationTest.setName(data.getName());
-       // updatedCalibrationTest.setDeviceNumber(data.getDeviceNumber());
+        updatedCalibrationTest.setDateTest(data.getDateTest());
         updatedCalibrationTest.setTemperature(data.getTemperature());
         updatedCalibrationTest.setSettingNumber(data.getSettingNumber());
         updatedCalibrationTest.setLatitude(data.getLatitude());
         updatedCalibrationTest.setLongitude(data.getLongitude());
+        updatedCalibrationTest.setConsumptionStatus(data.getConsumptionStatus());
         updatedCalibrationTest.setTestResult(data.getTestResult());
         updatedCalibrationTest = testRepository.save(updatedCalibrationTest);
         return updatedCalibrationTest;
@@ -77,7 +78,5 @@ public class CalibrationTestService {
             return new CalibrationTestDataList(calibrationTestId
                     , dataRepository.findByCalibrationTestId(calibrationTestId));
         }
-
-
     }
 }

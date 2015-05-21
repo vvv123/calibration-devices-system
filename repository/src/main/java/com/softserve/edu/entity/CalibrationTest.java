@@ -11,7 +11,7 @@ public class CalibrationTest {
     @GeneratedValue
     private Long id;
     private String name;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateTest;
     private Integer temperature;
     private Integer settingNumber;

@@ -18,14 +18,16 @@ public class CalibrationTestDTOAsm extends ResourceAssemblerSupport<CalibrationT
     public CalibrationTestDTO toResource(CalibrationTest calibrationTest) {
         CalibrationTestDTO resource = new CalibrationTestDTO();
         resource.setName(calibrationTest.getName());
-       // resource.setDeviceNumber(calibrationTest.getDeviceNumber());
+        resource.setDateTest(calibrationTest.getDateTest());
         resource.setTemperature(calibrationTest.getTemperature());
         resource.setSettingNumber(calibrationTest.getSettingNumber());
         resource.setLatitude(calibrationTest.getLatitude());
         resource.setLongitude(calibrationTest.getLongitude());
+        resource.setConsumptionStatus(calibrationTest.getConsumptionStatus());
         resource.setTestResult(calibrationTest.getTestResult());
         resource.add(linkTo(CalibrationTestController.class).slash(calibrationTest.getId()).withSelfRel());
         resource.add(linkTo(CalibrationTestController.class).slash(calibrationTest.getId()).slash("testData").withRel("testData"));
         return resource;
     }
 }
+
