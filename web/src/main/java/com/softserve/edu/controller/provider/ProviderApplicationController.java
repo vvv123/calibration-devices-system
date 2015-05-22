@@ -3,7 +3,7 @@ package com.softserve.edu.controller.provider;/*package com.softserve.edu.contro
 import com.softserve.edu.dto.PageDTO;
 import com.softserve.edu.dto.admin.OrganizationPageItem;
 import com.softserve.edu.dto.provider.VerificationPageItem;
-import com.softserve.edu.service.ProviderService;
+import com.softserve.edu.service.provider.ProviderService;
 import com.softserve.edu.service.admin.OrganizationsService;
 import com.softserve.edu.service.provider.ProviderApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;

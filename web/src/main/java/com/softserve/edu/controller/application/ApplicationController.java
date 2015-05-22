@@ -7,7 +7,7 @@ import com.softserve.edu.entity.ClientData;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.service.MailService;
-import com.softserve.edu.service.ProviderService;
+import com.softserve.edu.service.provider.ProviderService;
 import com.softserve.edu.service.VerificationService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
