@@ -1,5 +1,5 @@
 angular
-    .module('adminModule')
+    .module('providerModule')
     .controller('MainPanelController', ['$scope', 'StatisticService',
         function ($scope, statisticService) {
             $scope.statistics = {
