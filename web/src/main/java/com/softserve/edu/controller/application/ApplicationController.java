@@ -64,6 +64,7 @@ public class ApplicationController {
     @RequestMapping(value = "/application/providers/{district}", method = RequestMethod.GET)
     public List<ClientApplicationFieldDTO> getProvidersCorrespondingDistrict(@PathVariable String district)
             throws UnsupportedEncodingException {
+        logger.info(district);
         return providerService.findByDistrictDesignation(district)
                 .stream()
                 .map(provider -> new ClientApplicationFieldDTO(provider.getId(), provider.getName()))
