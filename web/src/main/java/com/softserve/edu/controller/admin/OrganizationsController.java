@@ -26,6 +26,7 @@ public class OrganizationsController {
     @ResponseStatus(value = HttpStatus.CREATED)
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public void addOrganization(@RequestBody OrganizationDTO organizationDTO) {
+
         organizationsService.addOrganizationWithAdmin(
                 organizationDTO.getName(), organizationDTO.getEmail(),
                 organizationDTO.getPhone(), organizationDTO.getType(),
