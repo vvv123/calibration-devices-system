@@ -15,6 +15,5 @@ public interface OrganizationRepository extends CrudRepository<Organization, Lon
 
     Page<Organization> findAll(Pageable pageable);
 
-    //@Query("select o from Organization o where upper(o.name) like %upper(:search)%")
     Page<Organization> findByNameLikeIgnoreCase(String name, Pageable pageable);
 }

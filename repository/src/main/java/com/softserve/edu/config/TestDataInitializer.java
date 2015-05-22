@@ -50,9 +50,9 @@ public class TestDataInitializer {
                 district1, district2, district3, district4, district5));
 
         Locality localityStriy = new Locality(district2, "м. Стрий");
-        Locality localityKamanka = new Locality(district2, "м. Кам'янка-бузька");
-        Locality localityTernopil = new Locality(district2, "м. Тернопіль");
-        Locality localityLviv = new Locality(district2, "м. Львів");
+        Locality localityKamanka = new Locality(district1, "м. Кам'янка-бузька");
+        Locality localityTernopil = new Locality(districtTernopil, "м. Тернопіль");
+        Locality localityLviv = new Locality(districtLviv, "м. Львів");
         localityRepository.save(Arrays.asList(localityStriy, localityKamanka, localityTernopil, localityLviv));
 
         Street streetStiy1 = new Street(localityStriy, "вул. Шевченка");
@@ -81,7 +81,7 @@ public class TestDataInitializer {
                 new Building(streetLviv2, "1"), new Building(streetLviv2, "2"), new Building(streetLviv2, "3")));
 
         Provider provider1 = new Provider("ТернопільВода", "water-ternopil@ukr.net", "33-235-32-1453",
-                new Address("Тернопільська", "Тернопільський", "м. Тернопіль", "вул. Степана Бандери", "1", "45"));
+                new Address("Львівськa", "Стрийський", "м. Стрий", "вул. Шевченка", "1", "45"));
         Provider provider2 = new Provider("Львівгаз", "gaz-lviv@gmail.com", "124-22-4-15453",
                 new Address("Львівськa", "Львівський", "м. Львів", "вул. Личаківська", "2", "144"));
 
