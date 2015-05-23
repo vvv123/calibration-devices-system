@@ -1,6 +1,8 @@
 angular.module('adminModule', ['spring-security-csrf-token-interceptor',
-    'ui.bootstrap', 'ui.router'])
-    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    'ui.bootstrap', 'ui.router', 'ui.bootstrap.showErrors'])
+    .config(['$stateProvider', '$urlRouterProvider', 'showErrorsConfigProvider',
+        function ($stateProvider, $urlRouterProvider, showErrorsConfigProvider) {
+            showErrorsConfigProvider.showSuccess(true);
             $urlRouterProvider.otherwise('/');
             $stateProvider
                 .state('main-panel', {
@@ -37,5 +39,6 @@ define([
     'controllers/MainPanelController',
     'controllers/OrganizationController',
     'services/OrganizationService',
-    'services/StatisticService'
+    'services/StatisticService',
+    'services/UserService'
 ], function () {});

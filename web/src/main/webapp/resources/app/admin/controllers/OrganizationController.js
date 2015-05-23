@@ -1,7 +1,7 @@
  angular
     .module('adminModule')
-    .controller('OrganizationController', ['$scope', '$http', 'OrganizationService', 'StatisticService',
-        function ($scope, $http, organizationService, statisticService) {
+    .controller('OrganizationController', ['$scope', '$http', 'OrganizationService', 'UserService',
+        function ($scope, $http, organizationService, userService) {
 
             $scope.totalItems = 0;
             $scope.currentPage = 1;
@@ -13,12 +13,30 @@
                 {type: 'STATE_VERIFICATION', name: 'Державний повірник'}
             ];
 
-            $scope.onTableHandling = function() {
+            $scope.onTableHandling = function () {
                 updatePage();
             };
 
-            $scope.onOrganizationAddFormSubmit = function () {
-                saveOrganization();
+            $scope.checkUsername = function () {
+                var username = $scope.organizationsFormData.username;
+                /^[a-z0-9_-]{3,16}$/.test(username) ?
+                    isUsernameAvailable(username) :
+                    validateUsername(false, 'does not correspond the standard');
+            };
+
+            $scope.onOrganizationFormSubmit = function () {
+                $scope.$broadcast('show-errors-check-validity');
+                if ($scope.organizationForm.$valid && $scope.usernameValidation.isValid) {
+                    saveOrganization();
+                    updatePage();
+                }
+            };
+
+            $scope.resetOrganizationForm = function () {
+                $scope.$broadcast('show-errors-reset');
+                $scope.usernameValidation = null;
+                $scope.organizationsFormData = null;
+
             };
 
             updatePage();
@@ -27,9 +45,27 @@
                 organizationService
                     .saveOrganization($scope.organizationsFormData)
                     .then(function (data) {
-                        $scope.organizationsFormData = null;
+                        if (data == 201) {
+                            $scope.resetOrganizationForm();
+                        }
                         updatePage();
                     });
+            }
+
+            function validateUsername(isValid, message) {
+                $scope.usernameValidation = {
+                    isValid: isValid,
+                    css: isValid ? 'has-success' : 'has-error',
+                    message: isValid ? undefined : message
+                }
+            }
+
+            function isUsernameAvailable(username) {
+                userService
+                    .isUsernameAvailable(username)
+                    .then(function (data) {
+                        validateUsername(data, 'already exists');
+                    })
             }
 
             function updatePage() {

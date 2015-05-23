@@ -353,3 +353,19 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+/* Form validation */
+
+.form-group .glyphicon-ok-sign {
+    display: none;
+}
+
+.form-group .has-success .glyphicon-ok-sign {
+    display: block;
+    color: green;
+}
+
+.form-control-feedback {
+    top: 0;
+    right: 15px;
+}
