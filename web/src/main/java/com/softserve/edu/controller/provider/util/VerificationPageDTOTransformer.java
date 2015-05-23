@@ -9,6 +9,6 @@ public class VerificationPageDTOTransformer {
         return verificationPage
                 .map(verification -> new VerificationPageDTO(verification.getId(), verification.getInitialDate(),
                         verification.getClientData().getLastName(),
-                        verification.getClientData().getClientAddress().getStreet()));
+                        verification.getClientData().getClientAddress().getStreet(), verification.getStatus()));
     }
 }

@@ -1,4 +1,5 @@
-welcomeModule
+angular
+    .module('welcomeModule')
     .controller('InternationalizationController', ['$scope', '$translate', '$log',
         function ($scope, $translate, $log) {
 

@@ -1,4 +1,5 @@
-welcomeModule
+angular
+    .module('welcomeModule')
     .controller('NavigationController', ['$scope', '$location',
         function ($scope, $location) {
             $scope.loaded = true;

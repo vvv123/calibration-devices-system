@@ -1,4 +1,5 @@
-welcomeModule
+angular
+    .module('welcomeModule')
     .controller('ApplicationSendingController', ['$scope', '$state', '$http', '$log', 'DataReceivingService',
         'DataSendingService',
 

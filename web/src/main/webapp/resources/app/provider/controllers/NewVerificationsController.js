@@ -16,9 +16,9 @@ angular
             function updatePage() {
                 verificationService
                     .getPage('/provider/verifications/new/' + $scope.currentPage + '/' + $scope.itemsPerPage)
-                    .then(function (data) {
-                        $scope.pageData = data.content;
-                        $scope.totalItems = data.totalItems;
+                    .success(function (verifications) {
+                        $scope.pageData = verifications.content;
+                        $scope.totalItems = verifications.totalItems;
                     });
             }
         }]);
