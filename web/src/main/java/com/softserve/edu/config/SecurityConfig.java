@@ -51,11 +51,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/provider/admin/**").hasAuthority(PROVIDER_ADMIN.roleName())
                 .antMatchers("/provider/employee/**").hasAuthority(PROVIDER_EMPLOYEE.roleName())
 
-                .antMatchers("/resources/app/calibrator/**", "/calibrator/**").hasAnyAuthority(CALIBRATOR_EMPLOYEE.roleName(), CALIBRATOR_ADMIN.roleName())
+                .antMatchers("/resources/app/calibrator/**", "/calibrator").hasAnyAuthority(CALIBRATOR_EMPLOYEE.roleName(), CALIBRATOR_ADMIN.roleName())
                 .antMatchers("/calibrator/admin/**").hasAuthority(CALIBRATOR_ADMIN.roleName())
                 .antMatchers("/calibrator/employee/**").hasAuthority(CALIBRATOR_EMPLOYEE.roleName())
 
-                .antMatchers("/resources/app/verificator/**", "/verificator/**").hasAnyAuthority(STATE_VERIFICATOR_EMPLOYEE.roleName(), STATE_VERIFICATOR_ADMIN.roleName())
+                .antMatchers("/resources/app/verificator/**", "/verificator").hasAnyAuthority(STATE_VERIFICATOR_EMPLOYEE.roleName(), STATE_VERIFICATOR_ADMIN.roleName())
                 .antMatchers("/verificator/admin/**").hasAuthority(STATE_VERIFICATOR_ADMIN.roleName())
                 .antMatchers("/verificator/employee/**").hasAuthority(STATE_VERIFICATOR_EMPLOYEE.roleName())
 
