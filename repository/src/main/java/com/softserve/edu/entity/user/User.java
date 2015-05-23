@@ -17,9 +17,6 @@ public abstract class User {
     private String username;
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    private Organization organization;
-
     @Column(nullable = false)
     private String role;
 
@@ -53,14 +50,6 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Organization getOrganization() {
-        return organization;
-    }
-
-    protected void setOrganization(Organization organization) {
-        this.organization = organization;
     }
 
     public String getRole() {

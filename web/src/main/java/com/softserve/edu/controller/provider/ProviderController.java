@@ -26,7 +26,7 @@ public class ProviderController {
     public PageDTO<VerificationPageDTO> getPageOfAllVerificationsByProviderId(
             @PathVariable Integer pageNumber,
             @PathVariable Integer itemsPerPage,
-            @AuthenticationPrincipal SecurityUserDetailsService.EmployeeUser employeeUser
+            @AuthenticationPrincipal SecurityUserDetailsService.CostumeUserDetails employeeUser
     ) {
         logger.info(employeeUser.getUsername());
         logger.info(employeeUser.getOrganizationId());
@@ -41,7 +41,7 @@ public class ProviderController {
     public PageDTO<VerificationPageDTO> getPageOfAllSentVerificationsByProviderId(
             @PathVariable Integer pageNumber,
             @PathVariable Integer itemsPerPage,
-            @AuthenticationPrincipal SecurityUserDetailsService.EmployeeUser employeeUser
+            @AuthenticationPrincipal SecurityUserDetailsService.CostumeUserDetails employeeUser
     ) {
         logger.info(employeeUser.getUsername());
         logger.info(employeeUser.getOrganizationId());
