@@ -1,6 +1,7 @@
-package com.softserve.edu.controller.application;
+package com.softserve.edu.controller.client.application;
 
-import com.softserve.edu.controller.application.util.EmailSendingUtil;
+import com.softserve.edu.controller.client.application.util.ClientApplicationDTOTransformer;
+import com.softserve.edu.controller.client.application.util.EmailSendingUtil;
 import com.softserve.edu.dto.application.ClientApplicationDTO;
 import com.softserve.edu.dto.application.ClientApplicationFieldDTO;
 import com.softserve.edu.entity.ClientData;
@@ -8,7 +9,7 @@ import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.service.MailService;
 import com.softserve.edu.service.provider.ProviderService;
-import com.softserve.edu.service.VerificationService;
+import com.softserve.edu.service.verification.VerificationService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -19,19 +20,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.softserve.edu.controller.application.util.ApplicationDTOTransformer.parseApplicationDTOToClientData;
-
-/**
- * This is plain MVC controller.
- * Use this controller to render yours .jsp views.
- * Other controllers annotated as @RestControllers maintain RESTful API,
- * so that's why we recommend you to implement rendering .jsp methods below.
- */
 @RestController
 @PropertySource("classpath:/properties/mail.properties")
-public class ApplicationController {
+public class ClientApplicationController {
 
-    private Logger logger = Logger.getLogger(ApplicationController.class);
+    private Logger logger = Logger.getLogger(ClientApplicationController.class);
 
     @Autowired
     private VerificationService verificationService;
@@ -47,7 +40,7 @@ public class ApplicationController {
 
     @RequestMapping(value = "/application/add", method = RequestMethod.POST)
     public String saveApplication(@RequestBody ClientApplicationDTO clientApplicationDTO) {
-        ClientData clientData = parseApplicationDTOToClientData((clientApplicationDTO));
+        ClientData clientData = ClientApplicationDTOTransformer.parseApplicationDTOToClientData((clientApplicationDTO));
         Verification verification = new Verification(clientData,
                 providerService.findById(clientApplicationDTO.getProviderId()), Status.SENT);
         verificationService.saveVerification(verification);

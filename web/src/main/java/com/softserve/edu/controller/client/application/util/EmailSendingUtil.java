@@ -1,4 +1,4 @@
-package com.softserve.edu.controller.application.util;
+package com.softserve.edu.controller.client.application.util;
 
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;

@@ -15,8 +15,7 @@ angular
 
 
             function updatePage() {
-                verificationService
-                    .getPage($scope.currentPage, $scope.itemsPerPage)
+                verificationService.getPage($scope.currentPage, $scope.itemsPerPage)
                     .then(function (data) {
                         $scope.pageData = data.content;
                         $scope.totalItems = data.totalItems;

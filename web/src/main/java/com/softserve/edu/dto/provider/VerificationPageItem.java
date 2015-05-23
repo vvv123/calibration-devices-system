@@ -13,7 +13,7 @@ public class VerificationPageItem {
 
     public VerificationPageItem(String id, Date date, String surname, String street) {
         this.id = id;
-        this.date =date;
+        this.date = date;
         this.surname = surname;
         this.street = street;
     }

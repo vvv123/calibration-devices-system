@@ -1,6 +1,6 @@
 package com.softserve.edu.entity.user;
 
-import com.softserve.edu.entity.Address;
+import com.softserve.edu.entity.Organization;
 
 import javax.persistence.*;
 
@@ -11,11 +11,14 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "userType")
-@Table(name="`USER`")
+@Table(name = "`USER`")
 public abstract class User {
     @Id
     private String username;
     private String password;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    private Organization organization;
 
     @Column(nullable = false)
     private String role;
@@ -28,7 +31,7 @@ public abstract class User {
      *
      * @param username username
      * @param password password
-     * @param role (look through implementations of Role interface in each User-extended class)
+     * @param role     (look through implementations of Role interface in each User-extended class)
      */
     public User(String username, String password, Role role) {
         this.username = username;
@@ -50,6 +53,14 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    protected void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 
     public String getRole() {

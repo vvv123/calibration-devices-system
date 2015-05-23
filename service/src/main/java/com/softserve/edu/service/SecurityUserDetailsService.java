@@ -1,5 +1,6 @@
 package com.softserve.edu.service;
 
+import com.softserve.edu.entity.Organization;
 import com.softserve.edu.entity.user.User;
 import com.softserve.edu.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SecurityUserDetailsService implements UserDetailsService {
@@ -30,7 +33,26 @@ public class SecurityUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(user.getRole()));
 
-        return new org.springframework.security.core.userdetails.User(
-                username, user.getPassword(), authorities);
+        Organization userOrganization = user.getOrganization();
+        Long organizationId = userOrganization == null ? null : userOrganization.getId();
+
+        return new EmployeeUser(username, user.getPassword(), authorities, organizationId);
+    }
+
+    /**
+     * Provide additional information about company(organization) where user works except SYS_ADMIN role.
+     */
+    public static class EmployeeUser extends org.springframework.security.core.userdetails.User {
+        private static final long serialVersionUID = UUID.randomUUID().getMostSignificantBits();
+        private Long organizationId;
+
+        public EmployeeUser(String username, String password, Collection<? extends GrantedAuthority> authorities, Long organizationId) {
+            super(username, password, authorities);
+            this.organizationId = organizationId;
+        }
+
+        public Long getOrganizationId() {
+            return organizationId;
+        }
     }
 }
