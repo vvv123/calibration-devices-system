@@ -1,8 +1,7 @@
 angular
     .module('providerModule')
-    .controller('AllVerificationController', ['$scope', 'VerificationService',
+    .controller('AllVerificationsController', ['$scope', 'VerificationService',
         function ($scope, verificationService) {
-
             $scope.totalItems = 0;
             $scope.currentPage = 1;
             $scope.itemsPerPage = 5;

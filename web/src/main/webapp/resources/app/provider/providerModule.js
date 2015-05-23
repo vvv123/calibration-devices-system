@@ -7,12 +7,16 @@ angular.module('providerModule', ['spring-security-csrf-token-interceptor',
                 url: '/',
                 templateUrl: '/resources/app/provider/views/main-panel.html'
             })
-            .state('verifications-panel', {
-                url: '/verifications',
-                views: {
-                    templateUrl: '/resources/app/provider/views/verifications.html'
-                }
+            .state("verifications-archive", {
+                url: '/verifications/archive',
+                templateUrl: '/resources/app/provider/views/verifications.html',
+                controller: 'AllVerificationsController'
             })
+            .state("new-verifications", {
+                url: '/verifications/new',
+                templateUrl: '/resources/app/provider/views/verifications.html',
+                controller: 'NewVerificationsController'
+            });
     }]);
 
 angular.module('providerModule').run(function (paginationConfig) {
@@ -25,6 +29,7 @@ angular.module('providerModule').run(function (paginationConfig) {
 define([
     'controllers/TopNavBarController',
     'controllers/MainPanelController',
-    'controllers/AllVerificationController',
+    'controllers/AllVerificationsController',
+    'controllers/NewVerificationsController',
     'services/VerificationService'
 ], function () {});
