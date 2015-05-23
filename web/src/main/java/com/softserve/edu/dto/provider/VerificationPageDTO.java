@@ -2,16 +2,16 @@ package com.softserve.edu.dto.provider;
 
 import java.util.Date;
 
-public class VerificationPageItem {
+public class VerificationPageDTO {
     private String id;
     private Date date;
     private String surname;
     private String street;
 
-    public VerificationPageItem() {
+    public VerificationPageDTO() {
     }
 
-    public VerificationPageItem(String id, Date date, String surname, String street) {
+    public VerificationPageDTO(String id, Date date, String surname, String street) {
         this.id = id;
         this.date = date;
         this.surname = surname;

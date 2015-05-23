@@ -22,7 +22,7 @@
 
                     <div class="col-md-8">
                         <input id="firstName" name="firstName" class="form-control" ng-model="formData.firstName"
-                               ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/" required>
+                               ng-pattern="/^[A-Za-z\u0400-\u04FF]+$/" required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block" ng-if="clientForm.firstName.$error.required">
@@ -44,7 +44,7 @@
 
                     <div class="col-md-8">
                         <input id="lastName" name="lastName" class="form-control" type="text"
-                               ng-model="formData.lastName" ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/" required>
+                               ng-model="formData.lastName" ng-pattern="/^[A-Za-z\u0400-\u04FF]+$/" required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block" ng-if="clientForm.lastName.$error.required">
@@ -66,7 +66,7 @@
 
                     <div class="col-md-8">
                         <input id="middleName" name="middleName" type="text" class="form-control"
-                               ng-model="formData.middleName" ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/" required>
+                               ng-model="formData.middleName" ng-pattern="/^[A-Za-z\u0400-\u04FF]+$/" required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block" ng-if="clientForm.middleName.$error.required">

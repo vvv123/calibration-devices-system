@@ -43,6 +43,7 @@ public class ClientApplicationController {
         ClientData clientData = ClientApplicationDTOTransformer.parseApplicationDTOToClientData((clientApplicationDTO));
         Verification verification = new Verification(clientData,
                 providerService.findById(clientApplicationDTO.getProviderId()), Status.SENT);
+        logger.info(verification.getClientData().getFirstName());
         verificationService.saveVerification(verification);
         EmailSendingUtil.setEmailSendingConfig(clientData.getFirstName(), clientData.getLastName(), verification.getId(), env);
         return verification.getId();

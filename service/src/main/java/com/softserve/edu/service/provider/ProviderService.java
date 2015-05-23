@@ -9,16 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
 public class ProviderService {
 
     @Autowired
     private ProviderRepository providerRepository;
 
+    @Transactional(readOnly = true)
     public List<Provider> findByDistrictDesignation(String designation) {
         return providerRepository.findByAddressDistrict(designation);
     }
 
+    @Transactional(readOnly = true)
     public Provider findById(Long id) {
         return providerRepository.findOne(id);
     }

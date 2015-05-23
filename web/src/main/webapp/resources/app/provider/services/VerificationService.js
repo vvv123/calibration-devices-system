@@ -1,15 +1,12 @@
 angular
     .module('providerModule')
-    .factory('VerificationService', function ($http) {
+    .service('VerificationService', ['$http', function ($http) {
         return {
-            getPage: function (pageNumber, itemsPerPage) {
-                var path = '/provider/applications/' + pageNumber + '/' + itemsPerPage;
-
-                return $http.get(path)
-                    .then(function(result) {
+            getPage: function (url) {
+                return $http.get(url)
+                    .then(function (result) {
                         return result.data;
                     });
             }
         }
-    });
-
+    }]);
