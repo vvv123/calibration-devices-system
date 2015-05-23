@@ -17,10 +17,10 @@ public class CalibratorService {
     private CalibratorRepository calibratorRepository;
 
     public void saveCalibrator(Calibrator calibrator) {
-        Address address = calibrator.getAddress();
+       // Address address = calibrator.getAddress();
 
-        Assert.isNull(address.getIndex(), "calibrator's index can't be null");
-        Assert.notNull(address.getFlat(), "calibrator can't have flat in address");
+        //Assert.isNull(address.getIndex(), "calibrator's index can't be null");
+       // Assert.notNull(address.getFlat(), "calibrator can't have flat in address");
 
         calibratorRepository.save(calibrator);
     }

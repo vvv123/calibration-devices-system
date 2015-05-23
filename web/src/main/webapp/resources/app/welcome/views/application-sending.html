@@ -1,0 +1,297 @@
+<section id=applicationSection>
+
+    <div class="col-md-12 text-center">
+        <h1>{{ 'APP_SENDING_TITLE' | translate }}</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"></div>
+    </div>
+
+
+    <div class="from-top form-group ">
+        <div id="clientFormBox" ng-show="isShownForm" class="row col-md-8 centered">
+
+            <form id="clientForm" name="clientForm" class="form-horizontal form-group"
+                  ng-submit="sendApplicationData()" novalidate>
+
+                <div class="form-group" show-errors>
+                    <label for="firstName" class="col-md-2 control-label">
+                        {{'FIRST_NAME' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="firstName" name="firstName" class="form-control" ng-model="formData.firstName"
+                               ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/" ng-minlength="3" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block" ng-if="clientForm.firstName.$error.required">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.firstName.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'ALPHABETIC_ERROR' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.firstName.$error.minlength">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'LENGTH_ERROR' | translate}}> 2
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="lastName" class="col-md-2 control-label">
+                        {{'LAST_NAME' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="lastName" name="lastName" class="form-control" type="text"
+                               ng-model="formData.lastName" ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/"
+                               ng-minlength="3" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block" ng-if="clientForm.lastName.$error.required">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.lastName.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'ALPHABETIC_ERROR' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.lastName.$error.minlength">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'LENGTH_ERROR' | translate}}> 2
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="middleName" class="col-md-2 control-label">
+                        {{'MIDDLE_NAME' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="middleName" name="middleName" type="text" class="form-control"
+                               ng-model="formData.middleName" ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/"
+                               ng-minlength="3" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block" ng-if="clientForm.middleName.$error.required">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.middleName.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'ALPHABETIC_ERROR' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.middleName.$error.minlength">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'LENGTH_ERROR' | translate}}> 2
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="email" class="col-md-2 control-label">
+                        {{'EMAIL' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="email" name="email" type="email" class="form-control"
+                               ng-model="formData.email" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block" ng-if="clientForm.email.$error.email">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'EMAIL_ERROR' | translate}}<i>example@gmail.com</i>
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.email.$error.required">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'REQUIRED' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="phoneNumber" class="col-md-2 control-label">
+                        {{'PHONE_NUMBER' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="phoneNumber" name="phoneNumber" class="form-control"
+                               ng-model="formData.phone" ng-pattern="/^0[1-9]\d{8}$/" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block" ng-if="clientForm.phoneNumber.$error.required">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.phoneNumber.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'PHONE_NUMBER_ERROR' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="region" class="col-md-2 control-label">
+                        {{'REGION' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="region" name="region" type="text" class="form-control" ng-model="selectedRegion"
+                               typeahead="region as region.designation for region in regions | filter: $viewValue"
+                               typeahead-on-select="receiveDistricts(selectedRegion)"
+                               typeahead-editable="false" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'TYPEAHEAD_ERROR' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="district" class="col-md-2 control-label">
+                        {{'DISTRICT' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="district" name="district" class="form-control" type="text"
+                               ng-model="selectedDistrict"
+                               typeahead="district as district.designation for district in districts | filter: $viewValue"
+                               typeahead-on-select="receiveLocalities(selectedDistrict)"
+                               typeahead-editable="false" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'TYPEAHEAD_ERROR' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="locality" class="col-md-2 control-label">
+                        {{'LOCALITY' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="locality" name="locality" class="form-control"
+                               ng-model="selectedLocality"
+                               typeahead="locality as locality.designation for locality in localities | filter: $viewValue"
+                               typeahead-on-select="receiveStreets(selectedLocality)"
+                               typeahead-editable="false" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'TYPEAHEAD_ERROR' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="street" class="col-md-2 control-label">
+                        {{'STREET' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="street" name="street" class="form-control" type="text" ng-model="selectedStreet"
+                               typeahead="street as street.designation for street in streets | filter: $viewValue"
+                               typeahead-on-select="receiveBuildings(selectedStreet)"
+                               typeahead-editable="false" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'TYPEAHEAD_ERROR' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="building" class="col-md-2 control-label">
+                        {{'BUILDING' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="building" name="building" class="form-control"
+                               ng-model="selectedBuilding"
+                               typeahead="building as building.designation for building in buildings | filter: $viewValue"
+                               ng-pattern="/^\d+[а-яА-Яa-zA-ZіІ]{0,1}$/"
+                               required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block" ng-if="clientForm.building.$error.required">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.building.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'BUILDING_FLAT_ERROR' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="flat" class="col-md-2 control-label">{{'FLAT' | translate}}</label>
+
+                    <div class="col-md-8">
+                        <input id="flat" name="flat" class="form-control"
+                               ng-model="formData.flat" ng-pattern="/^\d+[а-яА-Яa-zA-ZіІ]{0,1}$/">
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'BUILDING_FLAT_ERROR' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="postcode" class="col-md-2 control-label">{{'POSTCODE' | translate}}</label>
+
+                    <div class="col-md-8">
+                        <input id="postcode" name="postcode" class="form-control"
+                               ng-model="formData.postcode" ng-pattern="/^\d{5}$/">
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'POSTCODE_ERROR' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        <button type="submit" class="btn btn-success text-uppercase pull-left">
+                            {{'SEND_BTN' | translate}}
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div ng-hide="isShownForm" class="row col-lg-10 alert alert-success alert-dismissible centered"
+             role="alert">
+            <button ng-click="closeAlert()" type="button" class="close btn-close-alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{'APP_SENT' | translate}}{{ applicationCode }}
+        </div>
+    </div>
+</section>

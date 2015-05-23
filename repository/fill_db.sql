@@ -1,179 +1,84 @@
 --  -------------------- REGION ------------------ --
 
-INSERT INTO `measurement_devices`.`Region`
+INSERT INTO `measurement_devices`.`REGION`
 (`id`,`designation`)
-VALUES(1,'Тернопільська');
-
-INSERT INTO `measurement_devices`.`Region`
-(`id`,`designation`)
-VALUES(2,'Львівська');
-
-INSERT INTO `measurement_devices`.`Region`
-(`id`,`designation`)
-VALUES(3,'Івано-Франківська');
-
-INSERT INTO `measurement_devices`.`Region`
-(`id`,`designation`)
-VALUES(4,'Київ');
-
-INSERT INTO `measurement_devices`.`Region`
-(`id`,`designation`)
-VALUES(5,'Харківська');
-
-INSERT INTO `measurement_devices`.`Region`
-(`id`,`designation`)
-VALUES(6,'Одеська');
-
-INSERT INTO `measurement_devices`.`Region`
-(`id`,`designation`)
-VALUES(7,'Дніпропетровська');
+VALUES
+(1,'Тернопільська'),
+(2,'Львівська'),
+(3,'Івано-Франківська'),
+(4,'Київ'),
+(5,'Харківська'),
+(6,'Одеська'),
+(7,'Дніпропетровська');
 
 
 
 
 
 -- ------------------------- DISTRICT -------------------------- --
-INSERT INTO `measurement_devices`.`District`
+INSERT INTO `measurement_devices`.`DISTRICT`
 (`id`,`designation`,`region_id`)
-VALUES(1,'Тернопільський',1);
-
-INSERT INTO `measurement_devices`.`District`
-(`id`,`designation`,`region_id`)
-VALUES(2,'Львівський',2);
-
-INSERT INTO `measurement_devices`.`District`
-(`id`,`designation`,`region_id`)
-VALUES(3,'Івано-франківський',3);
-
-INSERT INTO `measurement_devices`.`District`
-(`id`,`designation`,`region_id`)
-VALUES(4,'Збаразький',4);
-
-INSERT INTO `measurement_devices`.`District`
-(`id`,`designation`,`region_id`)
-VALUES(5,'Бучацький',5);
-
-INSERT INTO `measurement_devices`.`District`
-(`id`,`designation`,`region_id`)
-VALUES(6,'Зборівський',6);
-
-INSERT INTO `measurement_devices`.`District`
-(`id`,`designation`,`region_id`)
-VALUES(7,'Чортківський',7);
-
-INSERT INTO `measurement_devices`.`District`
-(`id`,`designation`,`region_id`)
-VALUES(8,'Золочівський',1);
-
-INSERT INTO `measurement_devices`.`District`
-(`id`,`designation`,`region_id`)
-VALUES(9,'Буський',1);
-
-INSERT INTO `measurement_devices`.`District`
-(`id`,`designation`,`region_id`)
-VALUES(10,'Пустомитівський',2);
+VALUES
+(1,'Тернопільський',1),
+(2,'Львівський',2),
+(3,'Івано-франківський',3),
+(4,'Збаразький',4),
+(5,'Бучацький',5),
+(6,'Зборівський',6),
+(7,'Чортківський',7),
+(8,'Золочівський',1),
+(9,'Буський',1),
+(10,'Пустомитівський',2);
 
 
 
 
 -- ------------------------------ LOCALITY -------------------------- --
-INSERT INTO `measurement_devices`.`Locality`
+INSERT INTO `measurement_devices`.`LOCALITY`
 (`id`,`designation`,`district_id`)
-VALUES(1,'м. Тернопіль',1);
-
-INSERT INTO `measurement_devices`.`Locality`
-(`id`,`designation`,`district_id`)
-VALUES(2,'м. Львів',2);
-
-INSERT INTO `measurement_devices`.`Locality`
-(`id`,`designation`,`district_id`)
-VALUES(3,'м. Івано-Франківськ',3);
+VALUES
+(1,'м. Тернопіль',1),
+(2,'м. Львів',2),
+(3,'м. Івано-Франківськ',3);
 
 
 
 
 
 -- ---------------------------- STREET ----------------------------------- --
-INSERT INTO `measurement_devices`.`Street`
+INSERT INTO `measurement_devices`.`STREET`
 (`id`,`designation`,`locality_id`)
-VALUES(1,'вул. Симоненка',1);
-
-INSERT INTO `measurement_devices`.`Street`
-(`id`,`designation`,`locality_id`)
-VALUES(2,'вул. Морозенка',2);
-
-INSERT INTO `measurement_devices`.`Street`
-(`id`,`designation`,`locality_id`)
-VALUES(3,'вул. Генерала Тарнавського',3);
-
-INSERT INTO `measurement_devices`.`Street`
-(`id`,`designation`,`locality_id`)
-VALUES(4,'просп. Степана Бандери',1);
-
-INSERT INTO `measurement_devices`.`Street`
-(`id`,`designation`,`locality_id`)
-VALUES(5,'бульвар Тараса Шевченка',2);
-
-INSERT INTO `measurement_devices`.`Street`
-(`id`,`designation`,`locality_id`)
-VALUES(6,'вул. Вишневецького',3);
-
-INSERT INTO `measurement_devices`.`Street`
-(`id`,`designation`,`locality_id`)
-VALUES(7,'вул. Володимира Великого',1);
-
-INSERT INTO `measurement_devices`.`Street`
-(`id`,`designation`,`locality_id`)
-VALUES(8,'вул. Київська',2);
+VALUES
+(1,'вул. Симоненка',1),
+(2,'вул. Морозенка',2),
+(3,'вул. Генерала Тарнавського',3),
+(4,'просп. Степана Бандери',1),
+(5,'бульвар Тараса Шевченка',2),
+(6,'вул. Вишневецького',3),
+(7,'вул. Володимира Великого',1),
+(8,'вул. Київська',2);
 
 
 -- ---------------------------------------- BUILDING -------------------------- --
-INSERT INTO `measurement_devices`.`Building`
+INSERT INTO `measurement_devices`.`BUILDING`
 (`id`,`designation`,`street_id`)
-VALUES(1,'1',1);
-
-INSERT INTO `measurement_devices`.`Building`
-(`id`,`designation`,`street_id`)
-VALUES(2,'2',1);
-
-INSERT INTO `measurement_devices`.`Building`
-(`id`,`designation`,`street_id`)
-VALUES(3,'3',2);
-
-INSERT INTO `measurement_devices`.`Building`
-(`id`,`designation`,`street_id`)
-VALUES(4,'3а',2);
-
-INSERT INTO `measurement_devices`.`Building`
-(`id`,`designation`,`street_id`)
-VALUES(5,'4',3);
-
-INSERT INTO `measurement_devices`.`Building`
-(`id`,`designation`,`street_id`)
-VALUES(6,'1',3);
-
-INSERT INTO `measurement_devices`.`Building`
-(`id`,`designation`,`street_id`)
-VALUES(7,'2',4);
-
-INSERT INTO `measurement_devices`.`Building`
-(`id`,`designation`,`street_id`)
-VALUES(8,'3',4);
-
-INSERT INTO `measurement_devices`.`Building`
-(`id`,`designation`,`street_id`)
-VALUES(9,'3а',5);
-
-INSERT INTO `measurement_devices`.`Building`
-(`id`,`designation`,`street_id`)
-VALUES(10,'4',5);
+VALUES
+(1,'1',1),
+(2,'2',1),
+(4,'3а',2),
+(5,'4',3),
+(6,'1',3),
+(7,'2',4),
+(8,'3',4),
+(9,'3а',5),
+(10,'4',5);
 
 
 
 
 
 -- ------------------------------- ORGANIZATION ---------------------------- --
-INSERT INTO `measurement_devices`.`Organization`
+INSERT INTO `measurement_devices`.`ORGANIZATION`
 (`organizationType`,`id`,`name`,`email`,`phone`,`certificateGrantedDate`,`certificateNumber`,
 `postal_index`,`region`,`district`,`locality`,`street`,`building`,`flat`)
 
@@ -211,7 +116,7 @@ VALUES
 
 
 -- ------------------------------- USER ----------------------------- --
-INSERT INTO `measurement_devices`.`User`
+INSERT INTO `measurement_devices`.`USER`
 (`userType`,`username`,`password`,`role`,
 `email`,`firstName`,`lastName`,`phone`,`organization_id`)
 
@@ -246,7 +151,7 @@ null, null, null, null, null),
 
 
 -- --------------------------- MANUFACTURER ---------------------------- --
-INSERT INTO `measurement_devices`.`Manufacturer`
+INSERT INTO `measurement_devices`.`MANUFACTURER`
 (`id`,`name`)
 VALUES
 (1,'самвода'),
@@ -256,7 +161,7 @@ VALUES
 
 
 -- ----------------------------- DEVICE ------------------------- --
-INSERT INTO `measurement_devices`.`Device`
+INSERT INTO `measurement_devices`.`DEVICE`
 (`deviceType`, `id`,`number`,`manufacturer_id`,`provider_id`, `deviceSign`)
 VALUES
 ('WATER',1,'58365',1,1,'СА3К'),
@@ -266,21 +171,19 @@ VALUES
 
 
 -- ---------------------------- VERIFICATION ------------------------- --
-INSERT INTO `measurement_devices`.`Verification`
+INSERT INTO `measurement_devices`.`VERIFICATION`
 (`id`,
 `postal_index`,`region`,`district`,`locality`,`street`,`building`,`flat`, -- client/device address
 `firstName`,`lastName`,`middleName`,`email`,`phone`, -- client data
-`code`, -- generated code that is to be sent to user via email
 `status`,`verificationFinishedDate`, 
 `calibrator_id`,`deviceId`,`provider_id`,`stateVerificator_id`,
 `calibratorEmployee_username`,`providerEmployee_username`,`stateVerificatorEmployee_username`)
 
 VALUES
 
-(1,
+('1',
 '79045','Львівська','Львівський','м. Львів','вул. Морозенка','12а',null,
 'Петро', 'Палій', 'Ігорович', 'oleg.paliy@gmail.com', '0687538954',
-'877c48fh129fu1j10rf1hf10if21irh0fi',
 'COMPLETED', '2015-4-04',
 5,1,1,7,
 'lv_calib_omega', 'lviv_vodoKanal_employee', 'lv_verif_sdgo_lv'
@@ -290,7 +193,7 @@ VALUES
 
 
 -- ---------------------------- CALIBRATION TEST ------------------------ --
-INSERT INTO `measurement_devices`.`CalibrationTest`
+INSERT INTO `measurement_devices`.`CALIBRATION_TEST`
 (`id`,`verification_id`,
 `document_name`,`document_sign`,
 `dateTest`,
@@ -305,7 +208,7 @@ VALUES
 
 
 -- -------------------------- CALIBRATION TEST DATA ------------------- --
-INSERT INTO `measurement_devices`.`CalibrationTestData`
+INSERT INTO `measurement_devices`.`CALIBRATION_TEST_DATA`
 (`id`,`calibrationTest_id`,
 `acceptableError`,`actualConsumption`,`consumptionStatus`,`endValue`,`givenConsumption`,`initialValue`,
 `testTime`,`volumeInDevice`,`volumeOfStandart`)

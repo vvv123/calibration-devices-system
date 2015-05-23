@@ -1,13 +1,11 @@
 package com.softserve.edu.entity.catalogue;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static com.softserve.edu.entity.catalogue.util.Checker.checkForEmptyText;
 
 @Entity
+@Table(name="`REGION`")
 public class Region extends AbstractCatalogue {
     @Id
     @GeneratedValue

@@ -1,15 +1,10 @@
 package com.softserve.edu.controller;
 
-import com.softserve.edu.documentGenerator.DocumentFileFactory;
-import com.softserve.edu.documentGenerator.documents.BaseDocument;
-import com.softserve.edu.documentGenerator.documents.UnfitnessCertificate;
-import com.softserve.edu.documentGenerator.documents.VerificationCertificate;
-import com.softserve.edu.documentGenerator.utils.DocumentFormat;
-import com.softserve.edu.documentGenerator.utils.DocumentType;
-import com.softserve.edu.entity.CalibrationTest;
-import com.softserve.edu.entity.Verification;
-import com.softserve.edu.service.CalibrationTestService;
-import com.softserve.edu.service.VerificationService;
+import com.softserve.edu.documents.options.DocumentFormat;
+import com.softserve.edu.documents.options.DocumentType;
+import com.softserve.edu.entity.user.SystemAdmin;
+import com.softserve.edu.service.DocumentsService;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Controller for file generation requests.
@@ -30,50 +28,51 @@ import java.io.*;
  * All exceptions are handled by the @ExceptionHandler methods.
  */
 @RestController
-@RequestMapping(value = "/document") // TODO: add security support
+@RequestMapping(value = "/doc") // TODO: add security support
 public class DocumentsController {
 
     @Autowired
-    VerificationService verificationService;
-
-    @Autowired
-    CalibrationTestService calibrationTestService;
+    DocumentsService documentsService;
 
     /**
      * Returns a document with a specific format using verification and one of it's tests.
      * For example: .../verification_certificate/1/1/pdf.
      *
      * @param documentType document to generate
-     * @param verificationID id of the verification, for which the document is to be generated
+     * @param verificationCode id of the verification, for which the document is to be generated
      * @param testID one of the verification's tests, for which the document is to be generated
      * @param format format of the resulting document
      * @return the generated document
      * @throws IOException if file can't be generated because of a file system error
      * @throws IllegalStateException if one of parameters is incorrect
      */
-    @RequestMapping(value = "{documentType}/{verificationID}/{testID}/{format}", method = RequestMethod.GET)
+    @RequestMapping(value = "{documentType}/{verificationCode}/{testID}/{format}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getDocument(@PathVariable DocumentType documentType,
-                                              @PathVariable Long verificationID,
+                                              @PathVariable String verificationCode,
                                               @PathVariable Long testID,
                                               @PathVariable DocumentFormat format)
             throws IOException, IllegalStateException {
         // check input parameters
-        Verification verification = verificationService.findVerification(verificationID);
-        Assert.notNull(verification, "can't find a " + verification.getClass() + " with id " + verificationID);
+        InputStream outputStream = documentsService.getFile(verificationCode, testID, documentType, format);
 
-        CalibrationTest calibrationTest = calibrationTestService.findTest(testID);
-        Assert.notNull(calibrationTest, "can't find a " + calibrationTest.getClass() + " with id" + testID);
+        byte[] bytes = IOUtils.toByteArray(outputStream);
+        outputStream.close();
 
-        Assert.state(calibrationTest.getVerification().equals(verification),
-                calibrationTest.getClass() + " with id:" + calibrationTest.getId() + " is not assigned to " +
-                        verification.getClass() + " with id: " + verification.getId());
+        byte[] target = new byte[6414];
+        System.arraycopy(bytes, 0, target, 0, 6414);
 
-        // get document
-        BaseDocument document = createDocumentByTemplate(documentType, verification, calibrationTest);
+        FileOutputStream out = new FileOutputStream("the.docx");
+        out.write(bytes);
+        out.close();
 
-        ByteArrayOutputStream documentFile = DocumentFileFactory.build(document, format);
+        Path path = Paths.get("verification_certificate.docx");
+        byte[] data = FileUtils.readFileToByteArray(new File("/home/oleg/verification_certificate.docx"));
 
-        return makeResponse(documentFile.toByteArray(), HttpStatus.OK, format);
+        System.out.println(data.length);
+
+        ResponseEntity<byte[]> responseEntity = makeResponse(data, HttpStatus.OK, format);
+
+        return responseEntity;
     }
 
     /**
@@ -81,36 +80,21 @@ public class DocumentsController {
      * For example: .../verification_certificate/1/pdf.
      *
      * @param documentType document to generate
-     * @param verificationID id of the verification, for which the document is to be generated. This verification
+     * @param verificationCode id of the verification, for which the document is to be generated. This verification
      *                       must have only one test
      * @param format format of the resulting document
      * @return the generated document
      * @throws IOException if file can't be generated because of a file system error
      * @throws IllegalStateException if one of parameters is incorrect
      */
-    @RequestMapping(value = "{documentType}/{verificationID}/{format}", method = RequestMethod.GET)
+    @RequestMapping(value = "{documentType}/{verificationCode}/{format}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getDocument(@PathVariable DocumentType documentType,
-                                              @PathVariable Long verificationID,
+                                              @PathVariable String verificationCode,
                                               @PathVariable DocumentFormat format)
             throws IOException, IllegalStateException {
-        // check input parameters
-        Verification verification = verificationService.findVerification(verificationID);
-        Assert.notNull(verification, "can't find verification with id " + verificationID);
+        InputStream outputStream = documentsService.getFile(verificationCode, documentType, format);
 
-        Assert.state(verification.getCalibrationTests().size() != 0,
-                verification.getClass() + " with id " + verificationID + " doesn't have any tests assigned to it");
-        Assert.state(verification.getCalibrationTests().size() == 1,
-                verification.getClass() + " with id " + verificationID + " have more than one test assigned to it. " +
-                        "Specify the id of a concrete test");
-
-        // get document
-        CalibrationTest calibrationTest = verification.getCalibrationTests().iterator().next();
-
-        BaseDocument document = createDocumentByTemplate(documentType, verification, calibrationTest);
-
-        ByteArrayOutputStream documentFile = DocumentFileFactory.build(document, format);
-
-        return makeResponse(documentFile.toByteArray(), HttpStatus.OK, format);
+        return makeResponse(IOUtils.toByteArray(outputStream), HttpStatus.OK, format);
     }
 
     /**
@@ -204,38 +188,11 @@ public class DocumentsController {
                 throw new IllegalArgumentException(documentFormat.name() + "is not supported");
         }
         headers.setContentDispositionFormData(filename, filename);
-        //headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+//        headers.setContentDispositionFormData("attachment", filename);
+//        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+//        headers.add("Content-Type", "application/docx; charset=utf-8");
+        headers.add("Content-Transfer-Encoding ", "");
 
         return new ResponseEntity<>(responseParameter, headers, httpStatus);
-    }
-
-    /**
-     * Creates and returns a document. Document type is determined by documentType's type.
-     *
-     * @param documentType by which te type of the document is determined
-     * @param verification verification for this document
-     * @param calibrationTest calibration test for this document
-     * @return created document
-     */
-    private BaseDocument createDocumentByTemplate(DocumentType documentType, Verification verification,
-                                                  CalibrationTest calibrationTest) {
-        Assert.notNull(verification, verification.getClass() + " can't be null");
-        Assert.notNull(calibrationTest, calibrationTest.getClass() + " can't be null");
-
-        BaseDocument document;
-
-        // TODO: documentType is redundant
-        switch (documentType) {
-            case VERIFICATION_CERTIFICATE:
-                document = new VerificationCertificate(verification, calibrationTest);
-                break;
-            case UNFITNESS_CERTIFICATE:
-                document = new UnfitnessCertificate(verification, calibrationTest);
-                break;
-            default:
-                throw new IllegalArgumentException(documentType.name() + "is not supported");
-        }
-
-        return document;
     }
 }

@@ -37,33 +37,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        CsrfTokenResponseHeaderBindingFilter csrfTokenFilter = new CsrfTokenResponseHeaderBindingFilter();
-        http.addFilterAfter(csrfTokenFilter, CsrfFilter.class);
+//        CsrfTokenResponseHeaderBindingFilter csrfTokenFilter = new CsrfTokenResponseHeaderBindingFilter();
+//        http.addFilterAfter(csrfTokenFilter, CsrfFilter.class);
 
-        http
-                .authorizeRequests()
-                .antMatchers("/resources/assets/**", "/resources/app/welcome/**",
-                        "/getuser", "/application/**", "/calibrationTests/**"
-                        , "/calibrationTestData/**").permitAll()
-                .antMatchers("/resources/app/admin/**", "/admin/**").hasAuthority(SYS_ADMIN.roleName())
-                .antMatchers("/resources/app/provider/**", "/provider/**").hasAnyAuthority(PROVIDER_EMPLOYEE.roleName(), PROVIDER_ADMIN.roleName())
-                .antMatchers("/resources/app/calibrator/**", "/calibrator/**").hasAnyAuthority(CALIBRATOR_EMPLOYEE.roleName(), CALIBRATOR_ADMIN.roleName())
-                .antMatchers("/resources/app/verificator/**", "/verificator/**").hasAnyAuthority(STATE_VERIFICATOR_EMPLOYEE.roleName(), STATE_VERIFICATOR_ADMIN.roleName())
-                .and()
-                .formLogin()
-                .defaultSuccessUrl("/")
-                .loginProcessingUrl("/authenticate")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .successHandler(new AjaxAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler()))
-                .loginPage("/")
-                .permitAll()
-                .and()
-                .httpBasic()
-                .and()
-                .logout()
-                .logoutSuccessUrl("/")
-                .logoutUrl("/logout")
-                .permitAll();
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/resources/assets/**", "/resources/app/welcome/**",
+//                        "/getuser", "/application/**", "/calibrationTests/**"
+//                        , "/calibrationTestData/**").permitAll()
+//                .antMatchers("/resources/app/admin/**", "/admin/**").hasAuthority(SYS_ADMIN.roleName())
+//                .antMatchers("/resources/app/provider/**", "/provider/**").hasAnyAuthority(PROVIDER_EMPLOYEE.roleName(), PROVIDER_ADMIN.roleName())
+//                .antMatchers("/resources/app/calibrator/**", "/calibrator/**").hasAnyAuthority(CALIBRATOR_EMPLOYEE.roleName(), CALIBRATOR_ADMIN.roleName())
+//                .antMatchers("/resources/app/verificator/**", "/verificator/**").hasAnyAuthority(STATE_VERIFICATOR_EMPLOYEE.roleName(), STATE_VERIFICATOR_ADMIN.roleName())
+//                .and()
+//                .formLogin()
+//                .defaultSuccessUrl("/")
+//                .loginProcessingUrl("/authenticate")
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .successHandler(new AjaxAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler()))
+//                .loginPage("/")
+//                .permitAll()
+//                .and()
+//                .httpBasic()
+//                .and()
+//                .logout()
+//                .logoutSuccessUrl("/")
+//                .logoutUrl("/logout")
+//                .permitAll();
     }
 }

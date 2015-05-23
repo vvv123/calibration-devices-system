@@ -1,10 +1,17 @@
 welcomeModule
-    .controller('i18nCtrl', ['$scope','$translate',
-    function ($scope, $translate) {
-        //i18n
-        $scope.languages = ["eng", "ukr"];
-        $scope.selectedLang = "ukr";
-        $scope.changeLanguage = function (selectedLang) {
-            $translate.use(selectedLang);
-        };
-    }]);
+    .controller('InternationalizationController', ['$scope', '$translate', '$log',
+        function ($scope, $translate, $log) {
+
+            $scope.languages = [
+                {
+                    key: 'eng',
+                    name: "English"
+                },
+                {
+                    key: 'ukr',
+                    name: "Українська"
+                }];
+            $scope.changeLanguage = function (key) {
+                $translate.use(key);
+            };
+        }]);

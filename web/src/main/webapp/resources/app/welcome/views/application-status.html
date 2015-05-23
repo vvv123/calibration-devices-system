@@ -1,0 +1,42 @@
+<section id="applicationStatusSection">
+
+    <div class="container">
+
+        <div class="row col-md-12 centered">
+            <h1>{{'APP_STATUS_TITLE' | translate}}</h1>
+        </div>
+
+        <div class="from-top">
+            <div ng-show="isShownForm" class="row col-md-10 centered">
+
+                <form class="form-horizontal" ng-submit="findCode()">
+
+                    <div class="form-group">
+                        <label for="code" class="col-md-2 control-label">
+                            {{'APPLICATION_CODE' | translate}}
+                        </label>
+
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <input class="form-control" id="code" ng-model="code" required>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <button type="submit" class="btn btn-success text-uppercase">
+                                    {{'SEARCH_BTN' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div ng-hide="isShownForm" class="row col-md-10 alert alert-success alert-dismissible centered"
+                 role="alert">
+                <button ng-click="closeAlert()" type="button" class="close btn-close-alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{'APPLICATION_STATUS' | translate}} : {{ status }}
+            </div>
+        </div>
+    </div>
+</section>

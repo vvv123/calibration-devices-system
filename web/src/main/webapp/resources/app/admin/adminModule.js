@@ -1,30 +1,29 @@
-angular.module('adminModule', [ 'ngRoute', 'spring-security-csrf-token-interceptor', 'ui.bootstrap'])
-    .config(['$routeProvider',
-        function($routeProvider) {
-            console.log("ROUTING STARTED");
-            $routeProvider.
-                when('/', {
-                    templateUrl: "/resources/app/admin/views/MainPanelView.html"
-                }).
-                when('/graphs', {
-                    templateUrl: "/resources/app/admin/views/GraphsView.html"
-                }).
-                when('/organizations', {
-                    templateUrl: "/resources/app/admin/views/OrganizationsView.html"
-                }).
-                when('/users', {
-                    templateUrl: "/resources/app/admin/views/UsersView.html"
-                }).
-                when('/devices', {
-                    templateUrl: "/resources/app/admin/views/DevicesView.html"
-                }).
-                when('/settings', {
-                    templateUrl: "/resources/app/admin/views/SettingsView.html"
-                }).
-                otherwise({
-                    redirectTo: '/'
+angular.module('adminModule', ['spring-security-csrf-token-interceptor',
+    'ui.bootstrap', 'ui.router'])
+    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/');
+            $stateProvider
+                .state('main-panel', {
+                    url: '/',
+                    templateUrl: '/resources/app/admin/views/main-panel.html'
+                })
+                .state('organizations-panel', {
+                    url: '/organizations',
+                    templateUrl: '/resources/app/admin/views/organizations-panel.html'
+                })
+                .state('address-panel', {
+                    url: '/address',
+                    templateUrl: '/resources/app/admin/views/address-panel.html'
+                })
+                .state('devices-panel', {
+                    url: '/devices',
+                    templateUrl: '/resources/app/admin/views/devices-panel.html'
+                })
+                .state('settings-panel', {
+                    url: '/settings',
+                    templateUrl: '/resources/app/admin/views/settings-panel.html'
                 });
-        }]);
+            }]);
 
 angular.module('adminModule').run(function(paginationConfig){
     paginationConfig.firstText = 'Перша';
@@ -36,7 +35,6 @@ angular.module('adminModule').run(function(paginationConfig){
 define([
     'controllers/TopNavBarController',
     'controllers/MainPanelController',
-    'controllers/UsersController',
     'controllers/OrganizationController',
     'services/OrganizationService',
     'services/StatisticService'

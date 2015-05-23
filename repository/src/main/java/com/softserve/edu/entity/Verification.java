@@ -1,28 +1,25 @@
 package com.softserve.edu.entity;
 
-
 import com.softserve.edu.entity.user.CalibratorEmployee;
 import com.softserve.edu.entity.user.ProviderEmployee;
 import com.softserve.edu.entity.user.StateVerificatorEmployee;
 import com.softserve.edu.entity.util.Status;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Verification entity.
  * Contains data about whole business process of verification.
  */
 @Entity
+@Table(name="`VERIFICATION`")
 public class Verification {
 
     @Id
-    @GeneratedValue
-    private Long id;
-    private String code;
+    private String id;
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -59,25 +56,19 @@ public class Verification {
     @Embedded
     private ClientData clientData;
 
-    public Verification() {}
+    protected Verification() {}
 
     public Verification(ClientData clientData, Status status) {
+        this.id = id = UUID.randomUUID().toString();
         this.clientData = clientData;
         this.status = status;
     }
-    public String getCode() {
-        return code;
-    }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    private void setId(String id) {
         this.id = id;
     }
 
@@ -167,25 +158,5 @@ public class Verification {
 
     public void setVerificationFinishedDate(Date verificationFinishedDate) {
         this.verificationFinishedDate = verificationFinishedDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof Verification)) return false;
-
-        Verification that = (Verification) o;
-
-        return new EqualsBuilder()
-                .append(getId(), that.getId())
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(getId())
-                .toHashCode();
     }
 }

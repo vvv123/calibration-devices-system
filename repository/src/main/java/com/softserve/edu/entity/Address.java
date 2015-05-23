@@ -5,27 +5,28 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
-    @Column(nullable = false)
+
     private String region;
-
-    @Column(nullable = false)
     private String district;
-
-    @Column(nullable = false)
     private String locality;
-
-    @Column(nullable = false)
     private String street;
-
-    @Column(nullable = false)
     private String building;
-
-    @Column(name="postal_index")
+    @Column(name = "postal_index")
     private String index;
-
     private String flat;
 
     public Address() {}
+
+    public Address(String region, String district, String locality, String street, String building,
+                   String flat, String index) {
+        this.region = region;
+        this.district = district;
+        this.locality = locality;
+        this.street = street;
+        this.building = building;
+        this.flat = flat;
+        this.index = index;
+    }
 
     public String getRegion() {
         return region;

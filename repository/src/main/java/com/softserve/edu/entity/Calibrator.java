@@ -5,6 +5,7 @@ import com.softserve.edu.entity.catalogue.Street;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
@@ -30,6 +31,10 @@ public class Calibrator extends Organization {
 
     public Calibrator(String name, String email, String phone) {
         super(name, email, phone);
+    }
+
+    public Calibrator(String name, String email, String phone, Address address) {
+        super(name, email, phone, address);
     }
 
     public String getCertificateNumber() {

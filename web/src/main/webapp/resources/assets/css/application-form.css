@@ -1,7 +1,46 @@
 #applicationSection {
-    background-color: #34495e;
-	color: white;
-	padding-top: 40px;
-	padding-bottom: 60px;
-	text-align: left;
+    background-color: white;
+    color: black;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    text-align: center;
+}
+
+#clientFormBox {
+    padding-top: 30px;
+
+    background: rgba(242, 246, 248, 1);
+    background: -moz-linear-gradient(left, rgba(242, 246, 248, 1) 0%, rgba(216, 225, 231, 1) 0%, rgba(213, 220, 224, 1) 51%, rgba(224, 239, 249, 1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(242, 246, 248, 1)), color-stop(0%, rgba(216, 225, 231, 1)), color-stop(51%, rgba(213, 220, 224, 1)), color-stop(100%, rgba(224, 239, 249, 1)));
+    background: -webkit-linear-gradient(left, rgba(242, 246, 248, 1) 0%, rgba(216, 225, 231, 1) 0%, rgba(213, 220, 224, 1) 51%, rgba(224, 239, 249, 1) 100%);
+    background: -o-linear-gradient(left, rgba(242, 246, 248, 1) 0%, rgba(216, 225, 231, 1) 0%, rgba(213, 220, 224, 1) 51%, rgba(224, 239, 249, 1) 100%);
+    background: -ms-linear-gradient(left, rgba(242, 246, 248, 1) 0%, rgba(216, 225, 231, 1) 0%, rgba(213, 220, 224, 1) 51%, rgba(224, 239, 249, 1) 100%);
+    background: linear-gradient(to right, rgba(242, 246, 248, 1) 0%, rgba(216, 225, 231, 1) 0%, rgba(213, 220, 224, 1) 51%, rgba(224, 239, 249, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f6f8', endColorstr='#e0eff9', GradientType=1);
+
+    -webkit-box-shadow: -1px 0px 48px 3px rgba(109, 138, 137, 1);
+    -moz-box-shadow: -1px 0px 48px 3px rgba(109, 138, 137, 1);
+    box-shadow: -1px 0px 48px 3px rgba(109, 138, 137, 1);
+}
+
+.form-group .help-block {
+    display: none;
+}
+
+.form-group .has-error .help-block {
+    display: block;
+}
+
+.form-group .glyphicon-ok-sign {
+    display: none;
+}
+
+.form-group .has-success .glyphicon-ok-sign {
+    display: block;
+    color: green;
+}
+
+.form-control-feedback {
+    top: 0;
+    right: 15px;
 }

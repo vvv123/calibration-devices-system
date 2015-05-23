@@ -3,6 +3,7 @@ package com.softserve.edu.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name="`ORGANIZATION`")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "organizationType")
 public abstract class Organization {
@@ -23,6 +24,13 @@ public abstract class Organization {
         this.name = name;
         this.email = email;
         this.phone = phone;
+    }
+
+    public Organization(String name, String email, String phone, Address address) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
     }
 
     public Long getId() {
@@ -60,5 +68,6 @@ public abstract class Organization {
     public void setAddress(Address address) {
         this.address = address;
     }
+
 }
 

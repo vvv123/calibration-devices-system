@@ -3,7 +3,7 @@ require.config({
         angular: '../../assets/bower_components/angular/angular.min',
         csrfInterceptor: '../../assets/bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
         angularBootstrap: '../../assets/bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
-        angularRoute: '../../assets/bower_components/angular-route/angular-route.min',
+        angularUIRouter: '../../assets/bower_components/angular-ui-router/release/angular-ui-router.min',
         adminModule: 'adminModule'
     },
     shim: {
@@ -16,11 +16,11 @@ require.config({
         angularBootstrap: {
             deps: [ 'angular' ]
         },
-        angularRoute: {
+        angularUIRouter: {
             deps: [ 'angular' ]
         },
         adminModule: {
-            deps: [ 'angular', 'csrfInterceptor', 'angularBootstrap', 'angularRoute' ]
+            deps: [ 'angular', 'csrfInterceptor', 'angularBootstrap', 'angularUIRouter' ]
         }
     }
 });
