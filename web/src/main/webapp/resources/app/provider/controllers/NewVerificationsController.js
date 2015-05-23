@@ -1,6 +1,24 @@
 angular
     .module('providerModule')
-    .controller('NewVerificationsController', ['$scope', 'VerificationService', 'AllVerificationsController',
+    .controller('NewVerificationsController', ['$scope', 'VerificationService',
         function ($scope, verificationService) {
-            console.log("HERE!");
+            $scope.totalItems = 0;
+            $scope.currentPage = 1;
+            $scope.itemsPerPage = 5;
+            $scope.pageData = [];
+
+            $scope.onTableHandling = function () {
+                updatePage();
+            };
+
+            updatePage();
+
+            function updatePage() {
+                verificationService
+                    .getPage('/provider/verifications/new/' + $scope.currentPage + '/' + $scope.itemsPerPage)
+                    .then(function (data) {
+                        $scope.pageData = data.content;
+                        $scope.totalItems = data.totalItems;
+                    });
+            }
         }]);

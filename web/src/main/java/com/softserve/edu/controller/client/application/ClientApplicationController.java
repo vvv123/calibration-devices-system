@@ -17,6 +17,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,7 +42,7 @@ public class ClientApplicationController {
     @RequestMapping(value = "/application/add", method = RequestMethod.POST)
     public String saveApplication(@RequestBody ClientApplicationDTO clientApplicationDTO) {
         ClientData clientData = ClientApplicationDTOTransformer.parseApplicationDTOToClientData((clientApplicationDTO));
-        Verification verification = new Verification(clientData,
+        Verification verification = new Verification(new Date(), clientData,
                 providerService.findById(clientApplicationDTO.getProviderId()), Status.SENT);
         logger.info(verification.getClientData().getFirstName());
         verificationService.saveVerification(verification);

@@ -37,7 +37,7 @@ public class ProviderController {
         return new PageDTO<>(page.getTotalElements(), page.getContent());
     }
 
-    @RequestMapping(value = "/provider/verifications/sent/{pageNumber}/{itemsPerPage}", method = RequestMethod.GET)
+    @RequestMapping(value = "/provider/verifications/new/{pageNumber}/{itemsPerPage}", method = RequestMethod.GET)
     public PageDTO<VerificationPageDTO> getPageOfAllSentVerificationsByProviderId(
             @PathVariable Integer pageNumber,
             @PathVariable Integer itemsPerPage,
