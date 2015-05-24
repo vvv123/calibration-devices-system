@@ -33,9 +33,8 @@ angular
                         verification: function () {
                             return dataReceivingService.getData('/provider/verifications/new/' + $scope.pageData[$index].id)
                                 .success(function (verification) {
-                                    $log.info(verification);
                                     verification.id = $scope.pageData[$index].id;
-                                    verification.date = $scope.pageData[$index].date;
+                                    verification.initialDate = $scope.pageData[$index].initialDate;
                                     return verification;
                                 });
                         }

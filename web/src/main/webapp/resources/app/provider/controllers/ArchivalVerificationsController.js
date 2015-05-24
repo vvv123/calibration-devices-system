@@ -33,7 +33,6 @@ angular
                         verification: function () {
                             return dataReceivingService.getData('/provider/verifications/archive/' + $scope.pageData[$index].id)
                                 .success(function (verification) {
-                                    $log.info(verification);
                                     return verification;
                                 });
                         }
