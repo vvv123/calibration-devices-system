@@ -5,6 +5,7 @@ import com.softserve.edu.entity.Calibrator;
 import com.softserve.edu.entity.Provider;
 import com.softserve.edu.entity.StateVerificator;
 import com.softserve.edu.entity.catalogue.*;
+import com.softserve.edu.entity.user.ProviderEmployee;
 import com.softserve.edu.entity.user.SystemAdmin;
 import com.softserve.edu.repository.OrganizationRepository;
 import com.softserve.edu.repository.UserRepository;
@@ -98,5 +99,7 @@ public class TestDataInitializer {
 
         /* 'admin'/'password' */
         userRepository.save(new SystemAdmin("admin", "$2a$10$xTq90ybFNT/W0TfNHdQ4e.0DL1WO/7vebrpDZybGRwdEk/7F8ULEi"));
+        userRepository.save(new ProviderEmployee("provider", "$2a$10$xTq90ybFNT/W0TfNHdQ4e.0DL1WO/7vebrpDZybGRwdEk/7F8ULEi",
+                ProviderEmployee.ProviderEmployeeRole.PROVIDER_ADMIN, provider1));
     }
 }

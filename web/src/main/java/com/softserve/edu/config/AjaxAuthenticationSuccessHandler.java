@@ -1,12 +1,14 @@
 package com.softserve.edu.config;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Iterator;
 
 public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -22,7 +24,9 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
                                         Authentication authentication) throws IOException, ServletException {
 
         if ("true".equals(httpServletRequest.getHeader("X-Login-Ajax-call"))) {
-            String authority = authentication.getAuthorities().iterator().next().getAuthority();
+            Iterator<? extends GrantedAuthority> authorities = authentication.getAuthorities().iterator();
+            String authority = authorities.hasNext() ?
+                    authorities.next().getAuthority() : "NO_AUTHORITY";
             httpServletResponse.getWriter().print(authority);
             httpServletResponse.getWriter().flush();
         } else {

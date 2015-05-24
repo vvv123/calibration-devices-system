@@ -38,6 +38,7 @@
         'controllers/MainPanelController',
         'controllers/OrganizationController',
         'services/OrganizationService',
-        'services/StatisticService'
+        'services/StatisticService',
+        'services/UserService'
     ], function () {});
 })();
