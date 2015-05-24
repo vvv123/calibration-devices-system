@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h3 class="modal-title">Заповніть інформацію про адресу</h3>
+</div>
+
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label class="control-label">Область *</label>
+            <input name="region" type="text" ng-model="$root.addressForm.region"
+                   typeahead="region as region.designation for region in regions | filter: $viewValue"
+                   typeahead-on-select="receiveDistricts($root.addressForm.region.id)" typeahead-editable="false"
+                   class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Район *</label>
+            <input name="district" type="text" ng-model="$root.addressForm.district"
+                   typeahead="district as district.designation for district in districts | filter: $viewValue"
+                   typeahead-on-select="receiveLocalities($root.addressForm.district.id)" typeahead-editable="false"
+                   class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Населений пункт *</label>
+            <input name="locality" type="text" ng-model="$root.addressForm.locality"
+                   typeahead="locality as locality.designation for locality in localities | filter: $viewValue"
+                   typeahead-on-select="receiveStreets($root.addressForm.locality.id)" typeahead-editable="false"
+                   class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Вулиця *</label>
+            <input name="street" type="text" ng-model="$root.addressForm.street"
+                   typeahead="street as street.designation for street in streets | filter: $viewValue"
+                   typeahead-on-select="receiveBuildings($root.addressForm.street.id)" typeahead-editable="false"
+                   class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Будинок *</label>
+            <input name="building" type="text" ng-model="$root.addressForm.building"
+                   typeahead="building as building.designation for building in buildings | filter: $viewValue"
+                   class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Квартира</label>
+            <input name="flat" type="text" ng-model="$root.addressForm.flat" class="form-control" required>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="closeModal()">Закрити</button>
+</div>
