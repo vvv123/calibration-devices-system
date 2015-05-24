@@ -58,8 +58,8 @@ public class ProviderController {
         return new ClientStageVerificationDTO(clientData, clientData.getClientAddress(), null);
     }
 
-    @RequestMapping(value = "/provider/verifications/archives/{verificationId}", method = RequestMethod.GET)
-    public VerificationDTO getArchivesVerificationDetailsById(
+    @RequestMapping(value = "/provider/verifications/archive/{verificationId}", method = RequestMethod.GET)
+    public VerificationDTO getArchivalVerificationDetailsById(
             @PathVariable String verificationId,
             @AuthenticationPrincipal SecurityUserDetailsService.EmployeeUser employeeUser) {
 
@@ -67,7 +67,7 @@ public class ProviderController {
 
         return new VerificationDTO(verification.getClientData(), verification.getId(), verification.getInitialDate(),
                 verification.getExpirationDate(), verification.getStatus(), verification.getCalibrator(),
-                verification.getCalibratorEmployee(), verification.getDevice().getDeviceType(), verification.getProvider(),
+                verification.getCalibratorEmployee(), verification.getDevice(), verification.getProvider(),
                 verification.getProviderEmployee(), verification.getStateVerificator(), verification.getStateVerificatorEmployee());
     }
 }

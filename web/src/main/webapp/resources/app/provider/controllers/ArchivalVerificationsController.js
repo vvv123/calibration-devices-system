@@ -1,6 +1,6 @@
 angular
     .module('providerModule')
-    .controller('AllVerificationsController', ['$scope', '$modal', '$log', 'DataReceivingService',
+    .controller('ArchivalVerificationsController', ['$scope', '$modal', '$log', 'DataReceivingService',
         function ($scope, $modal, $log, dataReceivingService) {
 
             $scope.totalItems = 0;
@@ -26,12 +26,12 @@ angular
             $scope.open = function ($index) {
                 $modal.open({
                     animation: true,
-                    templateUrl: '/resources/app/provider/views/verification-details.html',
+                    templateUrl: '/resources/app/provider/views/archival-verification-details.html',
                     controller: 'ModalController',
                     size: 'lg',
                     resolve: {
                         verification: function () {
-                            return dataReceivingService.getData('/provider/verifications/' + $scope.pageData[$index].id)
+                            return dataReceivingService.getData('/provider/verifications/archive/' + $scope.pageData[$index].id)
                                 .success(function (verification) {
                                     $log.info(verification);
                                     return verification;

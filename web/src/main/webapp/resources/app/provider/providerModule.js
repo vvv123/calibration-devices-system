@@ -20,8 +20,8 @@
                 })
                 .state("verifications-archive", {
                     url: '/verifications/archive',
-                    templateUrl: '/resources/app/provider/views/all-verifications.html',
-                    controller: 'AllVerificationsController'
+                    templateUrl: '/resources/app/provider/views/archival-verifications.html',
+                    controller: 'ArchivalVerificationsController'
                 });
 
         }]);
@@ -36,7 +36,7 @@
     define([
         'controllers/TopNavBarController',
         'controllers/MainPanelController',
-        'controllers/AllVerificationsController',
+        'controllers/ArchivalVerificationsController',
         'controllers/NewVerificationsController',
         'controllers/AddingVerificationsController',
         'controllers/ModalController',

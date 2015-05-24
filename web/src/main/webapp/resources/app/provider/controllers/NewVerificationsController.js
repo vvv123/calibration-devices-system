@@ -2,6 +2,7 @@ angular
     .module('providerModule')
     .controller('NewVerificationsController', ['$scope', '$modal', '$log', 'DataReceivingService',
         function ($scope, $modal, $log, dataReceivingService) {
+
             $scope.totalItems = 0;
             $scope.currentPage = 1;
             $scope.itemsPerPage = 5;
@@ -25,12 +26,12 @@ angular
             $scope.open = function ($index) {
                 $modal.open({
                     animation: true,
-                    templateUrl: '/resources/app/provider/views/verification-details.html',
+                    templateUrl: '/resources/app/provider/views/new-verification-details.html',
                     controller: 'ModalController',
                     size: 'lg',
                     resolve: {
                         verification: function () {
-                            return dataReceivingService.getData('/provider/verifications/' + $scope.pageData[$index].id)
+                            return dataReceivingService.getData('/provider/verifications/new/' + $scope.pageData[$index].id)
                                 .success(function (verification) {
                                     $log.info(verification);
                                     verification.id = $scope.pageData[$index].id;
