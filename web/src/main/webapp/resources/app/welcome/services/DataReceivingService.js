@@ -1,4 +1,5 @@
-welcomeModule
+angular
+    .module('welcomeModule')
     .service('DataReceivingService', ['$http','$log', function ($http, $log) {
         this.getData = function (url) {
             $log.log(url);

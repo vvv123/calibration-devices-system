@@ -1,8 +1,7 @@
-angular.module('adminModule', ['spring-security-csrf-token-interceptor',
-    'ui.bootstrap', 'ui.router', 'ui.bootstrap.showErrors'])
-    .config(['$stateProvider', '$urlRouterProvider', 'showErrorsConfigProvider',
-        function ($stateProvider, $urlRouterProvider, showErrorsConfigProvider) {
-            showErrorsConfigProvider.showSuccess(true);
+(function () {
+    angular.module('adminModule', ['spring-security-csrf-token-interceptor',
+        'ui.bootstrap', 'ui.router'])
+        .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/');
             $stateProvider
                 .state('main-panel', {
@@ -25,20 +24,20 @@ angular.module('adminModule', ['spring-security-csrf-token-interceptor',
                     url: '/settings',
                     templateUrl: '/resources/app/admin/views/settings-panel.html'
                 });
-            }]);
+        }]);
 
-angular.module('adminModule').run(function(paginationConfig){
-    paginationConfig.firstText = 'Перша';
-    paginationConfig.previousText = 'Попередня';
-    paginationConfig.nextText = 'Наступна';
-    paginationConfig.lastText = 'Остання';
-});
+    angular.module('adminModule').run(function (paginationConfig) {
+        paginationConfig.firstText = 'Перша';
+        paginationConfig.previousText = 'Попередня';
+        paginationConfig.nextText = 'Наступна';
+        paginationConfig.lastText = 'Остання';
+    });
 
-define([
-    'controllers/TopNavBarController',
-    'controllers/MainPanelController',
-    'controllers/OrganizationController',
-    'services/OrganizationService',
-    'services/StatisticService',
-    'services/UserService'
-], function () {});
+    define([
+        'controllers/TopNavBarController',
+        'controllers/MainPanelController',
+        'controllers/OrganizationController',
+        'services/OrganizationService',
+        'services/StatisticService'
+    ], function () {});
+})();

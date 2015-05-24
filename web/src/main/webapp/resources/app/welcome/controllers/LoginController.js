@@ -1,4 +1,5 @@
-welcomeModule
+angular
+    .module('welcomeModule')
     .controller('LoginController', ['$scope', '$http', function ($scope, $http) {
         $scope.login = function () {
 
@@ -26,7 +27,7 @@ welcomeModule
                 console.dir(data);
             });
 
-            function redirectByRole (role) {
+            function redirectByRole(role) {
                 var path = undefined;
                 if (role == "SYS_ADMIN")
                     path = '/admin';

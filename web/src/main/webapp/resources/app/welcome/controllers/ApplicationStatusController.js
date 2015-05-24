@@ -1,4 +1,5 @@
-welcomeModule
+angular
+    .module('welcomeModule')
     .controller('ApplicationStatusController', ['$scope', '$http', '$translate', '$state', '$log', 'DataReceivingService',
         function ($scope, $http, $translate, $state, $log, dataSendingService) {
 

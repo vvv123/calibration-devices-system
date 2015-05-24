@@ -1,6 +1,6 @@
 angular
     .module('providerModule')
-    .controller('NewVerificationsController', ['$scope', '$modal', '$log', 'DataReceivingService',
+    .controller('ArchivalVerificationsController', ['$scope', '$modal', '$log', 'DataReceivingService',
         function ($scope, $modal, $log, dataReceivingService) {
 
             $scope.totalItems = 0;
@@ -16,7 +16,7 @@ angular
 
             function updatePage() {
                 dataReceivingService
-                    .getData('/provider/verifications/new/' + $scope.currentPage + '/' + $scope.itemsPerPage)
+                    .getData('/provider/verifications/archive/' + $scope.currentPage + '/' + $scope.itemsPerPage)
                     .success(function (verifications) {
                         $scope.pageData = verifications.content;
                         $scope.totalItems = verifications.totalItems;
@@ -26,16 +26,14 @@ angular
             $scope.open = function ($index) {
                 $modal.open({
                     animation: true,
-                    templateUrl: '/resources/app/provider/views/new-verification-details.html',
+                    templateUrl: '/resources/app/provider/views/archival-verification-details.html',
                     controller: 'ModalController',
                     size: 'lg',
                     resolve: {
                         verification: function () {
-                            return dataReceivingService.getData('/provider/verifications/new/' + $scope.pageData[$index].id)
+                            return dataReceivingService.getData('/provider/verifications/archive/' + $scope.pageData[$index].id)
                                 .success(function (verification) {
                                     $log.info(verification);
-                                    verification.id = $scope.pageData[$index].id;
-                                    verification.date = $scope.pageData[$index].date;
                                     return verification;
                                 });
                         }

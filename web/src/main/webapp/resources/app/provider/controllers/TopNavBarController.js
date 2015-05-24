@@ -8,6 +8,5 @@ angular
             }).then(function () {
                 window.location.replace("/");
             });
-
         };
     }]);
