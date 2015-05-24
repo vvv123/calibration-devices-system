@@ -8,16 +8,22 @@
                     url: '/',
                     templateUrl: '/resources/app/provider/views/main-panel.html'
                 })
-                .state("verifications-archive", {
-                    url: '/verifications/archive',
-                    templateUrl: '/resources/app/provider/views/all-verifications.html',
-                    controller: 'AllVerificationsController'
-                })
                 .state("new-verifications", {
                     url: '/verifications/new',
                     templateUrl: '/resources/app/provider/views/new-verifications.html',
                     controller: 'NewVerificationsController'
+                })
+                .state("adding-verifications", {
+                    url: '/verifications/add',
+                    templateUrl: '/resources/app/provider/views/adding-verifications.html',
+                    controller: 'AddingVerificationsController'
+                })
+                .state("verifications-archive", {
+                    url: '/verifications/archive',
+                    templateUrl: '/resources/app/provider/views/all-verifications.html',
+                    controller: 'AllVerificationsController'
                 });
+
         }]);
 
     angular.module('providerModule').run(function (paginationConfig) {
@@ -32,6 +38,8 @@
         'controllers/MainPanelController',
         'controllers/AllVerificationsController',
         'controllers/NewVerificationsController',
-        'services/VerificationService'
+        'controllers/AddingVerificationsController',
+        'controllers/ModalController',
+        'services/DataReceivingService'
     ], function () {});
 })();

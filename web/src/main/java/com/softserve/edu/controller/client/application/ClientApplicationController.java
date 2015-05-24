@@ -1,9 +1,9 @@
 package com.softserve.edu.controller.client.application;
 
-import com.softserve.edu.controller.client.application.util.ClientApplicationDTOTransformer;
+import com.softserve.edu.controller.client.application.util.ClientStageVerificationDTOTransformer;
 import com.softserve.edu.controller.client.application.util.EmailSendingUtil;
-import com.softserve.edu.dto.application.ClientApplicationDTO;
 import com.softserve.edu.dto.application.ClientApplicationFieldDTO;
+import com.softserve.edu.dto.application.ClientStageVerificationDTO;
 import com.softserve.edu.entity.ClientData;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
@@ -40,26 +40,27 @@ public class ClientApplicationController {
     private Environment env;
 
     @RequestMapping(value = "/application/add", method = RequestMethod.POST)
-    public String saveApplication(@RequestBody ClientApplicationDTO clientApplicationDTO) {
-        ClientData clientData = ClientApplicationDTOTransformer.parseApplicationDTOToClientData((clientApplicationDTO));
+    public String saveApplication(@RequestBody ClientStageVerificationDTO clientStageVerificationDTO) {
+
+        ClientData clientData = ClientStageVerificationDTOTransformer.parseApplicationDTOToClientData(clientStageVerificationDTO);
         Verification verification = new Verification(new Date(), clientData,
-                providerService.findById(clientApplicationDTO.getProviderId()), Status.SENT);
-        logger.info(verification.getClientData().getFirstName());
+                providerService.findById(clientStageVerificationDTO.getProviderId()), Status.SENT);
+
         verificationService.saveVerification(verification);
         EmailSendingUtil.setEmailSendingConfig(clientData.getFirstName(), clientData.getLastName(), verification.getId(), env);
         return verification.getId();
     }
 
-    @RequestMapping(value = "/application/check/{clientCode}", method = RequestMethod.GET)
-    public String getClientCode(@PathVariable String clientCode) {
-        Verification verification = verificationService.findByCode(clientCode);
+    @RequestMapping(value = "/application/check/{verificationId}", method = RequestMethod.GET)
+    public String getClientCode(@PathVariable String verificationId) {
+        Verification verification = verificationService.findById(verificationId);
         return verification == null ? "NOT_FOUND" : verification.getStatus().name();
     }
 
     @RequestMapping(value = "/application/providers/{district}", method = RequestMethod.GET)
     public List<ClientApplicationFieldDTO> getProvidersCorrespondingDistrict(@PathVariable String district)
             throws UnsupportedEncodingException {
-        logger.info(district);
+
         return providerService.findByDistrictDesignation(district)
                 .stream()
                 .map(provider -> new ClientApplicationFieldDTO(provider.getId(), provider.getName()))

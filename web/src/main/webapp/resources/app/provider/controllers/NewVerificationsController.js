@@ -1,7 +1,7 @@
 angular
     .module('providerModule')
-    .controller('NewVerificationsController', ['$scope', 'VerificationService',
-        function ($scope, verificationService) {
+    .controller('NewVerificationsController', ['$scope', '$modal', '$log', 'DataReceivingService',
+        function ($scope, $modal, $log, dataReceivingService) {
             $scope.totalItems = 0;
             $scope.currentPage = 1;
             $scope.itemsPerPage = 5;
@@ -14,11 +14,31 @@ angular
             updatePage();
 
             function updatePage() {
-                verificationService
-                    .getPage('/provider/verifications/new/' + $scope.currentPage + '/' + $scope.itemsPerPage)
+                dataReceivingService
+                    .getData('/provider/verifications/new/' + $scope.currentPage + '/' + $scope.itemsPerPage)
                     .success(function (verifications) {
                         $scope.pageData = verifications.content;
                         $scope.totalItems = verifications.totalItems;
                     });
             }
+
+            $scope.open = function ($index) {
+                $modal.open({
+                    animation: true,
+                    templateUrl: '/resources/app/provider/views/verification-details.html',
+                    controller: 'ModalController',
+                    size: 'lg',
+                    resolve: {
+                        verification: function () {
+                            return dataReceivingService.getData('/provider/verifications/' + $scope.pageData[$index].id)
+                                .success(function (verification) {
+                                    $log.info(verification);
+                                    verification.id = $scope.pageData[$index].id;
+                                    verification.date = $scope.pageData[$index].date;
+                                    return verification;
+                                });
+                        }
+                    }
+                });
+            };
         }]);

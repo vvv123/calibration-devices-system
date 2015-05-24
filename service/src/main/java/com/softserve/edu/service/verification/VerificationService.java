@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +23,7 @@ public class VerificationService {
     }
 
     @Transactional(readOnly = true)
-    public Verification findByCode(String code) {
+    public Verification findById(String code) {
         return verificationRepository.findOne(code);
     }
 
@@ -44,5 +45,14 @@ public class VerificationService {
     public Page<Verification> findPageOfSentVerificationsByProviderId(Long providerId, int pageNumber, int itemsPerPage) {
         Pageable pageRequest = new PageRequest(pageNumber - 1, itemsPerPage);
         return verificationRepository.findByProviderIdAndStatus(providerId, Status.SENT, pageRequest);
+    }
+
+    @Transactional(readOnly = true)
+    public Verification findByIdAndProviderId(String id, Long providerId) {
+        Verification verification = verificationRepository.findByIdAndProviderId(id, providerId);
+        if (verification == null) {
+            throw new AccessDeniedException("Id of user organization differs from requested verification object organization id.");
+        }
+        return verification;
     }
 }

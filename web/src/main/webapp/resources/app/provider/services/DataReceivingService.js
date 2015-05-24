@@ -1,8 +1,9 @@
 angular
     .module('providerModule')
-    .service('VerificationService', ['$http', function ($http) {
+    .service('DataReceivingService', ['$http', '$log', function ($http, $log) {
         return {
-            getPage: function (url) {
+            getData: function (url) {
+                $log.info(url);
                 return $http.get(url)
                     .success(function (result) {
                         return result.data;
