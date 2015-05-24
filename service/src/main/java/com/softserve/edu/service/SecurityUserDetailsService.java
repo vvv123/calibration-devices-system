@@ -38,17 +38,17 @@ public class SecurityUserDetailsService implements UserDetailsService {
         Long employeeOrganizationId = user.getRole().equals(SYS_ADMIN.roleName()) ?
                 null : ((Employee) user).getOrganization().getId();
 
-        return new CostumeUserDetails(username, user.getPassword(), authorities, employeeOrganizationId);
+        return new CustomUserDetails(username, user.getPassword(), authorities, employeeOrganizationId);
     }
 
     /**
      * Provide additional information about company(organization) where user works except SYS_ADMIN role.
      */
-    public static class CostumeUserDetails extends org.springframework.security.core.userdetails.User {
+    public static class CustomUserDetails extends org.springframework.security.core.userdetails.User {
         private static final long serialVersionUID = UUID.randomUUID().getMostSignificantBits();
         private Long organizationId;
 
-        public CostumeUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities, Long organizationId) {
+        public CustomUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities, Long organizationId) {
             super(username, password, authorities);
             this.organizationId = organizationId;
         }

@@ -16,28 +16,6 @@
                   ng-submit="sendApplicationData()" novalidate>
 
                 <div class="form-group" show-errors>
-                    <label for="firstName" class="col-md-2 control-label">
-                        {{'FIRST_NAME' | translate}}
-                    </label>
-
-                    <div class="col-md-8">
-                        <input id="firstName" name="firstName" class="form-control" ng-model="formData.firstName"
-                               ng-pattern="/^[A-Za-z\u0400-\u04FF]+$/" required>
-                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
-
-                        <p class="help-block" ng-if="clientForm.firstName.$error.required">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'REQUIRED' | translate}}
-                        </p>
-
-                        <p class="help-block" ng-if="clientForm.firstName.$error.pattern">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'ALPHABETIC_ERROR' | translate}}
-                        </p>
-                    </div>
-                </div>
-
-                <div class="form-group" show-errors>
                     <label for="lastName" class="col-md-2 control-label">
                         {{'LAST_NAME' | translate}}
                     </label>
@@ -53,6 +31,28 @@
                         </p>
 
                         <p class="help-block" ng-if="clientForm.lastName.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'ALPHABETIC_ERROR' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
+                    <label for="firstName" class="col-md-2 control-label">
+                        {{'FIRST_NAME' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="firstName" name="firstName" class="form-control" ng-model="formData.firstName"
+                               ng-pattern="/^[A-Za-z\u0400-\u04FF]+$/" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block" ng-if="clientForm.firstName.$error.required">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.firstName.$error.pattern">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             {{'ALPHABETIC_ERROR' | translate}}
                         </p>

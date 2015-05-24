@@ -2,7 +2,9 @@ package com.softserve.edu.entity.user;
 
 import com.softserve.edu.entity.Organization;
 
-import javax.persistence.*;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Employee extends User {
@@ -12,8 +14,9 @@ public abstract class Employee extends User {
     private String email;
     private String phone;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Organization organization;
+
 
     protected Employee() {}
 

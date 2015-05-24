@@ -1,7 +1,5 @@
 package com.softserve.edu.entity.user;
 
-import com.softserve.edu.entity.Organization;
-
 import javax.persistence.*;
 
 /**

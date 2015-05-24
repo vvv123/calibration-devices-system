@@ -30,7 +30,7 @@ public class ProviderController {
     public PageDTO<VerificationPageDTO> getPageOfAllVerificationsByProviderId(
             @PathVariable Integer pageNumber,
             @PathVariable Integer itemsPerPage,
-            @AuthenticationPrincipal SecurityUserDetailsService.CostumeUserDetails employeeUser) {
+            @AuthenticationPrincipal SecurityUserDetailsService.CustomUserDetails employeeUser) {
 
         Page<VerificationPageDTO> page = VerificationPageDTOTransformer.toDTO(verificationService
                 .findPageOfAllVerificationsByProviderId(employeeUser.getOrganizationId(), pageNumber, itemsPerPage));
@@ -41,7 +41,7 @@ public class ProviderController {
     public PageDTO<VerificationPageDTO> getPageOfAllSentVerificationsByProviderId(
             @PathVariable Integer pageNumber,
             @PathVariable Integer itemsPerPage,
-            @AuthenticationPrincipal SecurityUserDetailsService.CostumeUserDetails employeeUser) {
+            @AuthenticationPrincipal SecurityUserDetailsService.CustomUserDetails employeeUser) {
 
         Page<VerificationPageDTO> page = VerificationPageDTOTransformer.toDTO(verificationService
                 .findPageOfSentVerificationsByProviderId(employeeUser.getOrganizationId(), pageNumber, itemsPerPage));
@@ -51,7 +51,7 @@ public class ProviderController {
     @RequestMapping(value = "/provider/verifications/new/{verificationId}", method = RequestMethod.GET)
     public ClientStageVerificationDTO getNewVerificationDetailsById(
             @PathVariable String verificationId,
-            @AuthenticationPrincipal SecurityUserDetailsService.CostumeUserDetails employeeUser) {
+            @AuthenticationPrincipal SecurityUserDetailsService.CustomUserDetails employeeUser) {
 
         Verification verification = verificationService.findByIdAndProviderId(verificationId, employeeUser.getOrganizationId());
         ClientData clientData = verification.getClientData();
@@ -61,7 +61,7 @@ public class ProviderController {
     @RequestMapping(value = "/provider/verifications/archive/{verificationId}", method = RequestMethod.GET)
     public VerificationDTO getArchivalVerificationDetailsById(
             @PathVariable String verificationId,
-            @AuthenticationPrincipal SecurityUserDetailsService.CostumeUserDetails employeeUser) {
+            @AuthenticationPrincipal SecurityUserDetailsService.CustomUserDetails employeeUser) {
 
         Verification verification = verificationService.findByIdAndProviderId(verificationId, employeeUser.getOrganizationId());
 

@@ -6,27 +6,19 @@ import java.util.Date;
 
 public class VerificationPageDTO {
     private String id;
-    private Date date;
+    private Date initialDate;
     private String surname;
     private String street;
     private Status status;
 
     public VerificationPageDTO() {}
 
-    public VerificationPageDTO(String id, Date date, String surname, String street, Status status) {
+    public VerificationPageDTO(String id, Date initialDate, String surname, String street, Status status) {
         this.id = id;
-        this.date = date;
+        this.initialDate = initialDate;
         this.surname = surname;
         this.street = street;
         this.status = status;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getId() {
@@ -35,6 +27,14 @@ public class VerificationPageDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Date getInitialDate() {
+        return initialDate;
+    }
+
+    public void setInitialDate(Date initialDate) {
+        this.initialDate = initialDate;
     }
 
     public String getSurname() {
