@@ -4,6 +4,7 @@ import com.softserve.edu.dto.PageDTO;
 import com.softserve.edu.dto.SearchDTO;
 import com.softserve.edu.dto.admin.OrganizationPageItem;
 import com.softserve.edu.dto.admin.OrganizationDTO;
+import com.softserve.edu.entity.Address;
 import com.softserve.edu.entity.user.ProviderEmployee;
 import com.softserve.edu.entity.user.User;
 import com.softserve.edu.repository.UserRepository;
@@ -35,12 +36,16 @@ public class OrganizationsController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ResponseEntity addOrganization(@RequestBody OrganizationDTO organizationDTO) {
         HttpStatus httpStatus = HttpStatus.CREATED;
+        Address address = new Address(
+                organizationDTO.getRegion(), organizationDTO.getDistrict(),
+                organizationDTO.getLocality(), organizationDTO.getStreet(),
+                organizationDTO.getBuilding(), organizationDTO.getFlat());
         try {
             organizationsService.addOrganizationWithAdmin(
                     organizationDTO.getName(), organizationDTO.getEmail(),
                     organizationDTO.getPhone(), organizationDTO.getType(),
-                    organizationDTO.getUsername(), organizationDTO.getPassword()
-            );
+                    organizationDTO.getUsername(), organizationDTO.getPassword(),
+                    address);
         } catch (Exception e) {
             httpStatus = HttpStatus.CONFLICT;
         }
