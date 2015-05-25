@@ -134,4 +134,21 @@ public class VerificationDTO extends ClientStageVerificationDTO {
     public void setStateVerificatorEmployee(String stateVerificatorEmployee) {
         this.stateVerificatorEmployee = stateVerificatorEmployee;
     }
+
+    @Override
+    public String toString() {
+        return "VerificationDTO{" +
+                "id='" + id + '\'' +
+                ", status=" + status +
+                ", initialDate=" + initialDate +
+                ", expirationDate=" + expirationDate +
+                ", device='" + device + '\'' +
+                ", provider='" + provider + '\'' +
+                ", providerEmployee='" + providerEmployee + '\'' +
+                ", calibrator='" + calibrator + '\'' +
+                ", calibratorEmployee='" + calibratorEmployee + '\'' +
+                ", stateVerificator='" + stateVerificator + '\'' +
+                ", stateVerificatorEmployee='" + stateVerificatorEmployee + '\'' +
+                '}';
+    }
 }

@@ -13,10 +13,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ProviderController {
@@ -46,6 +45,16 @@ public class ProviderController {
         Page<VerificationPageDTO> page = VerificationPageDTOTransformer.toDTO(verificationService
                 .findPageOfSentVerificationsByProviderId(employeeUser.getOrganizationId(), pageNumber, itemsPerPage));
         return new PageDTO<>(page.getTotalElements(), page.getContent());
+    }
+
+
+    @RequestMapping(value = "/provider/verifications/new/update", method = RequestMethod.PUT)
+    public void updateVerification(@RequestBody List<VerificationPageDTO> verifications,
+                                   @AuthenticationPrincipal SecurityUserDetailsService.CustomUserDetails employeeUser) {
+     for(int i=0;i<verifications.size();i++){
+     verificationService.updateVerification(
+             VerificationPageDTOTransformer.fromVerificationDTOtoVerification(verifications.get(i)),employeeUser.getOrganizationId());
+     }
     }
 
     @RequestMapping(value = "/provider/verifications/new/{verificationId}", method = RequestMethod.GET)
