@@ -58,19 +58,11 @@ public class DocumentsController {
         byte[] bytes = IOUtils.toByteArray(outputStream);
         outputStream.close();
 
-        byte[] target = new byte[6414];
-        System.arraycopy(bytes, 0, target, 0, 6414);
-
         FileOutputStream out = new FileOutputStream("the.docx");
         out.write(bytes);
         out.close();
 
-        Path path = Paths.get("verification_certificate.docx");
-        byte[] data = FileUtils.readFileToByteArray(new File("/home/oleg/verification_certificate.docx"));
-
-        System.out.println(data.length);
-
-        ResponseEntity<byte[]> responseEntity = makeResponse(data, HttpStatus.OK, format);
+        ResponseEntity<byte[]> responseEntity = makeResponse(bytes, HttpStatus.OK, format);
 
         return responseEntity;
     }

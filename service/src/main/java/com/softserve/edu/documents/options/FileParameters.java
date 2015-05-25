@@ -46,4 +46,12 @@ public class FileParameters {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
 }

@@ -17,7 +17,7 @@ public class LoadTemplate implements Action {
         //byte[] bytes = IOUtils.toByteArray(inputStream);
 
         OutputStream outputStream = fileObject.getContent().getOutputStream();
-//        outputStream.write(bytes);
+//        outputStream.getColumnsNamesValues(bytes);
 
         IOUtils.copy(inputStream, outputStream);
 

@@ -32,7 +32,7 @@ public class DocumentFontFactory {
      * @throws IOException if font is invalid or the font's file couldn't be found
      */
     static private BaseFont createBaseFont(DocumentFont font) throws IOException {
-        FileObject file = FileLocator.getFile(FileSystem.RES, font.toString());
+        FileObject file = FileLocator.getFile(FileSystem.RES, StandardPath.FONTS + "/" + font.toString());
         String path = file.getURL().getPath();
 
         BaseFont bf;
