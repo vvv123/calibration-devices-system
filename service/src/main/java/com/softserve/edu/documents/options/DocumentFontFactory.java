@@ -3,7 +3,7 @@ package com.softserve.edu.documents.options;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.BaseFont;
-import com.softserve.edu.documents.file.FileLocator;
+import com.softserve.edu.documents.utils.FileLocator;
 import org.apache.commons.vfs2.FileObject;
 
 import java.io.IOException;

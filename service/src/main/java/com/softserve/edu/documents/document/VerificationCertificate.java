@@ -1,5 +1,6 @@
 package com.softserve.edu.documents.document;
 
+import com.softserve.edu.documents.document.meta.Column;
 import com.softserve.edu.documents.options.DocumentType;
 import com.softserve.edu.entity.CalibrationTest;
 import com.softserve.edu.entity.Verification;
@@ -15,6 +16,7 @@ public class VerificationCertificate extends BaseCertificate {
     /**
      * @return the date until this verification certificate is effective.
      */
+    @Column(name = "EFF_DATE")
     public String getVerificationCertificateEffectiveUntilDate() {
         return getVerification().getVerificationFinishedDate().toString();
     }
@@ -22,6 +24,7 @@ public class VerificationCertificate extends BaseCertificate {
     /**
      * @return get the sign of the document, which contains the metrological characteristics
      */
+    @Column(name = "METR_DOC_SIGN")
     public String getMetrologicalDocumentSign() {
         return getCalibrationTest().getMetrologicalDocument().getSign();
     }
@@ -29,6 +32,7 @@ public class VerificationCertificate extends BaseCertificate {
     /**
      * @return get the name of the document, which contains the metrological characteristics
      */
+    @Column(name = "METR_DOC_NAME")
     public String getMetrologicalDocumentName() {
         return getCalibrationTest().getMetrologicalDocument().getName();
     }

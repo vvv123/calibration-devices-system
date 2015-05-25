@@ -6,6 +6,4 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = ElementType.TYPE)
-public @interface Document {
-    String name = null;
-}
+public @interface Document {}

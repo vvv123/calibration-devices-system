@@ -15,19 +15,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class InsertText implements Action {
     Map<String, String> columnsNamesValues;
 
     @Override
-    public void process(FileObject fileObject, FileParameters fileParameters)
+    public FileObject process(FileObject fileObject, FileParameters fileParameters)
             throws IOException {
         Document document = fileParameters.getDocument();
 
         Writer writer = new Writer();
         columnsNamesValues = writer.getColumnsNamesValues(document);
 
-        InputStream inputStream = fileObject.getContent().getInputStream(); // FileInputStream?
+        InputStream inputStream = fileObject.getContent().getInputStream();
         XWPFDocument templateDocument = new XWPFDocument(inputStream);
         inputStream.close();
 
@@ -35,12 +36,18 @@ public class InsertText implements Action {
 
         List<XWPFParagraph> paragraphs = newDocument.getParagraphs();
 
-        paragraphs.
+        List<XWPFParagraph> paragraphList = paragraphs.
                 stream().
                 filter(paragraph -> !paragraph.getParagraphText().isEmpty()).
-                forEach(this::setCorrectText);
+                collect(Collectors.toList());
+
+        for (XWPFParagraph paragraph : paragraphList) {
+            setCorrectText(paragraph);
+        }
 
         newDocument.write(fileObject.getContent().getOutputStream());
+
+        return fileObject;
     }
 
     /**
@@ -61,34 +68,40 @@ public class InsertText implements Action {
                 continue;
             }
 
-            StringBuffer textInRunBuilder = new StringBuffer(textInRun);
+            sourceRun.setText(replaceText(textInRun), position);
+        }
+    }
 
-            int indexOf = textInRunBuilder.indexOf("$");
-            if (indexOf > -1) {
-                Matcher matcher = Pattern.compile("\\$(.+?)(\\z| )").matcher(textInRunBuilder);
-                List<String> allMatches = new ArrayList<>();
+    private String replaceText(String textInRun) {
+        StringBuffer textInRunBuilder = new StringBuffer(textInRun);
 
-                while (matcher.find()) {
-                    allMatches.add(matcher.group());
-                }
+        int indexOf = textInRunBuilder.indexOf("$");
+        if (indexOf == -1) {
+            return textInRun;
+        }
 
-                for (String match : allMatches) {
-                    int indexOfColumn = textInRunBuilder.indexOf(match);
-                    String substring = match.substring(1).trim();
-                    String columnValue = columnsNamesValues.get(substring);
+        Matcher matcher = Pattern.compile("\\$(\\w+)").matcher(textInRunBuilder);
+        List<String> allMatches = new ArrayList<>();
 
-                    if (columnValue == null) {
-                        continue;
-                    }
+        while (matcher.find()) {
+            allMatches.add(matcher.group());
+        }
 
-                    textInRunBuilder.replace(
-                            indexOfColumn,
-                            indexOfColumn + match.length(),
-                            columnValue);
-                }
+        for (String match : allMatches) {
+            int indexOfColumn = textInRunBuilder.indexOf(match);
+            String substring = match.substring(1).trim();
+            String columnValue = columnsNamesValues.get(substring);
+
+            if (columnValue == null) {
+                continue;
             }
 
-            sourceRun.setText(textInRunBuilder.toString(), position);
+            textInRunBuilder.replace(
+                    indexOfColumn,
+                    indexOfColumn + match.length(),
+                    columnValue);
         }
+
+        return textInRunBuilder.toString();
     }
 }

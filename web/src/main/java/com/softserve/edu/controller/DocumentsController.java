@@ -58,7 +58,15 @@ public class DocumentsController {
         byte[] bytes = IOUtils.toByteArray(outputStream);
         outputStream.close();
 
-        FileOutputStream out = new FileOutputStream("the.docx");
+        String fileName;
+
+        if (format == DocumentFormat.PDF) {
+            fileName = "the.pdf";
+        } else {
+            fileName = "the.docx";
+        }
+
+        FileOutputStream out = new FileOutputStream(fileName);
         out.write(bytes);
         out.close();
 
@@ -67,27 +75,27 @@ public class DocumentsController {
         return responseEntity;
     }
 
-    /**
-     * Returns a document with a specific format using verification that has only one test.
-     * For example: .../verification_certificate/1/pdf.
-     *
-     * @param documentType document to generate
-     * @param verificationCode id of the verification, for which the document is to be generated. This verification
-     *                       must have only one test
-     * @param format format of the resulting document
-     * @return the generated document
-     * @throws IOException if file can't be generated because of a file system error
-     * @throws IllegalStateException if one of parameters is incorrect
-     */
-    @RequestMapping(value = "{documentType}/{verificationCode}/{format}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getDocument(@PathVariable DocumentType documentType,
-                                              @PathVariable String verificationCode,
-                                              @PathVariable DocumentFormat format)
-            throws IOException, IllegalStateException {
-        InputStream outputStream = documentsService.getFile(verificationCode, documentType, format);
-
-        return makeResponse(IOUtils.toByteArray(outputStream), HttpStatus.OK, format);
-    }
+//    /**
+//     * Returns a document with a specific format using verification that has only one test.
+//     * For example: .../verification_certificate/1/pdf.
+//     *
+//     * @param documentType document to generate
+//     * @param verificationCode id of the verification, for which the document is to be generated. This verification
+//     *                       must have only one test
+//     * @param format format of the resulting document
+//     * @return the generated document
+//     * @throws IOException if file can't be generated because of a file system error
+//     * @throws IllegalStateException if one of parameters is incorrect
+//     */
+//    @RequestMapping(value = "{documentType}/{verificationCode}/{format}", method = RequestMethod.GET)
+//    public ResponseEntity<byte[]> getDocument(@PathVariable DocumentType documentType,
+//                                              @PathVariable String verificationCode,
+//                                              @PathVariable DocumentFormat format)
+//            throws IOException, IllegalStateException {
+//        InputStream outputStream = documentsService.getFile(verificationCode, documentType, format);
+//
+//        return makeResponse(IOUtils.toByteArray(outputStream), HttpStatus.OK, format);
+//    }
 
     /**
      * In case of a illegal state of a path parameter logs exception and

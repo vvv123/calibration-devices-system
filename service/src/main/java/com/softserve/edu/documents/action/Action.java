@@ -6,9 +6,6 @@ import org.apache.commons.vfs2.FileSystemException;
 
 import java.io.IOException;
 
-/**
- * Created by oleg on 22.05.15.
- */
 public interface Action {
-    void process(FileObject fileObject, FileParameters fileParameters) throws IOException;
+    FileObject process(FileObject fileObject, FileParameters fileParameters) throws IOException;
 }

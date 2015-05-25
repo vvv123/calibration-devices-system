@@ -15,12 +15,8 @@ import java.util.List;
 public class Normalize implements Action {
 
     @Override
-    public void process(FileObject fileObject, FileParameters fileParameters) throws IOException {
-        Document document = fileParameters.getDocument();
-
-        Writer writer = new Writer();
-
-        InputStream inputStream = fileObject.getContent().getInputStream(); // FileInputStream?
+    public FileObject process(FileObject fileObject, FileParameters fileParameters) throws IOException {
+        InputStream inputStream = fileObject.getContent().getInputStream();
         XWPFDocument templateDocument = new XWPFDocument(inputStream);
         inputStream.close();
 
@@ -34,15 +30,17 @@ public class Normalize implements Action {
                 forEach(this::normalize);
 
         newDocument.write(fileObject.getContent().getOutputStream());
+
+        return fileObject;
     }
 
     private void normalize(XWPFParagraph sourceParagraph) {
-
         String text = sourceParagraph.getText();
 
         List<XWPFRun> runs = sourceParagraph.getRuns();
 
         boolean isBold = runs.get(0).isBold();
+        boolean isItalic = runs.get(0).isItalic();
         int fontSize = 0;
 
         int size = runs.size();
@@ -60,6 +58,7 @@ public class Normalize implements Action {
         run2.setText(text);
         run2.setBold(isBold);
         run2.setFontSize(fontSize);
+        run2.setItalic(isItalic);
 
         sourceParagraph.addRun(run2);
     }

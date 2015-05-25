@@ -1,4 +1,4 @@
-package com.softserve.edu.documents.file;
+package com.softserve.edu.documents.utils;
 
 import com.softserve.edu.documents.options.FileSystem;
 import org.apache.commons.vfs2.FileObject;

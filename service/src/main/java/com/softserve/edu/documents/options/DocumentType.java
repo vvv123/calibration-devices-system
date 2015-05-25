@@ -1,9 +1,7 @@
 package com.softserve.edu.documents.options;
 
-import com.softserve.edu.documents.file.FileLocator;
+import com.softserve.edu.documents.utils.FileLocator;
 import org.apache.commons.vfs2.FileObject;
-
-import java.io.File;
 
 /**
  * Types of documents supported by the application.

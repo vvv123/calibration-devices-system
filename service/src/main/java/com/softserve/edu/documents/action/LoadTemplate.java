@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 
 public class LoadTemplate implements Action {
     @Override
-    public void process(FileObject fileObject, FileParameters fileParameters) throws IOException {
+    public FileObject process(FileObject fileObject, FileParameters fileParameters) throws IOException {
         FileObject template = fileParameters.getDocumentType().getTemplate();
         InputStream inputStream = template.getContent().getInputStream();
 
@@ -23,6 +23,8 @@ public class LoadTemplate implements Action {
 
         inputStream.close();
         outputStream.close();
+
+        return fileObject;
     }
 
     private static final LoadTemplate instance = new LoadTemplate();

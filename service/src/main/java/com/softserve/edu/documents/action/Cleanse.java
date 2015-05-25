@@ -22,7 +22,7 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AdjustLines implements Action {
+public class Cleanse implements Action {
     @Override
     public FileObject process(FileObject fileObject, FileParameters fileParameters) throws IOException {
         InputStream inputStream = fileObject.getContent().getInputStream(); // FileInputStream?
@@ -70,13 +70,7 @@ public class AdjustLines implements Action {
                 continue;
             }
 
-            Font font = DocumentFontFactory.buildFont(DocumentFont.FREE_SERIF, sourceRun.getFontSize());
-
-            int indexOfRight = textInRun.lastIndexOf("#");
-
-            if (indexOfRight != -1) {
-                textInRun = align(new StringBuilder(textInRun), font, paragraphWidthSource, contentWidth);
-            }
+            textInRun = textInRun.replaceAll("\\$|#", "");
 
             sourceRun.setText(textInRun, position);
         }
