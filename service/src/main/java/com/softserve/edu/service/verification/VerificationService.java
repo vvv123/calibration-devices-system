@@ -11,6 +11,8 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class VerificationService {
 
@@ -54,5 +56,11 @@ public class VerificationService {
             throw new AccessDeniedException("You have not permission to get this data.");
         }
         return verification;
+    }
+    public void updateVerification(Verification verifications, Long id){
+        verifications.setStatus(Status.RECEIVED);
+        verificationRepository.save(verifications);
+        System.out.println(id);
+
     }
 }

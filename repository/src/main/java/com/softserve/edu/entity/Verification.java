@@ -57,7 +57,7 @@ public class Verification {
     @Temporal(TemporalType.DATE)
     private Date expirationDate;
 
-    protected Verification() {}
+    public Verification() {}
 
     public Verification(Date initialDate, ClientData clientData, Provider provider, Status status) {
         this.id = UUID.randomUUID().toString();
@@ -71,7 +71,7 @@ public class Verification {
         return id;
     }
 
-    private void setId(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 

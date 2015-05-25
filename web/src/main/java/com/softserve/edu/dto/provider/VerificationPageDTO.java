@@ -60,4 +60,17 @@ public class VerificationPageDTO {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "VerificationPageDTO{" +
+                "id='" + id + '\'' +
+                ", initialDate=" + initialDate +
+                ", surname='" + surname + '\'' +
+                ", street='" + street + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }
+
+

@@ -5,21 +5,19 @@ public class OrganizationDTO {
     private String email;
     private String phone;
     private String type;
+
     private String username;
     private String password;
     private String rePassword;
 
-    public OrganizationDTO() {
-    }
+    private String region;
+    private String locality;
+    private String district;
+    private String street;
+    private String building;
+    private String flat;
 
-    public OrganizationDTO(String name, String email, String phone, String type, String username, String password, String rePassword) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.type = type;
-        this.username = username;
-        this.password = password;
-        this.rePassword = rePassword;
+    public OrganizationDTO() {
     }
 
     public String getName() {
@@ -76,5 +74,53 @@ public class OrganizationDTO {
 
     public void setRePassword(String rePassword) {
         this.rePassword = rePassword;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getLocality() {
+        return locality;
+    }
+
+    public void setLocality(String locality) {
+        this.locality = locality;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(String building) {
+        this.building = building;
+    }
+
+    public String getFlat() {
+        return flat;
+    }
+
+    public void setFlat(String flat) {
+        this.flat = flat;
     }
 }

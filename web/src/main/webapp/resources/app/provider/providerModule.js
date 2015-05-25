@@ -40,6 +40,7 @@
         'controllers/NewVerificationsController',
         'controllers/AddingVerificationsController',
         'controllers/ModalController',
-        'services/DataReceivingService'
+        'services/DataReceivingService',
+        'services/DataUpdatingService'
     ], function () {});
 })();

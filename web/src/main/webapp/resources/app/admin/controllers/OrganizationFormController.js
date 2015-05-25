@@ -4,12 +4,12 @@ angular
         function ($rootScope, $scope, $modal, organizationService, userService) {
 
             $rootScope.addressForm = {
-                region: undefined,
-                district: undefined,
-                locality: undefined,
-                street: undefined,
-                building: undefined,
-                flat: "hello"
+                region: {},
+                district: {},
+                locality: {},
+                street: {},
+                building: {},
+                flat: undefined
             };
 
             $scope.checkUsername = function () {
@@ -22,6 +22,12 @@ angular
             $scope.onOrganizationFormSubmit = function () {
                 $scope.$broadcast('show-errors-check-validity');
                 if ($scope.organizationForm.$valid && $scope.usernameValidation.isValid) {
+                    $scope.organizationsFormData.region = $rootScope.addressForm.region.designation;
+                    $scope.organizationsFormData.district = $rootScope.addressForm.district.designation;
+                    $scope.organizationsFormData.locality = $rootScope.addressForm.locality.designation;
+                    $scope.organizationsFormData.street = $rootScope.addressForm.street.designation;
+                    $scope.organizationsFormData.building = $rootScope.addressForm.building.designation;
+                    $scope.organizationsFormData.flat = $rootScope.addressForm.flat;
                     saveOrganization();
                     $scope.onTableHandling();
                 }

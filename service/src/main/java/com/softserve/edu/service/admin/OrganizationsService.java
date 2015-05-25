@@ -1,9 +1,6 @@
 package com.softserve.edu.service.admin;
 
-import com.softserve.edu.entity.Calibrator;
-import com.softserve.edu.entity.Organization;
-import com.softserve.edu.entity.Provider;
-import com.softserve.edu.entity.StateVerificator;
+import com.softserve.edu.entity.*;
 import com.softserve.edu.entity.user.CalibratorEmployee;
 import com.softserve.edu.entity.user.Employee;
 import com.softserve.edu.entity.user.ProviderEmployee;
@@ -40,7 +37,7 @@ public class OrganizationsService {
     private UserRepository userRepository;
 
     public void addOrganizationWithAdmin(String name, String email, String phone, String type,
-                                         String username, String password) {
+                                         String username, String password, Address address) {
         String passwordEncoded = new BCryptPasswordEncoder().encode(password);
         Organization organization;
         Employee employeeAdmin;
@@ -60,6 +57,7 @@ public class OrganizationsService {
             default:
                 throw new NoSuchElementException();
         }
+        organization.setAddress(address);
         organizationRepository.save(organization);
         userRepository.save(employeeAdmin);
     }

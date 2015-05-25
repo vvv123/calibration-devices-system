@@ -1,7 +1,7 @@
 angular
     .module('providerModule')
-    .controller('NewVerificationsController', ['$scope', '$modal', '$log', 'DataReceivingService',
-        function ($scope, $modal, $log, dataReceivingService) {
+    .controller('NewVerificationsController', ['$scope', '$modal', '$log', 'DataReceivingService','DataUpdatingService',
+        function ($scope, $modal, $log, dataReceivingService, dataUpdatingService) {
 
             $scope.totalItems = 0;
             $scope.currentPage = 1;
@@ -41,4 +41,21 @@ angular
                     }
                 });
             };
+
+
+            $scope.array = [];
+            $scope.saveInfo = function(verification){
+                console.log(verification);
+                $scope.array.push(verification);
+                console.log($scope.array,toString());
+            }
+            $scope.send = function sendVerification() {
+                dataUpdatingService
+                    .updateData('/provider/verifications/new/update', $scope.array )
+                    .success(function (verifications) {
+                    });
+                console.log($scope.array,toString());
+                updatePage();
+            }
+
         }]);

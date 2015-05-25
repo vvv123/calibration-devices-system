@@ -12,6 +12,7 @@ angular
                 updatePage();
             };
 
+
             updatePage();
 
             function updatePage() {
@@ -39,4 +40,5 @@ angular
                     }
                 });
             };
+
         }]);

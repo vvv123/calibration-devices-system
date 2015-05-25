@@ -18,7 +18,8 @@
                         <div class="col-md-offset-11">
                             <label>
                                 Показати по
-                                <select ng-model="itemsPerPage" ng-change="onTableHandling()" class="form-control input-sm">
+                                <select ng-model="itemsPerPage" ng-change="onTableHandling()"
+                                        class="form-control input-sm">
                                     <option value="1">1</option>
                                     <option value="3">3</option>
                                     <option value="5" selected>5</option>
@@ -40,6 +41,7 @@
                                     <th>Прізвище клієнта</th>
                                     <th>Вулиця, на якій проживає клієнт</th>
                                     <th>Детальніше</th>
+                                    <th>Відправити повірку</th>
                                 </tr>
                                 </thead>
 
@@ -55,16 +57,26 @@
                                             <i class="fa fa-2x fa-info-circle"></i>
                                         </a>
                                     </td>
+                                    <td class="text-center">
+                                        <div class="checkbox">
+                                            <input type="checkbox" ng-click="saveInfo(verification)"/>
+                                        </div>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
+                            <div class="col-md-offset-11">
+                                <button type="button" class="btn btn-default" ng-click="send()">Send</button>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
-                            <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true"
-                                        rotate="false" ng-change="onTableHandling()" items-per-page="itemsPerPage"></pagination>
+                            <pagination total-items="totalItems" ng-model="currentPage" max-size="5"
+                                        boundary-links="true"
+                                        rotate="false" ng-change="onTableHandling()"
+                                        items-per-page="itemsPerPage"></pagination>
                         </div>
                     </div>
                 </div>
