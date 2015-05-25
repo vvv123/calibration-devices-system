@@ -8,20 +8,15 @@
     <link href="/resources/assets/css/welcome.css" rel="stylesheet">
     <link href="/resources/assets/css/application-form.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="/resources/assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body id="welcomeModule" ng-controller="NavigationController">
 
-<div class="loader" ng-if="!loaded">
-    <style type="text/css">
-        div.loader {
-            position: static;
-            height: 100%;
-            width: 100%;
-            background: #eee;
-        }
-    </style>
-    <img class="centered" src="/resources/assets/images/loader.png">
+<div class="row" ng-if="!loaded">
+    <div class="col-md-2 col-md-offset-5">
+        <i class="fa fa-5x fa-spinner fa-spin"></i>
+    </div>
 </div>
 
 <div id="content" ng-show="loaded" class="ng-hide">

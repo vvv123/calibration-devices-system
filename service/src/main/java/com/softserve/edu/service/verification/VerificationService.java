@@ -51,7 +51,7 @@ public class VerificationService {
     public Verification findByIdAndProviderId(String id, Long providerId) {
         Verification verification = verificationRepository.findByIdAndProviderId(id, providerId);
         if (verification == null) {
-            throw new AccessDeniedException("Id of user organization differs from requested verification object organization id.");
+            throw new AccessDeniedException("You have not permission to get this data.");
         }
         return verification;
     }
