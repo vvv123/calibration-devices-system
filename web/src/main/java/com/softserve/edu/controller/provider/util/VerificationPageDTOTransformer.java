@@ -20,5 +20,6 @@ public class VerificationPageDTOTransformer {
         verification.setStatus(verificationDTO.getStatus());
         System.out.println(verificationDTO.toString());
         return verification;
+
     }
 }
