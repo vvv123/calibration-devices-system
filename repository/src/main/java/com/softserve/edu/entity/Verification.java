@@ -170,4 +170,23 @@ public class Verification {
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
+
+    @Override
+    public String toString() {
+        return "Verification{" +
+                "id='" + id + '\'' +
+                ", status=" + status +
+                ", device=" + device +
+                ", calibrationTests=" + calibrationTests +
+                ", provider=" + provider +
+                ", providerEmployee=" + providerEmployee +
+                ", calibrator=" + calibrator +
+                ", calibratorEmployee=" + calibratorEmployee +
+                ", stateVerificator=" + stateVerificator +
+                ", stateVerificatorEmployee=" + stateVerificatorEmployee +
+                ", clientData=" + clientData +
+                ", initialDate=" + initialDate +
+                ", expirationDate=" + expirationDate +
+                '}';
+    }
 }

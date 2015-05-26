@@ -53,20 +53,22 @@
                                     <td>{{ verification.street }}</td>
                                     <td class="text-center">
                                         <a popover="Клацініть, щоб отримати всі дані про цю повірку"
-                                           popover-trigger="mouseenter" ng-click="open($index)">
-                                            <i class="fa fa-2x fa-info-circle"></i>
+                                           popover-trigger="mouseenter" ng-click="openDetails($index)">
+                                            <i class="fa fa-info-circle"></i>
                                         </a>
                                     </td>
                                     <td class="text-center">
                                         <div class="checkbox">
-                                            <input type="checkbox" ng-click="saveInfo(verification)"/>
+                                            <input type="checkbox" ng-click="saveInfo(verification.id)"/>
                                         </div>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                             <div class="col-md-offset-11">
-                                <button type="button" class="btn btn-default" ng-click="send()">Send</button>
+                                <button type="button" class="btn btn-primary" ng-click="openSending()">
+                                    Send
+                                </button>
                             </div>
                         </div>
                     </div>

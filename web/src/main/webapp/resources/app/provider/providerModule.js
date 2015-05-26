@@ -39,7 +39,8 @@
         'controllers/ArchivalVerificationsController',
         'controllers/NewVerificationsController',
         'controllers/AddingVerificationsController',
-        'controllers/ModalController',
+        'controllers/DetailsModalController',
+        'controllers/SendingModalController',
         'services/DataReceivingService',
         'services/DataUpdatingService'
     ], function () {});

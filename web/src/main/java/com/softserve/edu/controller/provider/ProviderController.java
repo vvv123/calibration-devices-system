@@ -1,13 +1,18 @@
 package com.softserve.edu.controller.provider;
 
+import com.softserve.edu.controller.provider.util.VerificationsAndCalibrationIdsDTO;
 import com.softserve.edu.controller.provider.util.VerificationPageDTOTransformer;
 import com.softserve.edu.dto.PageDTO;
 import com.softserve.edu.dto.application.ClientStageVerificationDTO;
 import com.softserve.edu.dto.provider.VerificationDTO;
 import com.softserve.edu.dto.provider.VerificationPageDTO;
+import com.softserve.edu.entity.Calibrator;
 import com.softserve.edu.entity.ClientData;
+import com.softserve.edu.entity.Provider;
 import com.softserve.edu.entity.Verification;
+import com.softserve.edu.service.CalibratorService;
 import com.softserve.edu.service.SecurityUserDetailsService;
+import com.softserve.edu.service.provider.ProviderService;
 import com.softserve.edu.service.verification.VerificationService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +27,12 @@ public class ProviderController {
 
     @Autowired
     VerificationService verificationService;
+
+    @Autowired
+    ProviderService providerService;
+
+    @Autowired
+    CalibratorService calibratorService;
 
     private final Logger logger = Logger.getLogger(ProviderController.class);
 
@@ -47,14 +58,21 @@ public class ProviderController {
         return new PageDTO<>(page.getTotalElements(), page.getContent());
     }
 
+    @RequestMapping(value = "/provider/verifications/new/calibrators", method = RequestMethod.GET)
+    public List<Calibrator> updateVerification(
+            @AuthenticationPrincipal SecurityUserDetailsService.CustomUserDetails employeeUser) {
+
+        return calibratorService.findByDistrict(
+                providerService.findById(employeeUser.getOrganizationId()).getAddress().getDistrict());
+    }
+
 
     @RequestMapping(value = "/provider/verifications/new/update", method = RequestMethod.PUT)
-    public void updateVerification(@RequestBody List<VerificationPageDTO> verifications,
-                                   @AuthenticationPrincipal SecurityUserDetailsService.CustomUserDetails employeeUser) {
-     for(int i=0;i<verifications.size();i++){
-     verificationService.updateVerification(
-             VerificationPageDTOTransformer.fromVerificationDTOtoVerification(verifications.get(i)),employeeUser.getOrganizationId());
-     }
+    public void updateVerification(@RequestBody VerificationsAndCalibrationIdsDTO verificationsAndCalibrationIdsDTO) {
+
+        for (String verificationId : verificationsAndCalibrationIdsDTO.getVerificationIds()) {
+            verificationService.updateVerification(verificationId, verificationsAndCalibrationIdsDTO.getCalibrator());
+        }
     }
 
     @RequestMapping(value = "/provider/verifications/new/{verificationId}", method = RequestMethod.GET)
