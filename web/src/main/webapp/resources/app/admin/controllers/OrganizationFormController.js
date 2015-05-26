@@ -4,11 +4,11 @@ angular
         function ($rootScope, $scope, $modal, organizationService, userService) {
 
             $rootScope.addressForm = {
-                region: {},
-                district: {},
-                locality: {},
-                street: {},
-                building: {},
+                region: undefined,
+                district: undefined,
+                locality: undefined,
+                street: undefined,
+                building: undefined,
                 flat: undefined
             };
 

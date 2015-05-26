@@ -13,10 +13,8 @@
 
 <body id="welcomeModule" ng-controller="NavigationController">
 
-<div class="row" ng-if="!loaded">
-    <div class="col-md-2 col-md-offset-5">
-        <i class="fa fa-5x fa-spinner fa-spin"></i>
-    </div>
+<div ng-if="!loaded">
+    <i class="fa fa-5x fa-spinner fa-spin centered"></i>
 </div>
 
 <div id="content" ng-show="loaded" class="ng-hide">
