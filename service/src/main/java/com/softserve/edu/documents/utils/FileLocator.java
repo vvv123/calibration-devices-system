@@ -1,6 +1,6 @@
 package com.softserve.edu.documents.utils;
 
-import com.softserve.edu.documents.options.FileSystem;
+import com.softserve.edu.documents.parameter.FileSystem;
 import org.apache.commons.vfs2.FileObject;
 import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.FileSystemManager;

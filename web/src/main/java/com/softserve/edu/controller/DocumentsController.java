@@ -1,10 +1,8 @@
 package com.softserve.edu.controller;
 
-import com.softserve.edu.documents.options.DocumentFormat;
-import com.softserve.edu.documents.options.DocumentType;
-import com.softserve.edu.entity.user.SystemAdmin;
+import com.softserve.edu.documents.parameter.DocumentFormat;
+import com.softserve.edu.documents.parameter.DocumentType;
 import com.softserve.edu.service.DocumentsService;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Controller for file generation requests.

@@ -1,12 +1,10 @@
 package com.softserve.edu.documents.action;
 
-import com.softserve.edu.documents.options.FileParameters;
-import com.softserve.edu.entity.user.SystemAdmin;
+import com.softserve.edu.documents.parameter.FileParameters;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.vfs2.FileObject;
 
 import java.io.*;
-import java.nio.charset.Charset;
 
 public class LoadTemplate implements Action {
     @Override

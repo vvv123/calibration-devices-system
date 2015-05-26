@@ -2,9 +2,9 @@ package com.softserve.edu.documents.action;
 
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Font;
-import com.softserve.edu.documents.options.DocumentFont;
-import com.softserve.edu.documents.options.DocumentFontFactory;
-import com.softserve.edu.documents.options.FileParameters;
+import com.softserve.edu.documents.parameter.DocumentFont;
+import com.softserve.edu.documents.parameter.DocumentFontFactory;
+import com.softserve.edu.documents.parameter.FileParameters;
 import com.softserve.edu.documents.size.SizeUnit;
 import com.softserve.edu.documents.size.SizeUnitConverter;
 import org.apache.commons.vfs2.FileObject;

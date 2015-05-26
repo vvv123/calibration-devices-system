@@ -1,4 +1,4 @@
-package com.softserve.edu.documents.options;
+package com.softserve.edu.documents.parameter;
 
 import com.softserve.edu.documents.document.Document;
 

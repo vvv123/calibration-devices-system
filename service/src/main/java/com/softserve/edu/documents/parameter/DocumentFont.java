@@ -1,6 +1,4 @@
-package com.softserve.edu.documents.options;
-
-import java.io.File;
+package com.softserve.edu.documents.parameter;
 
 /**
  * Available fonts.

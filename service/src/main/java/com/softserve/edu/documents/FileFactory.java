@@ -2,7 +2,7 @@ package com.softserve.edu.documents;
 
 import com.softserve.edu.documents.action.*;
 import com.softserve.edu.documents.chain.ActionChain;
-import com.softserve.edu.documents.options.FileParameters;
+import com.softserve.edu.documents.parameter.FileParameters;
 import org.apache.commons.vfs2.FileObject;
 
 import java.util.ArrayList;

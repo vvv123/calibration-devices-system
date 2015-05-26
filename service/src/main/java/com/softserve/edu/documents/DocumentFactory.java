@@ -3,7 +3,7 @@ package com.softserve.edu.documents;
 import com.softserve.edu.documents.document.Document;
 import com.softserve.edu.documents.document.UnfitnessCertificate;
 import com.softserve.edu.documents.document.VerificationCertificate;
-import com.softserve.edu.documents.options.DocumentType;
+import com.softserve.edu.documents.parameter.DocumentType;
 import com.softserve.edu.entity.CalibrationTest;
 import com.softserve.edu.entity.Verification;
 import org.springframework.util.Assert;

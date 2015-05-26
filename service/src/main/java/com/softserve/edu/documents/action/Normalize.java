@@ -1,8 +1,6 @@
 package com.softserve.edu.documents.action;
 
-import com.softserve.edu.documents.document.Document;
-import com.softserve.edu.documents.document.writer.Writer;
-import com.softserve.edu.documents.options.FileParameters;
+import com.softserve.edu.documents.parameter.FileParameters;
 import org.apache.commons.vfs2.FileObject;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;

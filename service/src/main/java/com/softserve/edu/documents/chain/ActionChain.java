@@ -2,7 +2,7 @@ package com.softserve.edu.documents.chain;
 
 import com.softserve.edu.documents.action.Action;
 import com.softserve.edu.documents.utils.FileLocator;
-import com.softserve.edu.documents.options.FileParameters;
+import com.softserve.edu.documents.parameter.FileParameters;
 import org.apache.commons.vfs2.FileObject;
 
 import java.io.IOException;

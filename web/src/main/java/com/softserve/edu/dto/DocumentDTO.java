@@ -1,8 +1,8 @@
 package com.softserve.edu.dto;
 
 
-import com.softserve.edu.documents.options.DocumentFormat;
-import com.softserve.edu.documents.options.DocumentType;
+import com.softserve.edu.documents.parameter.DocumentFormat;
+import com.softserve.edu.documents.parameter.DocumentType;
 
 public class DocumentDTO {
     private DocumentType documentType;

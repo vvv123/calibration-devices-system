@@ -1,4 +1,4 @@
-package com.softserve.edu.documents.options;
+package com.softserve.edu.documents.parameter;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
