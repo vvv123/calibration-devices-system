@@ -1,6 +1,6 @@
 angular
     .module('providerModule')
-    .controller('NewVerificationsController', ['$scope', '$modal', '$log', 'DataReceivingService','DataUpdatingService',
+    .controller('NewVerificationsController', ['$scope', '$modal', '$log', 'DataReceivingService', 'DataUpdatingService',
         function ($scope, $modal, $log, dataReceivingService, dataUpdatingService) {
 
             $scope.totalItems = 0;
@@ -23,11 +23,11 @@ angular
                     });
             }
 
-            $scope.open = function ($index) {
+            $scope.openDetails = function ($index) {
                 $modal.open({
                     animation: true,
                     templateUrl: '/resources/app/provider/views/new-verification-details.html',
-                    controller: 'ModalController',
+                    controller: 'DetailsModalController',
                     size: 'lg',
                     resolve: {
                         verification: function () {
@@ -42,20 +42,40 @@ angular
                 });
             };
 
-
             $scope.array = [];
-            $scope.saveInfo = function(verification){
-                console.log(verification);
-                $scope.array.push(verification);
-                console.log($scope.array,toString());
-            }
-            $scope.send = function sendVerification() {
+            $scope.saveInfo = function (id) {
+                $scope.array.push(id);
+            };
+            function sendVerification(calibratorId) {
+                var dataToSend = {
+                    verificationIds: $scope.array,
+                    calibrator: calibratorId
+                };
                 dataUpdatingService
-                    .updateData('/provider/verifications/new/update', $scope.array )
-                    .success(function (verifications) {
+                    .updateData('/provider/verifications/new/update', dataToSend)
+                    .success(function () {
                     });
-                console.log($scope.array,toString());
                 updatePage();
-            }
+            };
 
+            $scope.openSending = function () {
+              var moduleInstance =  $modal.open({
+                    animation: true,
+                    templateUrl: '/resources/app/provider/views/verification-sending.html',
+                    controller: 'SendingModalController',
+                    size: 'sm',
+                    resolve: {
+                        calibrators: function () {
+                            return dataReceivingService.getData('/provider/verifications/new/calibrators')
+                             .success(function (calibrators) {
+                             return calibrators;
+                             });
+                        }
+                    }
+                });
+                 moduleInstance.result.then(function (calibrator) {
+                     sendVerification(calibrator);
+                     updatePage();
+                 });
+            }
         }]);

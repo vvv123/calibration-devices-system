@@ -24,11 +24,11 @@ angular
                     });
             }
 
-            $scope.open = function ($index) {
+            $scope.openDetails = function ($index) {
                 $modal.open({
                     animation: true,
                     templateUrl: '/resources/app/provider/views/archival-verification-details.html',
-                    controller: 'ModalController',
+                    controller: 'DetailsModalController',
                     size: 'lg',
                     resolve: {
                         verification: function () {

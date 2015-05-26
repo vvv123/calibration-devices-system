@@ -1,5 +1,6 @@
 package com.softserve.edu.service.verification;
 
+import com.softserve.edu.entity.Calibrator;
 import com.softserve.edu.entity.Verification;
 import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.repository.VerificationRepository;
@@ -57,10 +58,11 @@ public class VerificationService {
         }
         return verification;
     }
-    public void updateVerification(Verification verifications, Long id){
-        verifications.setStatus(Status.RECEIVED);
-        verificationRepository.save(verifications);
-        System.out.println(id);
 
+    public void updateVerification(String verifications, Calibrator calibrator) {
+        Verification verification = verificationRepository.findOne(verifications);
+        verification.setStatus(Status.RECEIVED);
+        verification.setCalibrator(calibrator);
+        verificationRepository.save(verification);
     }
 }
