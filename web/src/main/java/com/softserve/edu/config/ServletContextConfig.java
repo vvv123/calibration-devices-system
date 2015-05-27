@@ -1,9 +1,12 @@
 package com.softserve.edu.config;
 
 import com.sun.star.connection.Connector;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -22,6 +25,7 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.softserve.edu.controller")
+@PropertySource("classpath:/properties/mail.properties")
 public class ServletContextConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -34,4 +38,10 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
         converters.add(new MappingJackson2HttpMessageConverter());
         converters.add(new StringHttpMessageConverter());
     }
+    
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigIn() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
 }

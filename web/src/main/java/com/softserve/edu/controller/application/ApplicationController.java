@@ -1,6 +1,5 @@
 package com.softserve.edu.controller.application;
 
-import com.softserve.edu.controller.application.util.EmailSendingUtil;
 import com.softserve.edu.dto.application.ClientApplicationDTO;
 import com.softserve.edu.dto.application.ClientApplicationFieldDTO;
 import com.softserve.edu.entity.ClientData;
@@ -9,8 +8,10 @@ import com.softserve.edu.entity.util.Status;
 import com.softserve.edu.service.MailService;
 import com.softserve.edu.service.ProviderService;
 import com.softserve.edu.service.VerificationService;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,6 @@ import static com.softserve.edu.controller.application.util.ApplicationDTOTransf
  * so that's why we recommend you to implement rendering .jsp methods below.
  */
 @RestController
-@PropertySource("classpath:/properties/mail.properties")
 public class ApplicationController {
 
     private Logger logger = Logger.getLogger(ApplicationController.class);
@@ -38,12 +38,12 @@ public class ApplicationController {
 
     @Autowired
     private ProviderService providerService;
+    
+    @Value("${site.protocol}")
+    private String protocol;
 
     @Autowired
-    private MailService mailService;
-
-    @Autowired
-    private Environment env;
+    private MailService mail;
 
     @RequestMapping(value = "/application/add", method = RequestMethod.POST)
     public String saveApplication(@RequestBody ClientApplicationDTO clientApplicationDTO) {
@@ -51,7 +51,8 @@ public class ApplicationController {
         Verification verification = new Verification(clientData,
                 providerService.findById(clientApplicationDTO.getProviderId()), Status.SENT);
         verificationService.saveVerification(verification);
-        EmailSendingUtil.setEmailSendingConfig(clientData.getFirstName(), clientData.getLastName(), verification.getId(), env);
+        String name = clientData.getFirstName() + clientData.getLastName();
+        mail.sendMail(clientData.getEmail(), name, verification.getId());
         return verification.getId();
     }
 

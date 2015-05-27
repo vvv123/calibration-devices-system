@@ -1,10 +1,13 @@
 <html>
 	<body>
 		<span style="font-weight:bold">
-			Hello <span style="color:red">$name!</span>  Your request has been sent.
+			Hello $name!  Your request has been sent.
 		</span>
 		<br>You can check status of your application following by this link:
-		<br>$protocol://$domain/calibrationTests/$applicationId.html
+		<br>$protocol://$domain/calibrationTests/$applicationId
+		
+		
+		
 		<br>Thank you for using our services.
 	</body>
 </html>

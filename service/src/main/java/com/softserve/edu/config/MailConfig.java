@@ -7,8 +7,10 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.VelocityException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -16,6 +18,7 @@ import org.springframework.ui.velocity.VelocityEngineFactoryBean;
 
 @Configuration
 @PropertySource("classpath:/properties/mail.properties")
+@ComponentScan("com.softserve.edu.controller.application.util")
 public class MailConfig {
 
 	@Autowired
@@ -49,5 +52,10 @@ public class MailConfig {
 		factory.setVelocityProperties(props);
 		return factory.createVelocityEngine();
 	}
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigIn() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
 }
