@@ -19,11 +19,12 @@ angular
              * @param regionId to identify region
              */
             $scope.receiveDistricts = function (regionId) {
-              addressService
-                  .findDistrictsByRegionId(regionId)
-                  .then(function (data) {
-                      $scope.districts = data;
-                  })
+                addressService
+                    .findDistrictsByRegionId(regionId)
+                    .then(function (data) {
+                        $scope.districts = data;
+                    });
+                $rootScope.updateAddressMessage();
             };
 
             /**
@@ -36,7 +37,8 @@ angular
                     .findLocalitiesByDistrictId(districtId)
                     .then(function (data) {
                         $scope.localities = data;
-                    })
+                    });
+                $rootScope.updateAddressMessage();
             };
 
             /**
@@ -49,7 +51,8 @@ angular
                     .findStreetsByLocalityId(localityId)
                     .then(function (data) {
                         $scope.streets = data;
-                    })
+                    });
+                $rootScope.updateAddressMessage();
             };
 
             /**
@@ -62,11 +65,13 @@ angular
                     .findBuildingsByStreetId(streetId)
                     .then(function (data) {
                         $scope.buildings = data;
-                    })
+                    });
+                $rootScope.updateAddressMessage();
             };
 
 
             $scope.closeModal = function () {
                 $modalInstance.close();
+                $rootScope.updateAddressMessage();
             };
         }]);

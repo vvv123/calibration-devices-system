@@ -71,9 +71,12 @@ a {
 }
 
 .centered {
-    height: 50%;
-    left: 50%;
-    right: 50%;
+    float: none;
+    margin: 0 auto;
+}
+
+.big-icon-loader {
+    font-size: 25em !important;
 }
 
 .form-signin {

@@ -39,12 +39,14 @@
             <label class="control-label">Будинок *</label>
             <input name="building" type="text" ng-model="$root.addressForm.building"
                    typeahead="building as building.designation for building in buildings | filter: $viewValue"
+                   typeahead-on-select="$root.updateAddressMessage()"
                    class="form-control" required>
         </div>
 
         <div class="form-group">
             <label class="control-label">Квартира</label>
-            <input name="flat" type="text" ng-model="$root.addressForm.flat" class="form-control" required>
+            <input name="flat" type="text" ng-model="$root.addressForm.flat"
+                   ng-change="$root.updateAddressMessage()" class="form-control" required>
         </div>
     </form>
 </div>
