@@ -1,6 +1,6 @@
 package com.softserve.edu.controller.provider;
 
-import com.softserve.edu.controller.provider.util.VerificationsAndCalibrationIdsDTO;
+import com.softserve.edu.controller.provider.util.VerificationIdAndCalibrationDataDTO;
 import com.softserve.edu.controller.provider.util.VerificationPageDTOTransformer;
 import com.softserve.edu.dto.PageDTO;
 import com.softserve.edu.dto.application.ClientStageVerificationDTO;
@@ -84,13 +84,14 @@ public class ProviderController {
 
 
     @RequestMapping(value = "new/update", method = RequestMethod.PUT)
-    public void updateVerification(@RequestBody VerificationsAndCalibrationIdsDTO verificationsAndCalibrationIdsDTO) {
+    public void updateVerification(
+            @RequestBody VerificationIdAndCalibrationDataDTO verificationIdAndCalibrationDataDTO) {
 
-        for (String verificationId : verificationsAndCalibrationIdsDTO.getVerificationIds()) {
+        for (String verificationId : verificationIdAndCalibrationDataDTO.getVerificationIds()) {
             verificationService
                     .updateVerification(
                             verificationId,
-                            verificationsAndCalibrationIdsDTO.getCalibrator());
+                            verificationIdAndCalibrationDataDTO.getCalibrator());
         }
     }
 
@@ -118,6 +119,7 @@ public class ProviderController {
         return new VerificationDTO(verification.getClientData(), verification.getId(), verification.getInitialDate(),
                 verification.getExpirationDate(), verification.getStatus(), verification.getCalibrator(),
                 verification.getCalibratorEmployee(), verification.getDevice(), verification.getProvider(),
-                verification.getProviderEmployee(), verification.getStateVerificator(), verification.getStateVerificatorEmployee());
+                verification.getProviderEmployee(), verification.getStateVerificator(),
+                verification.getStateVerificatorEmployee());
     }
 }

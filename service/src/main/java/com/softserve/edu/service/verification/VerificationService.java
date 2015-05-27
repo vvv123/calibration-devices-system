@@ -58,9 +58,9 @@ public class VerificationService {
         }
         return verification;
     }
-
-    public void updateVerification(String verifications, Calibrator calibrator) {
-        Verification verification = verificationRepository.findOne(verifications);
+    @Transactional
+    public void updateVerification(String verificationId, Calibrator calibrator) {
+        Verification verification = verificationRepository.findOne(verificationId);
         verification.setStatus(Status.RECEIVED);
         verification.setCalibrator(calibrator);
         verificationRepository.save(verification);

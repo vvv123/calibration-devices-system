@@ -42,13 +42,13 @@ angular
                 });
             };
 
-            $scope.array = [];
+            $scope.verificationId = [];
             $scope.saveInfo = function (id) {
-                $scope.array.push(id);
+                $scope.verificationId.push(id);
             };
             function sendVerification(calibratorId) {
                 var dataToSend = {
-                    verificationIds: $scope.array,
+                    verificationIds: $scope.verificationId,
                     calibrator: calibratorId
                 };
                 dataUpdatingService
