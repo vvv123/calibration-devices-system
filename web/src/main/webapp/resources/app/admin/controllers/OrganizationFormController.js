@@ -3,14 +3,40 @@ angular
     .controller('OrganizationFormController', ['$rootScope', '$scope', '$modal', 'OrganizationService', 'UserService',
         function ($rootScope, $scope, $modal, organizationService, userService) {
 
+            $scope.addressMessage = "";
+
             $rootScope.addressForm = {
-                region: undefined,
-                district: undefined,
-                locality: undefined,
-                street: undefined,
-                building: undefined,
-                flat: undefined
+                region: null,
+                district: null,
+                locality: null,
+                street: null,
+                building: null,
+                flat: null
             };
+
+            $rootScope.updateAddressMessage = function () {
+                var message = '';
+                if ($rootScope.addressForm.region != null) {
+                    message += $rootScope.addressForm.region.designation + ' область';
+                }
+                if ($rootScope.addressForm.district != null) {
+                    message += ', ' + $rootScope.addressForm.district.designation + ' район';
+                }
+                if ($rootScope.addressForm.locality != null) {
+                    message += ',\n ' + $rootScope.addressForm.locality.designation;
+                }
+                if ($rootScope.addressForm.street != null) {
+                    message += ', ' + $rootScope.addressForm.street.designation;
+                }
+                if ($rootScope.addressForm.building != null) {
+                    message += ', буд. ' + $rootScope.addressForm.building.designation;
+                }
+                if ($rootScope.addressForm.flat != null) {
+                    message += ', кв. ' + $rootScope.addressForm.flat;
+                }
+                $scope.addressMessage = message;
+            };
+
 
             $scope.checkUsername = function () {
                 var username = $scope.organizationsFormData.username;
@@ -29,7 +55,6 @@ angular
                     $scope.organizationsFormData.building = $rootScope.addressForm.building.designation;
                     $scope.organizationsFormData.flat = $rootScope.addressForm.flat;
                     saveOrganization();
-                    $scope.onTableHandling();
                 }
             };
 
@@ -41,11 +66,15 @@ angular
             };
 
             $scope.openAddressModal = function () {
-                $modal.open({
+                var addressModal = $modal.open({
                     animation: true,
                     controller: 'OrganizationModalAddressController',
                     templateUrl: '/resources/app/admin/views/organization-modal-address.html',
                     size: 'lg'
+                });
+
+                addressModal.result.then(function () {
+                    $rootScope.updateAddressMessage();
                 });
             };
 
@@ -75,4 +104,5 @@ angular
                         validateUsername(data, 'already exists');
                     })
             }
+
         }]);

@@ -9,6 +9,7 @@ import com.softserve.edu.entity.user.ProviderEmployee;
 import com.softserve.edu.entity.user.User;
 import com.softserve.edu.repository.UserRepository;
 import com.softserve.edu.service.admin.OrganizationsService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -26,12 +27,14 @@ public class OrganizationsController {
     @Autowired
     private OrganizationsService organizationsService;
 
+    private final Logger logger = Logger.getLogger(OrganizationsController.class);
+
     /**
      * Saves organization and its administrator employee in database
      *
      * @param organizationDTO object with organization and employee admin data
-     * @return a response body with http status {@literal CREATED} if everything organization and
-     * employee admin successfully created or else http status {@literal CONFLICT}
+     * @return a response body with http status {@literal CREATED} if everything
+     * organization and employee admin successfully created or else http status {@literal CONFLICT}
      */
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ResponseEntity addOrganization(@RequestBody OrganizationDTO organizationDTO) {
@@ -47,6 +50,8 @@ public class OrganizationsController {
                     organizationDTO.getUsername(), organizationDTO.getPassword(),
                     address);
         } catch (Exception e) {
+            // TODO
+            logger.error("GOT EXCEPTION " + e.getMessage());
             httpStatus = HttpStatus.CONFLICT;
         }
         return new ResponseEntity(httpStatus);
@@ -72,7 +77,8 @@ public class OrganizationsController {
                                 new OrganizationPageItem(
                                         organization.getId(), organization.getName(),
                                         organization.getEmail(), organization.getPhone(),
-                                        organizationsService.getType(organization))
+                                        organizationsService.getType(organization)
+                                )
                 );
 
         return new PageDTO<>(page.getTotalElements(), page.getContent());

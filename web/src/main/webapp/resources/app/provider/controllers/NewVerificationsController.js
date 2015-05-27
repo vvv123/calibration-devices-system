@@ -73,9 +73,11 @@ angular
                         }
                     }
                 });
-                 moduleInstance.result.then(function (calibrator) {
+
+                moduleInstance.result.then(function (calibrator) {
+
                      sendVerification(calibrator);
                      updatePage();
-                 });
+                });
             }
         }]);

@@ -5,7 +5,7 @@ angular.module('adminModule', ['spring-security-csrf-token-interceptor',
             showErrorsConfigProvider.showSuccess(true);
             $urlRouterProvider.otherwise('/');
             $stateProvider
-                .state('main-panel', {
+                .state('main', {
                     url: '/',
                     templateUrl: '/resources/app/admin/views/main-panel.html'
                 })

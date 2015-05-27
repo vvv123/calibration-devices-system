@@ -1,6 +1,7 @@
 package com.softserve.edu.entity;
 
 import javax.persistence.Embeddable;
+import java.util.HashMap;
 
 @Embeddable
 public class Address {
