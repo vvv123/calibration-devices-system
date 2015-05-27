@@ -10,6 +10,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import java.util.HashMap;
@@ -35,16 +36,14 @@ public class MailService {
     @Value("${site.domain}")
     private String domain;
     
-    @Autowired
-    private ApplicationContext context;
-
     public void sendMail(String to, String userName, String clientCode) {
 
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             public void prepare(MimeMessage mimeMessage) throws Exception {
                 MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
                 message.setTo(to);
-                message.setFrom(userName);
+                message.setFrom(new InternetAddress("metrology.calibrations@gmail.com",
+                        "Metrology Service of Ukraine"));
                 
                 Map<String, Object> templateVariables = new HashMap<>();
                 templateVariables.put("name", userName);
@@ -55,11 +54,10 @@ public class MailService {
                 String body = mergeTemplateIntoString(velocityEngine, "/velocityTemplates/mailTemplate.vm",
                         "UTF-8", templateVariables);
                 message.setText(body, true);
+                message.setSubject("Important notification");
 
             }
         };
         this.mailSender.send(preparator);
     }
-
-
 }

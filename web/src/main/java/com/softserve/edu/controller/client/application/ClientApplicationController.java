@@ -1,7 +1,6 @@
 package com.softserve.edu.controller.client.application;
 
 import com.softserve.edu.controller.client.application.util.ClientStageVerificationDTOTransformer;
-import com.softserve.edu.controller.client.application.util.EmailSendingUtil;
 import com.softserve.edu.dto.application.ClientApplicationFieldDTO;
 import com.softserve.edu.dto.application.ClientStageVerificationDTO;
 import com.softserve.edu.entity.ClientData;
@@ -43,7 +42,7 @@ public class ClientApplicationController {
                 providerService.findById(clientStageVerificationDTO.getProviderId()), Status.SENT);
 
         verificationService.saveVerification(verification);
-        String name = clientData.getFirstName() + clientData.getLastName();
+        String name = clientData.getFirstName() + " " + clientData.getLastName();
         mail.sendMail(clientData.getEmail(), name, verification.getId());
         return verification.getId();
     }
