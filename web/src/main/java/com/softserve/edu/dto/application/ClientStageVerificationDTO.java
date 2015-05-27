@@ -1,6 +1,9 @@
 package com.softserve.edu.dto.application;
 
-public class ClientApplicationDTO {
+import com.softserve.edu.entity.Address;
+import com.softserve.edu.entity.ClientData;
+
+public class ClientStageVerificationDTO {
     private String firstName;
     private String lastName;
     private String middleName;
@@ -13,6 +16,23 @@ public class ClientApplicationDTO {
     private String building;
     private String flat;
     private Long providerId;
+
+    protected ClientStageVerificationDTO() {}
+
+    public ClientStageVerificationDTO(ClientData clientData, Address address, Long providerId) {
+        this.firstName = clientData.getFirstName();
+        this.lastName = clientData.getLastName();
+        this.middleName = clientData.getMiddleName();
+        this.email = clientData.getEmail();
+        this.phone = clientData.getPhone();
+        this.region = address.getRegion();
+        this.locality = address.getLocality();
+        this.district = address.getDistrict();
+        this.street = address.getStreet();
+        this.building = address.getBuilding();
+        this.flat = address.getFlat();
+        this.providerId = providerId;
+    }
 
     public String getFirstName() {
         return firstName;

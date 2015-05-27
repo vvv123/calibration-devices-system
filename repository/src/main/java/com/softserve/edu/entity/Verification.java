@@ -24,12 +24,6 @@ public class Verification {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    /**
-     * Date when the verification was finished
-     */
-    @Temporal(TemporalType.DATE)
-    private Date verificationFinishedDate;
-
     @ManyToOne
     @JoinColumn(name = "deviceId")
     private Device device;
@@ -57,10 +51,17 @@ public class Verification {
     @Embedded
     private ClientData clientData;
 
-    protected Verification() {}
+    @Temporal(TemporalType.DATE)
+    private Date initialDate;
 
-    public Verification(ClientData clientData, Provider provider, Status status) {
+    @Temporal(TemporalType.DATE)
+    private Date expirationDate;
+
+    public Verification() {}
+
+    public Verification(Date initialDate, ClientData clientData, Provider provider, Status status) {
         this.id = UUID.randomUUID().toString();
+        this.initialDate = initialDate;
         this.clientData = clientData;
         this.provider = provider;
         this.status = status;
@@ -70,7 +71,7 @@ public class Verification {
         return id;
     }
 
-    private void setId(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -154,11 +155,38 @@ public class Verification {
         this.clientData = clientData;
     }
 
-    public Date getVerificationFinishedDate() {
-        return verificationFinishedDate;
+    public Date getInitialDate() {
+        return initialDate;
     }
 
-    public void setVerificationFinishedDate(Date verificationFinishedDate) {
-        this.verificationFinishedDate = verificationFinishedDate;
+    public void setInitialDate(Date initialDate) {
+        this.initialDate = initialDate;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Verification{" +
+                "id='" + id + '\'' +
+                ", status=" + status +
+                ", device=" + device +
+                ", calibrationTests=" + calibrationTests +
+                ", provider=" + provider +
+                ", providerEmployee=" + providerEmployee +
+                ", calibrator=" + calibrator +
+                ", calibratorEmployee=" + calibratorEmployee +
+                ", stateVerificator=" + stateVerificator +
+                ", stateVerificatorEmployee=" + stateVerificatorEmployee +
+                ", clientData=" + clientData +
+                ", initialDate=" + initialDate +
+                ", expirationDate=" + expirationDate +
+                '}';
     }
 }

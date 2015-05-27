@@ -1,7 +1,7 @@
 package com.softserve.edu.controller.catalogue;
 
 import com.softserve.edu.dto.application.ClientApplicationFieldDTO;
-import com.softserve.edu.dto.application.util.CatalogueDTOTransformer;
+import com.softserve.edu.controller.client.application.util.CatalogueDTOTransformer;
 import com.softserve.edu.service.catalogue.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

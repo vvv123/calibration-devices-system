@@ -18,7 +18,7 @@
         <mysql.driver.version>5.1.35</mysql.driver.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <log4f.version>1.2.17</log4f.version>
+        <logger.version>1.6.1</logger.version>
     </properties>
 
     <groupId>com.softserve.edu</groupId>
@@ -58,9 +58,9 @@
         </dependency>
 
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4f.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${logger.version}</version>
         </dependency>
 
     </dependencies>

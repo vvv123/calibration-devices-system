@@ -4,12 +4,12 @@ import com.softserve.edu.entity.catalogue.Building;
 import com.softserve.edu.repository.catalogue.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class BuildingService {
 
     @Autowired

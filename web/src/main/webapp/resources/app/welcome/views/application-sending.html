@@ -16,36 +16,13 @@
                   ng-submit="sendApplicationData()" novalidate>
 
                 <div class="form-group" show-errors>
-                    <label for="firstName" class="col-md-2 control-label">
-                        {{'FIRST_NAME' | translate}}
-                    </label>
-
-                    <div class="col-md-8">
-                        <input id="firstName" name="firstName" class="form-control" ng-model="formData.firstName"
-                               ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/" ng-minlength="3" required>
-                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
-
-                        <p class="help-block" ng-if="clientForm.firstName.$error.required">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'REQUIRED' | translate}}
-                        </p>
-
-                        <p class="help-block" ng-if="clientForm.firstName.$error.pattern">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'ALPHABETIC_ERROR' | translate}}
-                        </p>
-                    </div>
-                </div>
-
-                <div class="form-group" show-errors>
                     <label for="lastName" class="col-md-2 control-label">
                         {{'LAST_NAME' | translate}}
                     </label>
 
                     <div class="col-md-8">
                         <input id="lastName" name="lastName" class="form-control" type="text"
-                               ng-model="formData.lastName" ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/"
-                               ng-minlength="3" required>
+                               ng-model="formData.lastName" ng-pattern="/^[A-Za-z\u0400-\u04FF]+$/" required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block" ng-if="clientForm.lastName.$error.required">
@@ -61,14 +38,35 @@
                 </div>
 
                 <div class="form-group" show-errors>
+                    <label for="firstName" class="col-md-2 control-label">
+                        {{'FIRST_NAME' | translate}}
+                    </label>
+
+                    <div class="col-md-8">
+                        <input id="firstName" name="firstName" class="form-control" ng-model="formData.firstName"
+                               ng-pattern="/^[A-Za-z\u0400-\u04FF]+$/" required>
+                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+
+                        <p class="help-block" ng-if="clientForm.firstName.$error.required">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'REQUIRED' | translate}}
+                        </p>
+
+                        <p class="help-block" ng-if="clientForm.firstName.$error.pattern">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            {{'ALPHABETIC_ERROR' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" show-errors>
                     <label for="middleName" class="col-md-2 control-label">
                         {{'MIDDLE_NAME' | translate}}
                     </label>
 
                     <div class="col-md-8">
                         <input id="middleName" name="middleName" type="text" class="form-control"
-                               ng-model="formData.middleName" ng-pattern="/^[а-яА-Яa-zA-ZіІ]+$/"
-                               ng-minlength="3" required>
+                               ng-model="formData.middleName" ng-pattern="/^[A-Za-z\u0400-\u04FF]+$/" required>
                         <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
                         <p class="help-block" ng-if="clientForm.middleName.$error.required">
@@ -234,25 +232,25 @@
                 </div>
 
                 <div class="form-group" show-errors>
-                    <label for="provider" class="col-md-2 control-label">
-                        {{'PROVIDER' | translate}}
-                    </label>
+                <label for="provider" class="col-md-2 control-label">
+                    {{'PROVIDER' | translate}}
+                </label>
 
-                    <div class="col-md-8">
-                        <input id="provider" name="provider" class="form-control"
-                               ng-model="selectedProvider"
-                               typeahead="provider as provider.designation for provider in providers | filter: $viewValue"
-                               typeahead-editable="false"
-                               popover="{{'PROVIDER_INFO' | translate}}"
-                               popover-trigger="focus" required>
-                        <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
+                <div class="col-md-8">
+                    <input id="provider" name="provider" class="form-control"
+                           ng-model="selectedProvider"
+                           typeahead="provider as provider.designation for provider in providers | filter: $viewValue"
+                           typeahead-editable="false"
+                           popover="{{'PROVIDER_INFO' | translate}}"
+                           popover-trigger="focus" required>
+                    <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 
-                        <p class="help-block">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            {{'TYPEAHEAD_ERROR' | translate}}
-                        </p>
-                    </div>
+                    <p class="help-block">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>
+                        {{'TYPEAHEAD_ERROR' | translate}}
+                    </p>
                 </div>
+            </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">

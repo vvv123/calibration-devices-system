@@ -18,7 +18,7 @@ public class UnfitnessCertificate extends BaseDocument {
      * @return the date until this verification certificate is effective.
      */
     public String getVerificationCertificateEffectiveUntilDate() {
-        return getVerification().getVerificationFinishedDate().toString();
+        return getVerification().getExpirationDate().toString();
     }
 
     public String getReasonForUnfitness() {

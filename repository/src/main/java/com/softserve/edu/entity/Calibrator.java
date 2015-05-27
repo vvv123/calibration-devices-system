@@ -52,4 +52,12 @@ public class Calibrator extends Organization {
     public void setCertificateGrantedDate(Date certificateGrantedDate) {
         this.certificateGrantedDate = certificateGrantedDate;
     }
+
+    @Override
+    public String toString() {
+        return "Calibrator{" +
+                "certificateNumber='" + certificateNumber + '\'' +
+                ", certificateGrantedDate=" + certificateGrantedDate +
+                '}';
+    }
 }

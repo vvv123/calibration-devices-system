@@ -1,0 +1,88 @@
+<div id="page-wrapper">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Нові повірки</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Останні дані
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-offset-11">
+                            <label>
+                                Показати по
+                                <select ng-model="itemsPerPage" ng-change="onTableHandling()"
+                                        class="form-control input-sm">
+                                    <option value="1">1</option>
+                                    <option value="3">3</option>
+                                    <option value="5" selected>5</option>
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Дата початку процесу повірки</th>
+                                    <th>Реєстраційний номер повірки</th>
+                                    <th>Прізвище клієнта</th>
+                                    <th>Вулиця, на якій проживає клієнт</th>
+                                    <th>Детальніше</th>
+                                    <th>Відправити повірку</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr ng-repeat="verification in pageData">
+                                    <td>{{ verification.initialDate | date}}</td>
+                                    <td>{{ verification.id }}</td>
+                                    <td>{{ verification.surname }}</td>
+                                    <td>{{ verification.street }}</td>
+                                    <td class="text-center">
+                                        <a popover="Клацініть, щоб отримати всі дані про цю повірку"
+                                           popover-trigger="mouseenter" ng-click="openDetails($index)">
+                                            <i class="fa fa-info-circle"></i>
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="checkbox">
+                                            <input type="checkbox" ng-click="saveInfo(verification.id)"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-md-offset-11">
+                                <button type="button" class="btn btn-primary" ng-click="openSending()">
+                                    Send
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <pagination total-items="totalItems" ng-model="currentPage" max-size="5"
+                                        boundary-links="true"
+                                        rotate="false" ng-change="onTableHandling()"
+                                        items-per-page="itemsPerPage"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-package com.softserve.edu.dto.application.util;
+package com.softserve.edu.controller.client.application.util;
 
 import com.softserve.edu.dto.application.ClientApplicationFieldDTO;
 import com.softserve.edu.entity.catalogue.AbstractCatalogue;

@@ -25,10 +25,5 @@ public class SystemAdmin extends User {
         super(username, password, AdminRole.SYS_ADMIN);
     }
 
-    protected SystemAdmin() {
-    }
-
-
-
-
+    protected SystemAdmin() {}
 }

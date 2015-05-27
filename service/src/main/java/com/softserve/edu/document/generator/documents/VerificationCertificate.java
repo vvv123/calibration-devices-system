@@ -18,7 +18,7 @@ public class VerificationCertificate extends BaseDocument {
      */
     public String getVerificationCertificateEffectiveUntilDate() {
         // TODO: how long is certificate effective?
-        return getVerification().getVerificationFinishedDate().toString();
+        return getVerification().getExpirationDate().toString();
     }
 
     /**
@@ -33,7 +33,7 @@ public class VerificationCertificate extends BaseDocument {
     }
 
     public String getDocumentId() {
-        return getVerification().getId().toString();
+        return getVerification().getId();
     }
 
     public String getSpecificationDocumentName() {

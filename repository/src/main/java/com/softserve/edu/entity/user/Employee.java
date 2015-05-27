@@ -1,9 +1,10 @@
 package com.softserve.edu.entity.user;
 
-
 import com.softserve.edu.entity.Organization;
 
-import javax.persistence.*;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Employee extends User {
@@ -13,8 +14,9 @@ public abstract class Employee extends User {
     private String email;
     private String phone;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     private Organization organization;
+
 
     protected Employee() {}
 
@@ -22,9 +24,9 @@ public abstract class Employee extends User {
      * Required constructor for saving employee in database.
      * Employee cannot exists without these parameters.
      *
-     * @param username username
-     * @param password password
-     * @param role role (organization employee or admin)
+     * @param username     username
+     * @param password     password
+     * @param role         role (organization employee or admin)
      * @param organization its organization
      */
     public Employee(String username, String password, Role role, Organization organization) {
@@ -36,9 +38,9 @@ public abstract class Employee extends User {
      * Completes constructor above with optional values     *
      *
      * @param firstName first name
-     * @param lastName last name
-     * @param email email
-     * @param phone phone number
+     * @param lastName  last name
+     * @param email     email
+     * @param phone     phone number
      */
     public Employee(String username, String password, Role role, Organization organization,
                     String firstName, String lastName, String email, String phone) {
@@ -47,14 +49,6 @@ public abstract class Employee extends User {
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-    }
-
-    public Organization getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
     }
 
     public String getFirstName() {
@@ -87,5 +81,13 @@ public abstract class Employee extends User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 }

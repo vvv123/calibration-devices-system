@@ -1,0 +1,65 @@
+<div class="modal-header">
+    <h3 class="modal-title">Детальна інформація про повірку</h3>
+</div>
+
+<div class="modal-body">
+    <ng-include src="'/resources/app/provider/views/main-details-table.html'"></ng-include>
+
+    <table class="table table-striped table-bordered">
+
+        <thead>
+        <tr>
+            <th colspan="2" class="text-center text-info">Повірочна інформація</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr>
+            <th>Лічильник</th>
+            <th>{{verificationData.device}}</th>
+        </tr>
+
+        <tr>
+            <th>Дата закінчення терміну дії повірки</th>
+            <th>{{verificationData.expirationDate}}</th>
+        </tr>
+
+        <tr>
+            <th>Виконавець</th>
+            <th>{{verificationData.provider}}</th>
+        </tr>
+
+        <tr>
+            <th>Працівник виконавця</th>
+            <th>{{verificationData.providerEmployee}}</th>
+        </tr>
+
+        <tr>
+            <th>Повірник</th>
+            <th>{{verificationData.calibrator}}</th>
+        </tr>
+
+        <tr>
+            <th>Працівник повірника</th>
+            <th>{{verificationData.calibratorEmployee}}</th>
+        </tr>
+
+        <tr>
+            <th>Державний повірник</th>
+            <th>{{verificationData.stateVerificator}}</th>
+        </tr>
+
+        <tr>
+            <th>Працівник державного повірника</th>
+            <th>{{verificationData.stateVerificatorEmployee}}</th>
+        </tr>
+
+        </tbody>
+
+    </table>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="close()">Закрити</button>
+</div>
