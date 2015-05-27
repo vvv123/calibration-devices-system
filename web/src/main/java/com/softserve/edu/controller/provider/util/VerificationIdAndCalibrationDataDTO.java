@@ -4,10 +4,7 @@ import com.softserve.edu.entity.Calibrator;
 
 import java.util.List;
 
-/**
- * Created by Oles Onyshchak on 5/25/2015.
- */
-public class VerificationsAndCalibrationIdsDTO {
+public class VerificationIdAndCalibrationDataDTO {
     private List<String> verificationIds;
    private Calibrator calibrator;
 
