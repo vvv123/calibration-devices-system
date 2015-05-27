@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@PropertySource("classpath:/properties/mail.properties")
 public class ClientApplicationController {
 
     private Logger logger = Logger.getLogger(ClientApplicationController.class);
@@ -34,10 +33,7 @@ public class ClientApplicationController {
     private ProviderService providerService;
 
     @Autowired
-    private MailService mailService;
-
-    @Autowired
-    private Environment env;
+    private MailService mail;
 
     @RequestMapping(value = "/application/add", method = RequestMethod.POST)
     public String saveApplication(@RequestBody ClientStageVerificationDTO clientStageVerificationDTO) {
@@ -47,7 +43,8 @@ public class ClientApplicationController {
                 providerService.findById(clientStageVerificationDTO.getProviderId()), Status.SENT);
 
         verificationService.saveVerification(verification);
-        EmailSendingUtil.setEmailSendingConfig(clientData.getFirstName(), clientData.getLastName(), verification.getId(), env);
+        String name = clientData.getFirstName() + clientData.getLastName();
+        mail.sendMail(clientData.getEmail(), name, verification.getId());
         return verification.getId();
     }
 
