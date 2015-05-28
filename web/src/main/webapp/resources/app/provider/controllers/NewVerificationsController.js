@@ -91,7 +91,7 @@ angular
                 moduleInstance.result.then(function (calibrator) {
                     $log.info(calibrator);
                     try{
-                        if(calibrator.id!=='undefined') {
+                        if(calibrator.id!=='undefined' && calibrator.name!=='undefined') {
                             sendVerification(calibrator);
                             checkedItems = [];
                             console.log(calibrator);
