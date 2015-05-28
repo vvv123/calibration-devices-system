@@ -58,7 +58,6 @@ angular
                     $scope.verificationIds[$index] = undefined;
                     checkedItems[$index] = false;
                 }
-
             };
 
             function sendVerification(calibratorId) {
