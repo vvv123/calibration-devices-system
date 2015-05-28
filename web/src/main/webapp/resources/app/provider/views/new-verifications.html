@@ -59,7 +59,7 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="checkbox">
-                                            <input type="checkbox" ng-click="saveInfo(verification.id)"/>
+                                            <input type="checkbox" ng-click="resolveVerificationId(verification.id, $index)"/>
                                         </div>
                                     </td>
                                 </tr>
@@ -67,7 +67,7 @@
                             </table>
                             <div class="col-md-offset-11">
                                 <button type="button" class="btn btn-primary" ng-click="openSending()">
-                                    Send
+                                    Відправити
                                 </button>
                             </div>
                         </div>

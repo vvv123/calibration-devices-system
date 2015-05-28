@@ -42,24 +42,39 @@ angular
                 });
             };
 
-            $scope.verificationId = [];
-            $scope.saveInfo = function (id) {
-                $scope.verificationId.push(id);
+            $scope.verificationIds = [];
+            var checkedItems = [];
+
+            $scope.resolveVerificationId = function (id, $index) {
+                console.log(checkedItems[$index]);
+                if (!checkedItems[$index]) {
+                    $log.info("checked");
+                    $scope.verificationIds[$index] = id;
+
+                    $log.info($scope.verificationIds);
+                    checkedItems[$index] = true;
+                } else {
+                    $log.info("unchecked");
+                    $scope.verificationIds[$index] = undefined;
+                    checkedItems[$index] = false;
+                }
+
             };
+
             function sendVerification(calibratorId) {
                 var dataToSend = {
-                    verificationIds: $scope.verificationId,
+                    verificationIds: $scope.verificationIds,
                     calibrator: calibratorId
                 };
                 dataUpdatingService
                     .updateData('/provider/verifications/new/update', dataToSend)
                     .success(function () {
                     });
-                updatePage();
-            };
+                $scope.verificationIds = [];
+            }
 
             $scope.openSending = function () {
-              var moduleInstance =  $modal.open({
+                var moduleInstance = $modal.open({
                     animation: true,
                     templateUrl: '/resources/app/provider/views/verification-sending.html',
                     controller: 'SendingModalController',
@@ -67,17 +82,17 @@ angular
                     resolve: {
                         calibrators: function () {
                             return dataReceivingService.getData('/provider/verifications/new/calibrators')
-                             .success(function (calibrators) {
-                             return calibrators;
-                             });
+                                .success(function (calibrators) {
+                                    return calibrators;
+                                });
                         }
                     }
                 });
 
                 moduleInstance.result.then(function (calibrator) {
-
-                     sendVerification(calibrator);
-                     updatePage();
+                    $log.info(calibrator);
+                    sendVerification(calibrator);
+                    updatePage();
                 });
             }
         }]);

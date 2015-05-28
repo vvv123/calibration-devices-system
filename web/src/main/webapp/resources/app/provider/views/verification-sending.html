@@ -6,7 +6,6 @@
            ng-model="selectedCalibrator"
            typeahead="calibrator as calibrator.name for calibrator in calibrators | filter: $viewValue"
            typeahead-editable="false">
-    <span class="form-control-feedback glyphicon  form-horizontal glyphicon glyphicon-ok-sign"></span>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok(selectedCalibrator)">Підтвердити</button>
