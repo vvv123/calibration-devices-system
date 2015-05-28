@@ -43,14 +43,14 @@ angular
             };
 
             $scope.verificationIds = [];
-            var checkedItems = [];
+            checkedItems = [];
+
 
             $scope.resolveVerificationId = function (id, $index) {
                 console.log(checkedItems[$index]);
                 if (!checkedItems[$index]) {
                     $log.info("checked");
                     $scope.verificationIds[$index] = id;
-
                     $log.info($scope.verificationIds);
                     checkedItems[$index] = true;
                 } else {
@@ -90,7 +90,18 @@ angular
 
                 moduleInstance.result.then(function (calibrator) {
                     $log.info(calibrator);
-                    sendVerification(calibrator);
+                    try{
+                        if(calibrator.id!=='undefined') {
+                            sendVerification(calibrator);
+                            checkedItems = [];
+                            console.log(calibrator);
+                        }
+                    }
+                    catch(err){
+                        $scope.verificationIds = [];
+                        checkedItems = [];
+                        console.log(calibrator);
+                    }
                     updatePage();
                 });
             }

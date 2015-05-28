@@ -20,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -86,8 +87,8 @@ public class ProviderController {
     @RequestMapping(value = "new/update", method = RequestMethod.PUT)
     public void updateVerification(
             @RequestBody VerificationIdAndCalibrationDataDTO verificationIdAndCalibrationDataDTO) {
-
-        for (String verificationId : verificationIdAndCalibrationDataDTO.getVerificationIds()) {
+        for (String verificationId : verificationIdAndCalibrationDataDTO.removeAllNullValuesInList(
+                verificationIdAndCalibrationDataDTO.getVerificationIds())) {
             verificationService
                     .updateVerification(
                             verificationId,
